@@ -1,7 +1,6 @@
 const App = () => {
   return (
-      <div>Hello React!!!!!!!</div>
-      нфыафапфып
+      <div>Hello React!!!!!!!!!!</div>
   )
 }
 
