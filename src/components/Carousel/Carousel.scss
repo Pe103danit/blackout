@@ -1,0 +1,60 @@
+.carousel {
+
+
+    &__card {
+        position: relative;
+        &__content {
+            position: absolute;
+            top: 0px;
+            left: 20%;
+        }
+
+        &__img {
+            transition: opacity .8s cubic-bezier(.44, .13, .48, .87);
+            width: 100%;
+            // position: relative;
+        }
+
+        &__title {
+            width: 550px;
+            font-size: 46px;
+            line-height: 1;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+            
+        }
+
+        &__text {
+            font-weight: 600;
+            line-height: 1.4;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+           
+        }
+
+        &__button {
+            padding: 6px 24px;
+            width: auto;
+            min-width: unset;
+            font-size: 17px;
+            line-height: 2.12;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            transition: all 0.2s ease-in-out;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+
+            position: absolute;
+            top: 200px;
+            
+
+            &:hover {
+                background-color: #2164ff;
+                color: #FFFFFF;
+            }
+        }
+    }
+}

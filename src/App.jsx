@@ -1,6 +1,10 @@
+import Carousel from "./components/Carousel/Carousel";
+
 const App = () => {
-  return (
-      <div>Hello React!!!!!!!!!!!</div>
+  return (<>
+    <div>Hello React!!!!!!!!!!!</div>
+    <Carousel />
+  </>
   )
 }
 
