@@ -13,7 +13,7 @@
       "no-return-assign": 0,
       "eol-last": 0,
       "semi": 0,
-      "indent": 'off',
+      "indent": "off",
       "camelcase": 0,
       "object-curly-spacing": 0,
       "comma-dangle": 0
