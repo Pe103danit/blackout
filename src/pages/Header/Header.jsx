@@ -6,8 +6,7 @@ import style from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
-    return (
-        <div className={style.header}>
+    return (<div className={style.header}>
             <div className={style.header_c1}>
                 <div className={style.header_c1_logos}>
                     <NavLink to='/' className={style.header_c1_logos_left}>
@@ -39,8 +38,7 @@ const Header = () => {
                     <MarketIcon />
                 </button>
             </div>
-        </div>
-    );
+        </div>);
 };
 
 export default Header;
