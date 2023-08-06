@@ -4,12 +4,14 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import "./Carousel.scss";
+// import "./Carousel.scss";
+import style from "./Carousel.module.scss"
 
 const Carousel = () => {
   const settings = {
     dots: true,
     infinite: true,
+    arrows: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -57,13 +59,13 @@ const Carousel = () => {
       <h2>Featured Products</h2>
       <Slider {...settings}>
         {products.map((product, index) => (
-          <div key={index} className="carousel__card">
-            <img className="carousel__card__img" src={product.image} alt={product.name} />
-            <div className="carousel__card__content">
-            <h3 className="carousel__card__title">{product.name}</h3>
-            <p className="carousel__card__text">{product.text}</p>
+          <div key={index} className={style.carousel__card}>
+            <img className={style.carousel__card__img} src={product.image} alt={product.name} />
+            <div className={style.carousel__card__content}>
+            <h3 className={style.carousel__card__title}>{product.name}</h3>
+            <p className={style.carousel__card__text}>{product.text}</p>
             {/* <span>${product.price}</span> */}
-            <button className="carousel__card__button" onClick={null}>Детальніше</button>
+            <button className={style.carousel__card__button} onClick={null}>Детальніше</button>
             </div>
             
           </div>
