@@ -3,17 +3,15 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 const App = () => {
   return (
-      <>
-      <Header/>
       <BrowserRouter>
+      <Header/>
         <Routes>
           <Route
-          path=""
+          path="/"
           element={<div>1</div>}
           />
         </Routes>
       </BrowserRouter>
-      </>
   )
 }
 
