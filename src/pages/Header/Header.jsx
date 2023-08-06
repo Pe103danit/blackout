@@ -1,7 +1,6 @@
 import logoLeft from './logo-left-removebg-preview.png';
 import logoRight from './logo-right-removebg-preview.png';
 import { SearchIcon, MarketIcon, UserIcon } from '../../components/assets/Icons';
-
 import style from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 
