@@ -12,8 +12,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding-left: 10px;
     max-width: 900px;
+    padding-left: 10px;
 
     &_logos {
       display: flex;
@@ -68,8 +68,8 @@
             &::after {
               position: absolute;
               bottom: -15px;
-              content: "";
               left: 0;
+              content: "";
               width: 100%;
               height: 2px;
               background-color: black;
@@ -83,18 +83,18 @@
   &_c2 {
     display: flex;
     width: 100%;
-    max-width: 110px;
     align-items: center;
-    padding-right: 10px;
+    max-width: 110px;
     justify-content: space-between;
+    padding-right: 10px;
     row-gap: 10px;
 
     button {
       display: flex;
-      width: 30px;
       align-items: center;
-      cursor: pointer;
       justify-content: center;
+      width: 30px;
+      cursor: pointer;
       background: transparent;
       border: none;
       outline: none;
