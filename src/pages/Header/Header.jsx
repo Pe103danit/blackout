@@ -30,13 +30,13 @@ const Header = () => {
             </div>
             <div className={style.header_c2}>
                 <button>
-                    <img src={searchIcon} alt="searchIcon"/>
+                    <img src={searchIcon} alt="searchIcon" title="icon"/>
                 </button>
                 <button>
-                    <img src={userIcon} alt="userIcon"/>
+                    <img src={userIcon} alt="userIcon" title="icon"/>
                 </button>
                 <button>
-                    <img src={marketIcon} alt="marketIcon"/>
+                    <img src={marketIcon} alt="marketIcon" title="icon"/>
                 </button>
             </div>
         </div>
