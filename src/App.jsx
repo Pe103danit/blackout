@@ -1,5 +1,5 @@
-import Header from "./pages/Header/Header";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Header from './pages/Header/Header';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 const App = () => {
   return (
@@ -7,7 +7,7 @@ const App = () => {
       <Header/>
         <Routes>
           <Route
-          path="/"
+          path='/'
           element={<div>1</div>}
           />
         </Routes>
