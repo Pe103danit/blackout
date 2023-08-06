@@ -1,60 +1,70 @@
 .header {
-  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  justify-content: space-between;
+  margin: 0 auto;
   width: 100%;
+  max-width: 1200px;
   height: 90px;
+
   &_c1 {
     padding-left: 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 900px;
+    justify-content: space-between;
     width: 100%;
+    max-width: 900px;
+
     &_logos {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       flex-direction: row;
       width: 190px;
+
       &_left {
         width: 100px;
+
         img {
           width: 100%;
         }
       }
+
       &_right {
         cursor: pointer;
         outline: none;
         border: 0;
         background: transparent;
         width: 87px;
+
         img {
           width: 100%;
         }
       }
     }
+
     &_navigation {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      max-width: 800px;
+      justify-content: space-between;
       width: 100%;
+      max-width: 800px;
+
       &_menu {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-          flex-direction: row;
-         column-gap: 35px;
+        justify-content: space-between;
+        flex-direction: row;
+        column-gap: 35px;
 
         li {
           list-style-type: none;
           cursor: pointer;
           position: relative;
+
           &:hover {
             color: grey;
+
             &::after {
               content: "";
               position: absolute;
@@ -69,20 +79,22 @@
       }
     }
   }
+
   &_c2 {
     padding-right: 10px;
-    max-width: 110px;
     width: 100%;
+    max-width: 110px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     row-gap: 10px;
+
     button {
       width: 30px;
       cursor: pointer;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       outline: none;
       border: 0;
       background: transparent;
@@ -90,6 +102,7 @@
       svg {
         width: 20px;
         height: 20px;
+
         &:hover {
           fill: gray;
         }
