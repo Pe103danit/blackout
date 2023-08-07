@@ -4,6 +4,7 @@ import {SearchIcon, MarketIcon, UserIcon} from '../../components/assets/Icons';
 import style from './Header.module.scss';
 import {NavLink} from 'react-router-dom';
 
+
 const Header = () => {
     return (
         <div className={style.header}>
