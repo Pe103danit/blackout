@@ -1,10 +1,10 @@
-import Header from './pages/Header/Header';
 import {Routes, Route} from 'react-router-dom';
+import HeaderContainer from './pages/Header/headerContainer'
 
 const App = () => {
     return (
         <>
-            <Header/>
+            <HeaderContainer/>
             <Routes>
                 <Route
                     path='/'
