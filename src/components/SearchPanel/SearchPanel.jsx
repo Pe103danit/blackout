@@ -1,7 +1,9 @@
 import style from './SearchPanel.module.scss'
 import { SearchIcon, CloseIcon } from '../assets/Icons'
+import { connect } from 'react-redux'
+import { toggleSearchInput } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 
-const SearchPanel = () => {
+const SearchPanel = (props) => {
   return (
     <div className={style.container}>
       <button>
@@ -11,11 +13,19 @@ const SearchPanel = () => {
         type='text'
         placeholder='e.g. Power Station'
       />
-      <button>
+      <button onClick={props.toggleSearchInput}>
         {<CloseIcon/>}
       </button>
     </div>
   )
 }
 
-export default SearchPanel
+const mapStateToProps = (state) => ({
+  ...state.UIStateReducer
+})
+
+const mapDispatchToProps = {
+  toggleSearchInput
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPanel)
