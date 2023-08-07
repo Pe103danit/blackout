@@ -3,8 +3,9 @@ import logoRight from './logo-right-removebg-preview.png';
 import {SearchIcon, MarketIcon, UserIcon} from '../../components/assets/Icons';
 import style from './Header.module.scss';
 import {NavLink} from 'react-router-dom';
+import SearchPanel from '../../components/SearchPanel/SearchPanel'
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div className={style.header}>
             <div className={style.header_c1}>
@@ -16,28 +17,34 @@ const Header = () => {
                         <img src={logoRight} alt='logo-right' title='Click me'/>
                     </button>
                 </div>
-                <nav className={style.header_c1_navigation}>
-                    <ul className={style.header_c1_navigation_menu}>
-                        <li>Shop</li>
-                        <li>Offers</li>
-                        <li>Delivery</li>
-                        <li>Payment</li>
-                        <li>About us</li>
-                        <li>Contacts</li>
-                    </ul>
-                </nav>
+                {
+                    !props.searchInput
+                      ? <nav className={style.header_c1_navigation}>
+                          <ul className={style.header_c1_navigation_menu}>
+                              <li>Shop</li>
+                              <li>Offers</li>
+                              <li>Delivery</li>
+                              <li>Payment</li>
+                              <li>About us</li>
+                              <li>Contacts</li>
+                          </ul>
+                      </nav>
+                      : <SearchPanel/>
+                }
             </div>
-            <div className={style.header_c2}>
-                <button>
-                    <SearchIcon/>
-                </button>
-                <button>
-                    <UserIcon/>
-                </button>
-                <button>
-                    <MarketIcon/>
-                </button>
-            </div>
+            {!props.searchInput &&
+              <div className={style.header_c2}>
+                  <button onClick={props.toggleSearchInput}>
+                      <SearchIcon/>
+                  </button>
+                  <button>
+                      <UserIcon/>
+                  </button>
+                  <button>
+                      <MarketIcon/>
+                  </button>
+              </div>
+            }
         </div>
 
     );
