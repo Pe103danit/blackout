@@ -32,9 +32,9 @@
 
       &_right {
         width: 87px;
-        background: transparent;
         border: 0;
         outline: none;
+        background: transparent;
         cursor: pointer;
 
         img {
@@ -94,9 +94,10 @@
       align-items: center;
       justify-content: center;
       width: 30px;
-      background: transparent;
       border: none;
+      background: transparent;
       cursor: pointer;
+
       &:focus {
         outline: none;
       }
