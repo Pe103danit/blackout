@@ -1,0 +1,53 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
+.container {
+  position: relative;
+  &_btn {
+    width: 35px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &_nav {
+    position: absolute;
+    width: 100vw;
+    top: 59px;
+    background: white;
+    &_list {
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      row-gap: 20px;
+      &_item {
+        position: relative;
+        padding-left: 15px;
+        &::after {
+          position: absolute;
+          bottom: -10px;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: #000;
+          opacity: 15%;
+          content: "";
+        }
+        &_link {
+          @include manrope-bold();
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 993px) {
+.container {
+  display: none;
+}
+}
