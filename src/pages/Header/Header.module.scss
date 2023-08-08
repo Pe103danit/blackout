@@ -1,0 +1,114 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  height: 90px;
+  margin: 0 auto;
+
+  &_c1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    padding-left: 10px;
+
+    &_logos {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 190px;
+
+      &_left {
+        width: 100px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      &_right {
+        width: 87px;
+        background: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    &_navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 800px;
+
+      &_menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 35px;
+
+        li {
+          position: relative;
+          list-style-type: none;
+          cursor: pointer;
+
+          &:hover {
+            color: grey;
+
+            &::after {
+              position: absolute;
+              bottom: -15px;
+              left: 0;
+              width: 100%;
+              height: 2px;
+              background-color: black;
+              content: "";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_c2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 110px;
+    padding-right: 10px;
+    row-gap: 10px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+
+        &:hover {
+          fill: gray;
+        }
+      }
+    }
+  }
+}
