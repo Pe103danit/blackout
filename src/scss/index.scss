@@ -1,0 +1,20 @@
+@import "_reset.scss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+}
+
+a, button {
+ cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+}
