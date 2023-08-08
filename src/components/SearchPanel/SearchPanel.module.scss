@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 62px;
+  width: 100%;
+  max-width: 700px;
+  background: #ededed;
+  input {
+    height: 100%;
+    width: 600px;
+    background: none;
+    border: none;
+    color: black;
+    &::placeholder {
+      color: black;
+    }
+    &:focus{
+      outline:none
+    }
+  }
+  button {
+    height: 30px;
+    width: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    svg {
+      height: 20px;
+      width: 20px;
+      fill: rgb(3, 6, 11);
+
+      &:hover {
+        fill: gray;
+      }
+    }
+  }
+}
