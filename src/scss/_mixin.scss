@@ -4,21 +4,21 @@
   justify-content: $justify;
 }
 
-@mixin montserrat-light(){
+@mixin manrope-light(){
   font-weight: 400;
   font-family: 'Manrope', sans-serif;
 }
 
-@mixin montserrat-regular(){
+@mixin manrope-regular(){
   font-weight: 500;
   font-family: 'Manrope', sans-serif;
 }
-@mixin montserrat-bold(){
+@mixin manrope-bold(){
   font-weight: 700;
   font-family: 'Manrope', sans-serif;
 }
 
-@mixin montserrat-bolder(){
+@mixin manrope-bolder(){
   font-weight: 800;
   font-family: 'Manrope', sans-serif;
 }
