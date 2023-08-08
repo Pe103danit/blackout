@@ -1,0 +1,24 @@
+@mixin flex-element($align, $justify){
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin montserrat-light(){
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+}
+
+@mixin montserrat-regular(){
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+}
+@mixin montserrat-bold(){
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+}
+
+@mixin montserrat-bolder(){
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+}
