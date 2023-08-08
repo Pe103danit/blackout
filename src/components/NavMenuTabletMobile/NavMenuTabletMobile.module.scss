@@ -15,15 +15,15 @@
   }
   &_nav {
     position: absolute;
-    width: 100vw;
     top: 59px;
+    width: 100vw;
     background: white;
     &_list {
-      padding: 20px 0;
       display: flex;
       flex-direction: column;
       width: 100%;
       row-gap: 20px;
+      padding: 20px 0;
       &_item {
         position: relative;
         padding-left: 15px;

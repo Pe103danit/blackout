@@ -2,8 +2,6 @@
 @import '../../scss/_variables.scss';
 
 .header {
-  @include manrope-regular();
-  color: $black;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,6 +9,8 @@
   max-width: 1200px;
   height: 90px;
   margin: 0 auto;
+  color: $black;
+  @include manrope-regular();
 
   &::after {
     position: absolute;
@@ -36,8 +36,8 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      column-gap: 5px;
       width: 190px;
+      column-gap: 5px;
 
       &_left {
         width: 90px;
