@@ -1,5 +1,6 @@
 import {Routes, Route} from 'react-router-dom';
-import HeaderContainer from './pages/Header/headerContainer'
+import HeaderContainer from './pages/Header/headerContainer';
+import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
 
 const App = () => {
     return (
@@ -8,7 +9,7 @@ const App = () => {
             <Routes>
                 <Route
                     path='/'
-                    element={<div>123</div>}
+                    element={<WhyChooseUs/>}
                 />
             </Routes>
         </>
