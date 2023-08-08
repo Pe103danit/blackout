@@ -37,9 +37,9 @@
         display: grid;
         grid-template-columns: repeat(4, 244px);
         gap: 25px; 
-        margin-top: 50px ;   
+        margin-top: 50px ;  
+        padding: 0px 45px 60px 45px; 
         background-color: $white;
-        padding: 0px 45px 60px 45px;
         border-radius: $border;  
     }
     &_credit{
