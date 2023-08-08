@@ -29,17 +29,17 @@
     &_item {
         margin-right: 10px;
         width: 244px;
-        padding: 60px 10px 0px 10px;
         max-height: 215px;
+        padding: 60px 10px 0px 10px;
     }
 
     &_wrapper {
-        background-color: $white;
         display: grid;
+        background-color: $white;
         margin-top: 50px ;
         padding: 0px 45px 60px 45px;
-        border-radius: $border;  
         grid-template-columns: repeat(4, 244px);
+        border-radius: $border;  
         gap: 25px; 
     }
     &_credit{
