@@ -5,6 +5,7 @@ import style from './Header.module.scss';
 import {NavLink} from 'react-router-dom';
 import SearchPanel from '../../components/SearchPanel/SearchPanel'
 import NavMenuTabletMobile from '../../components/NavMenuTabletMobile/NavMenuTabletMobile'
+import NavMenuCategories from '../../components/NavMenuCategories/NavMenuCategories'
 
 const Header = (props) => {
     return (
@@ -30,6 +31,7 @@ const Header = (props) => {
                               <li>About us</li>
                               <li>Contacts</li>
                           </ul>
+                          <NavMenuCategories/>
                       </nav>
                       : <SearchPanel/>
                 }
