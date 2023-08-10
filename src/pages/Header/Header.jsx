@@ -5,7 +5,7 @@ import {
   LogoLightRight,
   LogoDarkRight,
   LogoLightLeft,
-  LogoDarkLeft
+  LogoDarkLeft, SearchIconDark, UserIconDark, MarketIconDark
 } from '../../components/assets/Icons'
 import style from './Header.module.scss'
 import { NavLink } from 'react-router-dom'
@@ -59,13 +59,22 @@ const Header = (props) => {
       {!props.searchInput &&
         <div className={style.header_c2}>
           <button onClick={props.toggleSearchInput}>
-            <SearchIcon/>
+            {props.lightTheme
+              ? <SearchIcon/>
+              : <SearchIconDark/>
+            }
           </button>
           <button>
-            <UserIcon/>
+            {props.lightTheme
+              ? <UserIcon/>
+              : <UserIconDark/>
+            }
           </button>
           <button>
-            <MarketIcon/>
+            {props.lightTheme
+              ? <MarketIcon/>
+              : <MarketIconDark/>
+            }
           </button>
         </div>
       }
