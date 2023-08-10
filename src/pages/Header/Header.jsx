@@ -14,14 +14,17 @@ import NavMenuTabletMobile from '../../components/NavMenuTabletMobile/NavMenuTab
 import NavMenuCategories from '../../components/NavMenuCategories/NavMenuCategories'
 
 const Header = (props) => {
-  const themeStyle = props.lightTheme ? 'light' : 'dark'
+  const themeStyle = props.lightTheme
+    ? 'light'
+    : 'dark'
+
   const navStyle = props.lightTheme
     ? 'light_navLink'
     : 'dark_navLink'
   return (
     <div className={`${style.header} ${themeStyle}`}>
       <div className={style.header_c1}>
-        <NavMenuTabletMobile/>
+        <NavMenuTabletMobile themeStyle={themeStyle}/>
         <div className={style.header_c1_logos}>
           <NavLink to="/" className={style.header_c1_logos_left}>
             {props.lightTheme
@@ -43,7 +46,7 @@ const Header = (props) => {
                 <li
                   className={`${style.header_c1_navigation_menu_item} ${navStyle}`}
                 >Shop
-                  <NavMenuCategories/>
+                  <NavMenuCategories themeStyle={themeStyle}/>
                 </li>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Offers</li>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Delivery</li>
