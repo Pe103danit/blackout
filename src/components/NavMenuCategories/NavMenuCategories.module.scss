@@ -4,9 +4,9 @@
 .container {
   position: absolute;
   display: none;
+  z-index: 1;
   width: 200px;
   height: 250px;
-  z-index: 1;
   padding-top: 27px;
   transform: translateX(-40%);
 
