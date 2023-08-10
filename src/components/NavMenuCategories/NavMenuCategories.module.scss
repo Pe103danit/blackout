@@ -2,13 +2,13 @@
 @import '../../scss/_variables.scss';
 
 .container {
+  display: none;
   position: absolute;
   width: 200px;
   height: 250px;
-  top: 70px;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0 3px 6px $shadow;
+  padding-top: 27px;
+  transform: translateX(-40%);
+  z-index: 1;
 
   &_list {
     display: flex;
@@ -16,14 +16,20 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    row-gap: 20px;
-    padding: 20px 0;
+    padding: 10px 0;
+    background: white;
+    border: 1px solid $light-border;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px $shadow;
 
     &_item {
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
+      cursor: pointer;
+
       &:hover {
         background: $super-light-blue;
       }
