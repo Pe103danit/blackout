@@ -17,7 +17,6 @@
     flex-direction: column;
     width: 100%;
     padding: 10px 0;
-    background: white;
     border: 1px solid $light-border;
     border-radius: 10px;
     box-shadow: 0 3px 6px $shadow;
@@ -29,18 +28,8 @@
       justify-content: center;
       width: 100%;
       cursor: pointer;
-
-      &:hover {
-        background: $super-light-blue;
-      }
-
-      &:hover &_link {
-        color: $button-blue;
-      }
-
       &_link {
         @include manrope-regular();
-        color: $black;
       }
     }
   }
