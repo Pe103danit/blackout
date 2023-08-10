@@ -4,11 +4,13 @@ import {SearchIcon, MarketIcon, UserIcon} from '../../components/assets/Icons';
 import style from './Header.module.scss';
 import {NavLink} from 'react-router-dom';
 import SearchPanel from '../../components/SearchPanel/SearchPanel'
+import NavMenuTabletMobile from '../../components/NavMenuTabletMobile/NavMenuTabletMobile'
 
 const Header = (props) => {
     return (
         <div className={style.header}>
             <div className={style.header_c1}>
+                <NavMenuTabletMobile/>
                 <div className={style.header_c1_logos}>
                     <NavLink to='/' className={style.header_c1_logos_left}>
                         <img src={logoLeft} alt='logo-left'/>

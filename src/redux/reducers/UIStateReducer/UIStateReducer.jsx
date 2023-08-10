@@ -1,7 +1,8 @@
 import types from '../../types/types'
 
 const initialState = {
-  searchInput: false
+  searchInput: false,
+  navBarStatus: false
 }
 
 const UIStateReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const UIStateReducer = (state = initialState, action) => {
         ...state,
         searchInput: !state.searchInput
       }
+    case types.TOGGLE_NAV_BAR:
+      return {
+        ...state,
+        navBarStatus: !state.navBarStatus
+      }
     default:
       return state
   }
@@ -18,6 +24,10 @@ const UIStateReducer = (state = initialState, action) => {
 
 export const toggleSearchInput = () => ({
   type: types.TOGGLE_SEARCH_INPUT
+})
+
+export const toggleNavBar = () => ({
+  type: types.TOGGLE_NAV_BAR
 })
 
 export default UIStateReducer

@@ -1,3 +1,6 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
 .header {
   display: flex;
   align-items: center;
@@ -6,6 +9,19 @@
   max-width: 1200px;
   height: 90px;
   margin: 0 auto;
+  color: $black;
+  @include manrope-regular();
+
+  &::after {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #000;
+    opacity: 15%;
+    content: "";
+  }
 
   &_c1 {
     display: flex;
@@ -19,11 +35,12 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       width: 190px;
+      column-gap: 5px;
 
       &_left {
-        width: 100px;
+        width: 90px;
 
         img {
           width: 100%;
@@ -31,14 +48,15 @@
       }
 
       &_right {
-        width: 87px;
+        width: 70px;
+        background: transparent;
         border: 0;
         outline: none;
         background: transparent;
         cursor: pointer;
 
         img {
-          width: 100%;
+          width: 90%;
         }
       }
     }
@@ -49,6 +67,7 @@
       justify-content: space-between;
       width: 100%;
       max-width: 800px;
+      padding-left: 20px;
 
       &_menu {
         display: flex;
@@ -67,7 +86,7 @@
 
             &::after {
               position: absolute;
-              bottom: -15px;
+              bottom: -27px;
               left: 0;
               width: 100%;
               height: 2px;
@@ -111,5 +130,27 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .header {
+    width: 100%;
+    max-width: 768px;
+
+    &_c1 {
+      justify-content: flex-start;
+      column-gap: 30px;
+      &_navigation {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    width: 100%;
+    max-width: 320px;
   }
 }
