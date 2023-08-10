@@ -1,0 +1,36 @@
+@import './_variables.scss';
+
+.light{
+  background: $white;
+  color: $black;
+  &::after{
+    background: $black;
+  }
+}
+.dark{
+  background: $black;
+  color: $white;
+  &::after{
+    background: $white;
+  }
+}
+
+.light_navLink {
+  color: $second-grey;
+  &:hover {
+    color: $black;
+    &::after{
+      background-color: $black;
+    }
+  }
+}
+
+.dark_navLink {
+  color: $white;
+  &:hover {
+    color: $third-grey;
+    &::after{
+      background-color: $white;
+    }
+  }
+}

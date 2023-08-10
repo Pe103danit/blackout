@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleSearchInput } from '../../redux/reducers/UIStateReducer/UIStateReducer'
+import { toggleSearchInput, toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 import Header from './Header'
 
 const mapStateToProps = (state) => ({
@@ -7,6 +7,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+  toggleTheme,
   toggleSearchInput
 }
 
