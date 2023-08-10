@@ -1,25 +1,30 @@
 @import './_variables.scss';
 
-.light{
+.light {
   background: $white;
   color: $black;
-  &::after{
+
+  &::after {
     background: $black;
   }
 }
-.dark{
+
+.dark {
   background: $black;
   color: $white;
-  &::after{
+
+  &::after {
     background: $white;
   }
 }
 
 .light_navLink {
   color: $second-grey;
+
   &:hover {
     color: $black;
-    &::after{
+
+    &::after {
       background-color: $black;
     }
   }
@@ -27,9 +32,11 @@
 
 .dark_navLink {
   color: $white;
+
   &:hover {
     color: $third-grey;
-    &::after{
+
+    &::after {
       background-color: $white;
     }
   }
