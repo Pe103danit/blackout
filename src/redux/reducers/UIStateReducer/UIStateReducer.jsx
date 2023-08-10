@@ -1,12 +1,18 @@
 import types from '../../types/types'
 
 const initialState = {
+  lightTheme: true,
   searchInput: false,
   navBarStatus: false
 }
 
 const UIStateReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.TOGGLE_THEME:
+      return {
+        ...state,
+        lightTheme: !state.lightTheme
+      }
     case types.TOGGLE_SEARCH_INPUT:
       return {
         ...state,
@@ -21,6 +27,10 @@ const UIStateReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export const toggleTheme = () => ({
+  type: types.TOGGLE_THEME
+})
 
 export const toggleSearchInput = () => ({
   type: types.TOGGLE_SEARCH_INPUT
