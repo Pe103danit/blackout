@@ -6,38 +6,32 @@
   max-width: 700px;
   height: 62px;
   background: #ededed;
-
   input {
     width: 600px;
     height: 100%;
-    border: none;
-    background: none;
     color: black;
-
+    background: none;
+    border: none;
     &::placeholder {
       color: black;
     }
-
     &:focus{
       outline:none
     }
   }
-
   button {
     width: 30px;
     height: 30px;
-    border: none;
     background: none;
+    border: none;
     cursor: pointer;
-
     &:focus {
       outline: none;
     }
-
     svg {
       width: 20px;
       height: 20px;
-      fill: rgb(3 6 11);
+      fill: rgb(3, 6, 11);
 
       &:hover {
         fill: gray;

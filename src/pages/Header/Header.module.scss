@@ -52,7 +52,6 @@
         background: transparent;
         border: 0;
         outline: none;
-        background: transparent;
         cursor: pointer;
 
         img {
@@ -113,8 +112,8 @@
       align-items: center;
       justify-content: center;
       width: 30px;
-      border: none;
       background: transparent;
+      border: none;
       cursor: pointer;
 
       &:focus {
