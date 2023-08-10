@@ -2,19 +2,19 @@
 @import '../../scss/_variables.scss';
 
 .container {
-  display: none;
   position: absolute;
+  display: none;
   width: 200px;
   height: 250px;
   padding-top: 27px;
-  transform: translateX(-40%);
   z-index: 1;
+  transform: translateX(-40%);
 
   &_list {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     width: 100%;
     padding: 10px 0;
     border: 1px solid $light-border;
@@ -22,10 +22,10 @@
     box-shadow: 0 3px 6px $shadow;
 
     &_item {
-      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 40px;
       width: 100%;
       cursor: pointer;
       &_link {
