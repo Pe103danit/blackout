@@ -2,13 +2,13 @@ import { Routes, Route } from 'react-router-dom';
 import HeaderContainer from './pages/Header/headerContainer';
 import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
 import { ProductCard } from './components/ProductCard'
-    const object = {
+const object = {
     isHot: true,
     title: 'EcoFlow DELTA 2 Portable Power Station',
     rating: 4.6,
-    price: '£1,099.00 GBP',
+    price: 1099.00,
     underPrice: 'Tax included.',
-    img: ['//uk.ecoflow.com/cdn/shop/products/ecoflow-delta-2-portable-power-station-35798225649856_535x.png?v=1675245586'],
+    img: ['./imgs/product1.png', './imgs/product2.png', './imgs/product3.png', './imgs/product4.png'],
     description: {
         title: 'Best Seller of Outdoor Generators & Garden on Amazon *',
         characters: [
@@ -54,14 +54,14 @@ import { ProductCard } from './components/ProductCard'
     },
 }
 const App = (props) => {
-  const themeStyle = props.lightTheme ? 'light' : 'dark'
+    const themeStyle = props.lightTheme ? 'light' : 'dark'
     return (
         <div className={themeStyle}>
             <HeaderContainer />
             <Routes>
                 <Route
                     path='/'
-                    element={<WhyChooseUs/>}
+                    element={<WhyChooseUs />}
                 />
             </Routes>
             <ProductCard {...object} />
