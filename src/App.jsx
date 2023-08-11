@@ -1,6 +1,6 @@
 import {Routes, Route} from 'react-router-dom';
 import HeaderContainer from './pages/Header/headerContainer';
-import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
+import HomeContainer from './pages/Home/homeContainer'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -10,7 +10,7 @@ const App = (props) => {
             <Routes>
                 <Route
                     path='/'
-                    element={<WhyChooseUs/>}
+                    element={<HomeContainer/>}
                 />
             </Routes>
         </div>
