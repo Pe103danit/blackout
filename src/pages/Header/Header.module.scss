@@ -1,3 +1,6 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
 .header {
   display: flex;
   align-items: center;
@@ -6,6 +9,17 @@
   max-width: 1200px;
   height: 90px;
   margin: 0 auto;
+  @include manrope-regular();
+
+  &::after {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    opacity: 15%;
+    content: "";
+  }
 
   &_c1 {
     display: flex;
@@ -19,26 +33,27 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       width: 190px;
+      column-gap: 5px;
 
       &_left {
-        width: 100px;
+        width: 90px;
 
-        img {
+        svg {
           width: 100%;
         }
       }
 
       &_right {
-        width: 87px;
+        width: 70px;
         background: transparent;
         border: 0;
         outline: none;
         cursor: pointer;
 
-        img {
-          width: 100%;
+        svg {
+          width: 90%;
         }
       }
     }
@@ -49,6 +64,7 @@
       justify-content: space-between;
       width: 100%;
       max-width: 800px;
+      padding-left: 20px;
 
       &_menu {
         display: flex;
@@ -57,21 +73,24 @@
         justify-content: space-between;
         column-gap: 35px;
 
-        li {
+        &_item {
           position: relative;
           list-style-type: none;
           cursor: pointer;
 
+          &:hover > nav {
+            display: block;
+          }
+
           &:hover {
-            color: grey;
 
             &::after {
               position: absolute;
-              bottom: -15px;
+              bottom: -27px;
               left: 0;
+              z-index: -1;
               width: 100%;
               height: 2px;
-              background-color: black;
               content: "";
             }
           }
@@ -96,17 +115,43 @@
       width: 30px;
       background: transparent;
       border: none;
-      outline: none;
       cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
 
       svg {
         width: 20px;
         height: 20px;
 
         &:hover {
-          fill: gray;
+          fill: $third-grey;
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .header {
+    width: 100%;
+    max-width: 768px;
+
+    &_c1 {
+      justify-content: flex-start;
+      column-gap: 30px;
+
+      &_navigation {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    width: 100%;
+    max-width: 320px;
   }
 }

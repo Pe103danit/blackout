@@ -1,5 +1,6 @@
-import Header from './pages/Header/Header';
 import { Routes, Route } from 'react-router-dom';
+import HeaderContainer from './pages/Header/headerContainer';
+import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
 import { ProductCard } from './components/ProductCard'
     const object = {
     isHot: true,
@@ -52,18 +53,19 @@ import { ProductCard } from './components/ProductCard'
         this._uLike = value;
     },
 }
-const App = () => {
+const App = (props) => {
+  const themeStyle = props.lightTheme ? 'light' : 'dark'
     return (
-        <>
-            <Header />
+        <div className={themeStyle}>
+            <HeaderContainer />
             <Routes>
                 <Route
                     path='/'
-                    element={<div>123</div>}
+                    element={<WhyChooseUs/>}
                 />
             </Routes>
             <ProductCard {...object} />
-        </>
+        </div>
     )
 }
 export default App;

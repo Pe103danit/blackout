@@ -1,0 +1,49 @@
+@import '../../scss/variables';
+
+.WhyChooseUs {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+
+    &_title {
+        padding-right: 10px ;
+        padding-left: 10px;
+        font-weight: $big-weight;
+        font-size: 28px;
+    }
+
+    &_title_item {
+        padding-top: 15px;
+        font-weight: $big-weight;
+        font-size: $third-size;        
+    }
+
+    &_text_item {
+        max-width: 224px;
+        margin-top: 10px;
+        color: #757575;
+        font-size: $fourth-size, $small-weight;
+    }
+
+    &_item {
+        width: 244px;
+        max-height: 215px;
+        margin-right: 10px;
+        padding: 60px 10px 0 10px;
+    }
+
+    &_wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 244px);
+        gap: 25px; 
+        margin-top: 50px ;  
+        padding: 0 45px 60px 45px;
+        background-color: $white;
+        border-radius: $border;  
+    }
+    &_credit{
+        color: $first-grey;
+        text-decoration: underline;
+    }
+
+}
