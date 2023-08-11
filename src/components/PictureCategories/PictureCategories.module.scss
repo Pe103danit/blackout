@@ -2,9 +2,9 @@
 @import '../../scss/_variables.scss';
 
 .container {
-  margin: 10px auto;
   width: 100%;
   max-width: 1200px;
+  margin: 10px auto;
   &_list {
     display: flex;
     align-items: center;
@@ -27,8 +27,8 @@
           height: 52px;
         }
         &_text {
-          text-align: center;
           font-size: $fifth-size;
+          text-align: center;
           @include manrope-regular();
         }
       }
