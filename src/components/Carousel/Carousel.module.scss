@@ -1,8 +1,8 @@
 .carousel {
 
-
     &__card {
         position: relative;
+
         &__content {
             position: absolute;
             top: 0px;
@@ -21,7 +21,7 @@
             line-height: 1;
             margin-bottom: 8px;
             color: #FFFFFF;
-            
+
         }
 
         &__text {
@@ -30,7 +30,7 @@
             font-size: 20px;
             margin-bottom: 8px;
             color: #FFFFFF;
-           
+
         }
 
         &__button {
@@ -49,12 +49,18 @@
 
             position: absolute;
             top: 200px;
-            
+
 
             &:hover {
                 background-color: #2164ff;
-                color: #FFFFFF;
+                color: #f4f3f3;
             }
         }
     }
+}
+
+.slick-dots li button:before {
+    position: absolute;
+    top: -40px !important;
+    font-size: 10px !important;
 }
