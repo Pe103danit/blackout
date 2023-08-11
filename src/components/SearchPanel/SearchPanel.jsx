@@ -21,7 +21,7 @@ const SearchPanel = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  ...state.UIStateReducer
+  searchInput: state.UIStateReducer.searchInput
 })
 
 const mapDispatchToProps = {

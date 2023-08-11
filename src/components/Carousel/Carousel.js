@@ -7,33 +7,16 @@ import 'slick-carousel/slick/slick-theme.css';
 // import './Carousel.scss';
 import style from './Carousel.module.scss'
 
-function SampleNextArrow (props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'red' }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow (props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'green' }}
-      onClick={onClick}
-    />
-  );
-}
-
 const Carousel = () => {
+  const SampleArrow = ({ direction, onClick }) => (
+    <div className={`${style.arrow} ${style[`arrow-${direction}`]}`} onClick={onClick}>
+      {direction === 'prev' ? <span className={style.rightArrow}>&lt;</span> : <span className={style.leftArrow}>&gt;</span>}
+    </div>
+  );
+
   const settings = {
     dots: true,
     infinite: true,
-    arrows: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -51,8 +34,8 @@ const Carousel = () => {
         },
       },
     ],
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SampleArrow direction="prev" />,
+    nextArrow: <SampleArrow direction="next" />,
   };
 
   const products = [
@@ -79,7 +62,7 @@ const Carousel = () => {
   ]
 
   return (
-    <div className='carousel'>
+    <div className={style.carousel}>
       {/* <h2>Featured Products</h2> */}
       <Slider {...settings}>
         {products.map((product, index) => (

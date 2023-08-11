@@ -1,0 +1,104 @@
+@import './_variables.scss';
+
+.light {
+  color: $black;
+  background: $white;
+
+  &::after {
+    background: $black;
+  }
+}
+
+.dark {
+  color: $white;
+  background: $black;
+
+  &::after {
+    background: $white;
+  }
+}
+
+.light_navLink {
+  color: $second-grey;
+
+  &:hover {
+    color: $black;
+
+    &::after {
+      background-color: $black;
+    }
+  }
+}
+
+.dark_navLink {
+  color: $white;
+
+  &:hover {
+    color: $third-grey;
+
+    &::after {
+      background-color: $white;
+    }
+  }
+}
+
+.light_navMobile {
+  background-color: $white;
+  li {
+    &:hover {
+      background: $super-light-blue;
+    }
+    a {
+      color: $black;
+      &:hover{
+        color: $button-blue;
+      }
+    }
+  }
+}
+
+.dark_navMobile {
+  ul {
+    background-color: $light-black;
+    li {
+      &:hover {
+        background: $third-grey;
+        a{
+          color: $button-blue;
+        }
+      }
+      a {
+        color: $white;
+
+      }
+    }
+  }
+}
+
+.lightMobilePanel {
+  background: $white;
+  ul {
+    li {
+      &::after {
+        background: $black;
+      }
+      a {
+        color: $black;
+      }
+    }
+  }
+}
+
+.darkMobilePanel {
+  background: $light-black;
+  ul {
+    li {
+      &::after {
+        background: $white;
+      }
+      a {
+        color: $white;
+      }
+    }
+  }
+}
