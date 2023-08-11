@@ -71,10 +71,12 @@ const Header = (props) => {
             }
           </button>
           <button>
+          <NavLink to='/cart'>
             {props.lightTheme
               ? <MarketIcon />
               : <MarketIconDark />
             }
+            </NavLink>
           </button>
         </div>
       }
