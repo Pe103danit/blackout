@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // import Carousel from './components/Carousel/Carousel';
 import HeaderContainer from './pages/Header/headerContainer';
+<<<<<<< HEAD
 // import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
 import Home from './pages/Home/Home';
 import Shop from './pages/Shop/Shop';
@@ -11,6 +12,9 @@ import Payment from './pages/Payment/Payment';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Contacts from './pages/Contacts/Contacts';
 import Cart from './pages/Cart/Cart';
+=======
+import HomeContainer from './pages/Home/homeContainer'
+>>>>>>> master
 
 const App = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -18,6 +22,7 @@ const App = (props) => {
         <div className={themeStyle}>
             <HeaderContainer />
             <Routes>
+<<<<<<< HEAD
                 <Route path='/' element={<Home />} />
                 <Route path='/shop' element={<Shop />} />
                 <Route path='/offers' element={<Offers />} />
@@ -26,6 +31,12 @@ const App = (props) => {
                 <Route path='/aboutus' element={<AboutUs />} />
                 <Route path='/contacts' element={<Contacts />} />
                 <Route path="cart" element={<Cart />} />
+=======
+                <Route
+                    path='/'
+                    element={<HomeContainer/>}
+                />
+>>>>>>> master
             </Routes>
         </div>
     )

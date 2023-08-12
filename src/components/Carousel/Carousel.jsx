@@ -57,7 +57,7 @@ const Carousel = () => {
     {
       image: 'https://uk.ecoflow.com/cdn/shop/files/PC.jpg?v=1680243561',
       name: 'Portable PV & EV Power with DELTA Pro',
-      text: 'Travel Without Limits'
+      text: 'Travel Without Limits',
     }
   ]
 

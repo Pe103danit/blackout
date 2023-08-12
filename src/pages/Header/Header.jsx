@@ -43,6 +43,7 @@ const Header = (props) => {
           !props.searchInput
             ? <nav className={style.header_c1_navigation}>
               <ul className={style.header_c1_navigation_menu}>
+<<<<<<< HEAD
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Shop<NavMenuCategories themeStyle={themeStyle} />
                 </li>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/offers'>Offers</NavLink></li>
@@ -51,7 +52,47 @@ const Header = (props) => {
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/aboutus'>About us</NavLink></li>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/contacts'>Contacts</NavLink></li>
               </ul>
+=======
 
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/'}>
+                  Shop
+                  </NavLink>
+                  <NavMenuCategories themeStyle={themeStyle}/>
+                </li>
+>>>>>>> master
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/'}>
+                    Offers
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/'}>
+                    Delivery
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/'}>
+                    Payment
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/'}>
+                    About us
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/'}>
+                    Contacts
+                  </NavLink>
+                </li>
+
+              </ul>
             </nav>
             : <SearchPanel />
         }
