@@ -41,9 +41,6 @@
     }
 
     &_wrapper {
-        // display: grid;
-        // grid-template-columns: repeat(4, 244px);
-        // gap: 25px; 
         display: grid;
         grid-template-columns: repeat(4, minmax(220px, 1fr));
         grid-gap: 20px;
@@ -56,8 +53,6 @@
         text-decoration: underline;
     }
 }
-
-
 @media screen and (max-width: 992px) {
     .WhyChooseUs {
         &_wrapper {
