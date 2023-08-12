@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// import './Carousel.scss';
+import './Carousel.scss';
 import style from './Carousel.module.scss'
 
 const Carousel = () => {
