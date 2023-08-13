@@ -21,14 +21,14 @@
     &_text_item {
         margin-top: 10px;
         color: #757575;
-        font-size: $fourth-size;
         font-weight: $small-weight;
+        font-size: $fourth-size;
     }
 
     &_item {
         margin: 0;
-        padding: 0;
         box-sizing: border-box;
+        padding: 0;
         max-height: 215px;
         margin-right: 10px;
         padding: 60px 10px 0 10px;
@@ -42,8 +42,8 @@
 
     &_wrapper {
         display: grid;
-        grid-template-columns: repeat(4, minmax(220px, 1fr));
         grid-gap: 20px;
+        grid-template-columns: repeat(4, minmax(220px, 1fr));
         margin-top: 50px ;  
         padding: 0 40px 60px 40px;
         border-radius: $border;  
@@ -56,8 +56,9 @@
 @media screen and (max-width: 992px) {
     .WhyChooseUs {
         &_wrapper {
-            padding: 0 25px 0 25px;
             grid-template-columns: repeat(2, minmax(200px, 1fr));
+            padding: 0 25px 0 25px;
+
           }
     }
   }
@@ -65,8 +66,8 @@
 @media screen and (max-width: 480px) {
     .WhyChooseUs {
         &_wrapper {
-            padding: 0 45px 0 45px; 
             grid-template-columns: repeat(1, minmax(220px, 1fr));
+            padding: 0 45px 0 45px; 
           }
     }
   }
