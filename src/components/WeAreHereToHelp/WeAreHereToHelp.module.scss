@@ -1,0 +1,68 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+.container {
+  margin: 0 auto;
+  height: 670px;
+  width: 100%;
+  max-width: 1200px;
+  &_title {
+    height: 70px;
+    padding-left: 10px;
+    font-size: $second-size;
+    @include manrope-bold();
+  }
+
+  &_body {
+    height: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_left {
+      height: 600px;
+      width: 595px;
+
+      &_link {
+        width: 100%;
+
+        img {
+          width: 100%;
+          border-radius: 5%;
+        }
+      }
+    }
+
+    &_right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 600px;
+      width: 595px;
+
+      &_link {
+        position: relative;
+        height: 295px;
+        width: 100%;
+
+        img {
+          height: 100%;
+          width: 100%;
+          border-radius: 5%;
+        }
+        &_text {
+          position: absolute;
+          top: 20px;
+          right: 10px;
+          font-size: $second-size;
+          color: $white;
+          text-decoration: none;
+        }
+        &:hover p {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
