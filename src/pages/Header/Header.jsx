@@ -5,7 +5,7 @@ import {
   LogoLightRight,
   LogoDarkRight,
   LogoLightLeft,
-  LogoDarkLeft, SearchIconDark, UserIconDark, MarketIconDark
+  LogoDarkLeft, SearchIconDark, UserIconDark, MarketIconDark, HeartIcon, HeartIconDark
 } from '../../components/assets/Icons'
 import style from './Header.module.scss'
 import { NavLink } from 'react-router-dom'
@@ -52,31 +52,31 @@ const Header = (props) => {
                 </li>
 
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
-                  <NavLink to={'/'}>
+                  <NavLink to={'/offers'}>
                     Offers
                   </NavLink>
                 </li>
 
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
-                  <NavLink to={'/'}>
+                  <NavLink to={'/delivery'}>
                     Delivery
                   </NavLink>
                 </li>
 
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
-                  <NavLink to={'/'}>
+                  <NavLink to={'/payment'}>
                     Payment
                   </NavLink>
                 </li>
 
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
-                  <NavLink to={'/'}>
+                  <NavLink to={'/about'}>
                     About us
                   </NavLink>
                 </li>
 
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
-                  <NavLink to={'/'}>
+                  <NavLink to={'/contacts'}>
                     Contacts
                   </NavLink>
                 </li>
@@ -98,6 +98,12 @@ const Header = (props) => {
             {props.lightTheme
               ? <UserIcon/>
               : <UserIconDark/>
+            }
+          </button>
+          <button>
+            {props.lightTheme
+              ? <HeartIcon/>
+              : <HeartIconDark/>
             }
           </button>
           <button>
