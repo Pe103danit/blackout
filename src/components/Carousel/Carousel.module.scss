@@ -2,7 +2,6 @@
 
 .carousel {
     margin-bottom: 50px;
-
     &__card {
         position: relative;
 
@@ -29,7 +28,6 @@
             margin-bottom: 8px;
             color: $white;
             font-weight: 600;
-            font-size: 20px;
             line-height: 1.4;
         }
 
@@ -48,8 +46,10 @@
             cursor: pointer;
             transition: all .2s ease-in-out;
 
+            position: absolute;
+            top: 185px;
+
             &:hover {
-                color: #f4f3f3;
                 background-color: $button-blue;
             }
         }
