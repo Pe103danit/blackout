@@ -19,7 +19,7 @@ const App = (props) => {
         <div className={themeStyle}>
             <HeaderContainer />
             <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={<HomeContainer />} />
                 <Route path='/shop' element={<Shop />} />
                 <Route path='/offers' element={<Offers />} />
                 <Route path='/delivery' element={<Delivery />} />

@@ -103,6 +103,12 @@ const Header = (props) => {
             }
           </button>
           <button>
+            {props.lightTheme
+              ? <HeartIcon/>
+              : <HeartIconDark/>
+            }
+          </button>
+          <button>
           <NavLink to='/cart'>
             {props.lightTheme
               ? <MarketIcon />
