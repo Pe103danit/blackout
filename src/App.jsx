@@ -1,9 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-// import Carousel from './components/Carousel/Carousel';
 import HeaderContainer from './pages/Header/headerContainer';
-// import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
-import Home from './pages/Home/Home';
 import Shop from './pages/Shop/Shop';
 import Offers from './pages/Offers/Offers';
 import Delivery from './pages/Delivery/Delivery';
