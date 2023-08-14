@@ -52,8 +52,10 @@ const Header = (props) => {
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/contacts'>Contacts</NavLink></li>
               </ul>
 
-                {/* <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+               {/* <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
                   <NavLink to={'/'}>
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/offers'}>
                     Offers
                   </NavLink>
                 </li>
@@ -111,7 +113,6 @@ const Header = (props) => {
         </div>
       }
     </div>
-
   )
 }
 
