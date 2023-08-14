@@ -41,12 +41,12 @@
             font-size: 17px;
             line-height: 2.12;
             text-transform: uppercase;
-            border: none;
-            border-radius: 50px;
             position: absolute;
             top: 185px;
-            transition: all 0.2s ease-in-out;
+            border: none;
+            border-radius: 50px;
             cursor: pointer;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
                 color: #f4f3f3;
@@ -60,19 +60,19 @@
     width: 36px;
     height: 36px;
     padding: 5px;
-    font-size: 30px;
     color: $white;
-    background-color: rgba($color: #000000, $alpha: 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba($color: #000000, $alpha: 0.1);
+    font-size: 30px;
     position: absolute;
     top: 50%;
     z-index: 1;
     transform: translateY(-50%);
-    cursor: pointer;
     border: 1px solid none;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .arrow-prev {
@@ -85,9 +85,4 @@
 
 .arrow:hover {
     background-color: rgba($color: #000000, $alpha: 0.2);
-}
-
-.slick-dots {
-    position: absolute !important;
-    bottom: 25px !important;
 }
