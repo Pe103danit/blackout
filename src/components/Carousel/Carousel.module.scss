@@ -40,9 +40,9 @@
             font-weight: bold;
             font-size: 17px;
             line-height: 2.12;
-            text-transform: uppercase;
             position: absolute;
             top: 185px;
+            text-transform: uppercase;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -60,18 +60,18 @@
     width: 36px;
     height: 36px;
     padding: 5px;
-    color: $white;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba($color: #000000, $alpha: 0.1);
-    font-size: 30px;
     position: absolute;
     top: 50%;
+    font-size: 30px;
+    color: $white;
+    background-color: rgba($color: #000000, $alpha: 0.1);
     z-index: 1;
-    transform: translateY(-50%);
     border: 1px solid none;
     border-radius: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
 }
 
