@@ -8,7 +8,7 @@ const object = {
     rating: 4.6,
     price: 1099.00,
     underPrice: 'Tax included.',
-    img: ['./imgs/product1.png', './imgs/product2.png', './imgs/product3.png', './imgs/product4.png'],
+    img: ['./imgs/product1.png', './imgs/product2.png', './imgs/product3.png', './imgs/product4.png', './imgs/product5.png', './imgs/product6.png', './imgs/product7.png'],
     description: {
         title: 'Best Seller of Outdoor Generators & Garden on Amazon *',
         characters: [
@@ -24,15 +24,15 @@ const object = {
     options: [
         {
             title: 'eco delta 2',
-            price: '1099gbp'
+            price: 1099
         },
         {
             title: ' delta 2+220w',
-            price: '1548gbp'
+            price: 1548
         },
         {
             title: 'delta 2+smart',
-            price: '1848gbp'
+            price: 1848
         }
     ],
     available: 5,
