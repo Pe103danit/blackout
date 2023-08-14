@@ -8,6 +8,10 @@ import store from './redux/store'
 import { Provider } from 'react-redux'
 import {Helmet} from 'react-helmet';
 
+if (!localStorage.getItem('theme')) {
+  localStorage.setItem('theme', 'light')
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 

@@ -5,7 +5,7 @@ import {
   LogoLightRight,
   LogoDarkRight,
   LogoLightLeft,
-  LogoDarkLeft, SearchIconDark, UserIconDark, MarketIconDark
+  LogoDarkLeft, SearchIconDark, UserIconDark, MarketIconDark, HeartIcon, HeartIconDark
 } from '../../components/assets/Icons'
 import style from './Header.module.scss'
 import { NavLink } from 'react-router-dom'
@@ -43,18 +43,45 @@ const Header = (props) => {
           !props.searchInput
             ? <nav className={style.header_c1_navigation}>
               <ul className={style.header_c1_navigation_menu}>
-                <li
-                  className={`${style.header_c1_navigation_menu_item} ${navStyle}`}
-                >Shop
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/'}>
+                  Shop
+                  </NavLink>
                   <NavMenuCategories themeStyle={themeStyle}/>
                 </li>
-                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Offers</li>
-                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Delivery</li>
-                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Payment</li>
-                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>About us</li>
-                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Contacts</li>
-              </ul>
 
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/offers'}>
+                    Offers
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/delivery'}>
+                    Delivery
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/payment'}>
+                    Payment
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/about'}>
+                    About us
+                  </NavLink>
+                </li>
+
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+                  <NavLink to={'/contacts'}>
+                    Contacts
+                  </NavLink>
+                </li>
+
+              </ul>
             </nav>
             : <SearchPanel/>
         }
@@ -71,6 +98,12 @@ const Header = (props) => {
             {props.lightTheme
               ? <UserIcon/>
               : <UserIconDark/>
+            }
+          </button>
+          <button>
+            {props.lightTheme
+              ? <HeartIcon/>
+              : <HeartIconDark/>
             }
           </button>
           <button>

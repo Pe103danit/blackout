@@ -1,7 +1,7 @@
 import types from '../../types/types'
 
 const initialState = {
-  lightTheme: true,
+  lightTheme: localStorage.getItem('theme') === 'light',
   searchInput: false,
   navBarStatus: false
 }
@@ -9,6 +9,7 @@ const initialState = {
 const UIStateReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.TOGGLE_THEME:
+      localStorage.setItem('theme', `${state.lightTheme ? 'dark' : 'light'}`)
       return {
         ...state,
         lightTheme: !state.lightTheme

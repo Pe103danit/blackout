@@ -24,7 +24,6 @@ export const ProductCard = (props) => {
   const handleClick = () => {
 
   }
-  console.log(thumbsSwiper)
   return (
     <section className={`${style.product} ${themeStyle}`}>
       <div className={style.product_container}>
