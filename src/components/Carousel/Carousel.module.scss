@@ -34,14 +34,14 @@
         }
 
         &__button {
+            position: absolute;
+            top: 185px;
             width: auto;
             min-width: unset;
             padding: 6px 24px;
             font-weight: bold;
             font-size: 17px;
             line-height: 2.12;
-            position: absolute;
-            top: 185px;
             text-transform: uppercase;
             border: none;
             border-radius: 50px;
@@ -57,21 +57,21 @@
 }
 
 .arrow {
-    width: 36px;
-    height: 36px;
-    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     top: 50%;
-    font-size: 30px;
-    color: $white;
-    background-color: rgba($color: #000000, $alpha: 0.1);
-    z-index: 1;
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+    transform: translateY(-50%);
     border: 1px solid none;
     border-radius: 50%;
-    transform: translateY(-50%);
+    font-size: 30px;
+    background-color: rgba($color: #000000, $alpha: 0.1);
+    color: $white;
+    z-index: 1;
     cursor: pointer;
 }
 
