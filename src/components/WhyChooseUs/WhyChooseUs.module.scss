@@ -19,31 +19,55 @@
     }
 
     &_text_item {
-        max-width: 224px;
         margin-top: 10px;
         color: #757575;
-        font-size: $fourth-size, $small-weight;
+        font-weight: $small-weight;
+        font-size: $fourth-size;
     }
 
     &_item {
-        width: 244px;
+        box-sizing: border-box; 
         max-height: 215px;
+        margin: 0;
         margin-right: 10px;
+        padding: 0;
         padding: 60px 10px 0 10px;
+    }
+    &_bg{
+        background-color: $second-grey;
+    }
+    &_grey{
+        background-color: $second-grey;
     }
 
     &_wrapper {
         display: grid;
-        grid-template-columns: repeat(4, 244px);
-        gap: 25px; 
+        grid-gap: 20px;
+        grid-template-columns: repeat(4, minmax(220px, 1fr));
         margin-top: 50px ;  
-        padding: 0 45px 60px 45px;
-        background-color: $white;
+        padding: 0 40px 60px 40px;
         border-radius: $border;  
     }
     &_credit{
         color: $first-grey;
         text-decoration: underline;
     }
-
 }
+@media screen and (max-width: 992px) {
+    .WhyChooseUs {
+        &_wrapper {
+            grid-template-columns: repeat(2, minmax(200px, 1fr));
+            padding: 0 25px 0 25px;
+
+          }
+    }
+  }
+
+@media screen and (max-width: 480px) {
+    .WhyChooseUs {
+        &_wrapper {
+            grid-template-columns: repeat(1, minmax(220px, 1fr));
+            padding: 0 45px 0 45px; 
+          }
+    }
+  }
