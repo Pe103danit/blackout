@@ -43,8 +43,7 @@ const Header = (props) => {
           !props.searchInput
             ? <nav className={style.header_c1_navigation}>
               <ul className={style.header_c1_navigation_menu}>
-                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>Shop<NavMenuCategories themeStyle={themeStyle} />
-                </li>
+                <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/shop'>Shop</NavLink><NavMenuCategories themeStyle={themeStyle} /></li>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/offers'>Offers</NavLink></li>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/delivery'>Delivery</NavLink></li>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/payment'>Payment</NavLink></li>
@@ -52,7 +51,7 @@ const Header = (props) => {
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}><NavLink to='/contacts'>Contacts</NavLink></li>
               </ul>
 
-               {/* <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
+              {/* <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
                   <NavLink to={'/'}>
                 <li className={`${style.header_c1_navigation_menu_item} ${navStyle}`}>
                   <NavLink to={'/offers'}>
@@ -104,16 +103,16 @@ const Header = (props) => {
           </button>
           <button>
             {props.lightTheme
-              ? <HeartIcon/>
-              : <HeartIconDark/>
+              ? <HeartIcon />
+              : <HeartIconDark />
             }
           </button>
           <button>
-          <NavLink to='/cart'>
-            {props.lightTheme
-              ? <MarketIcon />
-              : <MarketIconDark />
-            }
+            <NavLink to='/cart'>
+              {props.lightTheme
+                ? <MarketIcon />
+                : <MarketIconDark />
+              }
             </NavLink>
           </button>
         </div>
