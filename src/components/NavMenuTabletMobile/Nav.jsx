@@ -2,9 +2,7 @@ import style from './NavMenuTabletMobile.module.scss'
 import { NavLink } from 'react-router-dom'
 
 const Nav = ({themeStyle}) => {
-  console.log(themeStyle)
 const navStyle = themeStyle === 'light' ? 'lightMobilePanel' : 'darkMobilePanel'
-  console.log(`nav ${navStyle}`)
   return (
     <nav className={`${style.container_nav} ${navStyle}`}>
       <ul className={style.container_nav_list}>
