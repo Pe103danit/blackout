@@ -58,6 +58,7 @@ const Header = (props) => {
                     </NavLink>
                   </li>
 
+
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
                     <NavLink to={'/delivery'}>
                       Delivery
@@ -117,7 +118,6 @@ const Header = (props) => {
         }
       </div>
     </div>
-
   )
 }
 
