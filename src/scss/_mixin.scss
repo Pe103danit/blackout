@@ -1,24 +1,25 @@
-@mixin flex-element($align, $justify){
+@mixin flex-element($align, $justify) {
   display: flex;
   align-items: $align;
   justify-content: $justify;
 }
 
-@mixin manrope-light(){
+@mixin manrope-light() {
   font-weight: 400;
   font-family: 'Manrope', sans-serif;
 }
 
-@mixin manrope-regular(){
+@mixin manrope-regular {
   font-weight: 500;
   font-family: 'Manrope', sans-serif;
 }
-@mixin manrope-bold(){
+
+@mixin manrope-bold() {
   font-weight: 700;
   font-family: 'Manrope', sans-serif;
 }
 
-@mixin manrope-bolder(){
+@mixin manrope-bolder() {
   font-weight: 800;
   font-family: 'Manrope', sans-serif;
 }

@@ -1,4 +1,6 @@
 @import '../../scss/variables';
+@import '../../scss//mixin';
+
 
 .carousel {
     margin-bottom: 50px;
@@ -18,8 +20,10 @@
 
         &__title {
             width: 550px;
+            margin-top: 50px;
             margin-bottom: 8px;
             color: $white;
+            @include manrope-bold;
             font-size: 46px;
             line-height: 1;
         }
