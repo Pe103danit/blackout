@@ -2,19 +2,30 @@
 
 .light {
   color: $black;
-  background: $white;
+  background: $main-background;
 
   &::after {
     background: $black;
   }
 }
 
-.dark {
+.lightHeader {
+  color: $black;
+  background: $white;
+  div {
+    &::after {
+      background: $black;
+    }
+  }
+}
+
+.darkHeader {
   color: $white;
   background: $black;
-
-  &::after {
-    background: $white;
+  div {
+    &::after {
+      background: $white;
+    }
   }
 }
 
@@ -120,11 +131,18 @@
 }
 
 .lightPictureCategoriesStyle {
-  ul {
-    li {
-      a {
-        p {
-          color: $black;
+  background: $white;
+  div {
+    ul {
+      li {
+        &:hover a>p {
+          font-size: $fourth-size !important;
+          color: $button-blue !important;
+        }
+        a {
+          p {
+            color: $black;
+          }
         }
       }
     }
@@ -132,14 +150,18 @@
 }
 
 .darkPictureCategoriesStyle {
-  ul {
-    li {
-      &:hover a>p {
-            color: $sun !important;
+  background: $black;
+  div {
+    ul {
+      li {
+        &:hover a>p {
+          font-size: $fourth-size !important;
+          color: $sun !important;
+        }
+        a {
+          p {
+            color: $white;
           }
-      a {
-        p {
-          color: $white;
         }
       }
     }
