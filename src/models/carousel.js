@@ -8,4 +8,4 @@ const carouselSchema = new mongoose.Schema({
     buttonLink: String
 });
 
-module.exports = mongoose.model('Carousel', carouselSchema);
+export default mongoose.model('Carousel', carouselSchema);
