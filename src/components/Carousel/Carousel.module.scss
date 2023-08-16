@@ -13,43 +13,42 @@
         }
 
         &__img {
-            width: 100%;
-<<<<<<< HEAD
             transition: opacity .8s cubic-bezier(.44, .13, .48, .87);
-=======
->>>>>>> YaroslavHavrylenko
+            width: 100%;
         }
 
         &__title {
             width: 550px;
-            margin-bottom: 8px;
             font-size: 46px;
             line-height: 1;
+            margin-bottom: 8px;
             color: #FFFFFF;
         }
 
         &__text {
-            margin-bottom: 8px;
             font-weight: 600;
             font-size: 20px;
             line-height: 1.4;
+            font-size: 20px;
+            margin-bottom: 8px;
             color: #FFFFFF;
         }
 
         &__button {
+            padding: 6px 24px;
             width: auto;
             min-width: unset;
-            padding: 6px 24px;
             font-size: 17px;
             font-weight: bold;
             line-height: 2.12;
             text-transform: uppercase;
+            border: none;
             border-radius: 50px;
             border: none;
-            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+
             position: absolute;
             top: 185px;
-            cursor: pointer;
 
             &:hover {
                 color: #f4f3f3;
@@ -68,6 +67,9 @@
     z-index: 1;
     transform: translateY(-50%);
     cursor: pointer;
+    padding: 5px;
+    width: 44px;
+    color: #fff;
     font-size: 30px;
     color: $white;
     background-color: rgba($color: #000000, $alpha: 0.1);
@@ -76,7 +78,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    width: 36px;
+    height: 36px;
 }
 
 .arrow-prev {
@@ -88,10 +91,5 @@
 }
 
 .arrow:hover {
-    background-color: rgba($color: #000000, $alpha: 0.2);
-}
-
-.slick-dots {
-    position: absolute !important;
-    bottom: 25px !important;
+    background-color: rgba($color: #000000, $alpha: .2);
 }
