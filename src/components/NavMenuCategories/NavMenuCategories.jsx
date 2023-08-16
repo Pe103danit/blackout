@@ -2,7 +2,7 @@ import style from './NavMenuCategories.module.scss'
 import { NavLink } from 'react-router-dom'
 
 const NavMenuCategories = ({themeStyle}) => {
-  const navStyle = themeStyle === 'light' ? 'light_navMobile' : 'dark_navMobile'
+  const navStyle = themeStyle ? 'light_navMobile' : 'dark_navMobile'
   return (
     <nav className={`${style.container} ${navStyle}`}>
       <ul className={style.container_list}>

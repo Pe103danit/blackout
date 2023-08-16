@@ -1,35 +1,44 @@
 @import '../../scss/_mixin.scss';
 @import '../../scss/_variables.scss';
 
-.container {
+.section {
   width: 100%;
-  max-width: 1200px;
-  margin: 10px auto;
-  &_list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 40px;
-    &_item {
-      cursor: pointer;
-      &:hover &_link_text{
-        color: $button-blue;
-        font-size: $fourth-size;
-      }
-      &_link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        row-gap: 10px;
-        &_img {
-          width: 104px;
-          height: 52px;
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto;
+
+    &_list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 40px;
+
+      &_item {
+        cursor: pointer;
+
+        &:hover &_link_text {
+          color: $button-blue;
+          font-size: $fourth-size;
         }
-        &_text {
-          font-size: $fifth-size;
-          text-align: center;
-          @include manrope-regular();
+
+        &_link {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-decoration: none;
+          row-gap: 10px;
+
+          &_img {
+            width: 104px;
+            height: 52px;
+          }
+
+          &_text {
+            font-size: $fifth-size;
+            text-align: center;
+            @include manrope-regular();
+          }
         }
       }
     }

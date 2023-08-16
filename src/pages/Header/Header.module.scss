@@ -1,131 +1,132 @@
 @import '../../scss/_mixin.scss';
 @import '../../scss/_variables.scss';
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  height: 90px;
-  margin: 0 auto;
-  @include manrope-regular();
-
-  &::after {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    opacity: 15%;
-    content: "";
-  }
-
-  &_c1 {
+.container {
+  &_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 900px;
-    padding-left: 10px;
+    max-width: 1200px;
+    height: 90px;
+    margin: 0 auto;
+    @include manrope-regular();
 
-    &_logos {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 190px;
-      column-gap: 5px;
-
-      &_left {
-        width: 90px;
-
-        svg {
-          width: 100%;
-        }
-      }
-
-      &_right {
-        width: 70px;
-        background: transparent;
-        border: 0;
-        outline: none;
-        cursor: pointer;
-
-        svg {
-          width: 90%;
-        }
-      }
+    &::after {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      opacity: 15%;
+      content: "";
     }
 
-    &_navigation {
+    &_c1 {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      max-width: 800px;
-      padding-left: 20px;
+      max-width: 900px;
+      padding-left: 10px;
 
-      &_menu {
+      &_logos {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-        column-gap: 35px;
+        justify-content: center;
+        width: 190px;
+        column-gap: 5px;
 
-        &_item {
-          position: relative;
-          list-style-type: none;
+        &_left {
+          width: 90px;
 
-          &:hover > nav {
-            display: block;
+          svg {
+            width: 100%;
           }
+        }
 
-          &:hover {
+        &_right {
+          width: 70px;
+          background: transparent;
+          border: 0;
+          outline: none;
+          cursor: pointer;
 
-            &::after {
-              position: absolute;
-              bottom: -27px;
-              left: 0;
-              z-index: -1;
-              width: 100%;
-              height: 2px;
-              content: "";
+          svg {
+            width: 90%;
+          }
+        }
+      }
+
+      &_navigation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 800px;
+        padding-left: 20px;
+
+        &_menu {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          column-gap: 35px;
+
+          &_item {
+            position: relative;
+            list-style-type: none;
+
+            &:hover > nav {
+              display: block;
+            }
+
+            &:hover {
+
+              &::after {
+                position: absolute;
+                bottom: -27px;
+                left: 0;
+                z-index: -1;
+                width: 100%;
+                height: 2px;
+                content: "";
+              }
             }
           }
         }
       }
     }
-  }
 
-  &_c2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 110px;
-    padding-right: 10px;
-    row-gap: 10px;
-
-    button {
+    &_c2 {
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 30px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 110px;
+      padding-right: 10px;
+      row-gap: 10px;
 
-      &:focus {
-        outline: none;
-      }
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
 
-      svg {
-        width: 20px;
-        height: 20px;
+        &:focus {
+          outline: none;
+        }
 
-        &:hover {
-          fill: $third-grey;
+        svg {
+          width: 20px;
+          height: 20px;
+
+          &:hover {
+            fill: $third-grey;
+          }
         }
       }
     }
@@ -133,24 +134,28 @@
 }
 
 @media screen and (max-width: 992px) {
-  .header {
-    width: 100%;
-    max-width: 768px;
+  .container {
+    &_header {
+      width: 100%;
+      max-width: 768px;
 
-    &_c1 {
-      justify-content: flex-start;
-      column-gap: 30px;
+      &_c1 {
+        justify-content: flex-start;
+        column-gap: 30px;
 
-      &_navigation {
-        display: none;
+        &_navigation {
+          display: none;
+        }
       }
     }
   }
 }
 
 @media screen and (max-width: 480px) {
-  .header {
-    width: 100%;
-    max-width: 320px;
+  .container {
+    &_header {
+      width: 100%;
+      max-width: 320px;
+    }
   }
 }
