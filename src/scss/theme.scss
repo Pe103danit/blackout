@@ -180,3 +180,18 @@
   }
 }
 
+.light404Style {
+background: $main-background !important;
+}
+
+.dark404Style {
+  color: white;
+  background: $second-grey !important;
+  div {
+    a {
+        &:hover button {
+          background: $button-blue;
+      }
+    }
+  }
+}
