@@ -14,10 +14,10 @@
         }
 
         &__img {
+            width: 100%;
             height: 320px;
             object-fit: cover;
             transition: opacity .8s cubic-bezier(.44, .13, .48, .87);
-            width: 100%;
         }
 
         &__title {
@@ -27,33 +27,29 @@
             @include manrope-bold;
             font-size: 32px;
             line-height: 1;
-            margin-bottom: 8px;
-            color: #FFFFFF;
         }
 
         &__text {
             margin-bottom: 8px;
+            color: $white;
             font-weight: 600;
             font-size: 20px;
             line-height: 1.4;
-            color: #FFFFFF;
         }
 
         &__button {
-            padding: 6px 24px;
             width: auto;
             min-width: unset;
-            font-size: 17px;
+            padding: 6px 24px;
             font-weight: bold;
+            font-size: 17px;
             line-height: 2.12;
             text-transform: uppercase;
             border: none;
             border-radius: 50px;
-            border: none;
-            cursor: pointer;
-
             position: absolute;
             top: 220px;
+            cursor: pointer;
 
             &:hover {
                 color: #f4f3f3;
@@ -64,27 +60,22 @@
 }
 
 .arrow {
-    width: 36px;
-    height: 36px;
-    padding: 5px;
-    position: absolute;
-    top: 50%;
-    z-index: 1;
-    transform: translateY(-50%);
-    cursor: pointer;
-    padding: 5px;
-    width: 44px;
-    color: #fff;
-    font-size: 30px;
-    color: $white;
-    background-color: rgba($color: #000000, $alpha: 0.1);
-    border: 1px solid none;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
     width: 36px;
     height: 36px;
+    padding: 5px;
+    z-index: 1;
+    transform: translateY(-50%);
+    color: $white;
+    font-size: 30px;
+    background-color: rgba($color: #000000, $alpha: 0.1);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .arrow-prev {
@@ -103,15 +94,18 @@
     .carousel__card__img {
         height: 540px;
     }
+
     .carousel__card__title {
         font-size: 46px;
     }
+
     .carousel__card__text {
         font-size: 20px;
-        
+
     }
+
     .carousel__card__button {
         position: absolute;
         top: 320px;
-        }
+    }
 }
