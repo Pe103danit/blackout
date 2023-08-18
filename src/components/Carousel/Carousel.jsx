@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 
@@ -7,19 +8,6 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import './Carousel.scss';
 import style from './Carousel.module.scss';
-
-const db = require('./db');
-console.log(db);
-
-async function run () {
-  try {
-    await db();
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-run()
 
 const Carousel = () => {
   const SampleArrow = ({ direction, onClick }) => (
@@ -31,10 +19,8 @@ const Carousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    // pauseOnHover: false,
     speed: 500,
     autoplay: true,
-    // fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [
@@ -55,38 +41,50 @@ const Carousel = () => {
     nextArrow: <SampleArrow direction='next' />,
   };
 
-  const products = [
-    {
-      image: 'https://uk.ecoflow.com/cdn/shop/files/PC-Shopify_banner.jpg?v=1684156510',
-      name: 'WAVE 2',
-      text: 'The most powerful and compact portable AC',
-      buttonLink: 'https://uk.ecoflow.com/products/wave-2-portable-air-conditioner'
-    },
-    {
-      image: 'https://uk.ecoflow.com/cdn/shop/files/banner_-_51201080_1_d52eceda-c1fc-4f8d-806b-3204a23a54dd.png?v=1685024243',
-      name: 'DELTA 2 Max',
-      text: '10 Years of Everyday Power',
-      buttonLink: 'https://uk.ecoflow.com/products/delta-2-max-portable-power-station'
-    },
-    {
-      image: 'https://uk.ecoflow.com/cdn/shop/files/DG200_3x_d361a46c-64b2-4579-a5fc-191dbe0f9eb6.png?v=1675164897',
-      name: 'Smart Generator (Dual Fuel)',
-      text: 'Fuel Your Freedom.',
-      buttonLink: 'https://uk.ecoflow.com/products/dual-fuel-generator'
-    },
-    {
-      image: 'https://uk.ecoflow.com/cdn/shop/files/PC.jpg?v=1680243561',
-      name: 'Portable PV & EV Power with DELTA Pro',
-      text: 'Travel Without Limits',
-      buttonLink: 'https://uk.ecoflow.com/products/portable-rv-ev-power-with-delta-pro'
-    }
-  ]
+  const [carouselItems, setCarouselItems] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/carouselItems')
+      .then(response => {
+        setCarouselItems(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+  console.log(carouselItems);
+
+  // const products = [
+  //   {
+  //     image: 'https://uk.ecoflow.com/cdn/shop/files/PC-Shopify_banner.jpg?v=1684156510',
+  //     name: 'WAVE 2',
+  //     text: 'The most powerful and compact portable AC',
+  //     buttonLink: 'https://uk.ecoflow.com/products/wave-2-portable-air-conditioner'
+  //   },
+  //   {
+  //     image: 'https://uk.ecoflow.com/cdn/shop/files/banner_-_51201080_1_d52eceda-c1fc-4f8d-806b-3204a23a54dd.png?v=1685024243',
+  //     name: 'DELTA 2 Max',
+  //     text: '10 Years of Everyday Power',
+  //     buttonLink: 'https://uk.ecoflow.com/products/delta-2-max-portable-power-station'
+  //   },
+  //   {
+  //     image: 'https://uk.ecoflow.com/cdn/shop/files/DG200_3x_d361a46c-64b2-4579-a5fc-191dbe0f9eb6.png?v=1675164897',
+  //     name: 'Smart Generator (Dual Fuel)',
+  //     text: 'Fuel Your Freedom.',
+  //     buttonLink: 'https://uk.ecoflow.com/products/dual-fuel-generator'
+  //   },
+  //   {
+  //     image: 'https://uk.ecoflow.com/cdn/shop/files/PC.jpg?v=1680243561',
+  //     name: 'Portable PV & EV Power with DELTA Pro',
+  //     text: 'Travel Without Limits',
+  //     buttonLink: 'https://uk.ecoflow.com/products/portable-rv-ev-power-with-delta-pro'
+  //   }
+  // ]
 
   return (
     <div className={style.carousel}>
-      {/* <h2>Featured Products</h2> */}
       <Slider {...settings}>
-        {products.map((product, index) => (
+        {carouselItems.map((product, index) => (
           <div key={index} className={style.carousel__card}>
             <img className={style.carousel__card__img} src={product.image} alt={product.name} />
             <div className={style.carousel__card__content}>
@@ -96,7 +94,6 @@ const Carousel = () => {
                 <button className={style.carousel__card__button} >LEARN MORE</button>
               </Link>
             </div>
-
           </div>
         ))}
       </Slider>
