@@ -44,7 +44,11 @@ const Carousel = () => {
   const [carouselItems, setCarouselItems] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/carouselItems')
+    fetch('https://blackoutstore-be-iota.vercel.app/api/slides', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+  })
+    // axios.get('https://blackoutstore-be-iota.vercel.app/api/products')
       .then(response => {
         setCarouselItems(response.data);
       })
@@ -86,11 +90,11 @@ const Carousel = () => {
       <Slider {...settings}>
         {carouselItems.map((product, index) => (
           <div key={index} className={style.carousel__card}>
-            <img className={style.carousel__card__img} src={product.image} alt={product.name} />
+            <img className={style.carousel__card__img} src={product.imageUrl} alt={product.name} />
             <div className={style.carousel__card__content}>
-              <h3 className={style.carousel__card__title}>{product.name}</h3>
-              <p className={style.carousel__card__text}>{product.text}</p>
-              <Link to={product.buttonLink}>
+              <h3 className={style.carousel__card__title}>{product.title}</h3>
+              <p className={style.carousel__card__text}>{product.description}</p>
+              <Link to={product.htmlContent}>
                 <button className={style.carousel__card__button} >LEARN MORE</button>
               </Link>
             </div>
