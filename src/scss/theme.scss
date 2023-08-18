@@ -9,6 +9,10 @@
   }
 }
 
+.dark {
+  background: $black;
+}
+
 .lightHeader {
   color: $black;
   background: $white;
@@ -169,14 +173,22 @@
 }
 
 .lightWeAreHereToHelpStyle {
-  p {
-    color: $black;
+  background: $main-background;
+
+  div {
+    p {
+      color: $black;
+    }
   }
 }
 
 .darkWeAreHereToHelpStyle {
-  p {
-    color: $white;
+  background: $black;
+
+  div {
+    p {
+      color: $white;
+    }
   }
 }
 
