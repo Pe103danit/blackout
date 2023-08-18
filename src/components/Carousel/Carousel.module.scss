@@ -3,7 +3,6 @@
 
 
 .carousel {
-    margin-bottom: 50px;
 
     &__card {
         position: relative;
@@ -11,17 +10,18 @@
         &__content {
             position: absolute;
             top: 0px;
-            left: 20%;
+            left: 15%;
         }
 
         &__img {
+            height: 320px;
+            object-fit: cover;
             transition: opacity .8s cubic-bezier(.44, .13, .48, .87);
             width: 100%;
         }
 
         &__title {
-            width: 550px;
-            margin-top: 50px;
+            margin-top: 170px;
             margin-bottom: 8px;
             color: $white;
             @include manrope-bold;
@@ -54,7 +54,7 @@
             cursor: pointer;
 
             position: absolute;
-            top: 185px;
+            top: 320px;
 
             &:hover {
                 color: #f4f3f3;
@@ -98,4 +98,13 @@
 
 .arrow:hover {
     background-color: rgba($color: #000000, $alpha: .2);
+}
+
+@media (min-width: 768px) {
+    .carousel__card__img {
+        height: 540px;
+        object-fit: cover;
+        transition: opacity .8s cubic-bezier(.44, .13, .48, .87);
+        width: 100%;
+    }
 }

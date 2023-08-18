@@ -41,54 +41,59 @@ const Carousel = () => {
     nextArrow: <SampleArrow direction='next' />,
   };
 
-  const [carouselItems, setCarouselItems] = useState([]);
+  // const [carouselItems, setCarouselItems] = useState([]);
 
-  useEffect(() => {
-    fetch('https://blackoutstore-be-iota.vercel.app/api/slides', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-  })
-    // axios.get('https://blackoutstore-be-iota.vercel.app/api/products')
-      .then(response => {
-        setCarouselItems(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-  console.log(carouselItems);
+  // useEffect(() => {
+  //   fetch('/carousel.json', {
+  //     method: 'GET',
+  //     headers: { 'Content-Type': 'application/json' }
+  //   })
+  //     .then(response => JSON.parse(response)) // <-- Add parentheses to call .json()
+  //     .then(data => {
+  //       console.log(data);
+  //       setCarouselItems(data);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, []);
+  // console.log(carouselItems);
 
-  // const products = [
-  //   {
-  //     image: 'https://uk.ecoflow.com/cdn/shop/files/PC-Shopify_banner.jpg?v=1684156510',
-  //     name: 'WAVE 2',
-  //     text: 'The most powerful and compact portable AC',
-  //     buttonLink: 'https://uk.ecoflow.com/products/wave-2-portable-air-conditioner'
-  //   },
-  //   {
-  //     image: 'https://uk.ecoflow.com/cdn/shop/files/banner_-_51201080_1_d52eceda-c1fc-4f8d-806b-3204a23a54dd.png?v=1685024243',
-  //     name: 'DELTA 2 Max',
-  //     text: '10 Years of Everyday Power',
-  //     buttonLink: 'https://uk.ecoflow.com/products/delta-2-max-portable-power-station'
-  //   },
-  //   {
-  //     image: 'https://uk.ecoflow.com/cdn/shop/files/DG200_3x_d361a46c-64b2-4579-a5fc-191dbe0f9eb6.png?v=1675164897',
-  //     name: 'Smart Generator (Dual Fuel)',
-  //     text: 'Fuel Your Freedom.',
-  //     buttonLink: 'https://uk.ecoflow.com/products/dual-fuel-generator'
-  //   },
-  //   {
-  //     image: 'https://uk.ecoflow.com/cdn/shop/files/PC.jpg?v=1680243561',
-  //     name: 'Portable PV & EV Power with DELTA Pro',
-  //     text: 'Travel Without Limits',
-  //     buttonLink: 'https://uk.ecoflow.com/products/portable-rv-ev-power-with-delta-pro'
-  //   }
-  // ]
+  const products = [
+  {
+    customId: 'EcoFlow WAVE 2 Portable Air Conditioner',
+    title: 'WAVE 2',
+    description: 'The most powerful and compact portable AC',
+    imageUrl: 'https://uk.ecoflow.com/cdn/shop/files/PC-Shopify_banner.jpg?v=1684156510',
+    htmlContent: 'https://uk.ecoflow.com/products/wave-2-portable-air-conditioner',
+  },
+  {
+    customId: 'EcoFlow DELTA 2 Max Portable Power Station',
+    title: 'DELTA 2 Max',
+    description: '10 Years of Everyday Power',
+    imageUrl: 'https://uk.ecoflow.com/cdn/shop/files/banner_-_51201080_1_d52eceda-c1fc-4f8d-806b-3204a23a54dd.png?v=1685024243',
+    htmlContent: 'https://uk.ecoflow.com/products/delta-2-max-portable-power-station',
+  },
+  {
+    customId: 'EcoFlow Smart Generator (Dual Fuel)',
+    title: 'Smart Generator (Dual Fuel)',
+    description: 'Fuel Your Freedom.',
+    imageUrl: 'https://uk.ecoflow.com/cdn/shop/files/DG200_3x_d361a46c-64b2-4579-a5fc-191dbe0f9eb6.png?v=1675164897',
+    htmlContent: 'https://uk.ecoflow.com/products/dual-fuel-generator',
+  },
+  {
+    customId: 'Portable RV & EV Power with DELTA Pro',
+    title: 'Portable PV & EV Power with DELTA Pro',
+    description: 'Travel Without Limits',
+    imageUrl: 'https://uk.ecoflow.com/cdn/shop/files/PC.jpg?v=1680243561',
+    htmlContent: 'https://uk.ecoflow.com/products/portable-rv-ev-power-with-delta-pro',
+  }
+]
 
   return (
     <div className={style.carousel}>
       <Slider {...settings}>
-        {carouselItems.map((product, index) => (
+        {products.map((product, index) => (
           <div key={index} className={style.carousel__card}>
             <img className={style.carousel__card__img} src={product.imageUrl} alt={product.name} />
             <div className={style.carousel__card__content}>

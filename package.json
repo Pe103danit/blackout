@@ -43,7 +43,6 @@
     "stylelint-fix-sass": "stylelint --fix 'src/**/*.scss'",
     "watch-sass-js": "npm-watch"
   },
-  "proxy": "https://blackoutstore-be-iota.vercel.app/",
   "watch": {
     "stylelint-dev": {
       "patterns": [
