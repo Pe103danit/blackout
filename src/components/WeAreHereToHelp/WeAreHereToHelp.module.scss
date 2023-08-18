@@ -77,8 +77,8 @@
   .section {
     &_container {
       &_body {
-        flex-wrap: wrap;
         flex-direction: column;
+        flex-wrap: wrap;
         width: 100%;
         height: auto;
         row-gap: 5px;
@@ -87,15 +87,15 @@
           display: flex;
           justify-content: center;
           width: 100%;
-          background: $banner-background1;
           overflow: hidden;
+          background: $banner-background1;
           border-radius: 8px;
 
           &_link {
             display: flex;
             justify-content: center;
-            background: $banner-background1;
             overflow: hidden;
+            background: $banner-background1;
             border-radius: 8px;
 
             img {
@@ -111,8 +111,8 @@
           &_link {
             display: flex;
             justify-content: center;
-            background: $banner-background2;
             overflow: hidden;
+            background: $banner-background2;
             border-radius: 8px;
 
             img {
