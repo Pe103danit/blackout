@@ -47,8 +47,8 @@
             font-size: 17px;
             line-height: 2.12;
             border: none;
-            border-radius: 50px;
             text-transform: uppercase;
+            border-radius: 50px;
             cursor: pointer;
 
             &:hover {
@@ -72,8 +72,8 @@
     color: $white;
     font-size: 30px;
     background-color: rgba($color: #000000, $alpha: .1);
-    transform: translateY(-50%);
     border: none;
+    transform: translateY(-50%);
     border-radius: 50%;
     cursor: pointer;
 }
