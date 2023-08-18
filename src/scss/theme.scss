@@ -9,6 +9,10 @@
   }
 }
 
+.dark {
+  background: $black;
+}
+
 .lightHeader {
   color: $black;
   background: $white;
@@ -169,14 +173,37 @@
 }
 
 .lightWeAreHereToHelpStyle {
-  p {
-    color: $black;
+  background: $main-background;
+
+  div {
+    p {
+      color: $black;
+    }
   }
 }
 
 .darkWeAreHereToHelpStyle {
-  p {
-    color: $white;
+  background: $black;
+
+  div {
+    p {
+      color: $white;
+    }
   }
 }
 
+.light404Style {
+background: $main-background !important;
+}
+
+.dark404Style {
+  color: white;
+  background: $second-grey !important;
+  div {
+    a {
+        &:hover button {
+          background: $button-blue;
+      }
+    }
+  }
+}

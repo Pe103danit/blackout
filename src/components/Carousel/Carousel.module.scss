@@ -21,22 +21,21 @@
         }
 
         &__title {
-            margin-top: 170px;
+            margin-top: 100px;
             margin-bottom: 8px;
             color: $white;
             @include manrope-bold;
-            font-size: 46px;
+            font-size: 32px;
             line-height: 1;
             margin-bottom: 8px;
             color: #FFFFFF;
         }
 
         &__text {
+            margin-bottom: 8px;
             font-weight: 600;
             font-size: 20px;
             line-height: 1.4;
-            font-size: 20px;
-            margin-bottom: 8px;
             color: #FFFFFF;
         }
 
@@ -54,7 +53,7 @@
             cursor: pointer;
 
             position: absolute;
-            top: 320px;
+            top: 220px;
 
             &:hover {
                 color: #f4f3f3;
@@ -103,8 +102,16 @@
 @media (min-width: 768px) {
     .carousel__card__img {
         height: 540px;
-        object-fit: cover;
-        transition: opacity .8s cubic-bezier(.44, .13, .48, .87);
-        width: 100%;
     }
+    .carousel__card__title {
+        font-size: 46px;
+    }
+    .carousel__card__text {
+        font-size: 20px;
+        
+    }
+    .carousel__card__button {
+        position: absolute;
+        top: 320px;
+        }
 }
