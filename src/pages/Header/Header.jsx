@@ -71,7 +71,7 @@ const Header = (props) => {
                   </li>
 
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
-                    <NavLink to={'/about'}>
+                    <NavLink to={'/about_us'}>
                       About us
                     </NavLink>
                   </li>
@@ -95,24 +95,31 @@ const Header = (props) => {
                 : <SearchIconDark/>
               }
             </button>
-            <button>
-              {props.lightTheme
-                ? <UserIcon/>
-                : <UserIconDark/>
-              }
-            </button>
-            <button>
-              {props.lightTheme
-                ? <HeartIcon/>
-                : <HeartIconDark/>
-              }
-            </button>
-            <button>
-              {props.lightTheme
-                ? <MarketIcon/>
-                : <MarketIconDark/>
-              }
-            </button>
+            <NavLink to={'/login'}>
+              <button>
+                {props.lightTheme
+                  ? <UserIcon/>
+                  : <UserIconDark/>
+                }
+              </button>
+            </NavLink>
+            <NavLink to={'/wishlist'}>
+              <button>
+                {props.lightTheme
+                  ? <HeartIcon/>
+                  : <HeartIconDark/>
+                }
+              </button>
+            </NavLink>
+            <NavLink to={'/basket'}>
+              <button>
+                {props.lightTheme
+                  ? <MarketIcon/>
+                  : <MarketIconDark/>
+                }
+              </button>
+            </NavLink>
+
           </div>
         }
       </div>
