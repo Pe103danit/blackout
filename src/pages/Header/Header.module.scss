@@ -1,6 +1,7 @@
 @import '../../scss/_mixin.scss';
 @import '../../scss/_variables.scss';
 .container {
+  position: relative;
   &_header {
     display: flex;
     align-items: center;

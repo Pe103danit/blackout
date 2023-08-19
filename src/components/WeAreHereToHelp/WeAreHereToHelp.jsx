@@ -28,7 +28,7 @@ const WeAreHereToHelp = (props) => {
             <NavLink to={'/'} className={style.section_container_body_right_link}>
               <img src={checkThisOutImg} alt="Check this out" title="Check this out"/>
               <p className={style.section_container_body_right_link_text}>
-                Check this out >
+                Check this out &#62;
               </p>
             </NavLink>
           </div>
