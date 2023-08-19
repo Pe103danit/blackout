@@ -1,6 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
-
-import HeaderContainer from './pages/Header/headerContainer'
+import { Routes, Route } from 'react-router-dom';
+import HeaderContainer from './pages/Header/headerContainer';
 import HomeContainer from './pages/Home/homeContainer'
 import Shop from './pages/Shop/Shop'
 import Offers from './pages/Offers/Offers'
