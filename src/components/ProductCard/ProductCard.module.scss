@@ -66,8 +66,8 @@
 
     &_card_hot {
         margin-bottom: 4px;
-        font-weight: 600;
-        color: #fa4500;    
+        color: #fa4500; 
+        font-weight: 600;     
         font-size: 17px;      
         line-height: 1.23;
     }
@@ -171,9 +171,9 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        justify-content: space-between;       
-        margin-top: 48px;  
-        min-height: 100px; 
+        justify-content: space-between; 
+        min-height: 100px;       
+        margin-top: 48px;    
          padding: 30px 24px 10px;    
         border-radius: 8px;             
     }
@@ -191,13 +191,12 @@
 
     &_card_total_price_button {
         display: block;
-        background-color: transparent;
-        color: white; 
-         background-color: #2164ff;
-         padding: 15px 25px;
-         font-weight: $big-weight;       
-        border-radius: 50px;
-        font-size: 15px;                              
+        color: white;  
+        padding: 15px 25px;  
+         background-color: #2164ff; 
+         font-weight: $big-weight;  
+         font-size: 15px;             
+        border-radius: 50px;                       
         border: transparent;                 
     }
 
@@ -208,12 +207,12 @@
     }
 
     &_card_star {
-        width: 25px;
         float: left; 
+        width: 25px;   
         height: 25px;
         margin: 2px;     
-        cursor: pointer;                    
         background-color: grey;
+        cursor: pointer;                     
         clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
     }
 
