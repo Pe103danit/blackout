@@ -9,7 +9,7 @@
   font-family: 'Manrope', sans-serif;
 }
 
-@mixin manrope-regular {
+@mixin manrope-regular () {
   font-weight: 500;
   font-family: 'Manrope', sans-serif;
 }
