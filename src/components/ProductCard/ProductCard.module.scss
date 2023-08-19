@@ -65,16 +65,16 @@
     }
 
     &_card_hot {
-        font-weight: 600;
         margin-bottom: 4px;
+        font-weight: 600;
+        color: #fa4500;    
         font-size: 17px;      
-        color: #fa4500;
         line-height: 1.23;
     }
 
     &_card_title {
-        font-size: 40px;
         margin-bottom: 24px;
+        font-size: 40px; 
         line-height: 1.1;
     }
 
@@ -112,10 +112,10 @@
     }
 
     &_card_overview {
-        color: #2164ff;
         align-items: center;
-        line-height: 1.78;     
-        font-weight: 500;
+        color: #2164ff;   
+        font-weight: 500;   
+        line-height: 1.78;        
         cursor: pointer;
     }
 
@@ -170,11 +170,11 @@
     &_card_total_price {
         display: flex;
         flex-direction: column;
-        justify-content: space-between; 
         gap: 10px;
-        margin-top: 48px;   
-         padding: 30px 24px 10px;
-         min-height: 100px;
+        justify-content: space-between;       
+        margin-top: 48px;  
+        min-height: 100px; 
+         padding: 30px 24px 10px;    
         border-radius: 8px;             
     }
 
@@ -192,13 +192,13 @@
     &_card_total_price_button {
         display: block;
         background-color: transparent;
+        color: white; 
          background-color: #2164ff;
-         color: white; 
-        border-radius: 50px;        
-        font-weight: $big-weight;  
-        padding: 15px 25px;       
-        border: transparent;              
-        font-size: 15px;       
+         padding: 15px 25px;
+         font-weight: $big-weight;       
+        border-radius: 50px;
+        font-size: 15px;                              
+        border: transparent;                 
     }
 
     &_card_rating {
@@ -209,10 +209,10 @@
 
     &_card_star {
         width: 25px;
+        float: left; 
         height: 25px;
-        float: left;  
-        cursor: pointer;                 
         margin: 2px;     
+        cursor: pointer;                    
         background-color: grey;
         clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
     }
