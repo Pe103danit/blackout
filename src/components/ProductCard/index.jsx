@@ -22,9 +22,10 @@ export const ProductCard = (props) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isActive, setActive] = useState(options[0].title)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-  const product = useSelector(state => state.products.product)
-  console.log(product, 1111)
-  const id = '64db8edbc91c0cf4da8bc897'
+  const product = useSelector(state => console.log(state, 222))
+
+  // console.log(product, 1111)
+  const id = '64db8edbc91c0cf4da8bc8a7'
   const themeStyle = theme ? 'light' : 'dark'
   useEffect(() => {
     dispatch(getProductById(id))

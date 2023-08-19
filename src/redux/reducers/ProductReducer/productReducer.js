@@ -1,4 +1,5 @@
 import { typesOfProducts } from '../../types/types'
+import { instance } from '../../../components/assets/axiosUrl'
 const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts
 const actionGetProductById = (data) => (
     {
@@ -20,29 +21,33 @@ export const getAllProducts = () => async (dispatch) => {
     //     console.log(data)
     //     dispatch(actionGetAllProducts(data))
     // }
-    try {
-        const cacheBuster = new Date().getTime(); // Получаем текущее время в миллисекундах
-        const url = `/api/products?cacheBuster=${cacheBuster}`;
+    // try {
+    //     const cacheBuster = new Date().getTime(); // Получаем текущее время в миллисекундах
+    //     const url = `/api/products?cacheBuster=${cacheBuster}`;
 
-        const res = await fetch(url);
-        console.log(res, 4545)
-        if (res.ok) {
-            const data = await res.json();
-            dispatch(actionGetAllProducts(data));
-        } else {
-            console.error('Ошибка при получении данных:', res.statusText);
-        }
-    } catch (error) {
-        console.error('Произошла ошибка:', error);
-    }
+    //     const res = await fetch(url);
+    //     console.log(res, 4545)
+    //     if (res.ok) {
+    //         const data = await res.json();
+    //         dispatch(actionGetAllProducts(data));
+    //     } else {
+    //         console.error('Ошибка при получении данных:', res.statusText);
+    //     }
+    // } catch (error) {
+    //     console.error('Произошла ошибка:', error);
+    // }
+    const res = await instance.get('/api/products')
+    console.log(res)
 }
 
 export const getProductById = (id) => async (dispatch) => {
-    const res = await fetch(`/api/products/${id}`)
-    if (res.ok) {
-        const data = await res.json()
-        dispatch(actionGetProductById(data))
-    }
+    // const res = await fetch(`/api/products/${id}`)
+    // if (res.ok) {
+    //     const data = await res.json()
+    //     dispatch(actionGetProductById(data))
+    // }
+   const res = await instance.get(`/api/products/${id}`)
+   console.log(res)
 }
 
 const initialState = { product: {} }
