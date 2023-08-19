@@ -1,6 +1,6 @@
 import { typesOfProducts } from '../../types/types'
 import { instance } from '../../../components/assets/axiosUrl'
-const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts
+const { GET_PRODUCT } = typesOfProducts
 // const actionGetProductById = (data) => (
 //     {
 //         type: GET_PRODUCT,
@@ -59,4 +59,4 @@ const productReducer = (state = initialState, { type, payload }) => {
             return state
     }
 }
-export default productReducer
+ export default productReducer
