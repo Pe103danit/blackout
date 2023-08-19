@@ -1,18 +1,18 @@
 import { typesOfProducts } from '../../types/types'
 import { instance } from '../../../components/assets/axiosUrl'
 const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts
-const actionGetProductById = (data) => (
-    {
-        type: GET_PRODUCT,
-        payload: data
-    }
-)
-const actionGetAllProducts = (data) => (
-    {
-        type: GET_ALL_PRODUCTS,
-        payload: data
-    }
-)
+// const actionGetProductById = (data) => (
+//     {
+//         type: GET_PRODUCT,
+//         payload: data
+//     }
+// )
+// const actionGetAllProducts = (data) => (
+//     {
+//         type: GET_ALL_PRODUCTS,
+//         payload: data
+//     }
+// )
 export const getAllProducts = () => async (dispatch) => {
     // const res = await fetch('/api/products')
     // console.log(res, 123123123)

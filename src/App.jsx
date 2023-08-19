@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import HeaderContainer from './pages/Header/headerContainer';
-import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
-import { ProductList } from './components/ProductList';
 import HomeContainer from './pages/Home/homeContainer'
 import Shop from './pages/Shop/Shop'
 import Offers from './pages/Offers/Offers'
