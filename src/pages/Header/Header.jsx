@@ -46,7 +46,7 @@ const Header = (props) => {
                 <ul className={style.container_header_c1_navigation_menu}>
 
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
-                    <NavLink to={'/'}>
+                    <NavLink to={'/shop'}>
                       Shop
                     </NavLink>
                     <NavMenuCategories themeStyle={props.lightTheme}/>
