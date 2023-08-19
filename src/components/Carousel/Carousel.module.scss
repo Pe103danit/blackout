@@ -3,9 +3,12 @@
 
 
 .carousel {
+    // position: relative;
+    //     z-index: -1;
 
     &__card {
         position: relative;
+        z-index: -1;
 
         &__content {
             position: absolute;
@@ -66,11 +69,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    padding: 5px;
+    width: 27px;
+    height: 27px;
+    padding: 4px;
     color: $white;
-    font-size: 30px;
+    font-size: 24px;
     background-color: rgba($color: #000000, $alpha: .1);
     border: none;
     border-radius: 50%;
@@ -91,21 +94,30 @@
 }
 
 @media (min-width: 768px) {
-    .carousel__card__img {
-        height: 540px;
+    .carousel__card {
+
+        &__img {
+            height: 540px;
+        }
+
+        &__title {
+            font-size: 46px;
+        }
+
+        &__text {
+            font-size: 20px;
+        }
+
+        &__button {
+            position: absolute;
+            top: 320px;
+        }
     }
 
-    .carousel__card__title {
-        font-size: 46px;
-    }
-
-    .carousel__card__text {
-        font-size: 20px;
-
-    }
-
-    .carousel__card__button {
-        position: absolute;
-        top: 320px;
+    .arrow {
+        width: 36px;
+        height: 36px;
+        padding: 5px;
+        font-size: 30px;
     }
 }
