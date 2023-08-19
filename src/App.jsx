@@ -9,11 +9,11 @@ import Payment from './pages/Payment/Payment'
 import AboutUs from './pages/AboutUs/AboutUs'
 import Contacts from './pages/Contacts/Contacts'
 import Cart from './pages/Cart/Cart'
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
 import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
+import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -33,7 +33,7 @@ const App = (props) => {
         <Route path='/basket' element={<Basket/>}/>
         <Route path='cart' element={<Cart/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
-        <Route path={'*' || '404'} element={<NotFoundPage themeStyle={themeStyle}/>}/>
+        <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
     </div>
   )
