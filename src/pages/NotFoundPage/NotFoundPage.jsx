@@ -2,7 +2,7 @@ import style from './NotFoundPage.module.scss'
 import { NavLink } from 'react-router-dom'
 
 const NotFoundPage = (props) => {
-  const themeStyle = props.themeStyle === 'light'
+  const themeStyle = props.lightTheme
     ? 'light404Style'
     : 'dark404Style'
   return (
