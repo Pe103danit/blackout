@@ -2,7 +2,7 @@
 
 .light {
   color: $black;
-  background: $white;
+  background: $main-background;
 
   &::after {
     background: $black;
@@ -12,9 +12,25 @@
 .dark {
   color: $white;
   background: $black;
+}
 
-  &::after {
-    background: $white;
+.lightHeader {
+  color: $black;
+  background: $white;
+  div {
+    &::after {
+      background: $black;
+    }
+  }
+}
+
+.darkHeader {
+  color: $white;
+  background: $black;
+  div {
+    &::after {
+      background: $white;
+    }
   }
 }
 
@@ -120,11 +136,18 @@
 }
 
 .lightPictureCategoriesStyle {
-  ul {
-    li {
-      a {
-        p {
-          color: $black;
+  background: $white;
+  div {
+    ul {
+      li {
+        &:hover a>p {
+          color: $button-blue !important;
+          font-size: $fourth-size !important;
+        }
+        a {
+          p {
+            color: $black;
+          }
         }
       }
     }
@@ -132,14 +155,18 @@
 }
 
 .darkPictureCategoriesStyle {
-  ul {
-    li {
-      &:hover a>p {
-            color: $sun !important;
+  background: $black;
+  div {
+    ul {
+      li {
+        &:hover a>p {
+          color: $sun !important;
+          font-size: $fourth-size !important;
+        }
+        a {
+          p {
+            color: $white;
           }
-      a {
-        p {
-          color: $white;
         }
       }
     }
@@ -147,14 +174,37 @@
 }
 
 .lightWeAreHereToHelpStyle {
-  p {
-    color: $black;
+  background: $main-background;
+
+  div {
+    p {
+      color: $black;
+    }
   }
 }
 
 .darkWeAreHereToHelpStyle {
-  p {
-    color: $white;
+  background: $black;
+
+  div {
+    p {
+      color: $white;
+    }
   }
 }
 
+.light404Style {
+background: $main-background !important;
+}
+
+.dark404Style {
+  color: white;
+  background: $second-grey !important;
+  div {
+    a {
+        &:hover button {
+          background: $button-blue;
+      }
+    }
+  }
+}

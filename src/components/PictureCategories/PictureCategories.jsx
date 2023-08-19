@@ -12,60 +12,63 @@ const PictureCategories = (props) => {
     : 'darkPictureCategoriesStyle'
 
   return (
-    <div className={`${style.container} ${pictureCategoriesStyle}`}>
-      <ul className={style.container_list}>
+    <div className={`${style.section} ${pictureCategoriesStyle}`}>
+      <div className={style.container}>
+        <ul className={style.container_list}>
 
-        <li className={style.container_list_item}>
-          <NavLink to={'/'} className={style.container_list_item_link}>
-            <img src={PortablePowerStationsImg} alt="Portable Power Stations"
-                 className={style.container_list_item_link_img}/>
-            <p className={style.container_list_item_link_text}>
-              Portable Power Stations
-            </p>
-          </NavLink>
-        </li>
+          <li className={style.container_list_item}>
+            <NavLink to={'/'} className={style.container_list_item_link}>
+              <img src={PortablePowerStationsImg} alt="Portable Power Stations"
+                   className={style.container_list_item_link_img}/>
+              <p className={style.container_list_item_link_text}>
+                Portable Power Stations
+              </p>
+            </NavLink>
+          </li>
 
-        <li className={style.container_list_item}>
-          <NavLink to={'/'} className={style.container_list_item_link}>
-            <img src={PowerBanks} alt="Power Banks"
-                 className={style.container_list_item_link_img}/>
-            <p className={style.container_list_item_link_text}>
-              Power Banks
-            </p>
-          </NavLink>
-        </li>
+          <li className={style.container_list_item}>
+            <NavLink to={'/'} className={style.container_list_item_link}>
+              <img src={PowerBanks} alt="Power Banks"
+                   className={style.container_list_item_link_img}/>
+              <p className={style.container_list_item_link_text}>
+                Power Banks
+              </p>
+            </NavLink>
+          </li>
 
-        <li className={style.container_list_item}>
-          <NavLink to={'/'} className={style.container_list_item_link}>
-            <img src={GeneratorsImg} alt="Generators"
-                 className={style.container_list_item_link_img}/>
-            <p className={style.container_list_item_link_text}>
-              Generators
-            </p>
-          </NavLink>
+          <li className={style.container_list_item}>
+            <NavLink to={'/'} className={style.container_list_item_link}>
+              <img src={GeneratorsImg} alt="Generators"
+                   className={style.container_list_item_link_img}/>
+              <p className={style.container_list_item_link_text}>
+                Generators
+              </p>
+            </NavLink>
 
-        </li>
-        <li className={style.container_list_item}>
-          <NavLink to={'/'} className={style.container_list_item_link}>
-            <img src={SolarPanelsImg} alt="Solar Panels"
-                 className={style.container_list_item_link_img}/>
-            <p className={style.container_list_item_link_text}>
-              Solar Panels
-            </p>
-          </NavLink>
-        </li>
+          </li>
+          <li className={style.container_list_item}>
+            <NavLink to={'/'} className={style.container_list_item_link}>
+              <img src={SolarPanelsImg} alt="Solar Panels"
+                   className={style.container_list_item_link_img}/>
+              <p className={style.container_list_item_link_text}>
+                Solar Panels
+              </p>
+            </NavLink>
+          </li>
 
-        <li className={style.container_list_item}>
-          <NavLink to={'/'} className={style.container_list_item_link}>
-            <img src={AccessoriesImg} alt="Accessories"
-                 className={style.container_list_item_link_img}/>
-            <p className={style.container_list_item_link_text}>
-              Accessories
-            </p>
-          </NavLink>
-        </li>
-      </ul>
+          <li className={style.container_list_item}>
+            <NavLink to={'/'} className={style.container_list_item_link}>
+              <img src={AccessoriesImg} alt="Accessories"
+                   className={style.container_list_item_link_img}/>
+              <p className={style.container_list_item_link_text}>
+                Accessories
+              </p>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
     </div>
+
   )
 }
 
