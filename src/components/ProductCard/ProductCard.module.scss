@@ -49,10 +49,9 @@
     }
 
     &_card_img_wrapper img {
-        border: 5px solid #FFF;
-        width: 100%;
+         width: 100%;
+        border: 5px solid #FFF;    
         box-shadow: 0px 7px 8px 0px rgba(0, 0, 0, 0.10);
-
     }
 
     &_card_img_wrapper_big {
@@ -67,8 +66,8 @@
 
     &_card_hot {
         font-weight: 600;
-        font-size: 17px;
         margin-bottom: 4px;
+        font-size: 17px;      
         color: #fa4500;
         line-height: 1.23;
     }
@@ -114,16 +113,16 @@
 
     &_card_overview {
         color: #2164ff;
-        line-height: 1.78;
         align-items: center;
+        line-height: 1.78;     
         font-weight: 500;
         cursor: pointer;
     }
 
     &_card_description_subtitle_other {
         margin: 0 0 10px 0;
-        font-size: 20px;
         font-weight: 600;
+        font-size: 20px;    
         line-height: 1;
     }
 
@@ -171,12 +170,12 @@
     &_card_total_price {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        margin-top: 48px;
+        justify-content: space-between; 
         gap: 10px;
+        margin-top: 48px;   
          padding: 30px 24px 10px;
-        border-radius: 8px;       
-        min-height: 100px;
+         min-height: 100px;
+        border-radius: 8px;             
     }
 
     &_card_total_price_cash {
@@ -194,11 +193,11 @@
         display: block;
         background-color: transparent;
          background-color: #2164ff;
-        border-radius: 50px; 
-        color: white; 
-        font-weight: $big-weight;        
-        border: transparent; 
-        padding: 15px 25px;            
+         color: white; 
+        border-radius: 50px;        
+        font-weight: $big-weight;  
+        padding: 15px 25px;       
+        border: transparent;              
         font-size: 15px;       
     }
 
@@ -211,8 +210,8 @@
     &_card_star {
         width: 25px;
         height: 25px;
-        cursor: pointer;  
-        float: left;            
+        float: left;  
+        cursor: pointer;                 
         margin: 2px;     
         background-color: grey;
         clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
