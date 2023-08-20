@@ -33,21 +33,20 @@
         height: 268px;
 
         &__img1 {
+            position: absolute;
             width: 268px;
             height: 268px;
-            position: absolute;
             opacity: 1;
             transition: opacity .5s linear;
         }
 
         &__img2 {
+            position: absolute;
             width: 268px;
             height: 268px;
-            position: absolute;
             opacity: 0;
             transition: opacity .2s linear;
         }
-
     }
 
     &__description {
@@ -85,9 +84,9 @@
             &__btn {
                 display: none;
                 padding: 9px 19px;
-                @include manrope-bold;
-                letter-spacing: 0.1em;
                 color: $white;
+                @include manrope-bold;
+                letter-spacing: .1em;
                 background-color: $button-blue;
                 border: none;
                 border-radius: 20px;
