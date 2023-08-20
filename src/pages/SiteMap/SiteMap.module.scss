@@ -1,0 +1,30 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
+.section {
+  &_container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 10px;
+    &_title {
+      padding-bottom: 50px;
+      font-size: $second-size;
+      @include manrope-regular();
+    }
+    &_body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      row-gap: 10px;
+      padding-bottom: 20px;
+      padding-left: 20px;
+      &_item {
+        list-style-type: disc;
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
