@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { instance } from '../../assets/axiosUrl'
+import React from 'react';
+// import { instance } from '../../assets/axiosUrl'
 
 import style from './ShopCard.module.scss';
 
-const ShopCard = () => {
-    const [productItems, setProductItems] = useState([]);
-
-  useEffect(() => {
-    instance.get('/api/products')
-      .then(response => {
-        setProductItems(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-  console.log(productItems);
-
+const ShopCard = (props) => {
     return (
-        <div className="shopCard">
-            {/* <img className={style.shopCard__img} src={cardProduct.imageUrl[0]} alt={product.title} /> */}
-            <div className={style.shopCard__description}>
-                <h3 className={style.shopCard__description__name}>Good name</h3>
-                <h3 className={style.shopCard__description__brand}>Good brand</h3>
-                <p className={style.shopCard__description__model}>Good model</p>
-                <h5 className={style.shopCard__description__price}>Good price</h5>
+        <div className={style.shopCard}>
+            <div className={style.shopCard__imgBlock}>
+                <img className={style.shopCard__imgBlock__img1} src={props.productItem.imageUrls[0]} alt={props.productItem.title} />
+                <img className={style.shopCard__imgBlock__img2} src={props.productItem.imageUrls[2]} alt={props.productItem.title} />
             </div>
+            <div className={style.shopCard__description}>
+                <h3 className={style.shopCard__description__name}>{props.productItem.name}</h3>
+                <h3 className={style.shopCard__description__categories}>{props.productItem.categories}</h3>
+                <p className={style.shopCard__description__model}>{props.productItem.model}</p>
+                <div className={style.shopCard__description__order}>
+                    <h5 className={style.shopCard__description__order__price}>£{props.productItem.currentPrice} GBP</h5>
+                    <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
+                </div>
 
+            </div>
         </div>
     )
 }
