@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { instance } from '../../components/assets/axiosUrl'
 
 import style from './Shop.module.scss';
+import Spinner from '../../components/Spinner/Spinner';
 
-import ShopCard from '../../components/Carousel/ShopCard/ShopCard';
+import ShopCard from '../../components/ShopCard/ShopCard';
 const Shop = () => {
     const [productItems, setProductItems] = useState([]);
     const [productIsLoading, setProductIsLoading] = useState(true);
@@ -18,12 +19,11 @@ const Shop = () => {
                 console.error(error);
             });
     }, []);
-    console.log(productItems);
 
     return (
 
         (productIsLoading === true)
-            ? ('...Loading')
+            ? (<div className={style.spinner}><Spinner /></div>)
             : (
                 <div className={style.cardContainer}>
                     {productItems.map((productItem, index) => (
