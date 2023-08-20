@@ -9,11 +9,13 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import Contacts from './pages/Contacts/Contacts';
 import Cart from './pages/Cart/Cart';
 import HomeContainer from './pages/Home/homeContainer'
+import PromoBaner from './components/PromoBaner/PromoBaner';
 
 const App = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark'
     return (
         <div className={themeStyle}>
+            <PromoBaner/>
             <HeaderContainer />
             <Routes>
                 <Route path='/' element={<HomeContainer />} />

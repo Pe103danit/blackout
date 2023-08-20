@@ -4,6 +4,7 @@ import PictureCategories from '../../components/PictureCategories/PictureCategor
 import Carousel from '../../components/Carousel/Carousel.jsx';
 import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs'
 import WeAreHereToHelp from '../../components/WeAreHereToHelp/WeAreHereToHelp'
+import TopHomeSolutions from '../../components/TopHomeSolutions/TopHomeSolutions';
 import style from './Home.module.scss'
 
 const Home = (props) => {
@@ -14,6 +15,7 @@ const Home = (props) => {
       </div>
       {/* <PictureCategories lightTheme={props.lightTheme}/> */}
       <Carousel />
+      <TopHomeSolutions/>
       <WeAreHereToHelp lightTheme={props.lightTheme} />
       <WhyChooseUs />
     </>
