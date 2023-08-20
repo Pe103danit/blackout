@@ -3,7 +3,7 @@ import { instance } from '../../components/assets/axiosUrl'
 
 import style from './Shop.module.scss';
 
-import ShopCard from '../../components/Carousel/ShopCard/ShopCard';
+import ShopCard from '../../components/ShopCard/ShopCard';
 const Shop = () => {
     const [productItems, setProductItems] = useState([]);
     const [productIsLoading, setProductIsLoading] = useState(true);
