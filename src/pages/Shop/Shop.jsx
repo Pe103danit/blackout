@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { instance } from '../../components/assets/axiosUrl'
 
 import style from './Shop.module.scss';
+import Spinner from '../../components/Spinner/Spinner';
 
 import ShopCard from '../../components/ShopCard/ShopCard';
 const Shop = () => {
@@ -23,7 +24,7 @@ const Shop = () => {
     return (
 
         (productIsLoading === true)
-            ? ('...Loading')
+            ? (<div className={style.spinner}><Spinner /></div>)
             : (
                 <div className={style.cardContainer}>
                     {productItems.map((productItem, index) => (

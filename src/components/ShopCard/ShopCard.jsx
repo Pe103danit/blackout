@@ -15,7 +15,7 @@ const ShopCard = (props) => {
                 <h3 className={style.shopCard__description__categories}>{props.productItem.categories}</h3>
                 <p className={style.shopCard__description__model}>{props.productItem.model}</p>
                 <div className={style.shopCard__description__order}>
-                    <h5 className={style.shopCard__description__order__price}>£{props.productItem.currentPrice} GBP</h5>
+                    <h5 className={style.shopCard__description__order__price}>${props.productItem.currentPrice} USD</h5>
                     <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
                 </div>
 
