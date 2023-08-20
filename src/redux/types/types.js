@@ -3,5 +3,9 @@ const types = {
   TOGGLE_SEARCH_INPUT: 'TOGGLE_SEARCH_INPUT',
   TOGGLE_NAV_BAR: 'TOGGLE_NAV_BAR',
 }
+export const typesOfProducts = {
+  GET_PRODUCT: 'GET_PRODUCT',
+  GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS'
+}
 
 export default types
