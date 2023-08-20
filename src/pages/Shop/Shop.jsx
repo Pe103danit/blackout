@@ -19,7 +19,6 @@ const Shop = () => {
                 console.error(error);
             });
     }, []);
-    console.log(productItems);
 
     return (
 
