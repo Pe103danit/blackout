@@ -6,12 +6,12 @@
 }
 
 .ldsRing div {
-    display: block;
     position: absolute;
+    display: block;
+    box-sizing: border-box;
     width: 64px;
     height: 64px;
     margin: 8px;
-    box-sizing: border-box;
     border: 8px solid #838383;
     border-color: #838383 transparent transparent transparent;
     border-radius: 50%;
