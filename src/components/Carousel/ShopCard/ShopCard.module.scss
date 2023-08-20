@@ -5,9 +5,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
     background-color: $white;
-    
+    border-radius: 10px;
 
     &:hover {
         .shopCard__description__order__btn {
@@ -85,9 +84,9 @@
             &__btn {
                 display: none;
                 padding: 9px 19px;
+                color: $white;
                 @include manrope-bold;
                 letter-spacing: 0.1em;
-                color: $white;
                 background-color: $button-blue;
                 border: none;
                 border-radius: 20px;
