@@ -11,15 +11,15 @@
         position: relative;
         width: 100%;
         &_title {
-            width: 400px;
             position: absolute;
+            width: 400px;
             top: 20px;
             left: 10px;
             color: $white;
-            font-size: 20px;
             font-weight: $big-weight;
-            text-decoration: none;
+            font-size: 20px;
             padding: 0 20px;
+            text-decoration: none;
           }
         &_text {
             position: absolute;
@@ -34,9 +34,9 @@
           }
     }
     &_main_title{
-        font-size: $second-size;
         font-weight: $big-weight;
         padding-left: 10px;
+        font-size: $second-size;
     }
     &_img{
         display: block;
@@ -60,8 +60,8 @@
             &_wrapper{
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;  
+                justify-content: center;
                 padding: 0 40px; 
             }
             
@@ -81,8 +81,8 @@
         &_wrapper{
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;   
+            align-items: center;  
+            justify-content: center; 
             padding: 0 40px;
         }
         
