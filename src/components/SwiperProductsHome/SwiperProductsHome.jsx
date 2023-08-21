@@ -1,16 +1,16 @@
 import { useQuery } from 'react-query'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import { instance } from '../assets/axiosUrl'
 import { useEffect } from 'react'
 import CardSwiperProductsHome from '../CardSwiperProductsHome/CardSwiperProductsHome'
-import style from './CardSwiperProductsHome.module.scss'
+import style from './SwiperProductsHome.module.scss'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules'
 
-/*
-* length = 40
-* random max =  length - 4
-* 25 26 27 28
-* */
 const SwiperProductsHome = (props) => {
+  const swiper = useSwiper()
+
   const getSwiperProducts = async () => {
      const { data } = await instance.get('/api/products')
     return data
@@ -26,9 +26,13 @@ const SwiperProductsHome = (props) => {
       className={style.slider}
       spaceBetween={16}
       slidesPerView={4}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSlideChange={() => null}
+      onSwiper={() => null}
+      modules={[Navigation]}
+      navigation
     >
+      <div onClick={() => swiper.slidePrev()} />
+      <div onClick={() => swiper.slideNext()} />
       { data && data.map(product => {
         return (
           <SwiperSlide>

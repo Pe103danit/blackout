@@ -1,6 +1,7 @@
 import style from './CardSwiperProductsHome.module.scss'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { makeShortText } from '../assets/makeShortText'
 
 const CardSwiperProductsHome = (props) => {
   const themeStyle = props.lightTheme
@@ -16,14 +17,19 @@ const CardSwiperProductsHome = (props) => {
           </div>
           <div className={style.section_container_containerInner_info}>
             {props.name &&
-              <p className={style.section_container_containerInner_info_name}>{props.name}</p>}
+              <p className={style.section_container_containerInner_info_name}>{
+                props.name.length > 30
+                  ? makeShortText(props.name)
+                  : props.name
+              }</p>}
             {props.model &&
               <p className={style.section_container_containerInner_info_model}>{props.model}</p>}
             {props.currentPrice &&
               <p className={style.section_container_containerInner_info_price}>from {props.currentPrice}$</p>}
           </div>
           <div className={style.section_container_containerInner_photo}>
-            <img src={props.imageUrls[0]} alt={props.name}/>
+            <img src={props.imageUrls[0]} alt={props.name} className={style.section_container_containerInner_photo_img1}/>
+            <img src={props.imageUrls[1]} alt={props.name} className={style.section_container_containerInner_photo_img2}/>
           </div>
         </div>
       </div>
