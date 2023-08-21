@@ -5,6 +5,7 @@ import PictureCategories from '../../components/PictureCategories/PictureCategor
 import Carousel from '../../components/Carousel/Carousel.jsx';
 import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs'
 import WeAreHereToHelp from '../../components/WeAreHereToHelp/WeAreHereToHelp'
+import TopHomeSolutions from '../../components/TopHomeSolutions/TopHomeSolutions';
 import SwiperProductsHomeContainer from '../../components/SwiperProductsHome/SwiperProductsHomeContainer'
 
 const Home = (props) => {
@@ -15,6 +16,7 @@ const Home = (props) => {
       </div>
       <Carousel />
       <SwiperProductsHomeContainer />
+      <TopHomeSolutions/>
       <WeAreHereToHelp lightTheme={props.lightTheme} />
       <WhyChooseUs />
       <ProductList />

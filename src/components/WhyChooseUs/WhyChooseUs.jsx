@@ -14,8 +14,7 @@ const WhyChooseUs = () => {
 
                 {configChoose.map(item => (
                     <li key={item.title} className={`${style.WhyChooseUs_item} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}` }>
-
-                        <img src={item.src} alt={item.title} title={item.title} />
+                        {item.src}
                         <p className={`${style.WhyChooseUs_title_item} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}`}>{item.title}</p>
                         <p className={`${style.WhyChooseUs_text_item} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}`}>{item.text}</p>
 

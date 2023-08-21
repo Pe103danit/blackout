@@ -13,11 +13,13 @@ import WishList from './pages/WishList/WishList'
 import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
+import PromoBaner from './components/PromoBaner/PromoBaner';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   return (
     <div className={themeStyle}>
+      <PromoBaner/>
       <HeaderContainer/>
       <Routes>
         <Route path='/' element={<HomeContainer/>}/>
