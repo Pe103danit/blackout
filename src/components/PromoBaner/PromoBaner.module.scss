@@ -11,13 +11,13 @@
     &_title{   
       display: flex;
       align-items: center;
-      color: $white;
       padding-left: 20px;
+      color: $white;
       font-size: 20px;
     }
     &_cross{
-        color: $white;
         padding-right: 20px;
+        color: $white;
         font-size: $second-size;
         cursor: pointer;
         user-select: none;        

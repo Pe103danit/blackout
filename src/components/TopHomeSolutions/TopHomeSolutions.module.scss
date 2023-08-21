@@ -13,13 +13,12 @@
         &_title {
             position: absolute;
             top: 20px;
-            width: 400px;
             left: 10px;
+            width: 400px;         
             color: $white;
-            font-weight: $big-weight;
             padding: 0 20px;
+            font-weight: $big-weight;
             font-size: 20px;
-          
             text-decoration: none;
           }
         &_text {
