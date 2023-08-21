@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ProductCard } from '../ProductCard';
-import { getAllProducts } from '../../redux/reducers/ProductReducer/productReducer'
-import { useDispatch } from 'react-redux';
 const product = {
     sale: true,
     name: 'EcoFlow DELTA 2 Portable Power Station',
@@ -37,11 +35,7 @@ const product = {
 }
 
 export const ProductList = () => {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getAllProducts())
-    }, [dispatch])
-    return (
+ return (
         <ProductCard {...product} />
     )
 }

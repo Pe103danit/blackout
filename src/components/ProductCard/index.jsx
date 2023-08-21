@@ -24,7 +24,7 @@ export const ProductCard = (props) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   // const product = useSelector(state => console.log(state, 222))
 
-  const id = '64db8edbc91c0cf4da8bc8a7'
+  const id = '000001'
   const themeStyle = theme ? 'light' : 'dark'
   useEffect(() => {
     dispatch(getProductById(id))
