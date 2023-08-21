@@ -1,24 +1,57 @@
 @import '../../scss/_mixin.scss';
 @import '../../scss/_variables.scss';
 
-.container {
-  height: 592px;
-  background: $white;
-  &_status {
-    width: 400px;
-    &_text {
+.section {
+  &_container {
+    margin-top: 55px;
+    height: 592px;
+    border-radius: 5%;
+    border: 1px solid white;
 
-    }
-  }
+    &_containerInner {
+      padding: 20px;
 
-  &_info {
-    width: 400px;
-  }
+      &_status {
+        width: 300px;
+        height: 20px;
 
-  &_photo {
-    img {
-      width: 368px;
-      height: 368px;;
+        &_text {
+          font-size: $fourth-size;
+          color: $red !important;
+          @include manrope-light();
+        }
+      }
+
+      &_info {
+        width: 300px;
+
+        &_name {
+          font-size: $second-size;
+          @include manrope-regular();
+        }
+
+        &_model {
+          padding-top: 10px;
+          font-size: $fourth-size;
+          @include manrope-regular();
+        }
+
+        &_price {
+          padding-top: 40px;
+          font-size: $fourth-size;
+          @include manrope-bold();
+        }
+      }
+
+      &_photo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 268px;
+          height: 268px;;
+        }
+      }
     }
   }
 }
