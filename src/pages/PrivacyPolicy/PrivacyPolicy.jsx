@@ -1,4 +1,4 @@
-
+import style from './PrivacyPolicy.module.scss'
 const privacyConfig = [
     'What Information Do We Collect',
     'How Do We Collect Your Information',
@@ -105,32 +105,45 @@ const shareTransferSecondary = [
     'Third-party SDK service providers: In order to ensure the stable operation and function realization of the application and enable you to use and enjoy more services and functions, we will embed third-party SDKs in the application.'
 ]
 const yourRights = [{
-    subtitle:'Request access to your personal data',
-    text:'You have the right to obtain a copy of the personal data we hold about you and certain information relating to our processing of your personal data.',
+    subtitle: 'Request access to your personal data',
+    text: 'You have the right to obtain a copy of the personal data we hold about you and certain information relating to our processing of your personal data.',
 
-},{
-    subtitle:'Request correction of your personal data',
-    text:'You are entitled to have your personal data corrected if it is inaccurate or incomplete. You can update your personal data at any time by logging into your account and updating your details directly, or by emailing us at privacy@ecoflow.com.'
-},{
-    subtitle:'Request erasure of your personal data',
-    text:'This enables you to request that EcoFlow delete your personal data, where there is no good reason for us continuing to process it. Note, however, that we may not always be able to comply with your request of erasure for specific legal reasons which will be notified to you, if applicable, at the time of your request.'
-},{
-    subtitle:'Request restriction of processing of your personal data',
-    text:'You have a right to ask EcoFlow to suspend the processing of your personal data in certain scenarios, for example if you want us to establish the accuracy of the data, or you have objected to our use of your data but we need to verify whether we have overriding legitimate grounds to use it. Where processing is restricted, we are allowed to retain sufficient information about you to ensure that the restriction is respected in future.'
-},{
-    subtitle:'Request the transfer of your personal data',
-    text:'You have the right to obtain a digital copy of your personal data or request the transfer of your personal data to another company. Please note though that this right only applies to automated data which you initially provided consent for us to use or where we used the data to perform a contract with you.'
-},{
-    subtitle:'Object to processing of your personal data',
-    text:'You have the right to object to the processing of your personal data where we believe we have a legitimate interest in processing it (as explained above). You also have the right to object to our processing of your personal data for direct marketing purposes. In some cases, we may demonstrate that we have compelling legitimate grounds to process your data which override your rights and freedoms.'
+}, {
+    subtitle: 'Request correction of your personal data',
+    text: 'You are entitled to have your personal data corrected if it is inaccurate or incomplete. You can update your personal data at any time by logging into your account and updating your details directly, or by emailing us at privacy@ecoflow.com.'
+}, {
+    subtitle: 'Request erasure of your personal data',
+    text: 'This enables you to request that EcoFlow delete your personal data, where there is no good reason for us continuing to process it. Note, however, that we may not always be able to comply with your request of erasure for specific legal reasons which will be notified to you, if applicable, at the time of your request.'
+}, {
+    subtitle: 'Request restriction of processing of your personal data',
+    text: 'You have a right to ask EcoFlow to suspend the processing of your personal data in certain scenarios, for example if you want us to establish the accuracy of the data, or you have objected to our use of your data but we need to verify whether we have overriding legitimate grounds to use it. Where processing is restricted, we are allowed to retain sufficient information about you to ensure that the restriction is respected in future.'
+}, {
+    subtitle: 'Request the transfer of your personal data',
+    text: 'You have the right to obtain a digital copy of your personal data or request the transfer of your personal data to another company. Please note though that this right only applies to automated data which you initially provided consent for us to use or where we used the data to perform a contract with you.'
+}, {
+    subtitle: 'Object to processing of your personal data',
+    text: 'You have the right to object to the processing of your personal data where we believe we have a legitimate interest in processing it (as explained above). You also have the right to object to our processing of your personal data for direct marketing purposes. In some cases, we may demonstrate that we have compelling legitimate grounds to process your data which override your rights and freedoms.'
 
-},{
-    subtitle:'Request human intervention for automated decision making and profiling',
-    text:'You have the right to request human intervention where we are carrying out automated decision making when processing your personal data. This form of processing is permitted where it is necessary as part of our contract with you, providing that appropriate safeguards are in place or your explicit consent has been obtained.We will try to respond to all legitimate requests within one month. Occasionally, it may take us longer than a month if your request is particularly complex or you have made a number of requests. In this case, we will notify you and keep you updated. We may need to request specific information from you to help us confirm your identity and ensure your right to exercise any of the above rights. This is a security measure to ensure that personal data is not disclosed to any person who has no right to receive it'
-},{
-    subtitle:'Right to lodge a complaint',
-    text:'If you have any concerns or complaints regarding the way in which we process your data, please email us directly at privacy@ecoflow.com. You also have the right to make a complaint to the data protection regulator in the US or EU or in other competent authority. We would, however, appreciate the chance to deal with your concerns before you approach the data protection regulator, so please do contact us in the first instance.'
+}, {
+    subtitle: 'Request human intervention for automated decision making and profiling',
+    text: 'You have the right to request human intervention where we are carrying out automated decision making when processing your personal data. This form of processing is permitted where it is necessary as part of our contract with you, providing that appropriate safeguards are in place or your explicit consent has been obtained.We will try to respond to all legitimate requests within one month. Occasionally, it may take us longer than a month if your request is particularly complex or you have made a number of requests. In this case, we will notify you and keep you updated. We may need to request specific information from you to help us confirm your identity and ensure your right to exercise any of the above rights. This is a security measure to ensure that personal data is not disclosed to any person who has no right to receive it'
+}, {
+    subtitle: 'Right to lodge a complaint',
+    text: 'If you have any concerns or complaints regarding the way in which we process your data, please email us directly at privacy@ecoflow.com. You also have the right to make a complaint to the data protection regulator in the US or EU or in other competent authority. We would, however, appreciate the chance to deal with your concerns before you approach the data protection regulator, so please do contact us in the first instance.'
 }]
+const cookies = [{
+    subtitle: 'Strictly Necessary Cookies',
+    text: 'These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information.'
+}, {
+    subtitle: 'Performance Cookies',
+    text: 'These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance.'
+}, {
+    subtitle: 'Functional Cookies',
+    text: 'These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.'
+}, {
+    subtitle: 'Targeting Cookies',
+    text: 'These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.'
+},]
 const privacyPolicy = () => {
     return (
         <div>
@@ -386,8 +399,143 @@ const privacyPolicy = () => {
                     </ul>
                     <p>If you wish to exercise any of these rights, please email us at privacy@ecoflow.com.</p>
                 </li>
+                <li>
+                    <h3>Cookies</h3>
+                    <p>Cookies are small text files that are sent to or accessed from your web browser or your computer’s hard drive. Cookies typically contains the name of the domain (internet location) from which the cookies originated, the “lifetime” of the cookies (i.e., when it expires) and a randomly generated unique number or similar identifier. Cookies also may contain information about Device, such as: user settings, browsing history, and activities conducted while using the Services.</p>
+                    <p>Our Services use the following cookies:</p>
+                    <ul>
+                        {cookies.map((item) => (
+                            <li key={item}>
+                                <h5>{item.subtitle}</h5>
+                                <p>{item.text}</p>
+                            </li>
+                        ))}
+                    </ul>
+                    <p>You can change or withdraw your consent at any time via “Cookie Settings” at the bottom of each web page.</p>
+                </li>
+                <li>
+                    <h3>Security of Your Information</h3>
+                    <p>We take steps to ensure that your information is treated securely and in accordance with this Privacy Policy. Unfortunately, no system is 100% secure, and we cannot ensure or warrant the security of any information you provide to us. We have taken appropriate safeguards to require that your personal information will remain protected and require our third-party service providers and partners to have appropriate safeguards as well. To the fullest extent permitted by applicable law, we do not accept liability for unauthorized disclosure.</p>
+                    <p>By using our Services or providing personal information to us, you agree that we may communicate with you electronically regarding security, privacy, and administrative issues relating to your use of our Services. If we learn of a security system’s breach, we may attempt to notify you electronically by posting a notice on our Services, by mail or by sending an email to you.</p>
+                </li>
+                <li>
+                    <h3>Children’s Information</h3>
+                    <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
+                    <p>EcoFlow does not knowingly collect any Personal Identifiable Information from children under the age of 13 in EU, or age under 14 in US (or other age as required by local law). If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+                    <p>If we become aware that a child has provided us with personal information in violation of applicable law, we will delete any personal information we have collected, unless we have a legal obligation to keep it, and terminate the child’s account.</p>
+                </li>
+                <li>
+                    <h3>Supplemental Notice for California Residents</h3>
+                    <p>This Supplemental California Privacy Notice only applies to our processing of personal information that is subject to the California Consumer Privacy Act of 2018 (“CCPA”). The CCPA provides California residents with the right to know what categories of personal information EcoFlow has collected about them and whether EcoFlow disclosed that personal information for a business purpose (e.g., to a service provider) in the preceding 12 months. California residents can find this information below:</p>
+                    <table>
+                        <tr>
+                            <th>Category of Personal Information Collected by EcoFlow</th>
+                            <th>Category of Third-Party Information is Disclosed to for a Business Purpose</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Identifiers.</h3>
+                                <p>A real name, alias, postal address, unique personal identifier, online identifier, Internet Protocol address, email address, account name, or other similar identifiers.</p>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Service providers</li>
+                                    <li>Advertising networks</li>
+                                    <li> Social networks</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Internet or other electronic network activity</h3>
+                                <p>Browsing history, search history, information on a consumer's interaction with an internet website, application, or advertisement.</p>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Service providers</li>
+                                    <li>Advertising networks</li>
+                                    <li> Social networks</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Personal information categories listed in the California Customer Records statute (Cal. Civ. Code § 1798.80(e))</h3>
+                                <p>A name, signature, physical characteristics or description, address, telephone number, education, employment, employment history, bank account number or other financial information. Personal Information does not include publicly available information that is lawfully made available to the general public from federal, state, or local government records. Note: Some personal information included in this category may overlap with other categories.</p>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Service providers</li>
+                                    <li>Advertising networks</li>
+                                    <li> Social networks</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Geolocation data</h3>
+                                <p>Physical location or movements.</p>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Service providers</li>
+                                    <li>Advertising networks</li>
+                                    <li> Social networks</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <p>The categories of sources from which we collect personal information and our business and commercial purposes for using personal information are set forth in Section 1 to 3 above, respectively.</p>
+                    <h5>“Sales” of Personal Information under the CCPA</h5>
+                    <p>For purposes of the CCPA, EcoFlow does not “sell” personal information, nor do we have actual knowledge of any “sale” of personal information of minors under 16 years of age.</p>
+                    <h5>Additional Privacy Rights for California Residents</h5>
+                    <ul>
+                        <li><p><span>Non-Discrimination.</span>California residents have the right not to receive discriminatory treatment by us for the exercise of their rights conferred by the CCPA.</p></li>
+                        <li><p><span>Authorized Agent.</span>Only you, or someone legally authorized to act on your behalf, may make a verifiable consumer request related to your personal information. You may also make a verifiable consumer request on behalf of your minor child. To designate an authorized agent, please contact us as set forth in “Contact Us” below and provide written authorization signed by you and your designated agent.</p></li>
+                        <li><p>To protect your privacy, we will take steps the following steps to verify your identity before fulfilling your request. When you make a request, we will ask you to provide sufficient information that allows us to reasonably verify you are the person about whom we collected personal information or an authorized representative, which may include asking you for additional proof of identity and asking questions regarding your account and use of our Services.</p></li>
+                    </ul>
+                    <p>If you are a California resident and would like to exercise any of your rights under the CCPA, please contact us as set forth in “Contact Us” below. We will process such requests in accordance with applicable laws.</p>
+                    <ul>
+                        <li>
+                            <p>
+                                <span>
+                                    California Shine the Light.
+                                </span>
+                                The California “Shine the Light” law permits users who are California residents to request and obtain from us once a year, free of charge, a list of the third parties to whom we have disclosed their personal information (if any) for their direct marketing purposes in the prior calendar year, as well as the type of personal information disclosed to those parties.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <span>
+                                    Right for minors to remove posted content.
+                                </span>
+                                Where required by law, California residents under the age of 18 may request to have their posted content or information removed from the publicly-viewable portions of the Services by contacting us directly as set forth in “Contact Us” below or logging into their account and removing the content or information using our self-service tools.
+                            </p>
+                        </li>
+                    </ul>
+
+                </li>
+                <li>
+                    <h3>Supplemental Notice for Nevada Residents</h3>
+                    <p>If you are a resident of Nevada, you have the right to opt-out of the sale of certain Personal Information to third parties who intend to license or sell that Personal Information. Please note that we do not currently sell your Personal Information as sales are defined in Nevada Revised Statutes Chapter 603A. If you have any questions, or to request that we do not sell your information in the future, please “Contact Us” as set forth below with the subject line “Nevada Do Not Sell Request”.</p>
+                </li>
+                <li>
+                    <h3>Privacy Policies of Third-Party Websites/Applications</h3>
+                    <p>The Services may contain links to other websites/applications and other websites/applications may reference or link to our Services. These third-party services are not controlled by us. We encourage our users to read the privacy policies of each website and application with which they interact. We do not endorse, screen or approve, and are not responsible for, the privacy practices or content of such other websites or applications. Providing personal information to third-party websites or applications is at your own risk.</p>
+                </li>
+                <li> <h3>Changes to Our Privacy Policy</h3>
+                <p>We may revise this Privacy Policy from time to time in our sole discretion. If there are any material changes to this Privacy Policy, we will notify you as required by applicable law. You understand and agree that you will be deemed to have accepted the updated Privacy Policy if you continue to use our Services after the new Privacy Policy takes effect.</p>
+                <p>If at any time you find either this Agreement or the Privacy Policy unacceptable, you must immediately cease accessing the App and Websites. Unless EcoFlow obtains your express consent, any revised Privacy Policy will apply only to information collected by EcoFlow after the revised Privacy Policy takes effect, and not to information collected under any earlier versions of the Privacy Policy.</p>
+                  </li>
+                  <li>
+                    <h3>How to Contact Us</h3>
+                    <p>We welcome feedback and are happy to answer any questions you may have about your data.</p>
+                    <p>You may contact us electronically at: privacy@ecoflow.com.</p>
+                  </li>
             </ol>
         </div>
 
     )
 }
+
+export default privacyPolicy
