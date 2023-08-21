@@ -7,12 +7,14 @@ import {BrowserRouter} from 'react-router-dom';
 import store from './redux/store'
 import { Provider } from 'react-redux'
 import {Helmet} from 'react-helmet';
+import {QueryClient, QueryClientProvider} from 'react-query'
 
 if (!localStorage.getItem('theme')) {
   localStorage.setItem('theme', 'light')
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient()
 root.render(
 
   <Provider store={store}>
@@ -21,9 +23,11 @@ root.render(
       <title>BlackOut store</title>
       <meta name='description' content='BlackOut store - best products for cheapest prices' />
     </Helmet>
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
         <AppContainer/>
     </BrowserRouter>
+    </QueryClientProvider>
   </Provider>
 );
 

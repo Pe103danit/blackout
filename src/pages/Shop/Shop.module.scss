@@ -16,5 +16,16 @@
     .cardContainer {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
     }
+}
+
+.spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 423px;
 }

@@ -1,0 +1,24 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
+.container {
+  height: 592px;
+  background: $white;
+  &_status {
+    width: 400px;
+    &_text {
+
+    }
+  }
+
+  &_info {
+    width: 400px;
+  }
+
+  &_photo {
+    img {
+      width: 368px;
+      height: 368px;;
+    }
+  }
+}
