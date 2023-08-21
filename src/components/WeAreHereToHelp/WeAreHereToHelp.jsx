@@ -19,11 +19,17 @@ const WeAreHereToHelp = (props) => {
           <div className={style.section_container_body_left}>
             <NavLink to={'/login'} className={style.section_container_body_left_link}>
               <img src={memberImg} alt="Member" title="Member"/>
+              <p className={style.section_container_body_left_link_text}>
+                Latest news?
+              </p>
             </NavLink>
           </div>
           <div className={style.section_container_body_right}>
             <NavLink to={'/contacts'} className={style.section_container_body_right_link}>
               <img src={contactUsImg} alt="Contacts" title="Contacts"/>
+              <p className={style.section_container_body_right_link_text}>
+                We can help you!
+              </p>
             </NavLink>
             <NavLink to={'/'} className={style.section_container_body_right_link}>
               <img src={checkThisOutImg} alt="Check this out" title="Check this out"/>

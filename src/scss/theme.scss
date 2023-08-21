@@ -208,3 +208,33 @@ background: $main-background !important;
     }
   }
 }
+
+.lightSiteMap {
+  color: $black;
+  background: $main-background;
+  ul {
+    li {
+      a {
+        color: $black !important;
+      }
+      &:hover a {
+        color: $third-grey !important;
+      }
+    }
+  }
+}
+
+.darkSiteMap {
+  color: $white;
+  background: $black;
+  ul {
+    li {
+      a {
+        color: $white !important;
+      }
+      &:hover a {
+        color: $second-grey !important;
+      }
+    }
+  }
+}
