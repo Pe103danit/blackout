@@ -10,9 +10,8 @@ const actionGetProductById = (data) => (
 
 export const getProductById = (id) => async (dispatch) => {
     const res = await instance.get(`/api/products/${id}`)
-    if (res.ok) {
-        const data = await res.json()
-        dispatch(actionGetProductById(data))
+    if (res.status === 200) {
+        dispatch(actionGetProductById(res.data))
     }
 }
 

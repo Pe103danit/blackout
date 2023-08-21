@@ -102,6 +102,7 @@
     &_card_description_subtitle {
         margin-bottom: 35px;
         color: var(--color-body-text);
+        line-height: 22px;
 
     }
 
@@ -220,7 +221,18 @@
     }
 
     &_card_selected {
-        background-color: yellow;
+        background-color: $sun;
     }
 
+   @media screen and (max-width:$tab) {
+    .product{
+        margin: 10px;
+        &_card{
+            flex-direction: column;
+        }
+        &_card_info{
+            margin:10px;
+        }
+    }
+   }
 }
