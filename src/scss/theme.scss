@@ -238,3 +238,40 @@ background: $main-background !important;
     }
   }
 }
+
+.lightSwiper {
+  background: $white;
+  div {
+    div {
+      div {
+        p:first-child {
+          color: $black;
+        }
+        p:nth-child(2) {
+          color: $fourth-grey;
+        }
+        p:nth-child(3) {
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+.darkSwiper {
+  div {
+    div {
+      div {
+        p:first-child {
+          color: $white;
+        }
+        p:nth-child(2) {
+          color: $fourth-grey;
+        }
+        p:nth-child(3) {
+          color: $white;
+        }
+      }
+    }
+  }
+}
