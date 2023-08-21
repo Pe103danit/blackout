@@ -22,7 +22,7 @@ const Header = (props) => {
     ? 'light_navLink'
     : 'dark_navLink'
   return (
-    <div className={themeStyle}>
+    <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_header}>
         <div className={style.container_header_c1}>
           <NavMenuTabletMobile/>
