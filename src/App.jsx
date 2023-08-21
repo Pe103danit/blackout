@@ -15,7 +15,6 @@ import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 
-
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   return (
