@@ -12,13 +12,14 @@
         width: 100%;
         &_title {
             position: absolute;
-            width: 400px;
             top: 20px;
+            width: 400px;
             left: 10px;
             color: $white;
             font-weight: $big-weight;
-            font-size: 20px;
             padding: 0 20px;
+            font-size: 20px;
+          
             text-decoration: none;
           }
         &_text {
@@ -34,8 +35,8 @@
           }
     }
     &_main_title{
-        font-weight: $big-weight;
         padding-left: 10px;
+        font-weight: $big-weight;
         font-size: $second-size;
     }
     &_img{
