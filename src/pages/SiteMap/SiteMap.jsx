@@ -17,6 +17,23 @@ const SiteMap = (props) => {
           </li>
           <li className={style.section_container_body_item}>
             <Link to='/shop'>Shop</Link>
+            <ul className={style.section_container_body_item_list}>
+              <li className={style.section_container_body_item_list_item}>
+                <Link to='/accessories'>Accessories</Link>
+              </li>
+              <li className={style.section_container_body_item_list_item}>
+                <Link to='/generators'>Generators</Link>
+              </li>
+              <li className={style.section_container_body_item_list_item}>
+                <Link to='/portable_power_stations'>Portable Power Stations</Link>
+              </li>
+              <li className={style.section_container_body_item_list_item}>
+                <Link to='/power_banks'>Power Banks</Link>
+              </li>
+              <li className={style.section_container_body_item_list_item}>
+                <Link to='/solar_panels'>Solar Panels</Link>
+              </li>
+            </ul>
           </li>
           <li className={style.section_container_body_item}>
             <Link to='/offers'>Offers</Link>
@@ -41,21 +58,6 @@ const SiteMap = (props) => {
           </li>
           <li className={style.section_container_body_item}>
             <Link to='/basket'>Basket</Link>
-          </li>
-          <li className={style.section_container_body_item}>
-            <Link to='/accessories'>Accessories</Link>
-          </li>
-          <li className={style.section_container_body_item}>
-            <Link to='/generators'>Generators</Link>
-          </li>
-          <li className={style.section_container_body_item}>
-            <Link to='/portable_power_stations'>Portable Power Stations</Link>
-          </li>
-          <li className={style.section_container_body_item}>
-            <Link to='/power_banks'>Power Banks</Link>
-          </li>
-          <li className={style.section_container_body_item}>
-            <Link to='/solar_panels'>Solar Panels</Link>
           </li>
         </ul>
       </div>
