@@ -6,7 +6,6 @@
   height: 592px;
   margin-top: 55px;
   overflow: hidden;
-  border: 1px solid white;
   border-radius: 5%;
   &:hover .section_container_containerInner_photo_img1 {
     display: none;
@@ -72,6 +71,51 @@
 
         &_img2 {
           display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .section {
+    height: 450px;
+
+    &_container {
+
+      &_containerInner {
+
+        &_status {
+          height: 16px;
+
+          &_text {
+            font-size: $fifth-size;
+          }
+        }
+
+        &_info {
+          height: 170px;
+
+          &_name {
+            height: 50px;
+            font-size: $sixth-size;
+          }
+
+          &_model {
+            height: 18px;
+            font-size: $fifth-size;
+          }
+
+          &_price {
+            height: 90px;
+            font-size: $fifth-size;
+          }
+        }
+        &_photo {
+          img {
+            width: 220px;
+            height: 220px;
+          }
         }
       }
     }
