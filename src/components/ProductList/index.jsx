@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ProductCard } from '../ProductCard';
-import { getAllProducts } from '../../redux/reducers/ProductReducer/productReducer'
+import { getAllProducts } from '../../redux/reducers/ProductReducer/ProductReducer'
 import { useDispatch } from 'react-redux';
 const product = {
     sale: true,

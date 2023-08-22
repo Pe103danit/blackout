@@ -1,6 +1,20 @@
 import { typesOfProducts } from '../../types/types'
 import { instance } from '../../../components/assets/axiosUrl'
 const { GET_PRODUCT } = typesOfProducts
+
+const initialState = {
+  wishList: 0,
+  basket: 0,
+  product: {}
+}
+const productReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case GET_PRODUCT:
+      return { ...state, product: payload }
+    default:
+      return state
+  }
+}
 // const actionGetProductById = (data) => (
 //     {
 //         type: GET_PRODUCT,
@@ -50,13 +64,4 @@ export const getProductById = (id) => async (dispatch) => {
    console.log(res)
 }
 
-const initialState = { product: {} }
-const productReducer = (state = initialState, { type, payload }) => {
-    switch (type) {
-        case GET_PRODUCT:
-            return { ...state, product: payload }
-        default:
-            return state
-    }
-}
  export default productReducer

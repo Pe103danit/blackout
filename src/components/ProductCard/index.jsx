@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { getProductById } from '../../redux/reducers/ProductReducer/productReducer';
+import { getProductById } from '../../redux/reducers/ProductReducer/ProductReducer';
 
 export const ProductCard = (props) => {
   const dispatch = useDispatch()

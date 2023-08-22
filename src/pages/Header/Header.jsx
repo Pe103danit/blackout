@@ -103,20 +103,26 @@ const Header = (props) => {
                 }
               </button>
             </NavLink>
-            <NavLink to={'/wishlist'}>
-              <button>
+            <NavLink to={'/wishlist'} className={style.container_header_c2_link}>
+              <button className={style.container_header_c2_link_button}>
                 {props.lightTheme
                   ? <HeartIcon/>
                   : <HeartIconDark/>
                 }
+                <div className={style.container_header_c2_link_button_container}>
+                  {props.wishList}
+                </div>
               </button>
             </NavLink>
-            <NavLink to={'/basket'}>
-              <button>
+            <NavLink to={'/basket'} className={style.container_header_c2_link}>
+              <button className={style.container_header_c2_link_button}>
                 {props.lightTheme
-                  ? <MarketIcon/>
+                  ? <MarketIcon />
                   : <MarketIconDark/>
                 }
+                <div className={style.container_header_c2_link_button_container}>
+                  {props.basket}
+                </div>
               </button>
             </NavLink>
 
