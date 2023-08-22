@@ -13,7 +13,7 @@ import { getProductById } from '../../redux/reducers/ProductReducer/ProductReduc
 
 export const ProductCard = () => {
   const dispatch = useDispatch()
-  const product = useSelector(state => state.products.product || {})
+  const product = useSelector(state => state.ProductReducer.product || {})
   let { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
@@ -23,7 +23,6 @@ export const ProductCard = () => {
   const [specsArray, setSpecsArray] = useState([])
   // const [isActive, setActive] = useState(options[0]?.title)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-
   const id = '000001'
   const themeStyle = theme ? 'light' : 'dark'
   useEffect(() => {
@@ -33,12 +32,9 @@ export const ProductCard = () => {
     setMultipliedPrice(currentPrice)
     setCountOfAvailable(quantity -= 1)
     setSpecsArray(specs)
-    console.log(specsArray, 123123)
   }, [currentPrice, quantity, specs])
   const handleClick = () => {
-
   }
-  console.log(countOfAvailable)
   return (
     <section className={`${style.product} ${themeStyle}`}>
       <div className={style.product_container}>
@@ -157,7 +153,6 @@ export const ProductCard = () => {
                   }}>-</button>
                   <span className={style.product_card_count}>{countToCart}</span>
                   <button className={style.product_card_button_plus} disabled={!countOfAvailable} onClick={() => {
-                    console.log(countOfAvailable)
                     setCountToCart(prev => prev += 1)
                     setCountOfAvailable(prev => prev -= 1)
 

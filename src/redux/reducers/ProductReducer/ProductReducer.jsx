@@ -9,10 +9,13 @@ const actionGetProductById = (data) => (
 )
 
 export const getProductById = (id) => async (dispatch) => {
-    const res = await instance.get(`/api/products/${id}`)
-    if (res.status === 200) {
-        dispatch(actionGetProductById(res.data))
-    }
+     await instance.get(`/api/products/${id}`)
+        .then(res => {
+            dispatch(actionGetProductById(res.data))
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 
 const initialState = { product: {} }
