@@ -12,6 +12,7 @@ import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
 import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 
 const App = (props) => {
@@ -31,6 +32,7 @@ const App = (props) => {
         <Route path='/wishlist' element={<WishList/>}/>
         <Route path='/basket' element={<Basket/>}/>
         <Route path='cart' element={<Cart/>}/>
+        <Route path='/policies/privacy-policy' element={<PrivacyPolicy/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
