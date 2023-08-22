@@ -110,6 +110,27 @@
       padding-right: 10px;
       row-gap: 10px;
 
+      &_link {
+        position: relative;
+        &_button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &_container {
+            position: absolute;
+            top: -8px;
+            right: -3px;
+            width: 16px;
+            height: 16px;
+            color: $white;
+            font-size: $fifth-size;
+            background: $red;
+            border-radius: 50%;
+            @include manrope-regular();
+          }
+        }
+      }
+
       button {
         display: flex;
         align-items: center;

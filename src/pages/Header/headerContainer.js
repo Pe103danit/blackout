@@ -3,7 +3,8 @@ import { toggleSearchInput, toggleTheme } from '../../redux/reducers/UIStateRedu
 import Header from './Header'
 
 const mapStateToProps = (state) => ({
-    ...state.UIStateReducer
+  ...state.UIStateReducer,
+  ...state.ProductReducer
 })
 
 const mapDispatchToProps = {
