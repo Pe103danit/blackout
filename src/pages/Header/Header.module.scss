@@ -118,12 +118,12 @@
           justify-content: center;
           &_container {
             position: absolute;
-            right: -3px;
             top: -8px;
+            right: -3px;
             width: 16px;
             height: 16px;
-            font-size: $fifth-size;
             color: $white;
+            font-size: $fifth-size;
             background: $red;
             border-radius: 50%;
             @include manrope-regular();
