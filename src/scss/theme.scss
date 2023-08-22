@@ -216,9 +216,9 @@ background: $main-background !important;
     li {
       a {
         color: $black !important;
-      }
-      &:hover a {
-        color: $third-grey !important;
+        &:hover {
+          color: $third-grey !important;
+        }
       }
     }
   }
@@ -231,9 +231,9 @@ background: $main-background !important;
     li {
       a {
         color: $white !important;
-      }
-      &:hover a {
-        color: $second-grey !important;
+        &:hover {
+          color: $second-grey !important;
+        }
       }
     }
   }
