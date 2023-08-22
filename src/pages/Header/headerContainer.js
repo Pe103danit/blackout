@@ -4,7 +4,7 @@ import Header from './Header'
 
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
-  ...state.ProductReducer,
+  ...state.ProductReducer
 })
 
 const mapDispatchToProps = {
