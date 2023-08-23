@@ -21,7 +21,7 @@
 
   &_nav {
     position: absolute;
-    top: 75px;
+    top: 88px;
     left: 0;
     width: 100vw;
 
@@ -47,7 +47,14 @@
         }
 
         &_link {
+          display: flex;
+          align-items: center;
+          column-gap: 10px;
           @include manrope-bold();
+          svg {
+            height: 20px;
+            width: 20px;
+          }
         }
       }
     }
