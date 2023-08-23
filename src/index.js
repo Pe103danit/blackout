@@ -13,6 +13,14 @@ if (!localStorage.getItem('theme')) {
   localStorage.setItem('theme', 'light')
 }
 
+if (!localStorage.getItem('wishList')) {
+  localStorage.setItem('wishList', '0')
+}
+
+if (!localStorage.getItem('basket')) {
+  localStorage.setItem('basket', '0')
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient()
 root.render(

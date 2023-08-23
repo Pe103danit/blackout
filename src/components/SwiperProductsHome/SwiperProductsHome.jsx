@@ -22,14 +22,13 @@ const SwiperProductsHome = (props) => {
             console.log(data);
         }
         const handleResize = () => {
-            if (window.innerWidth < 480) {
+            if (window.innerWidth < 481) {
                 setSlidesPerView(1)
-            } else if (window.innerWidth < 992) {
+            } else if (window.innerWidth < 993) {
                 setSlidesPerView(2)
             } else {
                 setSlidesPerView(4)
             }
-            console.log(window.innerWidth)
         };
         handleResize();
         window.addEventListener('resize', handleResize);

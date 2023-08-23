@@ -2,7 +2,6 @@
 @import '../../scss/_variables.scss';
 
 .container {
-  position: relative;
   z-index: 2;
 
   &_btn {
@@ -19,9 +18,9 @@
 
   &_nav {
     position: absolute;
-    top: 59px;
+    top: 75px;
+    left: 0;
     width: 100vw;
-
 
     &_list {
       display: flex;

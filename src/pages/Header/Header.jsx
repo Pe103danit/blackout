@@ -5,7 +5,12 @@ import {
   LogoLightRight,
   LogoDarkRight,
   LogoLightLeft,
-  LogoDarkLeft, SearchIconDark, UserIconDark, MarketIconDark, HeartIcon, HeartIconDark
+  LogoDarkLeft,
+  SearchIconDark,
+  UserIconDark,
+  MarketIconDark,
+  HeartIcon,
+  HeartIconDark
 } from '../../components/assets/Icons'
 import style from './Header.module.scss'
 import { NavLink } from 'react-router-dom'
@@ -117,7 +122,7 @@ const Header = (props) => {
             <NavLink to={'/basket'} className={style.container_header_c2_link}>
               <button className={style.container_header_c2_link_button}>
                 {props.lightTheme
-                  ? <MarketIcon />
+                  ? <MarketIcon/>
                   : <MarketIconDark/>
                 }
                 <div className={style.container_header_c2_link_button_container}>
@@ -125,7 +130,6 @@ const Header = (props) => {
                 </div>
               </button>
             </NavLink>
-
           </div>
         }
       </div>
