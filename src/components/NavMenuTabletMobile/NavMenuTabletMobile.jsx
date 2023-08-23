@@ -6,6 +6,9 @@ import { toggleNavBar } from '../../redux/reducers/UIStateReducer/UIStateReducer
 import style from './NavMenuTabletMobile.module.scss'
 
 const NavMenuTabletMobile = (props) => {
+  const toggle = () => {
+    props.toggleNavBar()
+  }
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   const CloseComponent = () => props.lightTheme
     ? <CloseIcon/>
@@ -19,14 +22,14 @@ const NavMenuTabletMobile = (props) => {
     <div className={style.container}>
       <button
         className={style.container_btn}
-        onClick={() => props.toggleNavBar()}>
+        onClick={() => toggle()}>
         {props.navbarStatus
           ? <CloseComponent/>
           : <MenuComponent/>
         }
       </button>
       {props.navbarStatus &&
-        <Nav themeStyle={themeStyle}/>
+        <Nav themeStyle={themeStyle} toggle={toggle}/>
       }
     </div>
   )

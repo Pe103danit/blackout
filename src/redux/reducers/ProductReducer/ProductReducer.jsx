@@ -3,8 +3,8 @@ import { instance } from '../../../components/assets/axiosUrl'
 const { GET_PRODUCT } = typesOfProducts
 
 const initialState = {
-  wishList: 0,
-  basket: 0,
+  wishList: localStorage.getItem('wishList') ? parseInt(localStorage.getItem('wishList')) : 0,
+  basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
   product: {}
 }
 const productReducer = (state = initialState, { type, payload }) => {
