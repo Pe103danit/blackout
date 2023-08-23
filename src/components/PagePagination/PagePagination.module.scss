@@ -1,0 +1,14 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
+.pagination {
+    display: flex;
+    float: row;
+    justify-content: center;
+
+    &__btn {
+        margin: 5px;
+        padding: 5px 10px;
+        @include manrope-bold;
+    }
+}
