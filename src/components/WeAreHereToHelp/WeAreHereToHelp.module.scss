@@ -90,7 +90,7 @@
 }
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: $tab) {
   .section {
     &_container {
       &_body {
@@ -114,7 +114,7 @@
             border-radius: $border;
 
             img {
-              width: 80%;
+              width: 90%;
               height: 400px;
               box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
             }
@@ -135,8 +135,8 @@
             border-radius: $border;
 
             img {
-              width: 80%;
-              height: 320px;
+              width: 90%;
+              height: 400px;
               box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
             }
             &_text {
@@ -150,7 +150,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: $mobile) {
   .section {
     &_container {
       &_body {
