@@ -23,16 +23,12 @@ const Shop = () => {
     return (
 
         (productIsLoading === true)
-            ? (<div className={style.spinner}>
-                <Spinner />
-                <h3>Loading ...</h3>
-                </div>)
-            : (
-                <div className={style.cardContainer}>
-                    {productItems.map((productItem, index) => (
-                        <ShopCard key={index} productItem={productItem} />
-                    ))}
-                </div>)
+            ? (<Spinner />)
+            : (<div className={style.cardContainer}>
+                {productItems.map((productItem, index) => (
+                    <ShopCard key={index} productItem={productItem} />
+                ))}
+            </div>)
 
     )
 }
