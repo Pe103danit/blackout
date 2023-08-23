@@ -155,7 +155,7 @@ const Footer = (props) => {
                                     <div className={`${style.contact__form}`}>
                                         <div className={`${style.input__group}`}>
                                             <label for='newsletter-form-email' className={`${style.visually_hidden}`}></label>
-                                            <input type="email" name='contact[email]' id='newsletter-form-email' className={`${style.input__group__field} ${newsletterInput}`} value='Email address'/>
+                                            <input type="email" name='newsletter-form-email' id='newsletter-form-email' className={`${style.input__group__field} ${newsletterInput}`} placeholder='Email address'/>
                                             <span className={`${style.input__group__btn} ${themeStyle}`}>
                                                 <button type='button' className={`${style.newsletter__submit}`} name='commit' aria-label='Submit'>
                                                     <span className={`${style.newsletter__submit_text__large}`}>
@@ -202,7 +202,7 @@ const Footer = (props) => {
                             <div className={`${style.grid__item} ${footerItemAlignRight} ${oneHalf} ${smallOneWhole}`}>
                                 <div className={`${style.custom_payment_icons} ${customPaymentIconsFooter}`}>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt="PayPal" srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_08_7f374817-3a3e-42f2-95ce-077b67f293d2.svg?v=1672025209" />
+                                        <img alt="PayPal" srcSet="https://cdn.shopify.com/s/files/1/1996/9707/files/card_08_7f374817-3a3e-42f2-95ce-077b67f293d2.svg?v=1672025209" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
                                         <img alt="Visa" srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_10_d8002835-e25f-4edb-9038-187f75f69a18.svg?v=1672025208" />
@@ -211,7 +211,7 @@ const Footer = (props) => {
                                         <img alt="MasterCard" srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_06_7c406d24-0983-49ff-ac8e-cf73032050d9.svg?v=1672025208" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt='EuroCard' srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_07_be5959d4-9f22-4a31-8e40-285f8e3ac6e7.svg?v=1672025208" />
+                                        <img alt='EuroCard' srcset='https://cdn.shopify.com/s/files/1/1996/9707/files/card_07_be5959d4-9f22-4a31-8e40-285f8e3ac6e7.svg?v=1672025208' />
                                     </div>
                                 </div>
                             </div>
