@@ -180,7 +180,7 @@ const Footer = (props) => {
                             <div className={`${style.grid__item} ${oneHalf} ${footerItemAlignLeft} ${smallOneWhole}`}>
                                 <span className={`${style.footer__copyright_content}`}>
                                     <p>Copyright &copy; 2023
-                                        <NavLink to={'/'}> BlackOut Store</NavLink>
+                                        <NavLink to={'/shop'}> BlackOut Store</NavLink>
                                         . All Right Reserved.
                                     </p>
                                 </span>
