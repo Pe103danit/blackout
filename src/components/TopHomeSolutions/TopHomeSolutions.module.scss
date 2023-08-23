@@ -74,6 +74,14 @@
       padding: 0 40px;
     }
 
+    &_link {
+      &_text {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
     &_item {
       width: 450px;
     }
@@ -98,7 +106,7 @@
     }
 
     &_item {
-      width: 350px;
+      width: 320px;
     }
 
     &_img {
@@ -108,7 +116,7 @@
 
     &_link {
       &_title {
-        width: 300px;
+        width: 280px;
       }
 
       &_text {

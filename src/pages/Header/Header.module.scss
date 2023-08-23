@@ -1,7 +1,9 @@
 @import '../../scss/_mixin.scss';
 @import '../../scss/_variables.scss';
+
 .container {
   position: relative;
+
   &_header {
     display: flex;
     align-items: center;
@@ -107,19 +109,24 @@
       justify-content: space-between;
       width: 100%;
       max-width: 110px;
-      padding-right: 10px;
+      padding-right: 15px;
       row-gap: 10px;
 
       &_link {
         position: relative;
+
         &_button {
           display: flex;
           align-items: center;
           justify-content: center;
+
           &_container {
             position: absolute;
             top: -8px;
             right: -3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 16px;
             height: 16px;
             color: $white;
@@ -159,25 +166,45 @@
 
 @media screen and (max-width: $tab) {
   .container {
-    padding-right: 20px;
+    padding-right: 15px;
+
     &_header {
+      justify-content: flex-start;
       width: 100%;
       max-width: 768px;
 
       &_c1 {
         justify-content: flex-start;
+        width: auto;
         column-gap: 30px;
 
         &_navigation {
           display: none;
         }
       }
-      &_c2{
+
+      &_c2 {
+        justify-content: flex-end;
+        max-width: 768px;
+        column-gap: 5px;
+
         button {
           width: 40px;
+
           svg {
             width: 40px;
             height: 40px;
+          }
+        }
+
+        &_link {
+          &_button {
+            &_container {
+              top: -5px;
+              right: 0;
+              width: 20px;
+              height: 20px;
+            }
           }
         }
       }
@@ -190,6 +217,33 @@
     &_header {
       width: 100%;
       max-width: 320px;
+
+      &_c1 {
+        max-width: 220px;
+        padding-left: 0;
+        column-gap: 5px;
+        &_logos {
+          width: 150px;
+        }
+      }
+
+      &_c2 {
+        column-gap: 0;
+
+        button {
+          width: 35px;
+
+          svg {
+            width: 35px;
+            height: 35px;
+          }
+        }
+        &_link {
+          &_user {
+            display: none !important;
+          }
+        }
+      }
     }
   }
 }
