@@ -19,6 +19,7 @@ import Generators from './pages/ProductCategories/Generators/Generators'
 import PortablePowerStations from './pages/ProductCategories/PortablePowerStations/PortablePowerStations'
 import PowerBanks from './pages/ProductCategories/PowerBanks/PowerBanks'
 import SolarPanels from './pages/ProductCategories/SolarPanels/SolarPanels'
+import FooterContainer from './pages/Footer/footerContainer';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -46,6 +47,7 @@ const App = (props) => {
         <Route path='/site_map' element={<SiteMapContainer/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
+      <FooterContainer/>
     </div>
   )
 }

@@ -81,6 +81,13 @@
   .section {
     height: 450px;
 
+    &:hover .section_container_containerInner_photo_img1 {
+      display: block;
+    }
+    &:hover .section_container_containerInner_photo_img2 {
+      display: none
+    }
+
     &_container {
 
       &_containerInner {
