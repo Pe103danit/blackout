@@ -1,6 +1,4 @@
-import {useQuery} from 'react-query'
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
-import {instance} from '../assets/axiosUrl'
 import {useEffect, useState} from 'react'
 import CardSwiperProductsHome from '../CardSwiperProductsHome/CardSwiperProductsHome'
 import style from './SwiperProductsHome.module.scss'
@@ -11,16 +9,7 @@ import {Navigation} from 'swiper/modules'
 const SwiperProductsHome = (props) => {
     const swiper = useSwiper();
     const [slidesPerView, setSlidesPerView] = useState(4);
-
-    const getSwiperProducts = async () => {
-        const {data} = await instance.get('/api/products')
-        return data
-    }
-    const {data} = useQuery('getProducts', getSwiperProducts)
     useEffect(() => {
-        if (data) {
-            console.log(data);
-        }
         const handleResize = () => {
             if (window.innerWidth < 481) {
                 setSlidesPerView(1)
@@ -35,7 +24,7 @@ const SwiperProductsHome = (props) => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [data]);
+    }, []);
 
     return (
         <Swiper
@@ -49,9 +38,10 @@ const SwiperProductsHome = (props) => {
         >
             <div onClick={() => swiper.slidePrev()}/>
             <div onClick={() => swiper.slideNext()}/>
-            {data && data.map(product => {
+            {props.products && props.products.map(product => {
                     return (
-                        <SwiperSlide>
+                        <SwiperSlide key={product.itemNo
+                        }>
                             <CardSwiperProductsHome
                                 lightTheme={props.lightTheme}
                                 {...product}

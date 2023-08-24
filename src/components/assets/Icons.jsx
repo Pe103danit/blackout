@@ -58,7 +58,7 @@ export const LogoDarkRight = () => {
 
 export const SearchIcon = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' fill='black' viewBox='0 0 24 24' width='512' height='512'>
+    <svg className='svgLight' xmlns='http://www.w3.org/2000/svg' id='Outline' viewBox='0 0 24 24' width='512' height='512'>
       <path
         d='M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z'/>
     </svg>
@@ -67,7 +67,7 @@ export const SearchIcon = () => {
 
 export const SearchIconDark = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' fill='white' viewBox='0 0 24 24' width='512' height='512'>
+    <svg className='svgDark' xmlns='http://www.w3.org/2000/svg' id='Outline' viewBox='0 0 24 24' width='512' height='512'>
       <path
         d='M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z'/>
     </svg>
@@ -76,7 +76,7 @@ export const SearchIconDark = () => {
 
 export const UserIcon = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' fill='black' viewBox='0 0 24 24' width='512' height='512'>
+    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' className='svgLight' viewBox='0 0 24 24' width='512' height='512'>
       <path d='M12,12A6,6,0,1,0,6,6,6.006,6.006,0,0,0,12,12ZM12,2A4,4,0,1,1,8,6,4,4,0,0,1,12,2Z'/>
       <path d='M12,14a9.01,9.01,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,12,14Z'/>
     </svg>
@@ -85,7 +85,7 @@ export const UserIcon = () => {
 
 export const UserIconDark = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' fill='white' viewBox='0 0 24 24' width='512' height='512'>
+    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' className='svgDark' viewBox='0 0 24 24' width='512' height='512'>
       <path d='M12,12A6,6,0,1,0,6,6,6.006,6.006,0,0,0,12,12ZM12,2A4,4,0,1,1,8,6,4,4,0,0,1,12,2Z'/>
       <path d='M12,14a9.01,9.01,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,12,14Z'/>
     </svg>
@@ -94,7 +94,7 @@ export const UserIconDark = () => {
 
 export const MarketIcon = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' fill='black' viewBox='0 0 24 24' width='512' height='512'>
+    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' className='svgLight' viewBox='0 0 24 24' width='512' height='512'>
       <path
         d='M22.713,4.077A2.993,2.993,0,0,0,20.41,3H4.242L4.2,2.649A3,3,0,0,0,1.222,0H1A1,1,0,0,0,1,2h.222a1,1,0,0,1,.993.883l1.376,11.7A5,5,0,0,0,8.557,19H19a1,1,0,0,0,0-2H8.557a3,3,0,0,1-2.82-2h11.92a5,5,0,0,0,4.921-4.113l.785-4.354A2.994,2.994,0,0,0,22.713,4.077ZM21.4,6.178l-.786,4.354A3,3,0,0,1,17.657,13H5.419L4.478,5H20.41A1,1,0,0,1,21.4,6.178Z'/>
       <circle cx='7' cy='22' r='2'/>
@@ -105,7 +105,7 @@ export const MarketIcon = () => {
 
 export const MarketIconDark = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' fill='white' viewBox='0 0 24 24' width='512' height='512'>
+    <svg xmlns='http://www.w3.org/2000/svg' id='Outline' className='svgDark' viewBox='0 0 24 24' width='512' height='512'>
       <path
         d='M22.713,4.077A2.993,2.993,0,0,0,20.41,3H4.242L4.2,2.649A3,3,0,0,0,1.222,0H1A1,1,0,0,0,1,2h.222a1,1,0,0,1,.993.883l1.376,11.7A5,5,0,0,0,8.557,19H19a1,1,0,0,0,0-2H8.557a3,3,0,0,1-2.82-2h11.92a5,5,0,0,0,4.921-4.113l.785-4.354A2.994,2.994,0,0,0,22.713,4.077ZM21.4,6.178l-.786,4.354A3,3,0,0,1,17.657,13H5.419L4.478,5H20.41A1,1,0,0,1,21.4,6.178Z'/>
       <circle cx='7' cy='22' r='2'/>
@@ -116,7 +116,7 @@ export const MarketIconDark = () => {
 
 export const CloseIcon = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Layer_1' fill='black' data-name='Layer 1' viewBox='0 0 24 24'
+    <svg xmlns='http://www.w3.org/2000/svg' id='Layer_1' className='svgLight' data-name='Layer 1' viewBox='0 0 24 24'
          width='512'
          height='512'>
       <polygon
@@ -127,7 +127,7 @@ export const CloseIcon = () => {
 
 export const CloseIconDark = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' id='Layer_1' fill='white' data-name='Layer 1' viewBox='0 0 24 24'
+    <svg xmlns='http://www.w3.org/2000/svg' id='Layer_1' className='svgDark' data-name='Layer 1' viewBox='0 0 24 24'
          width='512'
          height='512'>
       <polygon
@@ -138,7 +138,7 @@ export const CloseIconDark = () => {
 
 export const MenuIcon = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='512' height='512' fill='black'>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='512' height='512' className='svgLight'>
       <g id='_01_align_center' data-name='01 align center'>
         <rect x='7' y='4' width='17' height='2'/>
         <rect x='7' y='11' width='17' height='2'/>
@@ -153,7 +153,7 @@ export const MenuIcon = () => {
 
 export const MenuIconDark = () => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='512' height='512' fill='white'>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='512' height='512' className='svgDark'>
       <g id='_01_align_center' data-name='01 align center'>
         <rect x='7' y='4' width='17' height='2'/>
         <rect x='7' y='11' width='17' height='2'/>
@@ -173,7 +173,7 @@ export const HeartIcon = () => {
          viewBox='0 0 24 24'
          width='512'
          height='512'
-         fill='black'>
+         className='svgLight'>
       <path
         d='M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z'/>
     </svg>
@@ -187,7 +187,7 @@ export const HeartIconDark = () => {
          viewBox='0 0 24 24'
          width='512'
          height='512'
-         fill='white'>
+         className='svgDark'>
       <path
         d='M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z'/>
     </svg>
@@ -197,15 +197,15 @@ export const Payments = () => {
   return (
     <svg width='48px' height='48px' viewBox='0 0 48 48' version='1.1' xmlns='http://www.w3.org/2000/svg'>
       <title>Payments@3x</title>
-      <g id='pc' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+      <g id='pc' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g id='Payments'>
           <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
           <g id='编组' transform='translate(13.000000, 8.000000)'>
             <path
               d='M1.42646089,3.61411786 L12.9264609,0.171684369 C13.3006184,0.0596832862 13.6993816,0.0596832862 14.0735391,0.171684369 L25.5735391,3.61411786 C26.420088,3.86752553 27,4.64645393 27,5.53011704 L27,19.2208679 C27,21.8009212 25.7556865,24.2226052 23.6581012,25.7248738 L14.2741445,32.4455658 C13.8112802,32.7770644 13.1887198,32.7770644 12.7258555,32.4455658 L3.34189878,25.7248738 C1.24431353,24.2226052 -8.29808432e-16,21.8009212 0,19.2208679 L0,5.53011704 C1.17238615e-15,4.64645393 0.57991199,3.86752553 1.42646089,3.61411786 Z'
-              id='矩形' stroke='#03060B' stroke-width='2.25'></path>
-            <polyline id='Stroke-437' stroke='#2164FF' stroke-width='2.7734375' stroke-linecap='round'
-                      stroke-linejoin='round' points='22 10 12.0721345 19 7 14.4019108'></polyline>
+              id='矩形' stroke='#03060B' strokeWidth='2.25'></path>
+            <polyline id='Stroke-437' stroke='#2164FF' strokeWidth='2.7734375' strokeLinecap='round'
+                      strokeLinejoin='round' points='22 10 12.0721345 19 7 14.4019108'></polyline>
           </g>
         </g>
       </g>
@@ -216,18 +216,18 @@ export const Shipping = () => {
   return (
     <svg width='48px' height='48px' viewBox='0 0 48 48' version='1.1' xmlns='http://www.w3.org/2000/svg'>
       <title>Shipping@3x</title>
-      <g id='pc' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+      <g id='pc' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g id='Shipping'>
           <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
           <g id='编组'>
             <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
-            <g transform='translate(4.250000, 11.480769)' stroke-width='2'>
+            <g transform='translate(4.250000, 11.480769)' strokeWidth='2'>
               <path
                 d='M26.7587819,21.2115385 L23.5,21.2115385 L23.5,3.98076923 L31.810736,3.98076923 C32.3905304,3.98076923 32.939575,4.24155742 33.3059116,4.69095594 L39.3161651,12.0639527 C39.5967655,12.4081755 39.75,12.8386753 39.75,13.2827766 L39.75,20.5685349 C39.75,20.923656 39.4621175,21.2115385 39.1069965,21.2115385 L35.3659418,21.2115385 L35.3659418,21.2115385'
                 id='路径' stroke='#03060B'></path>
               <path
                 d='M13.7805082,21.2115385 C15.9403953,21.2115385 19.1802259,21.2115385 23.5,21.2115385 L23.5,1.65470472 C23.5,0.740836537 22.7252424,0 21.7695304,0 L1.73046959,0 C0.774757624,0 0,0.740836537 0,1.65470472 L0,19.5568337 C0,20.4707019 0.774757624,21.2115385 1.73046959,21.2115385 C3.27413729,21.2115385 4.39878881,21.2115385 5.10442415,21.2115385'
-                id='路径' stroke='#03060B' fill-rule='nonzero'></path>
+                id='路径' stroke='#03060B' fillRule='nonzero'></path>
               <ellipse id='椭圆形' stroke='#2164FF' cx='31.0833333' cy='21.2115385' rx='4.33333333'
                        ry='4.30769231'></ellipse>
               <ellipse id='椭圆形备份-3' stroke='#2164FF' cx='9.41666667' cy='21.2115385' rx='4.33333333'
@@ -244,13 +244,13 @@ export const Protection = () => {
   return (
     <svg width='48px' height='48px' viewBox='0 0 48 48' version='1.1' xmlns='http://www.w3.org/2000/svg'>
       <title>Warranty@3x</title>
-      <g id='pc' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+      <g id='pc' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g id='Warranty'>
           <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
           <g id='编组'>
             <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
-            <g id='编组-5' transform='translate(10.000000, 8.000000)' stroke-linecap='round' stroke-linejoin='round'
-               stroke-width='2'>
+            <g id='编组-5' transform='translate(10.000000, 8.000000)' strokeLinecap='round' strokeLinejoin='round'
+               strokeWidth='2'>
               <path
                 d='M26.9645418,23.8468041 C27.631626,22.3159606 28,20.6396111 28,18.8824249 L28,4.2934352 L13.9996768,0 L0.000409063065,4.2934352 L0.000409063065,18.8824249 C-0.0893095342,30.2025837 14.6002636,36.169337 23.3451881,28.6575937'
                 id='Stroke-19' stroke='#000000'></path>
@@ -269,17 +269,17 @@ export const Support = () => {
   return (
     <svg width='48px' height='48px' viewBox='0 0 48 48' version='1.1' xmlns='http://www.w3.org/2000/svg'>
       <title>Support@3x</title>
-      <g id='pc' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+      <g id='pc' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g id='Support'>
           <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
-          <g id='编组' stroke-linecap='round' stroke-width='2'>
+          <g id='编组' strokeLinecap='round' strokeWidth='2'>
             <g id='编组-124' transform='translate(7.000000, 9.000000)'>
               <path
                 d='M24.6501372,27.4288564 L17.0153211,27.4288564 C16.0680436,27.4288564 15.3002744,26.6546308 15.3002744,25.6993876 L15.3002744,20.5715126 L25.4847933,20.5715126 C26.4320707,20.5715126 27.1998399,19.797287 27.1998399,18.8420438 L27.1998399,13.7141688 L32.2849533,13.7141688 C33.2322308,13.7141688 34,14.4883943 34,15.4436376 L34,25.6993876 C34,26.6546308 33.2322308,27.4288564 32.2849533,27.4288564 L29.7501143,27.4288564 L27.1998399,30 L24.6501372,27.4288564 Z'
-                id='Stroke-19' stroke='#03060B' stroke-linejoin='round'></path>
+                id='Stroke-19' stroke='#03060B' strokeLinejoin='round'></path>
               <path
                 d='M1.71504668,0 L25.4850219,0 C26.4322994,0 27.2000686,0.774225534 27.2000686,1.7294688 L27.2000686,18.8419861 C27.2000686,19.7972294 26.4322994,20.5714549 25.4850219,20.5714549 L11.0500457,20.5714549 L7.65025154,24.0004151 L4.25045735,20.5714549 L1.71504668,20.5714549 C0.767769229,20.5714549 0,19.7972294 0,18.8419861 L0,1.7294688 C0,0.774225534 0.767769229,0 1.71504668,0 Z'
-                id='Stroke-21' stroke='#2164FF' stroke-linejoin='round'></path>
+                id='Stroke-21' stroke='#2164FF' strokeLinejoin='round'></path>
               <line x1='12.603535' y1='10.2857851' x2='13.7468995' y2='10.2857851' id='Stroke-23'
                     stroke='#2164FF'></line>
               <line x1='18.5534321' y1='10.2857851' x2='19.6967966' y2='10.2857851' id='Stroke-25'
@@ -298,18 +298,18 @@ export const Plans = () => {
   return (
     <svg width='48px' height='48px' viewBox='0 0 48 48' version='1.1' xmlns='http://www.w3.org/2000/svg'>
       <title>Convenient Installment Plans@3x</title>
-      <g id='pc' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+      <g id='pc' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g id='Convenient-Installment-Plans'>
           <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
           <g id='编组'>
             <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
             <path
               d='M23.9054308,33 L23.9054308,33 L8.21741423,33 C7.44637099,33 7.16677208,32.9183135 6.8848902,32.7649232 C6.60300832,32.611533 6.38178577,32.386439 6.23103369,32.0996242 C6.08028161,31.8128094 6,31.5283175 6,30.743781 L6,13.256219 C6,12.4716825 6.08028161,12.1871906 6.23103369,11.9003758 C6.38178577,11.613561 6.60300832,11.388467 6.8848902,11.2350768 C7.16677208,11.0816865 7.44637099,11 8.21741423,11 L35.7825858,11 C36.553629,11 36.8332279,11.0816865 37.1151098,11.2350768 C37.3969917,11.388467 37.6182142,11.613561 37.7689663,11.9003758 C37.9197184,12.1871906 38,12.4716825 38,13.256219 L38,22.320973 L38,22.320973'
-              id='路径' stroke='#03060B' stroke-width='2'></path>
-            <circle id='椭圆形' stroke='#2164FF' stroke-width='2' cx='32' cy='29' r='9'></circle>
-            <polyline id='路径' stroke='#2164FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'
+              id='路径' stroke='#03060B' strokeWidth='2'></path>
+            <circle id='椭圆形' stroke='#2164FF' strokeWidth='2' cx='32' cy='29' r='9'></circle>
+            <polyline id='路径' stroke='#2164FF' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'
                       points='37 30 32 30 32 24'></polyline>
-            <line x1='6' y1='16.5' x2='38' y2='16.5' id='路径-20' stroke='#03060B' stroke-width='2'></line>
+            <line x1='6' y1='16.5' x2='38' y2='16.5' id='路径-20' stroke='#03060B' strokeWidth='2'></line>
           </g>
         </g>
       </g>
@@ -321,19 +321,19 @@ export const Membership = () => {
   return (
     <svg width='48px' height='48px' viewBox='0 0 48 48' version='1.1' xmlns='http://www.w3.org/2000/svg'>
       <title>Global Elite Membership@3x</title>
-      <g id='pc' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+      <g id='pc' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g id='Global-Elite-Membership'>
           <rect id='矩形' x='0' y='0' width='48' height='48'></rect>
-          <g id='编组' stroke-width='2'>
+          <g id='编组' strokeWidth='2'>
             <g>
               <g transform='translate(8.733333, 9.333333)' stroke='#03060B'>
                 <path d='M1.33333333,22.8148148 L1.33333333,4.56296296 M25.3333333,4.56296296 L25.3333333,8.39403744'
-                      id='形状' stroke-linecap='round'></path>
+                      id='形状' strokeLinecap='round'></path>
                 <ellipse id='椭圆形' cx='13.3333333' cy='4.56296296' rx='12' ry='4.56296296'></ellipse>
                 <path d='M1.33333333,22.8148148 C1.33333333,25.3348697 6.70591635,27.3777779 13.3333333,27.3777779'
-                      id='路径' stroke-linecap='round'></path>
+                      id='路径' strokeLinecap='round'></path>
                 <path d='M1.33333333,13.6888889 C1.33333333,16.2089438 6.70591635,18.2518518 13.3333333,18.2518518'
-                      id='路径' stroke-linecap='round'></path>
+                      id='路径' strokeLinecap='round'></path>
               </g>
               <g transform='translate(24.455959, 21.066667)' stroke='#2164FF'>
                 <path d='M1.33333333,14.6666667 L1.33333333,2.93333333 M16.2556131,2.93333333 L16.2556131,14.6666667'
@@ -446,7 +446,7 @@ export const NewsletterIcon = () => {
     <svg width='31' height='30' viewBox='0 0 31 30' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M22.46 8H9.373c-.704 0-1.289.237-1.756.71-.467.473-.7 1.054-.7 1.745v9.818c0 .703.233 1.288.7 1.754.467.467 1.052.7 1.756.7H22.46c.704 0 1.29-.233 1.756-.7.467-.466.7-1.051.7-1.754v-9.818c0-.69-.233-1.272-.7-1.745C23.75 8.237 23.164 8 22.46 8zM9.373 9.65H22.46c.167 0 .31.037.432.114a.948.948 0 0 1 .317.365l-7.292 5.081-7.292-5.081a.948.948 0 0 1 .316-.365.792.792 0 0 1 .432-.115zM22.46 21.096H9.373c-.256 0-.457-.073-.605-.22-.147-.147-.22-.349-.22-.604v-8.265l6.87 4.832c.09.039.176.077.259.115a.572.572 0 0 0 .24.058c.076 0 .156-.02.24-.058.083-.038.169-.076.259-.115l6.87-4.832v8.265c0 .255-.074.457-.221.604-.147.147-.349.22-.605.22z'
-        fill='#03060B' fill-rule='evenodd'>
+        fill='#03060B' fillRule='evenodd'>
       </path>
     </svg>
   )
@@ -457,7 +457,7 @@ export const NewsletterIconDark = () => {
     <svg width='31' height='30' viewBox='0 0 31 30' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M22.46 8H9.373c-.704 0-1.289.237-1.756.71-.467.473-.7 1.054-.7 1.745v9.818c0 .703.233 1.288.7 1.754.467.467 1.052.7 1.756.7H22.46c.704 0 1.29-.233 1.756-.7.467-.466.7-1.051.7-1.754v-9.818c0-.69-.233-1.272-.7-1.745C23.75 8.237 23.164 8 22.46 8zM9.373 9.65H22.46c.167 0 .31.037.432.114a.948.948 0 0 1 .317.365l-7.292 5.081-7.292-5.081a.948.948 0 0 1 .316-.365.792.792 0 0 1 .432-.115zM22.46 21.096H9.373c-.256 0-.457-.073-.605-.22-.147-.147-.22-.349-.22-.604v-8.265l6.87 4.832c.09.039.176.077.259.115a.572.572 0 0 0 .24.058c.076 0 .156-.02.24-.058.083-.038.169-.076.259-.115l6.87-4.832v8.265c0 .255-.074.457-.221.604-.147.147-.349.22-.605.22z'
-        fill='#03060B' fill-rule='evenodd'>
+        fill='#03060B' fillRule='evenodd'>
       </path>
     </svg>
   )
@@ -466,7 +466,7 @@ export const NewsletterIconDark = () => {
 export const OffersIcon = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
-         fill='black'
+         className='svgLight'
          id='Layer_1'
          data-name='Layer 1'
          viewBox='0 0 24 24'
@@ -481,7 +481,7 @@ export const OffersIcon = () => {
 export const OffersIconDark = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
-         fill='white'
+         className='svgDark'
          id='Layer_1'
          data-name='Layer 1'
          viewBox='0 0 24 24'
@@ -497,7 +497,7 @@ export const DeliveryIcon = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Layer_1'
-         fill='black'
+         className='svgLight'
          data-name='Layer 1'
          viewBox='0 0 24 24'
          width='512' height='512'>
@@ -511,7 +511,7 @@ export const DeliveryIconDark = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Layer_1'
-         fill='white'
+         className='svgDark'
          data-name='Layer 1'
          viewBox='0 0 24 24'
          width='512' height='512'>
@@ -525,7 +525,7 @@ export const PaymentIcon = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Outline'
-         fill='black'
+         className='svgLight'
          viewBox='0 0 24 24'
          width='512'
          height='512'>
@@ -540,7 +540,7 @@ export const PaymentIconDark = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Outline'
-         fill='white'
+         className='svgDark'
          viewBox='0 0 24 24'
          width='512'
          height='512'>
@@ -555,7 +555,7 @@ export const AboutUsIcon = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Outline'
-         fill='black'
+         className='svgLight'
          viewBox='0 0 24 24'
          width='512'
          height='512'>
@@ -570,7 +570,7 @@ export const AboutUsIconDark = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Outline'
-         fill='white'
+         className='svgDark'
          viewBox='0 0 24 24'
          width='512'
          height='512'>
@@ -585,7 +585,7 @@ export const ContactsIcon = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Layer_1'
-         fill='black'
+         className='svgLight'
          data-name='Layer 1'
          viewBox='0 0 24 24'
          width='512'
@@ -600,7 +600,7 @@ export const ContactsIconDark = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg'
          id='Layer_1'
-         fill='white'
+         className='svgDark'
          data-name='Layer 1'
          viewBox='0 0 24 24'
          width='512'
