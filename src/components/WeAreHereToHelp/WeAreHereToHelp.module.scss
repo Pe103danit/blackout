@@ -90,7 +90,7 @@
 }
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: $tab) {
   .section {
     &_container {
       &_body {
@@ -111,12 +111,11 @@
             display: flex;
             justify-content: center;
             overflow: hidden;
-            background: linear-gradient(45deg, $black, $banner-background2);
             border-radius: $border;
 
             img {
-              width: 50%;
-              height: 270px;
+              width: 90%;
+              height: 400px;
               box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
             }
             &_text {
@@ -133,12 +132,11 @@
             display: flex;
             justify-content: center;
             overflow: hidden;
-            background: linear-gradient(45deg, $black, $banner-background2);
             border-radius: $border;
 
             img {
-              width: 50%;
-              height: 270px;
+              width: 90%;
+              height: 400px;
               box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
             }
             &_text {
@@ -152,13 +150,13 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: $mobile) {
   .section {
     &_container {
       &_body {
         &_left {
           img {
-            height: 200px;
+            height: 270px;
           }
           &_link {
             p {
@@ -172,7 +170,7 @@
         }
         &_right {
           img {
-            height: 200px;
+            height: 270px;
           }
           &_link {
             p {
