@@ -1,0 +1,16 @@
+@import '../../scss/variables';
+
+.Login{
+    margin: 20px auto;
+    max-width: 400px;
+    height: 100vh;
+    &_title{
+        font-size: $second-size;
+        font-weight: $big-weight;
+    }
+    &_form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

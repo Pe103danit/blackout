@@ -5,7 +5,8 @@ import ProductReducer from './reducers/ProductReducer/ProductReducer'
 import SessionReducer from './reducers/SessionReducer/SessionReducer'
 const reducers = combineReducers({
   UIStateReducer,
-  ProductReducer
+  ProductReducer,
+  SessionReducer,
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))
