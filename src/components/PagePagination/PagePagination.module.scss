@@ -3,7 +3,7 @@
 
 .pagination {
     display: flex;
-    float: row;
+    flex-direction: row;
     justify-content: center;
 
     &__btn {
