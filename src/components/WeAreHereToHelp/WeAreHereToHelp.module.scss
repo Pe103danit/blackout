@@ -93,6 +93,9 @@
 @media screen and (max-width: $tab) {
   .section {
     &_container {
+      &_title {
+        padding: 0;
+      }
       &_body {
         flex-direction: column;
         flex-wrap: wrap;
