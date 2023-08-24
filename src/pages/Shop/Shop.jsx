@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { instance } from '../../components/assets/axiosUrl'
+import { connect } from 'react-redux';
+import { fetchProducts } from '../../redux/reducers/ProductReducer/actionProductReducer';
 
 import style from './Shop.module.scss';
 import Spinner from '../../components/Spinner/Spinner';
 import PagePagination from '../../components/PagePagination/PagePagination';
 import ShopCard from '../../components/ShopCard/ShopCard';
 
-const Shop = () => {
-    const [productItems, setProductItems] = useState([]);
-    const [productIsLoading, setProductIsLoading] = useState(true);
-    const [currentItems, setCurrentItems] = useState([]);
-
+const Shop = ({ productItems, productIsLoading, dispatch }) => {
     useEffect(() => {
-        instance.get('/api/products')
-            .then(response => {
-                setProductItems(response.data);
-                setProductIsLoading(false);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, []);
+        dispatch(fetchProducts());
+    }, [dispatch]);
+    
+    const [currentItems, setCurrentItems] = useState([]);
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);
@@ -35,9 +27,16 @@ const Shop = () => {
                         <ShopCard key={index} productItem={productItem} />
                     ))}
                 </div>
-                <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange}/>
+                <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange} />
             </>
             )
     )
 }
-export default Shop
+const mapStateToProps = state => {
+    return {
+        productItems: state.ProductReducer.productItems,
+        productIsLoading: state.ProductReducer.productIsLoading
+    };
+};
+
+export default connect(mapStateToProps)(Shop);

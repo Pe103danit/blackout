@@ -5,28 +5,29 @@ const PagePagination = ({ cardOnPage, productItems, changesOnPage }) => {
     const itemsPerPage = cardOnPage;
     const [currentPage, setCurrentPage] = useState(1);
 
+    const totalPages = Math.ceil(productItems.length / itemsPerPage);
+
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentItems = productItems.slice(startIndex, endIndex);
 
-    const totalPages = Math.ceil(productItems.length / itemsPerPage);
-
     const handlePageChange = (page) => {
         setCurrentPage(page);
-        changesOnPage(currentItems);
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const newCurrentItems = productItems.slice(startIndex, endIndex);
+        changesOnPage(newCurrentItems);
     };
 
     const handlePrevPage = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-            changesOnPage(currentItems);
+            handlePageChange(currentPage - 1);
         }
     };
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-            changesOnPage(currentItems);
+            handlePageChange(currentPage + 1);
         }
     };
 
@@ -43,7 +44,8 @@ const PagePagination = ({ cardOnPage, productItems, changesOnPage }) => {
                 </button>
             ))}
             <button className={style.pagination__btn} onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
-        </div>)
-}
+        </div>
+    );
+};
 
-export default PagePagination
+export default PagePagination;

@@ -5,7 +5,7 @@ import style from './ShopCard.module.scss';
 
 const ShopCard = (props) => {
     return (
-        <Link to={`/${props.productItem._id}`}>
+        <Link to={`/${props.productItem._id}`} className={style.shopCard__link}>
             <div className={style.shopCard}>
                 <div className={style.shopCard__imgBlock}>
                     <img className={style.shopCard__imgBlock__img1} src={props.productItem.imageUrls[0]} alt={props.productItem.title} />
