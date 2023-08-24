@@ -12,7 +12,6 @@
     width: 100%;
     &_link {
       position: relative;
-      width: 100%;
 
       &_img {
         display: block;
@@ -26,8 +25,7 @@
         position: absolute;
         top: 20px;
         left: 10px;
-        width: 100%;
-        max-width: 400px;
+        width: 400px;
         padding: 0 20px;
         color: $white;
         font-weight: $big-weight;
@@ -39,6 +37,7 @@
         position: absolute;
         top: 80px;
         left: 30px;
+        width: 100px;
         color: $white;
         font-size: 14px;
         text-decoration: none;
@@ -98,6 +97,8 @@
 @media screen and (max-width: $mobile) {
 
   .TopHomeSolutions {
+    width: 100%;
+    max-width: 320px;
     &_wrapper {
       display: flex;
       flex-direction: column;
