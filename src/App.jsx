@@ -20,6 +20,7 @@ import PortablePowerStations from './pages/ProductCategories/PortablePowerStatio
 import PowerBanks from './pages/ProductCategories/PowerBanks/PowerBanks'
 import SolarPanels from './pages/ProductCategories/SolarPanels/SolarPanels'
 import FooterContainer from './pages/Footer/footerContainer';
+import ProductCardPage from './pages/ProductCardPage/ProductCardPage';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
@@ -27,10 +28,10 @@ import { useEffect } from 'react'
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   const getSwiperProducts = async () => {
-    const {data} = await instance.get('/api/products')
+    const { data } = await instance.get('/api/products')
     return data
   }
-  const {data} = useQuery('getProducts', getSwiperProducts)
+  const { data } = useQuery('getProducts', getSwiperProducts)
   useEffect(() => {
     if (data) {
       props.getProducts(data)
@@ -39,29 +40,30 @@ const App = (props) => {
 
   return (
     <div className={themeStyle}>
-      <PromoBaner/>
-      <HeaderContainer/>
+      <PromoBaner />
+      <HeaderContainer />
       <Routes>
-        <Route path='/' element={<HomeContainer/>}/>
-        <Route path='/shop' element={<Shop/>}/>
-        <Route path='/offers' element={<Offers/>}/>
-        <Route path='/delivery' element={<Delivery/>}/>
-        <Route path='/payment' element={<Payment/>}/>
-        <Route path='/about_us' element={<AboutUs/>}/>
-        <Route path='/contacts' element={<Contacts/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/wishlist' element={<WishList/>}/>
-        <Route path='/basket' element={<Basket/>}/>
-        <Route path='/accessories' element={<Accessories/>}/>
-        <Route path='/generators' element={<Generators/>}/>
-        <Route path='/portable_power_stations' element={<PortablePowerStations/>}/>
-        <Route path='/power_banks' element={<PowerBanks/>}/>
-        <Route path='/solar_panels' element={<SolarPanels/>}/>
-        <Route path='cart' element={<Cart/>}/>
-        <Route path='/site_map' element={<SiteMapContainer/>}/>
-        <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
+        <Route path='/' element={<HomeContainer />} />
+        <Route path='/shop' element={<Shop />} />
+        <Route path='/offers' element={<Offers />} />
+        <Route path='/delivery' element={<Delivery />} />
+        <Route path='/payment' element={<Payment />} />
+        <Route path='/about_us' element={<AboutUs />} />
+        <Route path='/contacts' element={<Contacts />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/wishlist' element={<WishList />} />
+        <Route path='/basket' element={<Basket />} />
+        <Route path='/accessories' element={<Accessories />} />
+        <Route path='/generators' element={<Generators />} />
+        <Route path='/portable_power_stations' element={<PortablePowerStations />} />
+        <Route path='/power_banks' element={<PowerBanks />} />
+        <Route path='/solar_panels' element={<SolarPanels />} />
+        <Route path='cart' element={<Cart />} />
+        <Route path='/site_map' element={<SiteMapContainer />} />
+        <Route path='/:id' element={<ProductCardPage />} />
+        <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
       </Routes>
-      <FooterContainer/>
+      <FooterContainer />
     </div>
   )
 }
