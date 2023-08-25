@@ -11,8 +11,8 @@ const Shop = ({ productItems, productIsLoading, dispatch }) => {
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
-    
-    const [currentItems, setCurrentItems] = useState([]);
+
+    const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);
