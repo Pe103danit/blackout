@@ -62,7 +62,7 @@
     }
 
     &_main_list {
-        list-style-type: lower-alpha;
+        list-style-type: decimal;
     }
 
     &_above_list {
@@ -376,4 +376,8 @@
     ol {
         margin-left: 40px;
     }
+    // ol>li{
+    //     font-size: 50px;
+    //     font-weight: $big-weight;
+    // }
 }
