@@ -9,6 +9,15 @@
     &__btn {
         margin: 5px;
         padding: 5px 10px;
+        color: $white;
+        background-color: $button-blue;
         @include manrope-bold;
+        border: none;
+        border-radius: 3px;
+
+        &__darkTheme {
+            color: $black;
+            background-color: $white;
+        }
     }
 }
