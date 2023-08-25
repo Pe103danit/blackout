@@ -9,11 +9,10 @@ const PagePagination = ({ cardOnPage, productItems, changesOnPage }) => {
 
     const totalPages = Math.ceil(productItems.length / itemsPerPage);
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentItems = productItems.slice(startIndex, endIndex);
-    // changesOnPage(currentItems);
-
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // const currentItems = productItems.slice(startIndex, endIndex);
+   
     const handlePageChange = (page) => {
         setCurrentPage(page);
         const startIndex = (page - 1) * itemsPerPage;

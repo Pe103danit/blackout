@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../../redux/reducers/ProductReducer/actionProductReducer';
 
 import style from './Shop.module.scss';
 import Spinner from '../../components/Spinner/Spinner';
 import PagePagination from '../../components/PagePagination/PagePagination';
 import ShopCard from '../../components/ShopCard/ShopCard';
 
-const Shop = ({ productItems, productIsLoading, dispatch }) => {
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
-
+const Shop = ({ productItems, productIsLoading }) => {
     const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
+    console.log(currentItems);
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);
@@ -34,7 +30,7 @@ const Shop = ({ productItems, productIsLoading, dispatch }) => {
 }
 const mapStateToProps = state => {
     return {
-        productItems: state.ProductReducer.productItems,
+        productItems: state.ProductReducer.products,
         productIsLoading: state.ProductReducer.productIsLoading
     };
 };

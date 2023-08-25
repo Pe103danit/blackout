@@ -113,6 +113,10 @@
             overflow: hidden;
             border-radius: $border;
 
+            &:hover p {
+              text-decoration: none;
+            }
+
             img {
               width: 90%;
               height: 400px;
@@ -133,6 +137,10 @@
             justify-content: center;
             overflow: hidden;
             border-radius: $border;
+
+            &:hover p {
+              text-decoration: none;
+            }
 
             img {
               width: 90%;
@@ -162,10 +170,6 @@
             p {
               font-size: $third-size;
             }
-
-            &:hover p {
-              text-decoration: none;
-            }
           }
         }
         &_right {
@@ -175,10 +179,6 @@
           &_link {
             p {
               font-size: $third-size;
-            }
-
-            &:hover p {
-              text-decoration: none;
             }
           }
         }

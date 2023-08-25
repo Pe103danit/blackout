@@ -20,9 +20,23 @@ import PortablePowerStations from './pages/ProductCategories/PortablePowerStatio
 import PowerBanks from './pages/ProductCategories/PowerBanks/PowerBanks'
 import SolarPanels from './pages/ProductCategories/SolarPanels/SolarPanels'
 import FooterContainer from './pages/Footer/footerContainer';
+import { instance } from './components/assets/axiosUrl'
+import { useQuery } from 'react-query'
+import { useEffect } from 'react'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
+  const getSwiperProducts = async () => {
+    const {data} = await instance.get('/api/products')
+    return data
+  }
+  const {data} = useQuery('getProducts', getSwiperProducts)
+  useEffect(() => {
+    if (data) {
+      props.getProducts(data)
+    }
+  }, [data, props])
+
   return (
     <div className={themeStyle}>
       <PromoBaner/>

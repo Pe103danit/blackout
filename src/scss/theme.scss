@@ -1,5 +1,51 @@
 @import './_variables.scss';
 
+.svgLight {
+  fill: $black !important;
+  &:hover {
+    fill: $third-grey;
+  }
+}
+
+.svgDark {
+  fill: $white !important;
+  &:hover {
+    fill: $third-grey;
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .svgLight {
+    &:hover {
+      fill: $black !important;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .svgLight {
+    &:hover {
+      fill: $black !important;
+    }
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .svgDark {
+    &:hover {
+      fill: $white !important;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .svgDark {
+    &:hover {
+      fill: $white !important;
+    }
+  }
+}
+
 .light {
   color: $black;
   background: $main-background;
