@@ -3,14 +3,14 @@
 .svgLight {
   fill: $black !important;
   &:hover {
-    fill: $third-grey;
+    fill: $third-grey !important;
   }
 }
 
 .svgDark {
   fill: $white !important;
   &:hover {
-    fill: $third-grey;
+    fill: $third-grey !important;
   }
 }
 
