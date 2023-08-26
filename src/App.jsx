@@ -14,7 +14,6 @@ import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
-import PowerBanks from './pages/ProductCategories/PowerBanks/PowerBanks'
 import FooterContainer from './pages/Footer/footerContainer';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
@@ -24,6 +23,7 @@ import PortablePowerStationsContainer
 import GeneratorsContainer from './pages/ProductCategories/Generators/GeneratorsContainer'
 import AccessoriesContainer from './pages/ProductCategories/Accessories/AccessoriesContainer'
 import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
+import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -56,7 +56,7 @@ const App = (props) => {
         <Route path='/accessories' element={<AccessoriesContainer/>}/>
         <Route path='/generators' element={<GeneratorsContainer/>}/>
         <Route path='/portable_power_stations' element={<PortablePowerStationsContainer/>}/>
-        <Route path='/power_banks' element={<PowerBanks/>}/>
+        <Route path='/power_banks' element={<PowerBanksContainer/>}/>
         <Route path='/solar_panels' element={<SolarPanelsContainer/>}/>
         <Route path='cart' element={<Cart/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
