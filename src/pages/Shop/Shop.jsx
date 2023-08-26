@@ -14,6 +14,11 @@ const Shop = ({ productItems, productIsLoading }) => {
         setCurrentItems(newItems);
     };
 
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
     return (
         (productIsLoading === true)
             ? (<Spinner />)

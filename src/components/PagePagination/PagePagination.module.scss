@@ -5,11 +5,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 1%;
 
     &__btn {
         margin: 5px;
         padding: 5px 10px;
         color: $white;
+        font-size: 16px;
         background-color: $button-blue;
         @include manrope-bold;
         border: none;
@@ -20,4 +22,7 @@
             background-color: $white;
         }
     }
+}
+.activePage {
+    opacity: .5;
 }
