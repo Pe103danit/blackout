@@ -14,15 +14,16 @@ import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
-import Accessories from './pages/ProductCategories/Accessories/Accessories'
-import Generators from './pages/ProductCategories/Generators/Generators'
-import PortablePowerStations from './pages/ProductCategories/PortablePowerStations/PortablePowerStations'
 import PowerBanks from './pages/ProductCategories/PowerBanks/PowerBanks'
-import SolarPanels from './pages/ProductCategories/SolarPanels/SolarPanels'
 import FooterContainer from './pages/Footer/footerContainer';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
+import PortablePowerStationsContainer
+  from './pages/ProductCategories/PortablePowerStations/PortablePowerStationsContainer'
+import GeneratorsContainer from './pages/ProductCategories/Generators/GeneratorsContainer'
+import AccessoriesContainer from './pages/ProductCategories/Accessories/AccessoriesContainer'
+import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -52,11 +53,11 @@ const App = (props) => {
         <Route path='/login' element={<Login/>}/>
         <Route path='/wishlist' element={<WishList/>}/>
         <Route path='/basket' element={<Basket/>}/>
-        <Route path='/accessories' element={<Accessories/>}/>
-        <Route path='/generators' element={<Generators/>}/>
-        <Route path='/portable_power_stations' element={<PortablePowerStations/>}/>
+        <Route path='/accessories' element={<AccessoriesContainer/>}/>
+        <Route path='/generators' element={<GeneratorsContainer/>}/>
+        <Route path='/portable_power_stations' element={<PortablePowerStationsContainer/>}/>
         <Route path='/power_banks' element={<PowerBanks/>}/>
-        <Route path='/solar_panels' element={<SolarPanels/>}/>
+        <Route path='/solar_panels' element={<SolarPanelsContainer/>}/>
         <Route path='cart' element={<Cart/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
