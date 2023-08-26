@@ -1,0 +1,34 @@
+@import  '../../../scss/variables';
+
+.portablePowerStations {
+
+    &__title {
+        margin: 55px 0 32px;
+        text-align: center;
+        font-size: 28px;
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        padding: 20px 55px;
+    }
+}
+
+@media screen and (min-width: $tab-mobileFirst) {
+    .portablePowerStations__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: $desktop-mobileFirst) {
+    .portablePowerStations__container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
