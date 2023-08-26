@@ -2,13 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { HeartIcon, HeartIconDark } from '../../components/assets/Icons';
+
 import style from './ShopCard.module.scss';
 
 const ShopCard = (props) => {
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
 
     return (
-        <Link to={`/${props.productItem.itemNo}`}>
+        <Link to={`/products/${props.productItem.itemNo}`}>
             <div className={`${style.shopCard} ${theme ? '' : style.shopCard__darkTheme}`}>
                 <div className={style.shopCard__imgBlock}>
                     <img className={style.shopCard__imgBlock__img1} src={props.productItem.imageUrls[0]} alt={props.productItem.title} />
@@ -22,6 +24,12 @@ const ShopCard = (props) => {
                         <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme}`}>${props.productItem.currentPrice} USD</h5>
                         <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
                     </div>
+                    {/* <button>
+                    {props.lightTheme
+                  ? <HeartIcon/>
+                  : <HeartIconDark/>
+                }
+                    </button> */}
 
                 </div>
             </div>
