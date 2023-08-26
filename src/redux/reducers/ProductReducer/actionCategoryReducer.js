@@ -1,4 +1,4 @@
-import { instance } from '../../../components/assets/axiosUrl';
+// import { instance } from '../../../components/assets/axiosUrl';
 import axios from 'axios';
 
 export const GET_PORTABLE_POWER_STATION = 'GET_PORTABLE_POWER_STATION';
