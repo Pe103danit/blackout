@@ -1,5 +1,5 @@
 import React, { useState, } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 import style from './PortablePowerStations.module.scss';
 
