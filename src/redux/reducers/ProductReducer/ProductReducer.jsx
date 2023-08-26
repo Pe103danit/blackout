@@ -6,6 +6,7 @@ const initialState = {
   wishList: localStorage.getItem('wishList') ? parseInt(localStorage.getItem('wishList')) : 0,
   basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
   products: [],
+  productIsLoading: true,
   product: {}
 }
 const productReducer = (state = initialState, { type, payload }) => {
@@ -16,10 +17,10 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
     case GET_ALL_PRODUCTS:
       return {
-        ...state, products: [...payload]
+        ...state, products: [...payload], productIsLoading: false
       }
     default:
-      return state
+      return state;
   }
 }
 // const actionGetProductById = (data) => (
@@ -41,13 +42,13 @@ export const getProducts = (productsList) => ({
 })
 
 export const getProductById = (id) => async (dispatch) => {
-    // const res = await fetch(`/api/products/${id}`)
-    // if (res.ok) {
-    //     const data = await res.json()
-    //     dispatch(actionGetProductById(data))
-    // }
-   const res = await instance.get(`/api/products/${id}`)
-   console.log(res)
+  // const res = await fetch(`/api/products/${id}`)
+  // if (res.ok) {
+  //     const data = await res.json()
+  //     dispatch(actionGetProductById(data))
+  // }
+  const res = await instance.get(`/api/products/${id}`)
+  console.log(res)
 }
 
- export default productReducer
+export default productReducer

@@ -5,8 +5,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     background-color: $white;
     border-radius: 10px;
+
+    &__darkTheme {
+        background-color: $black;
+        box-shadow: 0 0 18px rgba(255, 255, 255, .4);
+    }
 
     &:hover {
         .shopCard__description__order__btn {
@@ -29,20 +35,27 @@
     &__imgBlock {
         position: relative;
         width: 268px;
+        max-width: 100%;
         height: 268px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+        object-fit: cover;
 
         &__img1 {
             position: absolute;
-            width: 268px;
+            max-width: 100%;
             height: 268px;
+            object-fit: cover;
             opacity: 1;
             transition: opacity .5s linear;
         }
 
         &__img2 {
             position: absolute;
-            width: 268px;
+            max-width: 100%;
             height: 268px;
+            object-fit: cover;
             opacity: 0;
             transition: opacity .2s linear;
         }
@@ -51,22 +64,41 @@
     &__description {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
 
         &__name {
             margin-top: 15px;
+            color: $black;
             font-weight: bold;
             line-height: 1.2;
+            text-align: center;
+            text-decoration: none;
+
+            &__darkTheme {
+                color: #FFFFFF;
+            }
         }
 
         &__categories {
+            color: $black;
             font-weight: bold;
             line-height: 1.2;
+            text-align: center;
+
+            &__darkTheme {
+                color: #FFFFFF;
+            }
         }
 
         &__model {
             margin-top: 10px;
+            color: $sixth-grey;
             font-size: 14;
+            text-align: center;
+
+            &__darkTheme {
+                color: #999999;
+            }
         }
 
         &__order {
@@ -75,11 +107,18 @@
 
             &__price {
                 padding: 10px 20px;
+                color: #232323;
                 text-align: center;
                 @include manrope-bold;
+
+                &__darkTheme {
+                    color: #DCDCDC;
+                }
             }
 
             &__btn {
+                position: relative;
+                left: 50%;
                 display: none;
                 padding: 9px 19px;
                 color: $white;
@@ -88,6 +127,7 @@
                 background-color: $button-blue;
                 border: none;
                 border-radius: 20px;
+                transform: translateX(-50%);
             }
         }
     }
@@ -95,8 +135,14 @@
 
 @media screen and (min-width: 749px) {
     .shopCard {
-        &__img {
-            width: 368px;
+        &__block {
+            &__img1 {
+                width: 368px;
+            }
+
+            &__img2 {
+                width: 368px;
+            }
         }
     }
 }

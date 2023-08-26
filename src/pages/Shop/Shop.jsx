@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { instance } from '../../components/assets/axiosUrl'
+import React, { useState, } from 'react';
+import { connect } from 'react-redux';
 
 import style from './Shop.module.scss';
 import Spinner from '../../components/Spinner/Spinner';
-
+import PagePagination from '../../components/PagePagination/PagePagination';
 import ShopCard from '../../components/ShopCard/ShopCard';
-const Shop = () => {
-    const [productItems, setProductItems] = useState([]);
-    const [productIsLoading, setProductIsLoading] = useState(true);
 
-    useEffect(() => {
-        instance.get('/api/products')
-            .then(response => {
-                setProductItems(response.data);
-                setProductIsLoading(false);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, []);
+const Shop = ({ productItems, productIsLoading }) => {
+    const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
+    console.log(currentItems);
+
+    const handlePageChange = (newItems) => {
+        setCurrentItems(newItems);
+    };
 
     return (
-
         (productIsLoading === true)
-            ? (<div className={style.spinner}>
-                <Spinner />
-                <h3>Loading ...</h3>
-                </div>)
-            : (
+            ? (<Spinner />)
+            : (<>
                 <div className={style.cardContainer}>
-                    {productItems.map((productItem, index) => (
+                    {currentItems.map((productItem, index) => (
                         <ShopCard key={index} productItem={productItem} />
                     ))}
-                </div>)
-
+                </div>
+                <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange} />
+            </>
+            )
     )
 }
-export default Shop
+const mapStateToProps = state => {
+    return {
+        productItems: state.ProductReducer.products,
+        productIsLoading: state.ProductReducer.productIsLoading
+    };
+};
+
+export default connect(mapStateToProps)(Shop);
