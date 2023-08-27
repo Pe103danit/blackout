@@ -12,6 +12,9 @@ import {
 } from '../../components/assets/Icons';
 import style from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
+import {useMutation} from 'react-query';
+import { instance } from '../../components/assets/axiosUrl'
+import { useState } from 'react'
 
 const Footer = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark';
@@ -34,6 +37,31 @@ const Footer = (props) => {
     const smallOneWhole = 'small-one-whole';
     const siteFooterPolicy = 'site-footer__policy';
     const customPaymentIconsFooter = 'custom_payment_icons--footer';
+
+    const mutation = useMutation(
+      newSubscriber => {
+        return (
+          instance.post('api/subscribers', {
+              email: newSubscriber
+            })
+        )
+      },
+      {
+          onSuccess: (data) => {
+            console.log(data)
+          },
+          onError: (error) => {
+              console.error(error)
+          }
+      }
+    )
+
+    const [subscriberCandidate, setSubscriberCandidate] = useState('')
+    const handleNewSubscriber = (e) => {
+        e.preventDefault()
+        mutation.mutate(subscriberCandidate)
+        setSubscriberCandidate('')
+    }
 
     return (
         <div className={`${style.footer} ${criticalHidden} ${themeStyle}`}>
@@ -152,24 +180,37 @@ const Footer = (props) => {
                         <div className={`${style.footer__item} ${footerItemNewsletter}`}>
                             <div className={`${style.footer__item_inner} ${footerItemInnerNewsletter}`}>
                                 <div className={`${style.footer__newsletter}`}>
-                                    <div className={`${style.contact__form}`}>
+                                    <form className={`${style.contact__form}`}>
                                         <div className={`${style.input__group}`}>
-                                            <label htmlFor='newsletter-form-email' className={`${style.visually_hidden}`}></label>
-                                            <input type="email" name='newsletter-form-email' id='newsletter-form-email' className={`${style.input__group__field} ${newsletterInput}`} placeholder='Email address'/>
+                                            <label htmlFor='newsletter-form-email'
+                                                   className={`${style.visually_hidden}`}>
+                                            </label>
+                                            <input
+                                              type="email"
+                                              name='newsletter-form-email'
+                                              id='newsletter-form-email'
+                                              className={`${style.input__group__field} ${newsletterInput}`}
+                                              placeholder='Email address'
+                                              value={subscriberCandidate}
+                                              onChange={(e) => setSubscriberCandidate(e.target.value)}
+                                            />
                                             <span className={`${style.input__group__btn} ${themeStyle}`}>
-                                                <button type='button' className={`${style.newsletter__submit}`} name='commit' aria-label='Submit'>
+                                                <button type='submit'
+                                                        className={`${style.newsletter__submit}`}
+                                                        name='commit'
+                                                        aria-label='Submit'
+                                                        onClick={handleNewSubscriber}
+                                                >
                                                     <span className={`${style.newsletter__submit_text__large}`}>
-                                                    <NavLink to='/'>
                                                         {props.lightTheme
                                                         ? <NewsletterIcon/>
                                                         : <NewsletterIconDark/>
                                                         }
-                                                    </NavLink>
                                                     </span>
                                                 </button>
                                             </span>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
