@@ -206,6 +206,10 @@
               height: 20px;
             }
           }
+
+          &_user {
+            display: none !important;
+          }
         }
       }
     }
@@ -222,6 +226,7 @@
         max-width: 220px;
         padding-left: 0;
         column-gap: 5px;
+
         &_logos {
           width: 150px;
         }
@@ -236,11 +241,6 @@
           svg {
             width: 35px;
             height: 35px;
-          }
-        }
-        &_link {
-          &_user {
-            display: none !important;
           }
         }
       }

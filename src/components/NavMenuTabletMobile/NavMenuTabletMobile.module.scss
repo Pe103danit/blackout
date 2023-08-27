@@ -51,6 +51,23 @@
           align-items: center;
           column-gap: 10px;
           @include manrope-bold();
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+        &_button {
+          display: flex;
+          align-items: center;
+          height: 20px;
+          column-gap: 10px;
+          padding-left: 0;
+          border: none;
+          outline: none;
+          background: none;
+          @include manrope-bold();
+
           svg {
             width: 20px;
             height: 20px;
