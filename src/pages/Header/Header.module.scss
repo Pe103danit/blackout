@@ -219,6 +219,7 @@
 @media screen and (max-width: $mobile) {
   .container {
     &_header {
+      justify-content: space-between;
       width: 100%;
       max-width: 320px;
 
@@ -229,10 +230,18 @@
 
         &_logos {
           width: 150px;
+          &_left {
+            width: 80px;
+          }
+          &_right {
+            width: 70px;
+          }
         }
       }
 
       &_c2 {
+        justify-content: space-between;
+        max-width: 90px;
         column-gap: 0;
 
         button {
