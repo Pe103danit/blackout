@@ -50,6 +50,7 @@
           display: flex;
           align-items: center;
           column-gap: 10px;
+          font-size: $third-size;
           @include manrope-bold();
 
           svg {
@@ -63,6 +64,7 @@
           height: 20px;
           padding-left: 0;
           column-gap: 10px;
+          font-size: $third-size;
           background: none;
           border: none;
           outline: none;
