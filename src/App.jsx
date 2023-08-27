@@ -15,7 +15,6 @@ import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
-import ProductCardPage from './pages/ProductCardPage/ProductCardPage';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
