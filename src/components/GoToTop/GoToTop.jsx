@@ -1,9 +1,12 @@
+/*
 import { GoToTopIcon } from '../assets/Icons'
 import style from './GoToTop.module.scss'
 import { useState } from 'react'
 
+ */
+
 const GoToTop = () => {
-  const [btnStatus, setBtnStatus] = useState(false)
+  /* const [btnStatus, setBtnStatus] = useState(false)
   window.addEventListener('scroll', (e) => {
     console.log('scroll')
     console.log(window.scrollTop)
@@ -14,12 +17,15 @@ const GoToTop = () => {
       behavior: 'smooth',
     });
   }
+  */
+  /*{btnStatus &&
+<button className={style.container}>
+  <GoToTopIcon/>
+</button>}
+  */
   return (
     <>
-    {btnStatus &&
-    <button className={style.container}>
-      <GoToTopIcon/>
-    </button>}
+
     </>
   )
 }
