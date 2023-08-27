@@ -27,32 +27,14 @@ const productReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 }
-// const actionGetProductById = (data) => (
-//     {
-//         type: GET_PRODUCT,
-//         payload: data
-//     }
-// )
-// const actionGetAllProducts = (data) => (
-//     {
-//         type: GET_ALL_PRODUCTS,
-//         payload: data
-//     }
-// )
 
 export const getProducts = (productsList) => ({
   type: GET_ALL_PRODUCTS,
   payload: productsList
 })
-
-export const getProductById = (id) => async (dispatch) => {
-  // const res = await fetch(`/api/products/${id}`)
-  // if (res.ok) {
-  //     const data = await res.json()
-  //     dispatch(actionGetProductById(data))
-  // }
-  const res = await instance.get(`/api/products/${id}`)
-  console.log(res)
-}
+export const getProductById = (product) => ({
+  type: typesOfProducts.GET_PRODUCT,
+  payload: product
+})
 
 export default productReducer
