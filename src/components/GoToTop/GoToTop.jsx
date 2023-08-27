@@ -17,8 +17,7 @@ const GoToTop = () => {
       behavior: 'smooth',
     });
   }
-  */
-  /*{btnStatus &&
+  {btnStatus &&
 <button className={style.container}>
   <GoToTopIcon/>
 </button>}
