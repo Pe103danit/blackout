@@ -8,7 +8,7 @@ export const FETCH_PRODUCTS_ERROR = 'FETCH_PRODUCTS_ERROR';
 export const fetchProducts = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get('https://blackoutstore-be-iota.vercel.app/api/products/');
+            const response = await axios.get('https://blackoutstore-be-iota.vercel.app/catalog/');
             dispatch({
                 type: GET_PORTABLE_POWER_STATION,
                 payload: response.data

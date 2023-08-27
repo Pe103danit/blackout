@@ -65,7 +65,7 @@ export const getProductById = (id) => async (dispatch) => {
   console.log(res)
 }
 
-export const getPortablePowerStation = (productsList) => ({
+export const getCategory = (productsList) => ({
   type: GET_PORTABLE_POWER_STATION,
   payload: productsList
 })
