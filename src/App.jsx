@@ -14,7 +14,6 @@ import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
-
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   return (
