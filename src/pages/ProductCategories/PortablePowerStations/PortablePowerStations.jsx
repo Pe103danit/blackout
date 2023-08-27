@@ -1,22 +1,21 @@
-import React, { useState, } from 'react';
-import { connect } from 'react-redux';
-
-import style from './PortablePowerStations.module.scss';
+import React, { useEffect, useState, } from 'react'
+import { instance } from '../../../components/assets/axiosUrl'
+import { useQuery } from 'react-query'
 
 import Spinner from '../../../components/Spinner/Spinner';
-import PagePagination from '../../../components/PagePagination/PagePagination';
-import ShopCard from '../../../components/ShopCard/ShopCard'
 
-const PortablePowerStations = ({ productItems, portablePowerStationIsLoading }) => {
-  // const productItems = useSelector((state) => state.ProductReducer.portablePowerStation);
-  console.log(productItems);
-
-  const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
-  // console.log(currentItems);
-
-  const handlePageChange = (newItems) => {
-    setCurrentItems(newItems);
-  };
+const PortablePowerStations = () => {
+  const [products, setProducts] = useState([])
+  const getPortablePowerStationsProducts = async () => {
+    const { data } = await instance.get('/api/products/filter?categories=Portable Power Stations')
+    return data
+  }
+  const { data, isLoading, isError } = useQuery('getPortablePowerStationsProducts', getPortablePowerStationsProducts)
+  useEffect(() => {
+    if (data) {
+      setProducts(data.products)
+    }
+  }, [data])
 
   window.scrollTo({
     top: 0,
@@ -24,28 +23,15 @@ const PortablePowerStations = ({ productItems, portablePowerStationIsLoading }) 
   });
 
   return (
-    <div className={style.portablePowerStations}>
-      <h3 className={style.portablePowerStations__title}>Portable Power Stations</h3>
-      {(portablePowerStationIsLoading === true)
-        ? (<Spinner />)
-        : (<>
-          <div className={style.portablePowerStations__container}>
-            {currentItems.map((productItem, index) => (
-              <ShopCard key={index} productItem={productItem} />
-            ))}
-          </div>
-          <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange} />
-        </>
-        )}
+    <div>
+      {isLoading && <Spinner/>}
+      {isError && <p>Something went wrong</p>}
+      {products.map(product => {
+        return (<div key={product.itemNo}>{product.name}</div>)
+      }
+      )}
     </div>
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    productItems: state.ProductReducer.portablePowerStation,
-    portablePowerStationIsLoading: state.ProductReducer.portablePowerStationIsLoading
-  };
-};
-
-export default connect(mapStateToProps)(PortablePowerStations)
+export default PortablePowerStations

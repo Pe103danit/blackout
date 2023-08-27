@@ -8,7 +8,6 @@ import ShopCard from '../../components/ShopCard/ShopCard';
 
 const Shop = ({ productItems, productIsLoading }) => {
     const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
-    console.log(currentItems);
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);

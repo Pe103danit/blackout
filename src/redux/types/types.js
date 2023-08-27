@@ -8,9 +8,4 @@ export const typesOfProducts = {
   GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS'
 }
 
-export const typesOfCategory = {
-  GET_PORTABLE_POWER_STATION: 'GET_PORTABLE_POWER_STATION',
-  GET_POWER_BANKS: 'GET_POWER_BANKS'
-}
-
 export default types
