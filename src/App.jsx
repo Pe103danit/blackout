@@ -15,6 +15,7 @@ import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
+import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
@@ -29,10 +30,10 @@ import GoToTop from './components/GoToTop/GoToTop'
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   const getSwiperProducts = async () => {
-    const {data} = await instance.get('/api/products')
+    const { data } = await instance.get('/api/products')
     return data
   }
-  const {data} = useQuery('getProducts', getSwiperProducts)
+  const { data } = useQuery('getProducts', getSwiperProducts)
   useEffect(() => {
     if (data) {
       props.getProducts(data)
@@ -41,8 +42,8 @@ const App = (props) => {
 
   return (
     <div className={themeStyle}>
-      <PromoBaner/>
-      <HeaderContainer/>
+      <PromoBaner />
+      <HeaderContainer />
       <Routes>
         <Route path='/' element={<HomeContainer/>}/>
         <Route path='/shop' element={<Shop/>}/>
@@ -61,9 +62,10 @@ const App = (props) => {
         <Route path='/solar_panels' element={<SolarPanelsContainer/>}/>
         <Route path='cart' element={<Cart/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
+        <Route path='/products/:id' element={<ProductCardPage/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
-      <FooterContainer/>
+      <FooterContainer />
       <GoToTop/>
     </div>
   )
