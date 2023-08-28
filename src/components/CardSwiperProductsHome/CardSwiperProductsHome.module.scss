@@ -1,24 +1,130 @@
 @import '../../scss/_mixin.scss';
 @import '../../scss/_variables.scss';
 
-.container {
+.section {
+  display: block;
   height: 592px;
-  background: $white;
-  &_status {
-    width: 400px;
-    &_text {
+  margin-top: 55px;
+  overflow: hidden;
+  border-radius: 5%;
+  &:hover .section_container_containerInner_photo_img1 {
+    display: none;
+  }
+  &:hover .section_container_containerInner_photo_img2 {
+    display: block;
+  }
 
+  &_container {
+
+    &_containerInner {
+      padding: 20px;
+
+      &_status {
+        width: 300px;
+        height: 20px;
+
+        &_text {
+          color: $red !important;
+          font-size: $fourth-size;
+          @include manrope-light();
+        }
+      }
+
+      &_info {
+        width: 300px;
+        height: 180px;
+
+        &_name {
+          height: 60px;
+          font-size: $second-size;
+          @include manrope-regular();
+        }
+
+        &_model {
+          height: 20px;
+          font-size: $fourth-size;
+          @include manrope-regular();
+        }
+
+        &_price {
+          display: flex;
+          align-items: center;
+          height: 100px;
+          font-size: $fourth-size;
+          @include manrope-bold();
+        }
+      }
+
+      &_photo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 268px;
+          height: 268px;
+        }
+
+        &_img1 {
+          display: block;
+        }
+
+        &_img2 {
+          display: none;
+        }
+      }
     }
   }
+}
 
-  &_info {
-    width: 400px;
-  }
+@media screen and (max-width: 992px) {
+  .section {
+    height: 450px;
 
-  &_photo {
-    img {
-      width: 368px;
-      height: 368px;;
+    &:hover .section_container_containerInner_photo_img1 {
+      display: block;
+    }
+    &:hover .section_container_containerInner_photo_img2 {
+      display: none
+    }
+
+    &_container {
+
+      &_containerInner {
+
+        &_status {
+          height: 16px;
+
+          &_text {
+            font-size: $fifth-size;
+          }
+        }
+
+        &_info {
+          height: 170px;
+
+          &_name {
+            height: 50px;
+            font-size: $sixth-size;
+          }
+
+          &_model {
+            height: 18px;
+            font-size: $fifth-size;
+          }
+
+          &_price {
+            height: 90px;
+            font-size: $fifth-size;
+          }
+        }
+        &_photo {
+          img {
+            width: 220px;
+            height: 220px;
+          }
+        }
+      }
     }
   }
 }

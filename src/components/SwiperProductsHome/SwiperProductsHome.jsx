@@ -1,47 +1,57 @@
-import { useQuery } from 'react-query'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { instance } from '../assets/axiosUrl'
-import { useEffect } from 'react'
+import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
+import {useEffect, useState} from 'react'
 import CardSwiperProductsHome from '../CardSwiperProductsHome/CardSwiperProductsHome'
-import style from './CardSwiperProductsHome.module.scss'
+import style from './SwiperProductsHome.module.scss'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import {Navigation} from 'swiper/modules'
 
-/*
-* length = 40
-* random max =  length - 4
-* 25 26 27 28
-* */
 const SwiperProductsHome = (props) => {
-  const getSwiperProducts = async () => {
-     const { data } = await instance.get('/api/products')
-    return data
-  }
-  const { data } = useQuery('getProducts', getSwiperProducts)
-  useEffect(() => {
-    if (data) {
-      console.log(data)
-    }
-  }, [data])
-  return (
-    <Swiper
-      className={style.slider}
-      spaceBetween={50}
-      slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      { data && data.map(product => {
-        return (
-          <SwiperSlide>
-            <CardSwiperProductsHome
-              lightTheme={props.lightTheme}
-              {...product}
-            />
-          </SwiperSlide>
-        )
-        }
-      )}
-    </Swiper>
-  )
+    const swiper = useSwiper();
+    const [slidesPerView, setSlidesPerView] = useState(4);
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 481) {
+                setSlidesPerView(1)
+            } else if (window.innerWidth < 993) {
+                setSlidesPerView(2)
+            } else {
+                setSlidesPerView(4)
+            }
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    return (
+        <Swiper
+            className={style.slider}
+            spaceBetween={16}
+            slidesPerView={slidesPerView}
+            onSlideChange={() => null}
+            onSwiper={() => null}
+            modules={[Navigation]}
+            navigation
+        >
+            <div onClick={() => swiper.slidePrev()}/>
+            <div onClick={() => swiper.slideNext()}/>
+            {props.products && props.products.map(product => {
+                    return (
+                        <SwiperSlide key={product.itemNo
+                        }>
+                            <CardSwiperProductsHome
+                                lightTheme={props.lightTheme}
+                                {...product}
+                            />
+                        </SwiperSlide>
+                    )
+                }
+            )}
+        </Swiper>
+    )
 }
 
 export default SwiperProductsHome

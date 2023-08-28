@@ -1,12 +1,13 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux'
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk'
 import UIStateReducer from './reducers/UIStateReducer/UIStateReducer'
-import productReducer from './reducers/ProductReducer/productReducer'
+import ProductReducer from './reducers/ProductReducer/ProductReducer'
 const reducers = combineReducers({
   UIStateReducer,
-  products: productReducer
+  ProductReducer
 })
 
-const store = createStore(reducers, applyMiddleware(thunk))
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store

@@ -2,11 +2,13 @@
 @import '../../scss/_variables.scss';
 
 .container {
-  position: relative;
   z-index: 2;
 
   &_btn {
-    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -19,24 +21,27 @@
 
   &_nav {
     position: absolute;
-    top: 59px;
+    top: 88px;
+    left: 0;
     width: 100vw;
-
 
     &_list {
       display: flex;
       flex-direction: column;
       width: 100%;
-      row-gap: 20px;
       padding: 20px 0;
 
       &_item {
         position: relative;
+        height: 40px;
         padding-left: 15px;
+        &:active {
+          background-color: $button-blue;
+        }
 
         &::after {
           position: absolute;
-          bottom: -10px;
+          bottom: 0;
           left: 0;
           width: 100%;
           height: 1px;
@@ -45,7 +50,36 @@
         }
 
         &_link {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          font-size: $third-size;
+          column-gap: 10px;
           @include manrope-bold();
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+        &_button {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          padding-left: 0;
+          font-size: $third-size;
+          column-gap: 10px;
+          background: none;
+          border: none;
+          outline: none;
+          @include manrope-bold();
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
         }
       }
     }

@@ -15,34 +15,13 @@ import { instance } from '../assets/axiosUrl';
 import { useParams } from 'react-router-dom';
 
 const ProductCard = () => {
+  // const id = '000001'
   const { id } = useParams()
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
     return data
   }
-  // const getNovaPoshta = async () => {
-  //   const res = await instance.post('https://api.novaposhta.ua/v2.0/json/', {
-  //     body: {
-  //       'apiKey': '3fdac151721dfaf57bd7f7b28b73838b',
-  //       'modelName': 'Address',
-  //       'calledMethod': 'getWarehouses',
-  //       'methodProperties': {
-  //         'CityName': 'Київ',
-  //         'CityRef': '00000000-0000-0000-0000-000000000000',
-  //         'Page': '1',
-  //         'Limit': '50',
-  //         'Language': 'UA',
-  //         'TypeOfWarehouseRef': '00000000-0000-0000-0000-000000000000',
-  //         'WarehouseId': '151'
-  //       }
-
-  //     }
-  //   })
-  //   console.log(res)
-  // }
   const { data } = useQuery('getProductById', getProduct)
-  // const res = useQuery('getNovaPoshta', getNovaPoshta)
-  // console.log(res)
   const dispatch = useDispatch()
   const product = useSelector(state => state.ProductReducer.product || {})
   let { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product

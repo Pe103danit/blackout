@@ -24,6 +24,17 @@
         a {
           text-decoration: none;
         }
+        &_list {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          row-gap: 10px;
+          padding-top: 10px;
+          padding-left: 20px;
+          &_item {
+            list-style-type: circle;
+          }
+        }
       }
     }
   }

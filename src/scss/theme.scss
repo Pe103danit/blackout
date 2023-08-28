@@ -1,5 +1,51 @@
 @import './_variables.scss';
 
+.svgLight {
+  fill: $black !important;
+  &:hover {
+    fill: $third-grey !important;
+  }
+}
+
+.svgDark {
+  fill: $white !important;
+  &:hover {
+    fill: $third-grey !important;
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .svgLight {
+    &:hover {
+      fill: $black !important;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .svgLight {
+    &:hover {
+      fill: $black !important;
+    }
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .svgDark {
+    &:hover {
+      fill: $white !important;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .svgDark {
+    &:hover {
+      fill: $white !important;
+    }
+  }
+}
+
 .light {
   color: $black;
   background: $main-background;
@@ -115,6 +161,10 @@
       a {
         color: $black;
       }
+
+      button {
+        color: $black;
+      }
     }
   }
 }
@@ -131,6 +181,11 @@
       a {
         color: $white;
       }
+
+      button {
+        color: $white;
+      }
+
     }
   }
 }
@@ -216,9 +271,9 @@ background: $main-background !important;
     li {
       a {
         color: $black !important;
-      }
-      &:hover a {
-        color: $third-grey !important;
+        &:hover {
+          color: $third-grey !important;
+        }
       }
     }
   }
@@ -231,10 +286,58 @@ background: $main-background !important;
     li {
       a {
         color: $white !important;
-      }
-      &:hover a {
-        color: $second-grey !important;
+        &:hover {
+          color: $second-grey !important;
+        }
       }
     }
   }
+}
+
+.lightSwiper {
+  background: $white;
+  div {
+    div {
+      div {
+        p:first-child {
+          color: $black;
+        }
+        p:nth-child(2) {
+          color: $fourth-grey;
+        }
+        p:nth-child(3) {
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+.darkSwiper {
+  box-shadow: 0 4px 30px $light-shadow;
+  div {
+    div {
+      div {
+        p:first-child {
+          color: $white;
+        }
+        p:nth-child(2) {
+          color: $fourth-grey;
+        }
+        p:nth-child(3) {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.lightWhyChooseUs {
+  color: $black;
+  background: $white;
+}
+
+.darkWhyChooseUs {
+  color: $white;
+  background: $black;
 }

@@ -4,6 +4,8 @@
     width: 100%;
     max-width: $max-width;
     margin: 0 auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
 
     &_title {
         padding-right: 10px ;
@@ -28,16 +30,14 @@
     &_item {
         box-sizing: border-box; 
         max-height: 215px;
-        margin: 0;
         margin-right: 10px;
-        padding: 0;
         padding: 60px 10px 0 10px;
     }
     &_bg{
-        background-color: $second-grey;
+        background-color: $fifth-grey;
     }
     &_grey{
-        background-color: $second-grey;
+        background-color: $fifth-grey;
     }
 
     &_wrapper {
@@ -46,18 +46,15 @@
         grid-template-columns: repeat(4, minmax(220px, 1fr));
         margin-top: 50px ;  
         padding: 0 40px 60px 40px;
-        border-radius: $border;  
-    }
-    &_credit{
-        color: $first-grey;
-        text-decoration: underline;
+        border-radius: $border;
     }
 }
 @media screen and (max-width: 992px) {
     .WhyChooseUs {
+        padding-bottom: 0;
         &_wrapper {
             grid-template-columns: repeat(2, minmax(200px, 1fr));
-            padding: 0 25px 0 25px;
+            padding: 0 25px 60px 25px;
 
           }
     }
@@ -67,7 +64,7 @@
     .WhyChooseUs {
         &_wrapper {
             grid-template-columns: repeat(1, minmax(220px, 1fr));
-            padding: 0 45px 0 45px; 
+            padding: 0 45px 60px 45px; 
           }
     }
   }
