@@ -15,6 +15,7 @@ import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
+import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
@@ -60,6 +61,7 @@ const App = (props) => {
         <Route path='/solar_panels' element={<SolarPanelsContainer/>}/>
         <Route path='cart' element={<Cart/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
+        <Route path='/products/:id' element={<ProductCardPage/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
       <FooterContainer />
