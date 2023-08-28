@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import style from './ProductCard.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import StarRating from './StarRating';
