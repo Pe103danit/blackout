@@ -5,6 +5,7 @@ const types = {
 }
 export const typesOfProducts = {
   GET_PRODUCT: 'GET_PRODUCT',
+  GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS'
 }
 
 export default types

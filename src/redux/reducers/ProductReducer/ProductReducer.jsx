@@ -1,5 +1,4 @@
 import { typesOfProducts } from '../../types/types'
-import { instance } from '../../../components/assets/axiosUrl';
 const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts;
 
 const initialState = {

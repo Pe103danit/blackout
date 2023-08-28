@@ -157,13 +157,13 @@
     &_admin_purpose {
         margin-bottom: 50px;
         font-size: $fourth-size;
-        list-style-type: disc; 
         line-height: 22px;  
+        list-style-type: disc;   
     }
 
     &_also_info {
+        margin-bottom: 25px;
         font-size: $fourth-size;
-          margin-bottom: 25px;
         line-height: 22px;
     }
 
@@ -180,8 +180,8 @@
     }
 
     &_retain {
+         margin-bottom: 50px;
         font-weight: $big-weight;
-        margin-bottom: 50px;
         font-size: $fourth-size; 
         line-height: 22px;
     }
@@ -215,8 +215,8 @@
     }
 
     &_share_transfer {
+        margin-bottom: 20px;
         line-height: 22px;
-         margin-bottom: 20px;
          font-size: $fourth-size;
         list-style-type: lower-alpha;
     }
@@ -345,8 +345,8 @@
     th,td{
         padding: 10px 20px;
         font-size: $fourth-size;
-        text-align: left;  
         line-height: 22px;
+        text-align: left;  
     }
 
     h2 {
@@ -358,8 +358,8 @@
 
     h3 {
         margin-bottom: 20px;
+        margin-left: 40px;
         font-weight: $big-weight;
-         margin-left: 40px;
         font-size: $first-size;
     }
 
