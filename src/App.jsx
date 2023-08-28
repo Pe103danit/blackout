@@ -25,6 +25,7 @@ import GeneratorsContainer from './pages/ProductCategories/Generators/Generators
 import AccessoriesContainer from './pages/ProductCategories/Accessories/AccessoriesContainer'
 import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
 import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
+import GoToTop from './components/GoToTop/GoToTop'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -65,6 +66,7 @@ const App = (props) => {
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
       <FooterContainer />
+      <GoToTop/>
     </div>
   )
 }
