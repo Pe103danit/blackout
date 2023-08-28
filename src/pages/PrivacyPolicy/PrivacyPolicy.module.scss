@@ -122,8 +122,8 @@
 
     &_legal_basis_list {
         font-size: $fourth-size;
-        list-style-type: disc;
         line-height: 22px;
+        list-style-type: disc;  
 
     }
 
@@ -133,15 +133,15 @@
     }
 
     &_we_use {
+        margin-bottom: 18px;
         font-size: $fourth-size;
-         margin-bottom: 18px;
         line-height: 22px;
     }
 
     &_provide_services {
         font-size: $fourth-size;
-        list-style-type: disc;
         line-height: 22px;
+        list-style-type: disc;
     }
 
     &_admin {
@@ -149,15 +149,15 @@
     }
 
     &_various {
-        font-size: $fourth-size;
         margin-bottom: 30px;
+        font-size: $fourth-size;
         line-height: 22px;
     }
 
     &_admin_purpose {
+        margin-bottom: 50px;
         font-size: $fourth-size;
         list-style-type: disc; 
-        margin-bottom: 50px;
         line-height: 22px;  
     }
 
@@ -174,15 +174,15 @@
     }
 
     &_collect_info {
-        font-size: $fourth-size;
         margin-bottom: 50px;
+        font-size: $fourth-size;
         line-height: 22px;
     }
 
     &_retain {
         font-weight: $big-weight;
-        font-size: $fourth-size; 
         margin-bottom: 50px;
+        font-size: $fourth-size; 
         line-height: 22px;
     }
 
@@ -192,14 +192,14 @@
     }
 
     &_opt_up_text {
+         margin-bottom: 50px;
         font-size: $fourth-size;
-        margin-bottom: 50px;
         line-height: 22px;
     }
 
     &_addition {
-        font-size: $fourth-size;
         margin-bottom: 35px;
+        font-size: $fourth-size;
         line-height: 22px;
     }
 
@@ -208,17 +208,17 @@
     }
 
     &_eco_share {
-        font-size: $fourth-size;
          margin-bottom: 30px;
+        font-size: $fourth-size;
         line-height: 22px;
 
     }
 
     &_share_transfer {
         line-height: 22px;
+         margin-bottom: 20px;
+         font-size: $fourth-size;
         list-style-type: lower-alpha;
-        font-size: $fourth-size;
-        margin-bottom: 20px;
     }
 
     &_share_transfer_secondary {
@@ -235,9 +235,9 @@
     }
 
     &_we_wont {
+         margin-bottom: 30px;
         font-size: $fourth-size;
         line-height: 22px;
-        margin-bottom: 30px;
     }
 
     &_international {
@@ -344,8 +344,8 @@
     }
     th,td{
         padding: 10px 20px;
-        text-align: left;  
         font-size: $fourth-size;
+        text-align: left;  
         line-height: 22px;
     }
 
@@ -359,8 +359,8 @@
     h3 {
         margin-bottom: 20px;
         font-weight: $big-weight;
+         margin-left: 40px;
         font-size: $first-size;
-        margin-left: 40px;
     }
 
     h5 {
