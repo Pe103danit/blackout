@@ -5,6 +5,7 @@ import { login } from '../../redux/reducers/SessionReducer/SessionReducer';
 import style from './Login.module.scss'
 import { object, string, number, date, InferType } from 'yup';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom'
 
 const loginSchema = object({
   email: string().email().required(),
@@ -21,7 +22,6 @@ const Login = () => {
 
   return (
     <div className={style.Login}>
-      <h2 className={style.Login_title}>Login</h2>
       <Formik
         initialValues={{
           email: '',
@@ -29,22 +29,27 @@ const Login = () => {
         }}
         validationSchema={loginSchema}
         onSubmit={async (values) => {
-         dispatch(login(values))
+          dispatch(login(values))
         }}
       >
         <Form className={style.Login_form}>
-          <label htmlFor="email">Email</label>
-          <Field
-            id="email"
-            name="email"
-            placeholder="jane@acme.com"
-            type="email"
-          />
+          <h2 className={style.Login_form_title}>Sign in</h2>
+          <div className={style.Login_form_group}>
+            <label htmlFor="email" className={style.Login_form_group_label}>Email</label>
+            <Field
+              className={style.Login_form_group_input}
+              id="email"
+              name="email"
+              type="email"
+            />
+          </div>
 
-          <label htmlFor="password">Password</label>
-          <Field id="password" type='password' name="password" />
-
-          <button type="submit">Submit</button>
+          <div className={style.Login_form_group}>
+            <label htmlFor="password" className={style.Login_form_group_label}>Password</label>
+            <Field id="password" type='password' name="password" className={style.Login_form_group_input} />
+          </div>
+          <p className={style.Login_form_SignUp}>If you dont have an account <NavLink to='/sign_up'>Sign up</NavLink> </p>
+          <button type="submit" className={style.Login_form_button}>Submit</button>
         </Form>
       </Formik>
     </div>

@@ -20,6 +20,7 @@ import PortablePowerStations from './pages/ProductCategories/PortablePowerStatio
 import PowerBanks from './pages/ProductCategories/PowerBanks/PowerBanks'
 import SolarPanels from './pages/ProductCategories/SolarPanels/SolarPanels'
 import FooterContainer from './pages/Footer/footerContainer';
+import SignUp from './pages/SignUp/SignUp'
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
@@ -59,6 +60,7 @@ const App = (props) => {
         <Route path='/solar_panels' element={<SolarPanels/>}/>
         <Route path='cart' element={<Cart/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
+        <Route path='/sign_up' element={<SignUp/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
       <FooterContainer/>

@@ -6,7 +6,7 @@ const PromoBaner = () => {
   return (
     <>
       {isBaner && <div className={style.baner}>
-        <h6 className={style.baner_title}>Enjoy Free shipping on Orders over $500 this Month!</h6>
+        <p className={style.baner_title}>Enjoy Free shipping on Orders over $500 this Month!</p>
         <span className={style.baner_cross} onClick={() => setBaner(false)}>&times;</span>
       </div>}
     </>
