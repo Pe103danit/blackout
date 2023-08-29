@@ -15,6 +15,10 @@ import { instance } from '../assets/axiosUrl';
 import { useParams } from 'react-router-dom';
 
 const ProductCard = () => {
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams()
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
