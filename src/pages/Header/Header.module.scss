@@ -206,6 +206,10 @@
               height: 20px;
             }
           }
+
+          &_user {
+            display: none !important;
+          }
         }
       }
     }
@@ -215,6 +219,7 @@
 @media screen and (max-width: $mobile) {
   .container {
     &_header {
+      justify-content: space-between;
       width: 100%;
       max-width: 320px;
 
@@ -222,12 +227,21 @@
         max-width: 220px;
         padding-left: 0;
         column-gap: 5px;
+
         &_logos {
           width: 150px;
+          &_left {
+            width: 80px;
+          }
+          &_right {
+            width: 70px;
+          }
         }
       }
 
       &_c2 {
+        justify-content: space-between;
+        max-width: 90px;
         column-gap: 0;
 
         button {
@@ -236,11 +250,6 @@
           svg {
             width: 35px;
             height: 35px;
-          }
-        }
-        &_link {
-          &_user {
-            display: none !important;
           }
         }
       }

@@ -3,14 +3,14 @@
 .svgLight {
   fill: $black !important;
   &:hover {
-    fill: $third-grey;
+    fill: $third-grey !important;
   }
 }
 
 .svgDark {
   fill: $white !important;
   &:hover {
-    fill: $third-grey;
+    fill: $third-grey !important;
   }
 }
 
@@ -161,6 +161,10 @@
       a {
         color: $black;
       }
+
+      button {
+        color: $black;
+      }
     }
   }
 }
@@ -177,6 +181,11 @@
       a {
         color: $white;
       }
+
+      button {
+        color: $white;
+      }
+
     }
   }
 }

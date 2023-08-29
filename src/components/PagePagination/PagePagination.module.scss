@@ -1,0 +1,28 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1%;
+
+    &__btn {
+        margin: 5px;
+        padding: 5px 10px;
+        color: $white;
+        font-size: 16px;
+        background-color: $button-blue;
+        @include manrope-bold;
+        border: none;
+        border-radius: 3px;
+
+        &__darkTheme {
+            color: $black;
+            background-color: $white;
+        }
+    }
+}
+.activePage {
+    opacity: .5;
+}
