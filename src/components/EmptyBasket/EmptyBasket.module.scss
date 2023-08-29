@@ -1,7 +1,9 @@
-@import '../../scss/_variables.scss';
-@import '../../scss/_mixin.scss';
+@import '../../scss/variables';
+@import '../../scss/mixin';
 
 .section {
+  padding-top: 55px;
+  padding-bottom: 55px;
   &_container {
     display: flex;
     flex-direction: column;
@@ -11,26 +13,29 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    @include manrope-regular();
 
-    &_p1 {
-      font-size: $third-size;
-      @include manrope-bold()
+    &_title {
+      font-size: $second-size;
+      @include manrope-bold();
     }
 
-    &_p2 {
-      font-size: $first-size;
-      @include manrope-bolder();
-    }
-
-    &_p3 {
+    &_body {
       font-size: $fourth-size;
       @include manrope-regular();
     }
 
+    &_logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
     &_link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
       button {
         width: 225px;
         height: 40px;
@@ -53,19 +58,6 @@
     &_container {
       width: 100%;
       max-width: 320px;
-      &_p1 {
-        font-size: $fourth-size;
-      }
-
-      &_p2 {
-        font-size: $third-size;
-      }
-
-      &_p3 {
-        font-size: $fifth-size;
-        line-height: 25px;
-        text-align: center;
-      }
     }
   }
 }
