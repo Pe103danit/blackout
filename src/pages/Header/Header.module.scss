@@ -245,6 +245,23 @@
         column-gap: 0;
 
         button {
+          width: 40px;
+
+          svg {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .container {
+    &_header {
+      &_c2 {
+        button {
           width: 35px;
 
           svg {
