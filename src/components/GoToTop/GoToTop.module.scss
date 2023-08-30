@@ -27,6 +27,10 @@
 @media screen and (max-width: $tab) {
   .container {
     left: 90%;
+    &:hover{
+      background-color: $button-blue;
+      transition-duration: 0s;
+    }
   }
 }
 
