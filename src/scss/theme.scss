@@ -161,6 +161,10 @@
       a {
         color: $black;
       }
+
+      button {
+        color: $black;
+      }
     }
   }
 }
@@ -177,6 +181,11 @@
       a {
         color: $white;
       }
+
+      button {
+        color: $white;
+      }
+
     }
   }
 }
@@ -331,4 +340,20 @@ background: $main-background !important;
 .darkWhyChooseUs {
   color: $white;
   background: $black;
+}
+
+.lightEmptyBasketStyle {
+  background: $main-background !important;
+}
+
+.darkEmptyBasketStyle {
+  color: white;
+  background: $second-grey !important;
+  div {
+    a {
+      &:hover button {
+        background: $button-blue;
+      }
+    }
+  }
 }
