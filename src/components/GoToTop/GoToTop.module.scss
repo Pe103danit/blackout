@@ -27,13 +27,17 @@
 @media screen and (max-width: $tab) {
   .container {
     left: 90%;
+    &:hover{
+      background-color: $button-blue;
+      transition-duration: 0s;
+    }
   }
 }
 
 @media screen and (max-width: $mobile) {
   .container {
     left: 80%;
-    width: 40px;
-    height: 40px;
+    width: 43px;
+    height: 43px;
   }
 }
