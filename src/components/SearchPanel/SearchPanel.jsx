@@ -4,16 +4,19 @@ import { connect } from 'react-redux'
 import { toggleSearchInput } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 
 const SearchPanel = (props) => {
+  const toggle = () => {
+    props.toggleSearchInput()
+  }
   return (
     <div className={style.container}>
-      <button>
+      <button className={style.container_btn1}>
         {<SearchIcon/>}
       </button>
       <input
         type='text'
         placeholder='e.g. Power Station'
       />
-      <button onClick={props.toggleSearchInput}>
+      <button onClick={toggle} className={style.container_btn2}>
         {<CloseIcon/>}
       </button>
     </div>

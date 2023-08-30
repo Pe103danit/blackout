@@ -2,6 +2,7 @@
 @import '../../scss/_variables.scss';
 
 .section {
+  padding-top: 55px;
   &_container {
     width: 100%;
     max-width: 1200px;
@@ -10,7 +11,7 @@
     &_title {
       padding-bottom: 50px;
       font-size: $second-size;
-      @include manrope-regular();
+      @include manrope-bold()
     }
     &_body {
       display: flex;

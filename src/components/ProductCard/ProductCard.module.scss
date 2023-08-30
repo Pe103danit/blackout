@@ -13,7 +13,7 @@
 
     &_card {
         position: relative;
-        z-index: 1;
+        z-index: 0;
         display: flex;
         gap: 50px;
         align-items: flex-start;
@@ -49,8 +49,7 @@
     }
 
     &_card_img_wrapper img {
-         width: 100%;
-        border: 5px solid #FFF;    
+        width: 100%;
     }
 
     &_card_img_wrapper_big {
@@ -65,15 +64,15 @@
 
     &_card_hot {
         margin-bottom: 4px;
-        color: #fa4500; 
-        font-weight: 600;     
-        font-size: 17px;      
+        color: #fa4500;
+        font-weight: 600;
+        font-size: 17px;
         line-height: 1.23;
     }
 
     &_card_title {
         margin-bottom: 24px;
-        font-size: 40px; 
+        font-size: 40px;
         line-height: 1.1;
     }
 
@@ -102,7 +101,7 @@
     &_card_description_subtitle {
         margin-bottom: 35px;
         color: var(--color-body-text);
-        line-height: 22px;
+        line-height: 27px;
 
     }
 
@@ -113,16 +112,16 @@
 
     &_card_overview {
         align-items: center;
-        color: #2164ff;   
-        font-weight: 500;   
-        line-height: 1.78;        
+        color: #2164ff;
+        font-weight: 500;
+        line-height: 1.78;
         cursor: pointer;
     }
 
     &_card_description_subtitle_other {
         margin: 0 0 10px 0;
         font-weight: 600;
-        font-size: 20px;    
+        font-size: 20px;
         line-height: 1;
     }
 
@@ -131,10 +130,10 @@
         flex-direction: row;
         justify-content: space-between;
         box-sizing: border-box;
-         margin-bottom: 20px;
+        margin-bottom: 20px;
         padding: 15px 35px;
         border: 1px solid grey;
-        border-radius: 7px;      
+        border-radius: 7px;
         cursor: pointer;
     }
 
@@ -147,14 +146,16 @@
         font-size: 18px;
     }
 
-    &_card_button_minus {
+    &_card_button_available {
+        cursor: pointer;
         padding: 20px 30px;
         border: transparent;
     }
 
-    &_card_button_plus {
-        padding: 20px 30px;
-        border: transparent;
+    &_card_button_disable {
+        cursor: none;
+        color: $black;
+        background-color: $white;
     }
 
     &_card_count {
@@ -169,11 +170,11 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        justify-content: space-between; 
-        min-height: 100px;       
-        margin-top: 48px;    
-         padding: 30px 24px 10px;    
-        border-radius: 8px;             
+        justify-content: space-between;
+        min-height: 100px;
+        margin-top: 48px;
+        padding: 30px 24px 10px;
+        border-radius: 8px;
     }
 
     &_card_total_price_cash {
@@ -190,27 +191,32 @@
     &_card_total_price_button {
         display: block;
         padding: 15px 25px;
-        color: white; 
-        font-weight: $big-weight; 
-        font-size: 15px;        
-         background-color: #2164ff;        
-         border: transparent;           
-        border-radius: 50px;                                          
+        color: white;
+        font-weight: $big-weight;
+        font-size: 15px;
+        background-color: #2164ff;
+        border: transparent;
+        border-radius: 50px;
     }
 
+    &_card_total_price_button:hover {
+        opacity: 0.8;
+        transition: 0.5s;
+    }
+
+
     &_card_rating {
-         float: none;
+        float: none;
         margin: 5px;
-       
+
     }
 
     &_card_star {
-        float: left; 
-        width: 25px;   
+        float: left;
+        width: 25px;
         height: 25px;
-        margin: 2px;     
+        margin: 2px;
         background-color: grey;
-        cursor: pointer;                     
         clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
     }
 
@@ -224,15 +230,17 @@
         background-color: $sun;
     }
 
-   @media screen and (max-width:$tab) {
-    .product{
-        margin: 10px;
-        &_card{
-            flex-direction: column;
-        }
-        &_card_info{
-            margin:10px;
+    @media screen and (max-width:$tab) {
+        .product {
+            margin: 10px;
+
+            &_card {
+                flex-direction: column;
+            }
+
+            &_card_info {
+                margin: 10px;
+            }
         }
     }
-   }
 }

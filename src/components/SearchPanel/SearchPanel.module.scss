@@ -41,3 +41,23 @@
     }
   }
 }
+
+@media screen and (max-width: $tab){
+  .container {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 4;
+    width: 100vw;
+    max-width: 100%;
+    &_btn1 {
+      padding-left: 10px;
+    }
+    input {
+      padding-left: 10px;
+    }
+    &_btn2 {
+      padding-right: 30px;
+    }
+  }
+}

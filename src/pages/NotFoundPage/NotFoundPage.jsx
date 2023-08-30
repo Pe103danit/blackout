@@ -1,10 +1,14 @@
 import style from './NotFoundPage.module.scss'
 import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const NotFoundPage = (props) => {
   const themeStyle = props.lightTheme
     ? 'light404Style'
     : 'dark404Style'
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={`${style.section} ${themeStyle}`}>
       <div className={style.section_container}>

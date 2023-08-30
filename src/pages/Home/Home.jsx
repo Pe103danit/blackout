@@ -1,6 +1,5 @@
 import style from './Home.module.scss'
 import React from 'react';
-import { ProductCard } from '../../components/ProductCard/ProductCard';
 import PictureCategories from '../../components/PictureCategories/PictureCategories'
 import Carousel from '../../components/Carousel/Carousel.jsx';
 import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs'
@@ -16,10 +15,9 @@ const Home = (props) => {
       </div>
       <Carousel />
       <SwiperProductsHomeContainer />
-      <TopHomeSolutions/>
+      <TopHomeSolutions />
       <WeAreHereToHelp lightTheme={props.lightTheme} />
       <WhyChooseUs />
-      <ProductCard />
     </>
   )
 }

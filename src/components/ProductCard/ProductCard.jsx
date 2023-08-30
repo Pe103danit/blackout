@@ -5,32 +5,44 @@ import StarRating from './StarRating';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
+import { useQuery } from 'react-query';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { getProductById } from '../../redux/reducers/ProductReducer/ProductReducer';
+import { instance } from '../assets/axiosUrl';
+import { useParams } from 'react-router-dom';
 
-export const ProductCard = () => {
+const ProductCard = () => {
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+  const { id } = useParams()
+  const getProduct = async () => {
+    const { data } = await instance.get(`/api/products/${id}`)
+    return data
+  }
+  const { data } = useQuery('getProductById', getProduct)
   const dispatch = useDispatch()
   const product = useSelector(state => state.ProductReducer.product || {})
-  let { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
+  const { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
   const [countOfAvailable, setCountOfAvailable] = useState(0)
   const [multipliedPrice, setMultipliedPrice] = useState(0)
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [specsArray, setSpecsArray] = useState([])
-  // const [isActive, setActive] = useState(options[0]?.title)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-  const id = '000001'
   const themeStyle = theme ? 'light' : 'dark'
   useEffect(() => {
-    dispatch(getProductById(id))
-  }, [dispatch, id])
+    dispatch(getProductById(data))
+  }, [data, dispatch])
   useEffect(() => {
     setMultipliedPrice(currentPrice)
-    setCountOfAvailable(quantity -= 1)
+    const count = quantity - 1
+    setCountOfAvailable(count)
     setSpecsArray(specs)
   }, [currentPrice, quantity, specs])
   const handleClick = () => {
@@ -43,8 +55,7 @@ export const ProductCard = () => {
             <div className='carousel'>
               <Swiper
                 style={{
-                  '--swiper-navigation-color': '#fff',
-                  '--swiper-pagination-color': '#fff',
+                  '--swiper-navigation-color': '#2164FF',
                 }}
                 spaceBetween={10}
                 navigation={true}
@@ -54,14 +65,14 @@ export const ProductCard = () => {
                 autoplay={{ delay: 1500 }}
               >
                 {imageUrls?.map((item, index) => (
-                  <SwiperSlide key={index} className="swiper-slide">
+                  <SwiperSlide key={index} className='swiper-slide'>
                     <div className={`${style.product_card_img_wrapper} ${style.product_card_img_wrapper_big}`}>
-                      <img src={item} alt="" />
+                      <img src={item} alt='' />
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <div className={style.product_card_swiper_mini} id="swiper_day_mini">
+              <div className={style.product_card_swiper_mini} id='swiper_day_mini'>
                 <Swiper
                   onSwiper={setThumbsSwiper}
                   spaceBetween={10}
@@ -85,9 +96,9 @@ export const ProductCard = () => {
                   autoplay={{ delay: 1500 }}
                 >
                   {imageUrls?.map(item => (
-                    <SwiperSlide className="swiper-slide">
+                    <SwiperSlide className='swiper-slide'>
                       <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
-                        <img src={item} alt="" />
+                        <img src={item} alt='' />
                       </div>
                     </SwiperSlide>
                   ))}
@@ -101,7 +112,7 @@ export const ProductCard = () => {
               {sale && <p className={style.product_card_hot}>Hot</p>}
               <h2 className={style.product_card_title}>{name}</h2>
               <p><StarRating starsSelected={rating} /></p>
-              <p className={style.product_card_price}> $ {currentPrice},00 </p>
+              <p className={style.product_card_price}> $ {currentPrice} </p>
               <p className={style.product_card_under_price}>{underPrice}</p>
             </div>
             <div className={style.product_card_related_products}>
@@ -117,20 +128,6 @@ export const ProductCard = () => {
                 </ul>
                 {(specsArray?.length > 4) && <p className={style.product_card_overview} onClick={() => { setOverWeightOpen(!isOverWeightOpen) }}>Overview {isOverWeightOpen && <SlArrowUp />} {!isOverWeightOpen && < SlArrowDown />}</p>}
               </div>
-              {/* <div>
-                <h6 className={style.product_card_description_subtitle_other}>Options</h6>
-                <ul className={style.product_card_options_list} >
-                  {options.map((item) => (
-                    <li onClick={() => {
-                      setActive(item.title)
-                      thumbsSwiper.slidePrev()
-                    }} className={`${style.product_card_options}  ${(item.title === isActive) ? style.product_card_options_active : ''} `} key={item.title}>
-                      <p className=''>{item.title}</p>
-                      <p className={style.product_card_options_price}>${item.price},00</p>
-                    </li
-                  ))}
-                </ul>
-              </div> */}
               {!quantity && <div>
                 <h6 className={style.product_card_description_subtitle_available}>
                   Unavailable
@@ -141,23 +138,23 @@ export const ProductCard = () => {
                   Available
                 </h6>
                 <div className={style.product_card_container_for_buttons}>
-                  <button className={style.product_card_button_minus} disabled={countToCart === 1} onClick={() => {
+                  <button className={`${style.product_card_button_available} ${(countToCart === 1) ? style.product_card_button_disable : ''}`} disabled={countToCart === 1} onClick={() => {
                     setCountToCart(prev => prev -= 1)
                     setCountOfAvailable(prev => prev += 1)
                     if (countToCart > 0) {
-                      setMultipliedPrice(prev => prev -= currentPrice)
+                      setMultipliedPrice(prev => (prev = Number(prev) - currentPrice).toFixed(2))
                     }
                     if (countToCart === 1) {
                       setMultipliedPrice(currentPrice)
                     }
                   }}>-</button>
                   <span className={style.product_card_count}>{countToCart}</span>
-                  <button className={style.product_card_button_plus} disabled={!countOfAvailable} onClick={() => {
+                  <button className={`${style.product_card_button_available} ${(!countOfAvailable) ? style.product_card_button_disable : ''}`} disabled={!countOfAvailable} onClick={() => {
                     setCountToCart(prev => prev += 1)
                     setCountOfAvailable(prev => prev -= 1)
 
                     if (countToCart > 0) {
-                      setMultipliedPrice(prev => prev += currentPrice)
+                      setMultipliedPrice(prev => (prev = Number(prev) + currentPrice).toFixed(2))
                     }
                     if (!countToCart) {
                       setMultipliedPrice(currentPrice)
@@ -166,7 +163,7 @@ export const ProductCard = () => {
                 </div>
               </div>}
               <div className={`${style.product_card_total_price} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
-                <p className={style.product_card_total_price_cash}>${multipliedPrice},00 </p>
+                <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
                 <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
               </div>
             </div>
@@ -176,3 +173,4 @@ export const ProductCard = () => {
     </section>
   )
 }
+export default ProductCard

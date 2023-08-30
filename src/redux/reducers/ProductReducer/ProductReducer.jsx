@@ -1,30 +1,39 @@
 import { typesOfProducts } from '../../types/types'
-import { instance } from '../../../components/assets/axiosUrl'
-const { GET_PRODUCT } = typesOfProducts
-const actionGetProductById = (data) => (
-    {
-        type: GET_PRODUCT,
-        payload: data
-    }
-)
+const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts;
 
-export const getProductById = (id) => async (dispatch) => {
-     await instance.get(`/api/products/${id}`)
-        .then(res => {
-            dispatch(actionGetProductById(res.data))
-        })
-        .catch(error => {
-            console.error(error);
-        });
+const initialState = {
+  wishList: localStorage.getItem('wishList') ? parseInt(localStorage.getItem('wishList')) : 0,
+  basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
+  products: [],
+  productIsLoading: true,
+  portablePowerStation: [],
+  portablePowerStationIsLoading: true,
+  powerBanks: [],
+  powerBanksIsLoading: true,
+  product: {}
 }
-
-const initialState = { product: {} }
 const productReducer = (state = initialState, { type, payload }) => {
-    switch (type) {
-        case GET_PRODUCT:
-            return { ...state, product: payload }
-        default:
-            return state
-    }
+  switch (type) {
+    case GET_PRODUCT:
+      return {
+        ...state, product: payload
+      }
+    case GET_ALL_PRODUCTS:
+      return {
+        ...state, products: [...payload], productIsLoading: false
+      }
+    default:
+      return state;
+  }
 }
+
+export const getProducts = (productsList) => ({
+  type: GET_ALL_PRODUCTS,
+  payload: productsList
+})
+export const getProductById = (product) => ({
+  type: typesOfProducts.GET_PRODUCT,
+  payload: product
+})
+
 export default productReducer

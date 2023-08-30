@@ -1,5 +1,51 @@
 @import './_variables.scss';
 
+.svgLight {
+  fill: $black !important;
+  &:hover {
+    fill: $third-grey !important;
+  }
+}
+
+.svgDark {
+  fill: $white !important;
+  &:hover {
+    fill: $third-grey !important;
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .svgLight {
+    &:hover {
+      fill: $black !important;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .svgLight {
+    &:hover {
+      fill: $black !important;
+    }
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .svgDark {
+    &:hover {
+      fill: $white !important;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .svgDark {
+    &:hover {
+      fill: $white !important;
+    }
+  }
+}
+
 .light {
   color: $black;
   background: $main-background;
@@ -115,6 +161,10 @@
       a {
         color: $black;
       }
+
+      button {
+        color: $black;
+      }
     }
   }
 }
@@ -131,6 +181,11 @@
       a {
         color: $white;
       }
+
+      button {
+        color: $white;
+      }
+
     }
   }
 }
@@ -285,4 +340,20 @@ background: $main-background !important;
 .darkWhyChooseUs {
   color: $white;
   background: $black;
+}
+
+.lightEmptyBasketStyle {
+  background: $main-background !important;
+}
+
+.darkEmptyBasketStyle {
+  color: white;
+  background: $second-grey !important;
+  div {
+    a {
+      &:hover button {
+        background: $button-blue;
+      }
+    }
+  }
 }
