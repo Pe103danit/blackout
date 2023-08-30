@@ -2,11 +2,11 @@
 
 .container {
   position: fixed;
+  top: 50%;
+  left: 95%;
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 50%;
-  left: 95%;
   z-index: 4;
   width: 47px;
   height: 47px;
@@ -16,7 +16,7 @@
   border-radius: 50%;
   &:hover{
     background-color: $button-light-blue;
-    transition-duration: 0.5s;
+    transition-duration: .5s;
   }
   svg {
     width: 70%;
