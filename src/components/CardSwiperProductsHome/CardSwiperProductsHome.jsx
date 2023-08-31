@@ -8,7 +8,7 @@ const CardSwiperProductsHome = (props) => {
     ? 'lightSwiper'
     : 'darkSwiper'
   return (
-    <Link to={'/'} className={`${style.section} ${themeStyle}`}>
+    <Link to={`/products/${props.itemNo}`} className={`${style.section} ${themeStyle}`}>
       <div className={style.section_container}>
         <div className={style.section_container_containerInner}>
           <div className={style.section_container_containerInner_status}>

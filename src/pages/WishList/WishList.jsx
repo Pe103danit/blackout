@@ -1,7 +1,9 @@
+import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer'
+
 const WishList = () => {
   return (
     <div>
-      WishList Page
+      <EmptyWishListContainer/>
     </div>
   )
 }

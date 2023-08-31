@@ -341,3 +341,19 @@ background: $main-background !important;
   color: $white;
   background: $black;
 }
+
+.lightEmptyBasketStyle {
+  background: $main-background !important;
+}
+
+.darkEmptyBasketStyle {
+  color: white;
+  background: $second-grey !important;
+  div {
+    a {
+      &:hover button {
+        background: $button-blue;
+      }
+    }
+  }
+}

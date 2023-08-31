@@ -10,7 +10,6 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { getProductById } from '../../redux/reducers/ProductReducer/productReducer';
-
 export const ProductCard = () => {
   const dispatch = useDispatch()
   const product = useSelector(state => state.products.product || {})

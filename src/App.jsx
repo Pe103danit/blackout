@@ -16,6 +16,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
+import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
@@ -25,6 +26,7 @@ import GeneratorsContainer from './pages/ProductCategories/Generators/Generators
 import AccessoriesContainer from './pages/ProductCategories/Accessories/AccessoriesContainer'
 import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
 import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
+import GoToTop from './components/GoToTop/GoToTop'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -62,9 +64,11 @@ const App = (props) => {
         <Route path='cart' element={<Cart/>}/>
         <Route path='/policies/privacy-policy' element={<PrivacyPolicy/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
+        <Route path='/products/:id' element={<ProductCardPage/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
       <FooterContainer />
+      <GoToTop/>
     </div>
   )
 }

@@ -15,7 +15,10 @@ import { instance } from '../assets/axiosUrl';
 import { useParams } from 'react-router-dom';
 
 const ProductCard = () => {
-  // const id = '000001'
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams()
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
@@ -24,7 +27,7 @@ const ProductCard = () => {
   const { data } = useQuery('getProductById', getProduct)
   const dispatch = useDispatch()
   const product = useSelector(state => state.ProductReducer.product || {})
-  let { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
+  const { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
   const [countOfAvailable, setCountOfAvailable] = useState(0)
@@ -32,14 +35,14 @@ const ProductCard = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [specsArray, setSpecsArray] = useState([])
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-
   const themeStyle = theme ? 'light' : 'dark'
   useEffect(() => {
     dispatch(getProductById(data))
   }, [data, dispatch])
   useEffect(() => {
     setMultipliedPrice(currentPrice)
-    setCountOfAvailable(quantity -= 1)
+    const count = quantity - 1
+    setCountOfAvailable(count)
     setSpecsArray(specs)
   }, [currentPrice, quantity, specs])
   const handleClick = () => {
@@ -110,7 +113,7 @@ const ProductCard = () => {
               {sale && <p className={style.product_card_hot}>Hot</p>}
               <h2 className={style.product_card_title}>{name}</h2>
               <p><StarRating starsSelected={rating} /></p>
-              <p className={style.product_card_price}> $ {currentPrice},00 </p>
+              <p className={style.product_card_price}> $ {currentPrice} </p>
               <p className={style.product_card_under_price}>{underPrice}</p>
             </div>
             <div className={style.product_card_related_products}>
@@ -140,7 +143,7 @@ const ProductCard = () => {
                     setCountToCart(prev => prev -= 1)
                     setCountOfAvailable(prev => prev += 1)
                     if (countToCart > 0) {
-                      setMultipliedPrice(prev => prev -= currentPrice)
+                      setMultipliedPrice(prev => (prev = Number(prev) - currentPrice).toFixed(2))
                     }
                     if (countToCart === 1) {
                       setMultipliedPrice(currentPrice)
@@ -152,7 +155,7 @@ const ProductCard = () => {
                     setCountOfAvailable(prev => prev -= 1)
 
                     if (countToCart > 0) {
-                      setMultipliedPrice(prev => prev += currentPrice)
+                      setMultipliedPrice(prev => (prev = Number(prev) + currentPrice).toFixed(2))
                     }
                     if (!countToCart) {
                       setMultipliedPrice(currentPrice)
@@ -161,7 +164,7 @@ const ProductCard = () => {
                 </div>
               </div>}
               <div className={`${style.product_card_total_price} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
-                <p className={style.product_card_total_price_cash}>${multipliedPrice},00 </p>
+                <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
                 <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
               </div>
             </div>
