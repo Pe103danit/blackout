@@ -6,6 +6,7 @@ import Offers from './pages/Offers/Offers'
 import Delivery from './pages/Delivery/Delivery'
 import Payment from './pages/Payment/Payment'
 import AboutUs from './pages/AboutUs/AboutUs'
+import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
@@ -26,7 +27,7 @@ import AccessoriesContainer from './pages/ProductCategories/Accessories/Accessor
 import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
 import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
 import GoToTop from './components/GoToTop/GoToTop'
-import ContactsContainer from './pages/Contacts/ContactsContainer';
+
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
