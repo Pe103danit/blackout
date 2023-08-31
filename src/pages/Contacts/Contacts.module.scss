@@ -16,8 +16,9 @@
     &_info {
         max-width: 1200px;
         margin: 0 auto;
-        padding-left: 10px;
         padding-bottom: 40px;
+        padding-left: 10px;
+
 
         & p {
             padding-top: 30px;
@@ -33,13 +34,13 @@
                 padding-top: 10px;
                 padding-left: 10px;
                 @include manrope-light();
-                
+
 
                 &_link {
                     display: flex;
                     align-items: center;
-                    text-decoration: none;
                     color: inherit;
+                    text-decoration: none;
                     @include manrope-light();
 
                 }
@@ -49,10 +50,11 @@
                 }
             }
         }
+
         &_map {
-            padding-top: 20px;
             width: 600px;
             height: 450px;
+            padding-top: 20px;
         }
     }
 }
@@ -80,20 +82,22 @@
             }
 
             &_ul {
-                
+
                 &_li {
-                    align-items: start;
                     flex-direction: column;
+                    align-items: start;
+
                     & span {
                         padding-top: 10px;
                     }
                 }
             }
+
             &_map {
                 width: 280px;
                 height: 300px;
             }
         }
-        
+
     }
 }
