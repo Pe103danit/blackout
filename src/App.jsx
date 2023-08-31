@@ -28,7 +28,6 @@ import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPan
 import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
 import GoToTop from './components/GoToTop/GoToTop'
 
-
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   const getSwiperProducts = async () => {
