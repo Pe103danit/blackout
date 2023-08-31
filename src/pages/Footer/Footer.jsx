@@ -159,7 +159,7 @@ const Footer = (props) => {
                                         <NavLink to={'/delivery'} className={`${style.footer__linklist_item_link}`}>Delivery</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/'} className={`${style.footer__linklist_item_link}`}>Privacy Policy</NavLink>
+                                        <NavLink to={'/policies/privacy-policy'} className={`${style.footer__linklist_item_link}`}>Privacy Policy</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
                                         <NavLink to={'/'} className={`${style.footer__linklist_item_link}`}>Terms of Service</NavLink>
