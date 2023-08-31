@@ -34,6 +34,14 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+    left: 85%;
+    width: 43px;
+    height: 43px;
+  }
+}
+
 @media screen and (max-width: $mobile) {
   .container {
     left: 80%;

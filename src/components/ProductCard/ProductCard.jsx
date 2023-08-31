@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { getProductById } from '../../redux/reducers/ProductReducer/productReducer';
+import { getProductById, addToBasket } from '../../redux/reducers/ProductReducer/productReducer';
 export const ProductCard = () => {
   const dispatch = useDispatch()
   const product = useSelector(state => state.products.product || {})
@@ -35,7 +35,8 @@ export const ProductCard = () => {
     console.log(specsArray, 123123)
   }, [currentPrice, quantity, specs])
   const handleClick = () => {
-
+  // dispatch(addToBasket())
+    console.log(name)
   }
   console.log(countOfAvailable)
   return (
@@ -87,8 +88,8 @@ export const ProductCard = () => {
                   }}
                   autoplay={{ delay: 1500 }}
                 >
-                  {imageUrls?.map(item => (
-                    <SwiperSlide className="swiper-slide">
+                  {imageUrls?.map((item, index) => (
+                    <SwiperSlide key={index} className="swiper-slide">
                       <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
                         <img src={item} alt="" />
                       </div>

@@ -10,7 +10,6 @@ import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
-import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
@@ -27,6 +26,7 @@ import AccessoriesContainer from './pages/ProductCategories/Accessories/Accessor
 import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
 import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
 import GoToTop from './components/GoToTop/GoToTop'
+import BasketContainer from './pages/Basket/BasketContainer'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -55,7 +55,7 @@ const App = (props) => {
         <Route path='/contacts' element={<ContactsContainer/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/wishlist' element={<WishList/>}/>
-        <Route path='/basket' element={<Basket/>}/>
+        <Route path='/basket' element={<BasketContainer/>}/>
         <Route path='/accessories' element={<AccessoriesContainer/>}/>
         <Route path='/generators' element={<GeneratorsContainer/>}/>
         <Route path='/portable_power_stations' element={<PortablePowerStationsContainer/>}/>

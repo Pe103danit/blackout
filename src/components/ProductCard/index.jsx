@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { getProductById } from '../../redux/reducers/ProductReducer/ProductReducer';
+import { addToBasket, getProductById } from '../../redux/reducers/ProductReducer/ProductReducer'
 import { instance } from '../assets/axiosUrl';
 import { useParams } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ const ProductCard = () => {
   const { data } = useQuery('getProductById', getProduct)
   const dispatch = useDispatch()
   const product = useSelector(state => state.ProductReducer.product || {})
-  const { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
+  const { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description, itemNo } = product
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
   const [countOfAvailable, setCountOfAvailable] = useState(0)
@@ -46,6 +46,7 @@ const ProductCard = () => {
     setSpecsArray(specs)
   }, [currentPrice, quantity, specs])
   const handleClick = () => {
+    dispatch(addToBasket(itemNo, countToCart))
   }
   return (
     <section className={`${style.product} ${themeStyle}`}>

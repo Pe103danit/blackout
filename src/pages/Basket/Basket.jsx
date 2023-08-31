@@ -1,9 +1,12 @@
 import EmptyBasketContainer from '../../components/EmptyBasket/EmptyBasketContainer'
 
-const Basket = () => {
+const Basket = (props) => {
   return (
     <div>
-      <EmptyBasketContainer/>
+      {props.basketList.length !== 0
+      ? <div>Basket is not empty!</div>
+      : <EmptyBasketContainer/>
+      }
     </div>
   )
 }
