@@ -5,6 +5,7 @@
     max-width: $max-width;
     margin: 0 auto;
     padding-top: 50px;
+    padding-bottom: 50px;
 
     &_title {
         padding-right: 10px ;
@@ -50,6 +51,7 @@
 }
 @media screen and (max-width: 992px) {
     .WhyChooseUs {
+        padding-bottom: 0;
         &_wrapper {
             grid-template-columns: repeat(2, minmax(200px, 1fr));
             padding: 0 25px 60px 25px;

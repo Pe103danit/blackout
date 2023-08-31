@@ -31,7 +31,7 @@ const WeAreHereToHelp = (props) => {
                 We can help you!
               </p>
             </NavLink>
-            <NavLink to={'/'} className={style.section_container_body_right_link}>
+            <NavLink to={'/products/000026'} className={style.section_container_body_right_link}>
               <img src={checkThisOutImg} alt="Check this out" title="Check this out"/>
               <p className={style.section_container_body_right_link_text}>
                 Check this out &#62;

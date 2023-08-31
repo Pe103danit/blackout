@@ -100,8 +100,8 @@ const Header = (props) => {
                 : <SearchIconDark/>
               }
             </button>
-            <NavLink to={'/login'}>
-              <button>
+            <NavLink to={'/login'} className={style.container_header_c2_link}>
+              <button className={style.container_header_c2_link_user}>
                 {props.lightTheme
                   ? <UserIcon/>
                   : <UserIconDark/>

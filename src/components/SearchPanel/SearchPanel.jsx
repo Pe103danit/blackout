@@ -9,14 +9,14 @@ const SearchPanel = (props) => {
   }
   return (
     <div className={style.container}>
-      <button>
+      <button className={style.container_btn1}>
         {<SearchIcon/>}
       </button>
       <input
         type='text'
         placeholder='e.g. Power Station'
       />
-      <button onClick={toggle}>
+      <button onClick={toggle} className={style.container_btn2}>
         {<CloseIcon/>}
       </button>
     </div>

@@ -23,3 +23,7 @@
   font-weight: 800;
   font-family: 'Manrope', sans-serif;
 }
+@mixin uniq-text (){
+  font-size: $fourth-size;
+  line-height: 22px;
+}

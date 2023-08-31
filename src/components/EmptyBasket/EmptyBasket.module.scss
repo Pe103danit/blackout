@@ -1,0 +1,63 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+.section {
+  padding-top: 55px;
+  padding-bottom: 55px;
+  &_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    &_title {
+      font-size: $second-size;
+      @include manrope-bold();
+    }
+
+    &_body {
+      font-size: $fourth-size;
+      @include manrope-regular();
+    }
+
+    &_logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    &_link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      button {
+        width: 225px;
+        height: 40px;
+        color: $white;
+        font-size: $fourth-size;
+        background: $black;
+        border: none;
+        border-radius: 50px;
+      }
+
+      &:hover button {
+        background: $second-grey;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .section {
+    &_container {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+}

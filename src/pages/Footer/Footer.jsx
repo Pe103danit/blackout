@@ -12,6 +12,9 @@ import {
 } from '../../components/assets/Icons';
 import style from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
+import {useMutation} from 'react-query';
+import { instance } from '../../components/assets/axiosUrl'
+import { useState } from 'react'
 
 const Footer = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark';
@@ -34,6 +37,73 @@ const Footer = (props) => {
     const smallOneWhole = 'small-one-whole';
     const siteFooterPolicy = 'site-footer__policy';
     const customPaymentIconsFooter = 'custom_payment_icons--footer';
+
+    const mutation = useMutation(
+      newSubscriber => {
+        return (
+          instance.post('api/subscribers', {
+              email: newSubscriber,
+              letterSubject: 'Black out store subscribing',
+              letterHtml: '<!DOCTYPE html>\n' +
+                '<html lang=\'en\'>\n' +
+                '<head>\n' +
+                '    <meta charset=\'UTF-8\'>\n' +
+                '    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\'>\n' +
+                '    <title>Thanks for Subscribing!</title>\n' +
+                '    <style>\n' +
+                '        body {\n' +
+                '            font-family: Arial, sans-serif;\n' +
+                '            text-align: center;\n' +
+                '            background-color: #f5f5f5;\n' +
+                '            margin: 0;\n' +
+                '            padding: 20px;\n' +
+                '        }\n' +
+                '        .container {\n' +
+                '            max-width: 600px;\n' +
+                '            margin: 0 auto;\n' +
+                '            padding: 20px;\n' +
+                '            background-color: #ffffff;\n' +
+                '            border-radius: 8px;\n' +
+                '            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n' +
+                '        }\n' +
+                '        h1 {\n' +
+                '            color: #333333;\n' +
+                '        }\n' +
+                '        p {\n' +
+                '            color: #666666;\n' +
+                '            line-height: 1.6;\n' +
+                '        }\n' +
+                '    </style>\n' +
+                '</head>\n' +
+                '<body>\n' +
+                '<div class=\'container\'>\n' +
+                '    <h1>Thanks for Subscribing!</h1>\n' +
+                '    <p>We appreciate your decision to subscribe to our updates. You\'re now part of our community, and you\'ll receive the latest news, offers, and exciting content delivered straight to your inbox.</p>\n' +
+                '    <p>If you have any questions or need assistance, feel free to <a href=\'mailto:pe103danit@gmail.com\'>contact us</a>.</p>\n' +
+                '    <img src=\'https://sendpulse.com/blog/wp-content/webp-express/webp-images/uploads/2020/02/cover-6-1110x420.png.webp\' alt=\'Black out store\' style=\'max-width: 100%; border-radius: 8px; margin: 20px 0;\'>\n' +
+                '    <p>Stay tuned for amazing content!</p>\n' +
+                '</div>\n' +
+                '</body>\n' +
+                '</html>'
+            })
+        )
+      },
+      {
+          onSuccess: (data) => {
+            console.log(data)
+          },
+          onError: (error) => {
+              console.error(error)
+          }
+      }
+    )
+
+    const [subscriberCandidate, setSubscriberCandidate] = useState('')
+    const handleNewSubscriber = (e) => {
+        e.preventDefault()
+        mutation.mutate(subscriberCandidate)
+        setSubscriberCandidate('')
+    }
 
     return (
         <div className={`${style.footer} ${criticalHidden} ${themeStyle}`}>
@@ -89,7 +159,7 @@ const Footer = (props) => {
                                         <NavLink to={'/delivery'} className={`${style.footer__linklist_item_link}`}>Delivery</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/'} className={`${style.footer__linklist_item_link}`}>Privacy Policy</NavLink>
+                                        <NavLink to={'/policies/privacy-policy'} className={`${style.footer__linklist_item_link}`}>Privacy Policy</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
                                         <NavLink to={'/'} className={`${style.footer__linklist_item_link}`}>Terms of Service</NavLink>
@@ -152,24 +222,37 @@ const Footer = (props) => {
                         <div className={`${style.footer__item} ${footerItemNewsletter}`}>
                             <div className={`${style.footer__item_inner} ${footerItemInnerNewsletter}`}>
                                 <div className={`${style.footer__newsletter}`}>
-                                    <div className={`${style.contact__form}`}>
+                                    <form className={`${style.contact__form}`}>
                                         <div className={`${style.input__group}`}>
-                                            <label for='newsletter-form-email' className={`${style.visually_hidden}`}></label>
-                                            <input type="email" name='contact[email]' id='newsletter-form-email' className={`${style.input__group__field} ${newsletterInput}`} value='Email address'/>
+                                            <label htmlFor='newsletter-form-email'
+                                                   className={`${style.visually_hidden}`}>
+                                            </label>
+                                            <input
+                                              type="email"
+                                              name='newsletter-form-email'
+                                              id='newsletter-form-email'
+                                              className={`${style.input__group__field} ${newsletterInput}`}
+                                              placeholder='Email address'
+                                              value={subscriberCandidate}
+                                              onChange={(e) => setSubscriberCandidate(e.target.value)}
+                                            />
                                             <span className={`${style.input__group__btn} ${themeStyle}`}>
-                                                <button type='button' className={`${style.newsletter__submit}`} name='commit' aria-label='Submit'>
+                                                <button type='submit'
+                                                        className={`${style.newsletter__submit}`}
+                                                        name='commit'
+                                                        aria-label='Submit'
+                                                        onClick={handleNewSubscriber}
+                                                >
                                                     <span className={`${style.newsletter__submit_text__large}`}>
-                                                    <NavLink to='/'>
                                                         {props.lightTheme
                                                         ? <NewsletterIcon/>
                                                         : <NewsletterIconDark/>
                                                         }
-                                                    </NavLink>
                                                     </span>
                                                 </button>
                                             </span>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -202,16 +285,16 @@ const Footer = (props) => {
                             <div className={`${style.grid__item} ${footerItemAlignRight} ${oneHalf} ${smallOneWhole}`}>
                                 <div className={`${style.custom_payment_icons} ${customPaymentIconsFooter}`}>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt="PayPal" srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_08_7f374817-3a3e-42f2-95ce-077b67f293d2.svg?v=1672025209" />
+                                        <img alt="PayPal" srcSet="https://cdn.shopify.com/s/files/1/1996/9707/files/card_08_7f374817-3a3e-42f2-95ce-077b67f293d2.svg?v=1672025209" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt="Visa" srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_10_d8002835-e25f-4edb-9038-187f75f69a18.svg?v=1672025208" />
+                                        <img alt="Visa" srcSet="https://cdn.shopify.com/s/files/1/1996/9707/files/card_10_d8002835-e25f-4edb-9038-187f75f69a18.svg?v=1672025208" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt="MasterCard" srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_06_7c406d24-0983-49ff-ac8e-cf73032050d9.svg?v=1672025208" />
+                                        <img alt="MasterCard" srcSet="https://cdn.shopify.com/s/files/1/1996/9707/files/card_06_7c406d24-0983-49ff-ac8e-cf73032050d9.svg?v=1672025208" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt='EuroCard' srcset="https://cdn.shopify.com/s/files/1/1996/9707/files/card_07_be5959d4-9f22-4a31-8e40-285f8e3ac6e7.svg?v=1672025208" />
+                                        <img alt='EuroCard' srcSet='https://cdn.shopify.com/s/files/1/1996/9707/files/card_07_be5959d4-9f22-4a31-8e40-285f8e3ac6e7.svg?v=1672025208' />
                                     </div>
                                 </div>
                             </div>
