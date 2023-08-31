@@ -142,14 +142,14 @@
     }
 
     &_card_button_available {
-        cursor: pointer;
         padding: 20px 30px;
+        cursor: pointer;
         border: transparent;
     }
 
     &_card_button_disable {
-        cursor: none;
         color: $black;
+        cursor: none;      
         background-color: $white;
     }
 
@@ -194,12 +194,6 @@
         border-radius: 50px;
     }
 
-    &_card_total_price_button:hover {
-        opacity: 0.8;
-        transition: 0.5s;
-    }
-
-
     &_card_rating {
         float: none;
         margin: 5px;
@@ -231,8 +225,8 @@
 
             &_card {
                 align-items: center;
-                justify-content: center;
                 flex-direction: column;
+                justify-content: center;         
             }
 
             &_card_info {
