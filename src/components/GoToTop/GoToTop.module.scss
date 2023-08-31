@@ -3,7 +3,7 @@
 .container {
   position: fixed;
   top: 70%;
-  left: 95%;
+  left: 92%;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -21,12 +21,6 @@
   svg {
     width: 70%;
     height: 70%;
-  }
-}
-
-@media screen and (max-width: 1050px) {
-  .container {
-    left: 90%;
   }
 }
 
