@@ -6,7 +6,7 @@ import Offers from './pages/Offers/Offers'
 import Delivery from './pages/Delivery/Delivery'
 import Payment from './pages/Payment/Payment'
 import AboutUs from './pages/AboutUs/AboutUs'
-import Contacts from './pages/Contacts/Contacts'
+import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
@@ -52,7 +52,7 @@ const App = (props) => {
         <Route path='/delivery' element={<Delivery/>}/>
         <Route path='/payment' element={<Payment/>}/>
         <Route path='/about_us' element={<AboutUs/>}/>
-        <Route path='/contacts' element={<Contacts/>}/>
+        <Route path='/contacts' element={<ContactsContainer/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/wishlist' element={<WishList/>}/>
         <Route path='/basket' element={<Basket/>}/>

@@ -745,3 +745,31 @@ export const EmptyBasketIcon = () => {
     </svg>
   )
 }
+
+export const MailIconLight = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"
+      id='Layer_1'
+      className='svgLight'
+      data-name='Layer 1'
+      viewBox='0 0 8 6'
+      width='22'
+      height='22'>
+      <path d="m0 0h8v6h-8zm.75 .75v4.5h6.5v-4.5zM0 0l4 3 4-3v1l-4 3-4-3z" />
+    </svg>
+  )
+}
+
+export const MailIconDark = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"
+      id='Layer_1'
+      className='svgDark'
+      data-name='Layer 1'
+      viewBox='0 0 8 6'
+      width='22'
+      height='22'>
+      <path d="m0 0h8v6h-8zm.75 .75v4.5h6.5v-4.5zM0 0l4 3 4-3v1l-4 3-4-3z" />
+    </svg>
+  )
+}
