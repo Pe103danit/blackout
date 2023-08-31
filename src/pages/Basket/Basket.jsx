@@ -1,7 +1,9 @@
+import EmptyBasketContainer from '../../components/EmptyBasket/EmptyBasketContainer'
+
 const Basket = () => {
   return (
     <div>
-      Basket Page
+      <EmptyBasketContainer/>
     </div>
   )
 }

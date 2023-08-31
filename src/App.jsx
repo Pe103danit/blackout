@@ -11,9 +11,11 @@ import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
 import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
+import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
@@ -23,15 +25,16 @@ import GeneratorsContainer from './pages/ProductCategories/Generators/Generators
 import AccessoriesContainer from './pages/ProductCategories/Accessories/AccessoriesContainer'
 import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
 import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
+import GoToTop from './components/GoToTop/GoToTop'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   const getSwiperProducts = async () => {
-    const {data} = await instance.get('/api/products')
+    const { data } = await instance.get('/api/products')
     return data
   }
-  const {data} = useQuery('getProducts', getSwiperProducts)
+  const { data } = useQuery('getProducts', getSwiperProducts)
   useEffect(() => {
     if (data) {
       props.getProducts(data)
@@ -40,8 +43,8 @@ const App = (props) => {
 
   return (
     <div className={themeStyle}>
-      <PromoBaner/>
-      <HeaderContainer/>
+      <PromoBaner />
+      <HeaderContainer />
       <Routes>
         <Route path='/' element={<HomeContainer/>}/>
         <Route path='/shop' element={<Shop/>}/>
@@ -59,10 +62,13 @@ const App = (props) => {
         <Route path='/power_banks' element={<PowerBanksContainer/>}/>
         <Route path='/solar_panels' element={<SolarPanelsContainer/>}/>
         <Route path='cart' element={<Cart/>}/>
+        <Route path='/policies/privacy-policy' element={<PrivacyPolicy/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
+        <Route path='/products/:id' element={<ProductCardPage/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
-      <FooterContainer/>
+      <FooterContainer />
+      <GoToTop/>
     </div>
   )
 }
