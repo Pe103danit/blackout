@@ -6,12 +6,13 @@ import Offers from './pages/Offers/Offers'
 import Delivery from './pages/Delivery/Delivery'
 import Payment from './pages/Payment/Payment'
 import AboutUs from './pages/AboutUs/AboutUs'
-import Contacts from './pages/Contacts/Contacts'
+import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
 import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
@@ -51,7 +52,7 @@ const App = (props) => {
         <Route path='/delivery' element={<Delivery/>}/>
         <Route path='/payment' element={<Payment/>}/>
         <Route path='/about_us' element={<AboutUs/>}/>
-        <Route path='/contacts' element={<Contacts/>}/>
+        <Route path='/contacts' element={<ContactsContainer/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/wishlist' element={<WishList/>}/>
         <Route path='/basket' element={<Basket/>}/>
@@ -61,6 +62,7 @@ const App = (props) => {
         <Route path='/power_banks' element={<PowerBanksContainer/>}/>
         <Route path='/solar_panels' element={<SolarPanelsContainer/>}/>
         <Route path='cart' element={<Cart/>}/>
+        <Route path='/policies/privacy-policy' element={<PrivacyPolicy/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
         <Route path='/products/:id' element={<ProductCardPage/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
