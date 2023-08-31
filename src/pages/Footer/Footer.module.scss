@@ -222,9 +222,6 @@ p > a {
 .site-footer__policy {
     display: flex;
 }
-ol {
-    display: flex;
-}
 li.footer__linklist_item {
     padding: 5px 15px 12px 0;
 }
@@ -287,12 +284,6 @@ li.footer__linklist_item {
         &__item {
             margin: 0 auto;
         }
-    }
-    ol {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
     }
     ol>li.footer__linklist_item {
         padding-right: 15px;

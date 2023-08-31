@@ -12,6 +12,7 @@ import Login from './pages/Login/Login'
 import WishList from './pages/WishList/WishList'
 import Basket from './pages/Basket/Basket'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
@@ -61,6 +62,7 @@ const App = (props) => {
         <Route path='/power_banks' element={<PowerBanksContainer/>}/>
         <Route path='/solar_panels' element={<SolarPanelsContainer/>}/>
         <Route path='cart' element={<Cart/>}/>
+        <Route path='/policies/privacy-policy' element={<PrivacyPolicy/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
         <Route path='/products/:id' element={<ProductCardPage/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
