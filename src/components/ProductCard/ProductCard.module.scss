@@ -57,11 +57,6 @@
         height: 450px;
     }
 
-    &_card_swiper_mini {
-        height: 87px;
-
-    }
-
     &_card_hot {
         margin-bottom: 4px;
         color: #fa4500;
@@ -235,12 +230,151 @@
             margin: 10px;
 
             &_card {
+                align-items: center;
+                justify-content: center;
                 flex-direction: column;
             }
 
             &_card_info {
                 margin: 10px;
             }
+
+            &_card_swiper {
+                height: 450px;
+            }
         }
     }
+
+    @media screen {}
+
+    @media screen and (max-width: 460px) {
+        .product {
+
+            &_card_info {
+                margin-top: 50px;
+            }
+
+            &_image_swiper_mini_img {
+                height: 150px;
+            }
+
+            &_card_swiper {
+                height: 350px;
+            }
+
+           
+        }
+    }
+
 }
+
+
+// @media screen and (max-width: $tab) {
+//     .container {
+//       padding-right: 15px;
+
+//       &_header {
+//         justify-content: flex-start;
+//         width: 100%;
+//         max-width: 768px;
+
+//         &_c1 {
+//           justify-content: flex-start;
+//           width: auto;
+//           column-gap: 30px;
+
+//           &_navigation {
+//             display: none;
+//           }
+//         }
+
+//         &_c2 {
+//           justify-content: flex-end;
+//           max-width: 768px;
+//           column-gap: 5px;
+
+//           button {
+//             width: 40px;
+
+//             svg {
+//               width: 40px;
+//               height: 40px;
+//             }
+//           }
+
+//           &_link {
+//             &_button {
+//               &_container {
+//                 top: -5px;
+//                 right: 0;
+//                 width: 20px;
+//                 height: 20px;
+//               }
+//             }
+
+//             &_user {
+//               display: none !important;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   @media screen and (max-width: $mobile) {
+//     .container {
+//       &_header {
+//         justify-content: space-between;
+//         width: 100%;
+//         max-width: 320px;
+
+//         &_c1 {
+//           max-width: 220px;
+//           padding-left: 0;
+//           column-gap: 5px;
+
+//           &_logos {
+//             width: 150px;
+//             &_left {
+//               width: 80px;
+//             }
+//             &_right {
+//               width: 70px;
+//             }
+//           }
+//         }
+
+//         &_c2 {
+//           justify-content: space-between;
+//           max-width: 90px;
+//           column-gap: 0;
+
+//           button {
+//             width: 40px;
+
+//             svg {
+//               width: 40px;
+//               height: 40px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   @media screen and (max-width: 340px) {
+//     .container {
+//       &_header {
+//         &_c2 {
+//           button {
+//             width: 35px;
+
+//             svg {
+//               width: 35px;
+//               height: 35px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
