@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import style from './ProductCard.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector} from 'react-redux'
 import StarRating from './StarRating';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
@@ -10,7 +10,6 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { getProductById } from '../../redux/reducers/ProductReducer/ProductReducer';
 import { instance } from '../assets/axiosUrl';
 import { useParams } from 'react-router-dom';
 
