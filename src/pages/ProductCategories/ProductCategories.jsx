@@ -10,19 +10,22 @@ import style from './ProductCategories.module.scss';
 
 const ProductCategories = ({ title, categoryName }) => {
     const [products, setProducts] = useState([]);
-    const [currentItems, setCurrentItems] = useState([]);
 
     const getProductCategories = async () => {
         const { data } = await instance.get(`/api/products/filter?categories=${categoryName}`)
+        setProducts(data.products);
+        setCurrentItems(data.products.slice(0, 12))
         return data
     }
     const { data, isLoading, isError } = useQuery('getProductCategories', getProductCategories)
     useEffect(() => {
         if (data) {
             setProducts(data.products);
-            setCurrentItems(data.products.slice(0, 12))
+            setCurrentItems(data.products.slice(0, 12));
         }
-    }, [data]);
+    });
+
+    const [currentItems, setCurrentItems] = useState(products.slice(0, 12));
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);

@@ -23,7 +23,7 @@ const ShopCard = (props) => {
                         <div className={style.shopCard__description__order}>
                             <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme}`}>${props.productItem.currentPrice} USD</h5>
                             <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
-                            <button className={style.shopCard__description__order__wishList} onClick={console.log(() => console.log('Add to WishList'))}>
+                            <button className={style.shopCard__description__order__wishList} onClick={console.log('Add to WishList')}>
                             {theme
                                 ? <HeartIcon />
                                 : <HeartIconDark />
