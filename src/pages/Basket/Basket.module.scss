@@ -3,9 +3,9 @@
 
 .section {
   &_container {
-    margin: 0 auto;
     width: 100%;
     max-width: 1200px;
+    margin: 0 auto;
 
     &_title {
       padding: 55px 0 32px 10px;
@@ -29,8 +29,8 @@
 
         &_product {
           display: flex;
-          justify-content: space-between;
           flex-wrap: nowrap;
+          justify-content: space-between;
           width: 90%;
           height: 180px;
           padding: 20px 10px 0;
@@ -40,8 +40,8 @@
           }
 
           &_photo {
-            height: 88px;
             width: 88px;
+            height: 88px;
 
             img {
               width: 100%;
@@ -66,8 +66,8 @@
             button {
               width: 33px;
               height: 33px;
-              border: 0;
               background: $main-background;
+              border: 0;
               cursor: pointer;
             }
 
@@ -82,8 +82,8 @@
 
       &_right {
         display: flex;
-        align-items: center;
         flex-direction: column;
+        align-items: center;
         justify-content: space-between;
         width: 25%;
         row-gap: 15px;
