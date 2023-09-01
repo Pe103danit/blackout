@@ -1,0 +1,105 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+.section {
+  &_container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+
+    &_title {
+      padding: 55px 0 32px 10px;
+      font-size: $second-size;
+      @include manrope-bold();
+    }
+
+    &_body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      &_left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%;
+        background: $white;
+        border-radius: $border;
+
+        &_product {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: nowrap;
+          width: 90%;
+          height: 180px;
+          padding: 20px 10px 0;
+
+          &_checkbox {
+
+          }
+
+          &_photo {
+            height: 88px;
+            width: 88px;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          &_name {
+            a {
+              color: $first-grey;
+              font-size: $third-size;
+              @include manrope-bold()
+            }
+          }
+
+          &_counter {
+            display: flex;
+            justify-content: space-between;
+            width: 99px;
+            border: 1px solid $third-grey;
+
+            button {
+              width: 33px;
+              height: 33px;
+              border: 0;
+              background: $main-background;
+              cursor: pointer;
+            }
+
+            input {
+              width: 27px;
+              height: 30px;
+              border: 0;
+            }
+          }
+        }
+      }
+
+      &_right {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25%;
+        row-gap: 15px;
+
+        &_top {
+          width: 100%;
+          background: $white;
+          border-radius: $border;
+        }
+
+        &_bottom {
+          width: 100%;
+          background: $white;
+          border-radius: $border;
+        }
+      }
+    }
+  }
+}
