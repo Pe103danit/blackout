@@ -15,11 +15,11 @@ import { instance } from '../assets/axiosUrl';
 import { addToBasket } from '../../redux/reducers/ProductReducer/ProductReducer';
 
 export const ProductCard = () => {
-   // variables
+  // variables
   const { id } = useParams()
   const dispatch = useDispatch()
 
-   // states
+  // states
   const [product, setProduct] = useState([])
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
@@ -30,25 +30,57 @@ export const ProductCard = () => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
 
   const themeStyle = theme ? 'light' : 'dark'
-   // get one product
+  // get one product
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
     return data
   }
   const { data } = useQuery('getProduct', getProduct)
-   // useEffects
+  // useEffects
   useEffect(() => {
     setProduct(data)
   }, [data])
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0)
+  }, [])
+
   useEffect(() => {
     setMultipliedPrice(product?.currentPrice)
     const count = product?.quantity - 1
     setCountOfAvailable(count)
     setSpecsArray(product?.specs)
   }, [product?.currentPrice, product?.quantity, product?.specs])
-   // handlers
+  // handlers
   const handleClick = () => {
-    dispatch(addToBasket())
+    dispatch(addToBasket(product?.itemNo, countToCart))
+    let storageBasket = JSON.parse(localStorage.getItem('basketList'))
+    let repeat = false
+    storageBasket = storageBasket.map(item => {
+      if (item.itemNo === product?.itemNo) {
+        repeat = true
+        return ({
+          itemNo: product?.itemNo,
+          countToCart: item.countToCart + countToCart
+        })
+      } else {
+        return item
+      }
+    })
+    if (!repeat) {
+      storageBasket.push(
+        {
+          itemNo: product?.itemNo,
+          countToCart
+        }
+      )
+    }
+    localStorage.setItem('basketList', JSON.stringify([
+      ...storageBasket
+    ])
+    )
+    const countBasket = parseInt(localStorage.getItem('basket'))
+    localStorage.setItem('basket', `${countBasket + countToCart}`)
   }
   return (
     <section className={`${style.product} ${themeStyle}`}>
