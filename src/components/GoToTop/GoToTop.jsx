@@ -1,30 +1,38 @@
-/*
-import { GoToTopIcon } from '../assets/Icons'
+import { GoToTopIcon} from '../assets/Icons'
 import style from './GoToTop.module.scss'
-import { useState } from 'react'
-
- */
+import { useState, useEffect } from 'react'
 
 const GoToTop = () => {
-  /* const [btnStatus, setBtnStatus] = useState(false)
-  window.addEventListener('scroll', (e) => {
-    console.log('scroll')
-    console.log(window.scrollTop)
-  })
-  const handleToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 500) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-  }
-  {btnStatus &&
-<button className={style.container}>
-  <GoToTopIcon/>
-</button>}
-  */
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <>
-
+      {isVisible &&
+        <button className={style.container} onClick={scrollToTop}>
+          <GoToTopIcon/>
+        </button>}
     </>
   )
 }

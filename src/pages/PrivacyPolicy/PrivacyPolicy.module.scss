@@ -1,0 +1,376 @@
+@import '../../scss/variables';
+
+
+.Policy {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    margin-top: 30px;
+
+    &_subtitle {
+        margin-bottom: 30px;
+        font-weight: $big-weight;  
+    }
+
+    &_text {
+        margin-bottom: 30px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_text_2 {
+        margin-bottom: 70px;
+        font-size: $fourth-size;
+       line-height: 22px;    
+    }
+
+    &_text_3 {
+        margin-bottom: 70px;
+        font-size: $fourth-size;
+        line-height: 22px; 
+    }
+
+    &_text_4 {
+        margin-bottom: 70px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_text_5 {
+        margin-bottom: 70px;
+        font-size: $fourth-size;
+        line-height: 22px;  
+    }
+
+    &_text_6 {
+        margin-bottom: 40px;
+        font-size: $fourth-size;
+    }
+
+    &_text_7 {
+        margin-bottom: 30px;
+        font-size: $fourth-size;
+    }
+
+    &_list {
+        font-weight: $big-weight;
+    }
+
+    &_list_item {
+        padding: 5px 0px 5px 0px;
+        font-size: 20px;
+    }
+
+    &_main_list {
+        list-style-type: decimal;
+    }
+
+    &_above_list {
+        margin-bottom: 60px;
+        font-size: $fourth-size;
+    }
+
+    &_what_list {
+        margin-bottom: 60px;
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc;    
+    }
+
+    &_required {
+        margin-bottom: 70px;
+        font-size: $fourth-size;
+        line-height: 22px; 
+    }
+
+    &_big_list_item {
+        margin-bottom: 20px;
+
+    }
+
+    &_big_list {
+        line-height: 22px;
+    }
+
+    &_big_list_text {
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_also_choose {
+        margin: 60px 0px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_however {
+        margin-bottom: 60px;
+        font-size: $fourth-size;
+        line-height: 22px;    
+    }
+
+    &_personal_data {
+        margin: 30px 0px 50px 0px;
+        font-weight: $big-weight;
+        font-size: $fourth-size;
+    }
+
+    &_data {
+        margin-bottom: 20px;
+        font-size: $fourth-size;  
+    }
+
+    &_legal_basis_list {
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc;  
+
+    }
+
+    &_uses {
+        margin-top: 60px;
+        margin-bottom: 40px;
+    }
+
+    &_we_use {
+        margin-bottom: 18px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_provide_services {
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc;
+    }
+
+    &_admin {
+        margin-left: 80px;
+    }
+
+    &_various {
+        margin-bottom: 30px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_admin_purpose {
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;  
+        list-style-type: disc;   
+    }
+
+    &_also_info {
+        margin-bottom: 25px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_app_purp_item {
+        margin-bottom: 30px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_collect_info {
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_retain {
+         margin-bottom: 50px;
+        font-weight: $big-weight;
+        font-size: $fourth-size; 
+        line-height: 22px;
+    }
+
+    &_opt_up {
+        font-weight: $big-weight;
+        font-size: $fourth-size;
+    }
+
+    &_opt_up_text {
+         margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_addition {
+        margin-bottom: 35px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_share {
+        margin-left: 40px;
+    }
+
+    &_eco_share {
+         margin-bottom: 30px;
+        font-size: $fourth-size;
+        line-height: 22px;
+
+    }
+
+    &_share_transfer {
+        margin-bottom: 20px;
+         font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: lower-alpha;
+    }
+
+    &_share_transfer_secondary {
+        margin-bottom: 70px;
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc; 
+    }
+
+    &_transfer {
+        margin-bottom: 30px;
+        margin-left: 40px;
+        font-weight: $big-weight;  
+    }
+
+    &_we_wont {
+         margin-bottom: 30px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_international {
+         margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc;
+    }
+
+    &_trans {
+        font-weight: $big-weight;
+    }
+
+    &_several {
+         margin-bottom: 60px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+
+    &_ur_rights {
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc;
+    }
+
+    &_ur_rights_item {
+        margin-bottom: 50px;
+    }
+
+    &_exercise {     
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_cookies{
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_cookies_list{
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc;  
+    }
+    &_learn_more{  
+        margin-bottom: 28px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_sec_text{
+         margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_child_info{        
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_supplemental{ 
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_table,td,th{
+        border: 1px solid #b3b3b3;
+    }
+    &_table{
+        margin-bottom: 70px;
+    }
+    &_table_list{
+      list-style-type: disc;
+    }
+    &_covering{      
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_covering_text{ 
+        margin-bottom: 50px;
+        font-size: $fourth-size;
+        line-height: 22px;
+    }
+    &_covering_list{    
+        margin-bottom: 50px; 
+        font-size: $fourth-size;
+        line-height: 22px;
+        list-style-type: disc;
+    }
+    &_black{
+        font-weight: $big-weight;
+    }
+    &_california{      
+        margin-bottom: 20px;
+        font-size: $fourth-size; 
+        line-height: 22px;
+    }
+    &_california_dif{    
+        margin-bottom: 50px;
+        font-size: $fourth-size; 
+        line-height: 22px;
+    }
+    th,td{
+        padding: 10px 20px;
+        font-size: $fourth-size;
+        line-height: 22px;
+        text-align: left;  
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-weight: $big-weight;
+        font-size: 50px;
+        text-align: center;     
+    }
+
+    h3 {
+        margin-bottom: 20px;
+        margin-left: 40px;
+        font-weight: $big-weight;
+        font-size: $first-size;
+    }
+
+    h5 {
+        margin-bottom: 20px;
+        font-weight: $big-weight;
+        font-size: $fourth-size;
+    }
+    ul,
+    ol {
+        margin-left: 40px;
+    }
+    
+}
