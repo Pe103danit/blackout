@@ -11,6 +11,7 @@
       font-size: $second-size;
       @include manrope-bold();
     }
+
     &_body {
       display: flex;
       align-items: center;
