@@ -26,7 +26,7 @@ const ProductCategories = ({ title, categoryName }) => {
             setProducts(data.products);
             setCurrentItems(data.products.slice(0, 12));
         }
-    });
+    }, [data]);
 
     const [currentItems, setCurrentItems] = useState(products.slice(0, 12));
 

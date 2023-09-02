@@ -68,6 +68,7 @@ const App = (props) => {
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
       </Routes>
       <FooterContainer />
+      <GoToTop/>
     </div>
   )
 }
