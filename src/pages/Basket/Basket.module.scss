@@ -88,8 +88,8 @@
               input {
                 width: 27px;
                 height: 30px;
-                border: 0;
                 text-align: center;
+                border: 0;
                 outline: none;
               }
             }
@@ -107,8 +107,8 @@
 
             button {
               padding: 0;
-              background: none;
               text-decoration: underline;
+              background: none;
               border: none;
               border-bottom: black;
             }
@@ -134,8 +134,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            margin: 0 auto;
             width: 90%;
+            margin: 0 auto;
 
             &_container {
               display: flex;
@@ -175,8 +175,8 @@
                 justify-content: center;
                 width: 90%;
                 height: 56px;
-                background: $button-blue;
                 color: $white;
+                background: $button-blue;
                 font-size: $third-size;
                 border: none;
                 border-radius: 50px;
