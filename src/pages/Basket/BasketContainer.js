@@ -4,7 +4,8 @@ import Basket from './Basket'
 
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
-  basketList: state.ProductReducer.basketList
+  basketList: state.ProductReducer.basketList,
+  products: state.ProductReducer.products
 })
 
 const mapDispatchToProps = {

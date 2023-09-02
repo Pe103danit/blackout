@@ -2,18 +2,20 @@ import EmptyBasketContainer from '../../components/EmptyBasket/EmptyBasketContai
 import style from './Basket.module.scss'
 import { NavLink } from 'react-router-dom'
 import { Payments, Protection, Shipping, Support } from '../../components/assets/Icons'
-// import { useState } from 'react'
-// import { instance } from '../../components/assets/axiosUrl'
+import { useState } from 'react'
 
 const Basket = (props) => {
-  // const [basketList, setBasketList] = useState(JSON.parse(localStorage.getItem('basketList')));
-  // const products = basketList.map(item => item.itemNo)
-  // console.log(products)
-  // const requestProducts
-  // const getProduct = async () => {
-  //   const { data } = await instance.get(`//api/products/filter?categories=Accessories'`)
-  //   return data
-  // }
+  const [basketList, setBasketList] = useState(JSON.parse(localStorage.getItem('basketList')));
+  const basketProducts = basketList.map(item => item.itemNo)
+  const matchingProducts = props.products.filter(product =>
+    basketProducts.includes(product.itemNo)
+  );
+
+  const handleRemoveFromBasket = (productToRemove) => {
+    const updatedBasketList = basketList.filter((item) => item.itemNo !== productToRemove.itemNo);
+    localStorage.setItem('basketList', JSON.stringify(updatedBasketList));
+    setBasketList(updatedBasketList);
+  };
   return (
     <div>
       {props.basketList.length !== 0
@@ -22,17 +24,18 @@ const Basket = (props) => {
             <p className={style.section_container_title}>Shopping Cart</p>
             <div className={style.section_container_body}>
               <div className={style.section_container_body_left}>
-                <div className={style.section_container_body_left_product}>
+                {matchingProducts.map((product) => (
+                <div key={product.itemNo} className={style.section_container_body_left_product}>
                   <div className={style.section_container_body_left_product_checkbox}>
                     <input type="checkbox"/>
                   </div>
                   <NavLink to={'/'} className={style.section_container_body_left_product_photo}>
-                    <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt=""/>
+                    <img src={product.imageUrls[0]} alt={product.name} title={product.name}/>
                   </NavLink>
                   <div className={style.section_container_body_left_product_name}>
                     <NavLink to={'/'}>
-                      <p>Product name</p>
-                      <p>Product model</p>
+                      <p>{product.name}</p>
+                      <p>{product.model}</p>
                     </NavLink>
                   </div>
                   <div className={style.section_container_body_left_product_counter}>
@@ -44,13 +47,13 @@ const Basket = (props) => {
                   </div>
                   <div className={style.section_container_body_left_product_price}>
                     <p>
-                      price
+                      ${product.currentPrice.toFixed(2)}
                     </p>
-                    <button>
+                    <button onClick={() => handleRemoveFromBasket(product)}>
                       Remove
                     </button>
                   </div>
-                </div>
+                </div>))}
               </div>
               <div className={style.section_container_body_right}>
                 <div className={style.section_container_body_right_top}>
