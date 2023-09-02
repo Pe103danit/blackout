@@ -1,10 +1,20 @@
 import EmptyBasketContainer from '../../components/EmptyBasket/EmptyBasketContainer'
 import style from './Basket.module.scss'
 import { NavLink } from 'react-router-dom'
+import { Payments, Protection, Shipping, Support } from '../../components/assets/Icons'
+// import { useState } from 'react'
+// import { instance } from '../../components/assets/axiosUrl'
 
 const Basket = (props) => {
+  // const [basketList, setBasketList] = useState(JSON.parse(localStorage.getItem('basketList')));
+  // const products = basketList.map(item => item.itemNo)
+  // console.log(products)
+  // const requestProducts
+  // const getProduct = async () => {
+  //   const { data } = await instance.get(`//api/products/filter?categories=Accessories'`)
+  //   return data
+  // }
   return (
-
     <div>
       {props.basketList.length !== 0
         ? <div className={style.section}>
@@ -62,7 +72,9 @@ const Basket = (props) => {
                     </div>
                     <div className={style.section_container_body_right_top_inner_containerButtons}>
                       <button className={style.section_container_body_right_top_inner_containerButtons_btn1}>
-                        CHECKOUT
+                        <NavLink to={'/'} className={style.section_container_body_right_top_inner_containerButtons_btn1_link}>
+                          CHECKOUT
+                        </NavLink>
                       </button>
                     </div>
                     <div className={style.section_container_body_right_top_inner_containerButtons}>
@@ -74,7 +86,44 @@ const Basket = (props) => {
                   </div>
                 </div>
                 <div className={style.section_container_body_right_bottom}>
-                  Bottom container
+                  <div className={style.section_container_body_right_bottom_inner}>
+                    <div className={style.section_container_body_right_bottom_inner_container}>
+                      <div className={style.section_container_body_right_bottom_inner_container_img}>
+                        <Shipping/>
+                      </div>
+                      <div className={style.section_container_body_right_bottom_inner_container_text}>
+                        <p>Fast & Free Shipping</p>
+                        <p>Orders are usually processed and delivered within 4-10 business days.</p>
+                      </div>
+                    </div>
+                    <div className={style.section_container_body_right_bottom_inner_container}>
+                      <div className={style.section_container_body_right_bottom_inner_container_img}>
+                        <Protection/>
+                      </div>
+                      <div className={style.section_container_body_right_bottom_inner_container_text}>
+                        <p>Warranty Protection</p>
+                        <p>All products are covered by a warranty service.</p>
+                      </div>
+                    </div>
+                    <div className={style.section_container_body_right_bottom_inner_container}>
+                      <div className={style.section_container_body_right_bottom_inner_container_img}>
+                        <Payments/>
+                      </div>
+                      <div className={style.section_container_body_right_bottom_inner_container_text}>
+                        <p>Secure Payments</p>
+                        <p>Pay by debit or credit card, PayPal, or other secure payment platform.</p>
+                      </div>
+                    </div>
+                    <div className={style.section_container_body_right_bottom_inner_container}>
+                      <div className={style.section_container_body_right_bottom_inner_container_img}>
+                        <Support/>
+                      </div>
+                      <div className={style.section_container_body_right_bottom_inner_container_text}>
+                        <p>Lifetime Customer Support</p>
+                        <p>9AM to 5PM PST (Weekdays)</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
