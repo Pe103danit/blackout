@@ -52,8 +52,8 @@
           &_name {
             a {
               p:first-child {
-                font-size: $third-size;
                 color: $first-grey;
+                font-size: $third-size;
                 @include manrope-bold();
               }
 
@@ -78,8 +78,8 @@
               button {
                 width: 33px;
                 height: 33px;
-                text-align: center;
                 font-weight: $big-weight;
+                text-align: center;
                 background: $main-background;
                 border: 0;
                 cursor: pointer;
@@ -89,8 +89,8 @@
                 width: 27px;
                 height: 30px;
                 border: 0;
-                outline: none;
                 text-align: center;
+                outline: none;
               }
             }
           }
@@ -108,9 +108,9 @@
             button {
               padding: 0;
               background: none;
+              text-decoration: underline;
               border: none;
               border-bottom: black;
-              text-decoration: underline;
             }
           }
         }
@@ -131,10 +131,10 @@
           border-radius: $border;
 
           &_inner {
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            margin: 0 auto;
             width: 90%;
 
             &_container {
@@ -160,8 +160,8 @@
               justify-content: space-between;
 
               &_total {
-                font-size: $sixth-size;
                 color: $first-grey !important;
+                font-size: $sixth-size;
               }
             }
 
@@ -176,10 +176,10 @@
                 width: 90%;
                 height: 56px;
                 background: $button-blue;
+                color: $white;
+                font-size: $third-size;
                 border: none;
                 border-radius: 50px;
-                font-size: $third-size;
-                color: $white;
                 @include manrope-bold();
               }
 
@@ -192,8 +192,8 @@
         }
 
         &_bottom {
-          margin-top: 50px;
           width: 100%;
+          margin-top: 50px;
           background: $white;
           border-radius: $border;
         }
