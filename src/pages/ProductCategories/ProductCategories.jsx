@@ -17,8 +17,11 @@ const ProductCategories = ({ title, categoryName }) => {
         setCurrentItems(data.products.slice(0, 12))
         return data
     }
+
     const { data, isLoading, isError } = useQuery('getProductCategories', getProductCategories)
+
     useEffect(() => {
+        // const { data, isLoading, isError } = useQuery('getProductCategories', getProductCategories)
         if (data) {
             setProducts(data.products);
             setCurrentItems(data.products.slice(0, 12));
