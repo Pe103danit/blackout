@@ -3,7 +3,7 @@
 .container {
   position: fixed;
   top: 70%;
-  left: 95%;
+  left: 92%;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -24,12 +24,6 @@
   }
 }
 
-@media screen and (max-width: 1050px) {
-  .container {
-    left: 92%;
-  }
-}
-
 @media screen and (max-width: $tab) {
   .container {
     left: 90%;
@@ -37,6 +31,14 @@
       background-color: $button-blue;
       transition-duration: 0s;
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    left: 85%;
+    width: 43px;
+    height: 43px;
   }
 }
 

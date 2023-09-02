@@ -1,19 +1,25 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import style from './ProductCard.module.scss'
-import { useSelector} from 'react-redux'
-import StarRating from './StarRating';
+import { useSelector, useDispatch } from 'react-redux'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
-import { instance } from '../assets/axiosUrl';
+import { useQuery } from 'react-query';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { useQuery } from 'react-query';
+import style from './ProductCard.module.scss'
+import StarRating from './StarRating';
+import { instance } from '../assets/axiosUrl';
+import { addToBasket } from '../../redux/reducers/ProductReducer/ProductReducer';
+
 export const ProductCard = () => {
-  const {id} = useParams()
+   // variables
+  const { id } = useParams()
+  const dispatch = useDispatch()
+
+   // states
   const [product, setProduct] = useState([])
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
@@ -21,14 +27,16 @@ export const ProductCard = () => {
   const [multipliedPrice, setMultipliedPrice] = useState(0)
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [specsArray, setSpecsArray] = useState([])
-
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
+
   const themeStyle = theme ? 'light' : 'dark'
+   // get one product
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
     return data
   }
   const { data } = useQuery('getProduct', getProduct)
+   // useEffects
   useEffect(() => {
     setProduct(data)
   }, [data])
@@ -38,8 +46,9 @@ export const ProductCard = () => {
     setCountOfAvailable(count)
     setSpecsArray(product?.specs)
   }, [product?.currentPrice, product?.quantity, product?.specs])
+   // handlers
   const handleClick = () => {
-
+    dispatch(addToBasket())
   }
   return (
     <section className={`${style.product} ${themeStyle}`}>
@@ -92,8 +101,8 @@ export const ProductCard = () => {
                   }}
                   autoplay={{ delay: 1500 }}
                 >
-                  {product?.imageUrls?.map(item => (
-                    <SwiperSlide className='swiper-slide'>
+                  {product?.imageUrls?.map((item, index) => (
+                    <SwiperSlide key={index} className='swiper-slide'>
                       <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
                         <img className={style.product_image_swiper_mini_img} src={item} alt='' />
                       </div>

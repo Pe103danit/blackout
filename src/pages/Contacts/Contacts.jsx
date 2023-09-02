@@ -1,5 +1,4 @@
 import style from './Contacts.module.scss'
-
 import {
     MailIconLight,
     MailIconDark,
@@ -7,6 +6,7 @@ import {
     FacebookIconDark
 }
     from '../../components/assets/Icons'
+import { useEffect } from 'react'
 
 const Contacts = (props) => {
     const themeStyle = props.lightTheme
@@ -14,6 +14,11 @@ const Contacts = (props) => {
         : 'darkContacts'
 
     const email = 'pe103danit@gmail.com';
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className={`${style.contacts} ${themeStyle}`}>
             <div className={style.contacts_imgContainer}>

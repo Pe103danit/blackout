@@ -1,10 +1,14 @@
 import style from './SiteMap.module.scss';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react'
 
 const SiteMap = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightSiteMap'
     : 'darkSiteMap'
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={style.section}>
       <div className={`${style.section_container} ${themeStyle}`}>
