@@ -51,9 +51,17 @@
 
           &_name {
             a {
-              color: $first-grey;
-              font-size: $third-size;
-              @include manrope-bold()
+              p:first-child {
+                font-size: $third-size;
+                color: $first-grey;
+                @include manrope-bold();
+              }
+
+              p:nth-child(2) {
+                padding-top: 20px;
+                color: $fourth-grey;
+                @include manrope-light();
+              }
             }
           }
 
@@ -61,20 +69,48 @@
             display: flex;
             justify-content: space-between;
             width: 99px;
-            border: 1px solid $third-grey;
 
-            button {
-              width: 33px;
+            &_inner {
               height: 33px;
-              background: $main-background;
-              border: 0;
-              cursor: pointer;
+              border: 1px solid $second-white;
+              border-radius: 3px;
+
+              button {
+                width: 33px;
+                height: 33px;
+                text-align: center;
+                font-weight: $big-weight;
+                background: $main-background;
+                border: 0;
+                cursor: pointer;
+              }
+
+              input {
+                width: 27px;
+                height: 30px;
+                border: 0;
+                outline: none;
+                text-align: center;
+              }
+            }
+          }
+
+          &_price {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 90px;
+
+            p {
+              font-weight: $big-weight;
             }
 
-            input {
-              width: 27px;
-              height: 30px;
-              border: 0;
+            button {
+              padding: 0;
+              background: none;
+              border: none;
+              border-bottom: black;
+              text-decoration: underline;
             }
           }
         }
@@ -86,15 +122,77 @@
         align-items: center;
         justify-content: space-between;
         width: 25%;
-        row-gap: 15px;
 
         &_top {
+          display: flex;
+          flex-direction: column;
           width: 100%;
           background: $white;
           border-radius: $border;
+
+          &_inner {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 90%;
+
+            &_container {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-size: $fourth-size;
+
+              p:first-child {
+                color: $fourth-grey;
+                @include manrope-regular();
+              }
+
+              p:nth-child(2) {
+
+                color: $first-grey;
+                @include manrope-bold();
+              }
+            }
+
+            &_containerSum {
+              display: flex;
+              justify-content: space-between;
+
+              &_total {
+                font-size: $sixth-size;
+                color: $first-grey !important;
+              }
+            }
+
+            &_containerButtons {
+              display: flex;
+              justify-content: center;
+
+              &_btn1 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 90%;
+                height: 56px;
+                background: $button-blue;
+                border: none;
+                border-radius: 50px;
+                font-size: $third-size;
+                color: $white;
+                @include manrope-bold();
+              }
+
+              &_btn2 {
+                color: $first-grey;
+                @include manrope-regular();
+              }
+            }
+          }
         }
 
         &_bottom {
+          margin-top: 50px;
           width: 100%;
           background: $white;
           border-radius: $border;

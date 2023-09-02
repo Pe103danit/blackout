@@ -20,27 +20,57 @@ const Basket = (props) => {
                   </NavLink>
                   <div className={style.section_container_body_left_product_name}>
                     <NavLink to={'/'}>
-                      Product name
+                      <p>Product name</p>
+                      <p>Product model</p>
                     </NavLink>
                   </div>
                   <div className={style.section_container_body_left_product_counter}>
-                    <button>-</button>
-                    <input type="text"/>
-                    <button>+</button>
+                    <div className={style.section_container_body_left_product_counter_inner}>
+                      <button>-</button>
+                      <input type="text"/>
+                      <button>+</button>
+                    </div>
                   </div>
                   <div className={style.section_container_body_left_product_price}>
                     <p>
                       price
                     </p>
                     <button>
-                      remove
+                      Remove
                     </button>
                   </div>
                 </div>
               </div>
               <div className={style.section_container_body_right}>
                 <div className={style.section_container_body_right_top}>
-                Top container
+                  <div className={style.section_container_body_right_top_inner}>
+                    <div className={style.section_container_body_right_top_inner_container}>
+                      <p>Subtotal</p>
+                      <p>Summ</p>
+                    </div>
+                    <div className={style.section_container_body_right_top_inner_container}>
+                      <p>Shipping</p>
+                      <p>Free</p>
+                    </div>
+                    <div className={style.section_container_body_right_top_inner_container}>
+                      <p>Estimated Tax</p>
+                      <p>Calculated at Checkout</p>
+                    </div>
+                    <div className={style.section_container_body_right_top_inner_containerSum}>
+                      <p className={style.section_container_body_right_top_inner_containerSum_total}>Total summ</p>
+                    </div>
+                    <div className={style.section_container_body_right_top_inner_containerButtons}>
+                      <button className={style.section_container_body_right_top_inner_containerButtons_btn1}>
+                        CHECKOUT
+                      </button>
+                    </div>
+                    <div className={style.section_container_body_right_top_inner_containerButtons}>
+                      <NavLink to={'/shop'}
+                               className={style.section_container_body_right_top_inner_containerButtons_btn2}>
+                        Continue Shopping
+                      </NavLink>
+                    </div>
+                  </div>
                 </div>
                 <div className={style.section_container_body_right_bottom}>
                   Bottom container
