@@ -18,25 +18,43 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      padding-bottom: 50px;
 
       &_left {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 70%;
+        min-height: 728px;
         background: $white;
         border-radius: $border;
 
         &_product {
+          position: relative;
           display: flex;
           flex-wrap: nowrap;
           justify-content: space-between;
           width: 90%;
-          height: 180px;
+          height: 150px;
           padding: 20px 10px 0;
 
-          &_checkbox {
+          &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: $black;
+            opacity: 15%;
+          }
 
+          &_checkbox {
+            input {
+              width: 16px;
+              height: 16px;
+            }
           }
 
           &_photo {
@@ -50,10 +68,19 @@
           }
 
           &_name {
+            width: 230px;
             a {
-              color: $first-grey;
-              font-size: $third-size;
-              @include manrope-bold()
+              p:first-child {
+                font-size: $third-size;
+                color: $first-grey;
+                @include manrope-bold();
+              }
+
+              p:nth-child(2) {
+                padding-top: 20px;
+                color: $fourth-grey;
+                @include manrope-light();
+              }
             }
           }
 
@@ -61,20 +88,49 @@
             display: flex;
             justify-content: space-between;
             width: 99px;
-            border: 1px solid $third-grey;
 
-            button {
-              width: 33px;
+            &_inner {
               height: 33px;
-              background: $main-background;
-              border: 0;
-              cursor: pointer;
+              border: 1px solid $second-white;
+              border-radius: 3px;
+
+              button {
+                width: 33px;
+                height: 33px;
+                text-align: center;
+                font-weight: $big-weight;
+                background: $main-background;
+                border: 0;
+                cursor: pointer;
+              }
+
+              input {
+                width: 27px;
+                height: 30px;
+                border: 0;
+                outline: none;
+                text-align: center;
+              }
+            }
+          }
+
+          &_price {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 90px;
+
+            p {
+              font-weight: $big-weight;
+              color: $black;
             }
 
-            input {
-              width: 27px;
-              height: 30px;
-              border: 0;
+            button {
+              padding: 0;
+              background: none;
+              border: none;
+              border-bottom: black;
+              text-decoration: underline;
             }
           }
         }
@@ -86,18 +142,151 @@
         align-items: center;
         justify-content: space-between;
         width: 25%;
-        row-gap: 15px;
 
         &_top {
+          display: flex;
+          flex-direction: column;
           width: 100%;
           background: $white;
           border-radius: $border;
+
+          &_inner {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 90%;
+
+            &_container {
+              padding-top: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-size: $fourth-size;
+
+              p:first-child {
+                color: $fourth-grey;
+                @include manrope-regular();
+              }
+
+              p:nth-child(2) {
+                color: $first-grey;
+                @include manrope-bold();
+              }
+            }
+
+            &_containerSum {
+              position: relative;
+              padding-top: 30px;
+              display: flex;
+              justify-content: space-between;
+              &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 10px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: $black;
+                opacity: 15%;
+              }
+              &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: $black;
+                opacity: 15%;
+              }
+
+              &_total {
+                font-size: $sixth-size;
+                color: $first-grey !important;
+                @include manrope-bold();
+              }
+            }
+
+            &_containerButtons {
+              padding-top: 20px;
+              padding-bottom: 20px;
+              display: flex;
+              justify-content: center;
+
+              &_btn1 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 90%;
+                height: 56px;
+                background: $button-blue;
+                border: none;
+                border-radius: 50px;
+                &_link {
+                  font-size: $third-size;
+                  color: $white;
+                  @include manrope-bold();
+                }
+              }
+
+              &_btn2 {
+                color: $first-grey;
+                @include manrope-bold();
+                text-transform: uppercase;
+              }
+            }
+          }
         }
 
         &_bottom {
+          margin-top: 24px;
           width: 100%;
           background: $white;
           border-radius: $border;
+
+          &_inner {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 90%;
+            padding-top: 32px;
+
+            &_container {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding-bottom: 32px;
+
+              &_img {
+                width: 20%;
+
+                svg {
+                  width: 30px;
+                  height: 30px;
+                }
+              }
+
+              &_text {
+                width: 100%;
+
+                p:first-child {
+                  font-size: $fourth-size;
+                  color: $black;
+                  @include manrope-bold();
+                }
+
+                p:nth-child(2) {
+                  padding-top: 10px;
+                  color: $lighter-black;
+                  @include manrope-light();
+                }
+              }
+            }
+          }
         }
       }
     }
