@@ -1,30 +1,34 @@
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import style from './ProductCard.module.scss'
 import { useSelector} from 'react-redux'
 import StarRating from './StarRating';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
+import { instance } from '../assets/axiosUrl';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { getProductById } from '../../redux/reducers/ProductReducer/productReducer';
+import { useQuery } from 'react-query';
 export const ProductCard = () => {
-  const dispatch = useDispatch()
-  const product = useSelector(state => state.products.product || {})
-  let { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
+  const {id} = useParams()
+  const [product, setProduct] = useState([])
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
   const [countOfAvailable, setCountOfAvailable] = useState(0)
   const [multipliedPrice, setMultipliedPrice] = useState(0)
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [specsArray, setSpecsArray] = useState([])
+
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const themeStyle = theme ? 'light' : 'dark'
-  // useEffect(() => {
-  //   dispatch(getProductById(data))
-  // }, [data, dispatch])
+  const getProduct = async () => {
+    const { data } = await instance.get(`/api/products/${id}`)
+    return data
+  }
+  const { data } = useQuery('getProduct', getProduct)
   useEffect(() => {
     setProduct(data)
   }, [data])
