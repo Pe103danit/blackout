@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { getProductById, addToBasket } from '../../redux/reducers/ProductReducer/productReducer';
+import { getProductById, addToBasket } from '../../redux/reducers/ProductReducer/ProductReducer';
 export const ProductCard = () => {
   const dispatch = useDispatch()
   const product = useSelector(state => state.products.product || {})
@@ -181,3 +181,4 @@ export const ProductCard = () => {
     </section>
   )
 }
+export default ProductCard
