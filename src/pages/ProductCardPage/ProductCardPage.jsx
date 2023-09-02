@@ -1,9 +1,9 @@
 import React from 'react'
-import ProductCard from '../../components/ProductCard'
+import ProductCard from '../../components/ProductCard/ProductCard'
 
 const ProductCardPage = () => {
   return (
-    <ProductCard />
+    <ProductCard/>
   )
 }
 export default ProductCardPage
