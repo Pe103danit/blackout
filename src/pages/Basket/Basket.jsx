@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const Basket = (props) => {
   return (
+
     <div>
       {props.basketList.length !== 0
         ? <div className={style.section}>
