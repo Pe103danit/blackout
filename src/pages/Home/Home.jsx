@@ -15,7 +15,7 @@ const Home = (props) => {
       </div>
       <Carousel />
       <SwiperProductsHomeContainer />
-      <TopHomeSolutions/>
+      <TopHomeSolutions />
       <WeAreHereToHelp lightTheme={props.lightTheme} />
       <WhyChooseUs />
     </>

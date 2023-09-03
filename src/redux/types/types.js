@@ -5,7 +5,7 @@ const types = {
   SET_USER: 'SET_USER',
   SIGN_UP_USER: 'SIGN_UP_USER',
   REMOVE_USER: 'REMOVE_USER',
-  
+  ADD_TO_BASKET: 'ADD_TO_BASKET'
 }
 export const typesOfProducts = {
   GET_PRODUCT: 'GET_PRODUCT',

@@ -12,6 +12,7 @@ const loginSchema = object({
 });
 
 const Login = () => {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const login = async credentional => {
     const { data } = await instance.post('/api/customers/login', credentional)
@@ -23,6 +24,10 @@ const Login = () => {
     localStorage.setItem('Signature', signature);
     navigate('/account');
   }
+=======
+  instance.get('/api/products').then(res => {
+  })
+>>>>>>> master
   return (
     <div className={style.Login}>
       <Formik

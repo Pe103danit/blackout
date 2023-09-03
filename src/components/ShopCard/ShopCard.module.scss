@@ -20,6 +20,10 @@
             display: block;
         }
 
+        .shopCard__description__order__cart {
+            display: none;
+        }
+
         .shopCard__description__order__price {
             display: none;
         }
@@ -31,6 +35,7 @@
         .shopCard__imgBlock__img2 {
             opacity: 1;
         }
+
     }
 
     &__imgBlock {
@@ -133,15 +138,32 @@
                 border-radius: 20px;
                 transform: translateX(-50%);
             }
+
             &__wishList {
                 position: absolute;
+                top: 7%;
                 right: 2%;
-                bottom: 0;
                 width: 30px;
                 background-color: transparent;
                 border: none;
                 transform: translate(-50%, -50%);
-        
+
+                svg {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            &__cart {
+                position: absolute;
+                right: 2%;
+                bottom: 1%;
+                display: block;
+                width: 30px;
+                background-color: transparent;
+                border: none;
+                transform: translate(-50%, -50%);
+
                 svg {
                     width: 30px;
                     height: 30px;
@@ -150,12 +172,13 @@
         }
     }
 
-    
+
 }
 
-@media screen and (min-width: 749px) {
+@media screen and (min-width: 481px) {
     .shopCard {
-        &__block {
+        &__imgBlock {
+           
             &__img1 {
                 width: 368px;
             }
@@ -163,6 +186,27 @@
             &__img2 {
                 width: 368px;
             }
+        }
+    }
+}
+
+@media screen and (min-width: 993px) {
+    .shopCard {
+        &__imgBlock {
+            width: 250px;
+            height: 250px;
+            &__img1 {
+                width: 250px;
+                height: 250px;
+            }
+
+            &__img2 {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        &__description__order__cart {
+            display: none;
         }
     }
 }

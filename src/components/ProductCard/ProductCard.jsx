@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import style from './ProductCard.module.scss'
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import StarRating from './StarRating';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
@@ -10,24 +9,18 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { getProductById } from '../../redux/reducers/ProductReducer/ProductReducer';
+import style from './ProductCard.module.scss'
+import StarRating from './StarRating';
 import { instance } from '../assets/axiosUrl';
-import { useParams } from 'react-router-dom';
+import { addToBasket } from '../../redux/reducers/ProductReducer/ProductReducer';
 
-const ProductCard = () => {
-  useEffect(() => {
-    // Scroll to the top of the page when the component mounts
-    window.scrollTo(0, 0);
-  }, []);
+export const ProductCard = () => {
+  // variables
   const { id } = useParams()
-  const getProduct = async () => {
-    const { data } = await instance.get(`/api/products/${id}`)
-    return data
-  }
-  const { data } = useQuery('getProductById', getProduct)
   const dispatch = useDispatch()
-  const product = useSelector(state => state.ProductReducer.product || {})
-  const { sale, name, rating, currentPrice, underPrice, imageUrls, specs, quantity, description } = product
+
+  // states
+  const [product, setProduct] = useState([])
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
   const [countOfAvailable, setCountOfAvailable] = useState(0)
@@ -35,17 +28,59 @@ const ProductCard = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [specsArray, setSpecsArray] = useState([])
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
+
   const themeStyle = theme ? 'light' : 'dark'
+  // get one product
+  const getProduct = async () => {
+    const { data } = await instance.get(`/api/products/${id}`)
+    return data
+  }
+  const { data } = useQuery('getProduct', getProduct)
+  // useEffects
   useEffect(() => {
-    dispatch(getProductById(data))
-  }, [data, dispatch])
+    setProduct(data)
+  }, [data])
   useEffect(() => {
-    setMultipliedPrice(currentPrice)
-    const count = quantity - 1
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    setMultipliedPrice(product?.currentPrice)
+    const count = product?.quantity - 1
     setCountOfAvailable(count)
-    setSpecsArray(specs)
-  }, [currentPrice, quantity, specs])
+    setSpecsArray(product?.specs)
+  }, [product?.currentPrice, product?.quantity, product?.specs])
+  // handlers
   const handleClick = () => {
+    dispatch(addToBasket(product?.itemNo, countToCart))
+    let storageBasket = JSON.parse(localStorage.getItem('basketList'))
+    let repeat = false
+    storageBasket = storageBasket.map(item => {
+      if (item.itemNo === product?.itemNo) {
+        repeat = true
+        return ({
+          itemNo: product?.itemNo,
+          countToCart: item.countToCart + countToCart
+        })
+      } else {
+        return item
+      }
+    })
+    if (!repeat) {
+      storageBasket.push(
+        {
+          itemNo: product?.itemNo,
+          countToCart
+        }
+      )
+    }
+    localStorage.setItem('basketList', JSON.stringify([
+      ...storageBasket
+    ])
+    )
+    const countBasket = parseInt(localStorage.getItem('basket'))
+    localStorage.setItem('basket', `${countBasket + countToCart}`)
   }
   return (
     <section className={`${style.product} ${themeStyle}`}>
@@ -55,8 +90,7 @@ const ProductCard = () => {
             <div className='carousel'>
               <Swiper
                 style={{
-                  '--swiper-navigation-color': '#fff',
-                  '--swiper-pagination-color': '#fff',
+                  '--swiper-navigation-color': '#2164FF',
                 }}
                 spaceBetween={10}
                 navigation={true}
@@ -65,15 +99,15 @@ const ProductCard = () => {
                 className={style.product_card_swiper}
                 autoplay={{ delay: 1500 }}
               >
-                {imageUrls?.map((item, index) => (
+                {product?.imageUrls?.map((item, index) => (
                   <SwiperSlide key={index} className='swiper-slide'>
                     <div className={`${style.product_card_img_wrapper} ${style.product_card_img_wrapper_big}`}>
-                      <img src={item} alt='' />
+                      <img src={item} alt="" />
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <div className={style.product_card_swiper_mini} id='swiper_day_mini'>
+              <div className={style.product_card_swiper_mini} id="swiper_day_mini">
                 <Swiper
                   onSwiper={setThumbsSwiper}
                   spaceBetween={10}
@@ -91,15 +125,18 @@ const ProductCard = () => {
                     },
                     481: {
                       slidesPerView: 2,
-                      spaceBetween: 30,
+                      // spaceBetween: 30,
                     },
+                    320: {
+                      slidesPerView: 2
+                    }
                   }}
                   autoplay={{ delay: 1500 }}
                 >
-                  {imageUrls?.map(item => (
-                    <SwiperSlide className='swiper-slide'>
+                  {product?.imageUrls?.map((item, index) => (
+                    <SwiperSlide key={index} className='swiper-slide'>
                       <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
-                        <img src={item} alt='' />
+                        <img className={style.product_image_swiper_mini_img} src={item} alt='' />
                       </div>
                     </SwiperSlide>
                   ))}
@@ -110,15 +147,15 @@ const ProductCard = () => {
           </div>
           <div className={style.product_card_info}>
             <div className={style.product_info}>
-              {sale && <p className={style.product_card_hot}>Hot</p>}
-              <h2 className={style.product_card_title}>{name}</h2>
-              <p><StarRating starsSelected={rating} /></p>
-              <p className={style.product_card_price}> $ {currentPrice} </p>
-              <p className={style.product_card_under_price}>{underPrice}</p>
+              {product?.sale && <p className={style.product_card_hot}>Hot</p>}
+              <h2 className={style.product_card_title}>{product?.name}</h2>
+              <p><StarRating starsSelected={product?.rating} /></p>
+              <p className={style.product_card_price}> $ {product?.currentPrice} </p>
+              <p className={style.product_card_under_price}>{product?.underPrice}</p>
             </div>
             <div className={style.product_card_related_products}>
               <div className={`${style.product_card_description_items} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
-                <h6 className={style.product_card_description_subtitle}>{description}</h6>
+                <h6 className={style.product_card_description_subtitle}>{product?.description}</h6>
                 <ul className={style.product_card_description_list}>
                   {specsArray?.length && [...specsArray].splice(0, 4).map((item) => (
                     <li key={item}>{item}</li>
@@ -129,36 +166,36 @@ const ProductCard = () => {
                 </ul>
                 {(specsArray?.length > 4) && <p className={style.product_card_overview} onClick={() => { setOverWeightOpen(!isOverWeightOpen) }}>Overview {isOverWeightOpen && <SlArrowUp />} {!isOverWeightOpen && < SlArrowDown />}</p>}
               </div>
-              {!quantity && <div>
+              {!product?.quantity && <div>
                 <h6 className={style.product_card_description_subtitle_available}>
                   Unavailable
                 </h6>
               </div>}
-              {!!quantity && <div>
+              {!!product?.quantity && <div>
                 <h6 className={style.product_card_description_subtitle_available}>
                   Available
                 </h6>
                 <div className={style.product_card_container_for_buttons}>
-                  <button className={style.product_card_button_minus} disabled={countToCart === 1} onClick={() => {
+                  <button className={`${style.product_card_button_available} ${(countToCart === 1) ? style.product_card_button_disable : ''}`} disabled={countToCart === 1} onClick={() => {
                     setCountToCart(prev => prev -= 1)
                     setCountOfAvailable(prev => prev += 1)
                     if (countToCart > 0) {
-                      setMultipliedPrice(prev => (prev = Number(prev) - currentPrice).toFixed(2))
+                      setMultipliedPrice(prev => (prev = Number(prev) - product?.currentPrice).toFixed(2))
                     }
                     if (countToCart === 1) {
-                      setMultipliedPrice(currentPrice)
+                      setMultipliedPrice(product?.currentPrice)
                     }
                   }}>-</button>
                   <span className={style.product_card_count}>{countToCart}</span>
-                  <button className={style.product_card_button_plus} disabled={!countOfAvailable} onClick={() => {
+                  <button className={`${style.product_card_button_available} ${(!countOfAvailable) ? style.product_card_button_disable : ''}`} disabled={!countOfAvailable} onClick={() => {
                     setCountToCart(prev => prev += 1)
                     setCountOfAvailable(prev => prev -= 1)
 
                     if (countToCart > 0) {
-                      setMultipliedPrice(prev => (prev = Number(prev) + currentPrice).toFixed(2))
+                      setMultipliedPrice(prev => (prev = Number(prev) + product?.currentPrice).toFixed(2))
                     }
                     if (!countToCart) {
-                      setMultipliedPrice(currentPrice)
+                      setMultipliedPrice(product?.currentPrice)
                     }
                   }}>+</button>
                 </div>

@@ -28,8 +28,8 @@ const CardSwiperProductsHome = (props) => {
               <p className={style.section_container_containerInner_info_price}>from {props.currentPrice}$</p>}
           </div>
           <div className={style.section_container_containerInner_photo}>
-            <img src={props.imageUrls[0]} alt={props.name} className={style.section_container_containerInner_photo_img1}/>
-            <img src={props.imageUrls[1]} alt={props.name} className={style.section_container_containerInner_photo_img2}/>
+            <img src={props.imageUrls[0]} alt={props.name} className={style.section_container_containerInner_photo_img1} />
+            <img src={props.imageUrls[1]} alt={props.name} className={style.section_container_containerInner_photo_img2} />
           </div>
         </div>
       </div>
