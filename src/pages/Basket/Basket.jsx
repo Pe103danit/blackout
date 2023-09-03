@@ -5,6 +5,10 @@ import { Payments, Protection, Shipping, Support } from '../../components/assets
 import { useState } from 'react'
 
 const Basket = (props) => {
+  const themeStyle = props.lightTheme
+    ? 'lightBasketStyle'
+    : 'darkBasketStyle'
+
   const [basketList, setBasketList] = useState(JSON.parse(localStorage.getItem('basketList')));
   const basketProducts = basketList.map(item => item.itemNo)
   const matchingProducts = props.products.filter(product =>
@@ -19,7 +23,7 @@ const Basket = (props) => {
   return (
     <div>
       {props.basketList.length !== 0
-        ? <div className={style.section}>
+        ? <div className={`${style.section} ${themeStyle}`}>
           <div className={style.section_container}>
             <p className={style.section_container_title}>Shopping Cart</p>
             <div className={style.section_container_body}>

@@ -2,7 +2,6 @@
 @import '../../scss/mixin';
 
 .section {
-
   &_container {
     width: 100%;
     max-width: 1200px;
@@ -70,6 +69,7 @@
 
           &_name {
             width: 230px;
+
             a {
               p:first-child {
                 color: $first-grey;
@@ -134,7 +134,14 @@
               background: none;
               border: none;
               border-bottom: black;
+              &:hover {
+                text-decoration: none;
+              }
             }
+          }
+          &:hover img {
+            width: 90px;
+            height: 90px;
           }
         }
       }
@@ -145,6 +152,7 @@
         align-items: center;
         justify-content: space-between;
         width: 30%;
+        border-radius: $border;
 
         &_top {
           display: flex;
@@ -183,6 +191,7 @@
               display: flex;
               justify-content: space-between;
               padding-top: 30px;
+
               &::before {
                 position: absolute;
                 top: 10px;
@@ -194,6 +203,7 @@
                 opacity: 15%;
                 content: "";
               }
+
               &::after {
                 position: absolute;
                 bottom: -10px;
@@ -228,6 +238,12 @@
                 background: $button-blue;
                 border: none;
                 border-radius: 50px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+
+                &:hover {
+                  transform: scale(1.1);
+                }
+
                 &_link {
                   color: $white;
                   font-size: $third-size;
@@ -289,6 +305,140 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .section {
+    &_container {
+      &_title {
+        position: relative;
+        width: 100%;
+        margin: 1px auto 0;
+        padding: 25px 0 32px 10px;
+        font-size: $third-size;
+        background: $white;
+        border-radius: $border;
+        &::after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 1px;
+          background: $black;
+          opacity: 15%;
+          content: "";
+        }
+      }
+      &_body {
+        flex-wrap: wrap;
+        padding-bottom: 24px;
+        &_left {
+          margin: 0 auto;
+          width: 100%;
+          min-height: 580px;
+          &_product {
+            flex-wrap: wrap;
+            &_checkbox {
+              display: none;
+            }
+            &_price {
+              p:first-child {
+                color: $first-grey;
+                font-size: $fourth-size;
+                @include manrope-bold();
+              }
+              button {
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+            &:hover img {
+              width: 88px;
+              height: 88px;
+            }
+          }
+        }
+        &_right {
+          margin: 0 auto;
+          width: 100%;
+          &_top {
+            &_inner {
+              &_containerButtons {
+                &_btn1 {
+                  transition: none;
+                  &:hover {
+                    transform: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .section {
+    &_container {
+      &_body {
+        &_left {
+          &_product {
+            &_name {
+              padding-top: 10px;
+            }
+            &_counter {
+              order: 3
+            }
+            &_price {
+              order: 2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .section {
+    &_container {
+      &_body {
+        padding-bottom: 0;
+        &_left {
+          &_product {
+            height: 200px;
+            padding: 10px 10px 0;
+            &_name {
+              p:nth-child(2) {
+              display: none;
+              }
+            }
+            &_price {
+              height: 50px;
+            }
+          }
+        }
+        &_right {
+          margin: 0 auto;
+          width: 100%;
+          &_top {
+            &_inner {
+              &_container {
+                font-size: 13px;
+              }
+            }
+          }
+          &_bottom {
+            display: none;
           }
         }
       }
