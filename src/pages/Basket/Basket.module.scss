@@ -10,12 +10,13 @@
     &_title {
       padding: 55px 0 32px 10px;
       font-size: $second-size;
+      border-radius: $border;
       @include manrope-bold();
     }
 
     &_body {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       width: 100%;
       padding-bottom: 50px;
@@ -88,7 +89,7 @@
           &_counter {
             display: flex;
             justify-content: space-between;
-            width: 99px;
+            width: 101px;
 
             &_inner {
               height: 33px;
@@ -100,6 +101,7 @@
                 height: 33px;
                 font-weight: $big-weight;
                 text-align: center;
+                color: $black;
                 background: $main-background;
                 border: 0;
                 cursor: pointer;
@@ -131,9 +133,12 @@
               padding: 0;
               text-align: left;
               text-decoration: underline;
+              color: $black;
               background: none;
               border: none;
               border-bottom: black;
+              @include manrope-regular();
+
               &:hover {
                 text-decoration: none;
               }
@@ -322,7 +327,7 @@
         padding: 25px 0 32px 10px;
         font-size: $third-size;
         background: $white;
-        border-radius: $border;
+        border-radius: unset;
         &::after {
           position: absolute;
           bottom: 0;
@@ -340,8 +345,9 @@
         padding-bottom: 24px;
         &_left {
           width: 100%;
-          min-height: 580px;
+          min-height: auto;
           margin: 0 auto;
+          border-radius: unset;
           &_product {
             flex-wrap: wrap;
             &_checkbox {
@@ -368,7 +374,9 @@
         &_right {
           width: 100%;
           margin: 0 auto;
+          border-radius: unset;
           &_top {
+            border-radius: unset;
             &_inner {
               &_containerButtons {
                 &_btn1 {
@@ -379,6 +387,9 @@
                 }
               }
             }
+          }
+          &_bottom {
+            border-radius: unset;
           }
         }
       }

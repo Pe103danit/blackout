@@ -9,7 +9,7 @@ const Basket = (props) => {
     ? 'lightBasketStyle'
     : 'darkBasketStyle'
 
-  const [basketList, setBasketList] = useState(JSON.parse(localStorage.getItem('basketList')));
+  const [basketList, setBasketList] = useState(props.basketList)
   const basketProducts = basketList.map(item => item.itemNo)
   const matchingProducts = props.products.filter(product =>
     basketProducts.includes(product.itemNo)
@@ -17,9 +17,11 @@ const Basket = (props) => {
 
   const handleRemoveFromBasket = (productToRemove) => {
     const updatedBasketList = basketList.filter((item) => item.itemNo !== productToRemove.itemNo);
+    props.updateBasket(updatedBasketList)
     localStorage.setItem('basketList', JSON.stringify(updatedBasketList));
     setBasketList(updatedBasketList);
   };
+
   return (
     <div>
       {props.basketList.length !== 0
@@ -45,7 +47,7 @@ const Basket = (props) => {
                   <div className={style.section_container_body_left_product_counter}>
                     <div className={style.section_container_body_left_product_counter_inner}>
                       <button>-</button>
-                      <input type="text"/>
+                      <input type="text" value={0}/>
                       <button>+</button>
                     </div>
                   </div>
