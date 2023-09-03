@@ -12,7 +12,6 @@ const loginSchema = object({
 });
 
 const Login = () => {
-<<<<<<< HEAD
   const navigate = useNavigate();
   const login = async credentional => {
     const { data } = await instance.post('/api/customers/login', credentional)
@@ -24,10 +23,6 @@ const Login = () => {
     localStorage.setItem('Signature', signature);
     navigate('/account');
   }
-=======
-  instance.get('/api/products').then(res => {
-  })
->>>>>>> master
   return (
     <div className={style.Login}>
       <Formik
@@ -43,21 +38,21 @@ const Login = () => {
         <Form className={style.Login_form}>
           <h2 className={style.Login_form_title}>Sign in</h2>
           <div className={style.Login_form_group}>
-            <label htmlFor="loginOrEmail" className={style.Login_form_group_label}>Email</label>
+            <label htmlFor='loginOrEmail' className={style.Login_form_group_label}>Email</label>
             <Field
               className={style.Login_form_group_input}
-              id="loginOrEmail"
-              name="loginOrEmail"
-              type="loginOrEmail"
+              id='loginOrEmail'
+              name='loginOrEmail'
+              type='loginOrEmail'
             />
           </div>
 
           <div className={style.Login_form_group}>
-            <label htmlFor="password" className={style.Login_form_group_label}>Password</label>
-            <Field id="password" type='password' name="password" className={style.Login_form_group_input} />
+            <label htmlFor='password' className={style.Login_form_group_label}>Password</label>
+            <Field id='password' type='password' name='password' className={style.Login_form_group_input} />
           </div>
           <p className={style.Login_form_SignUp}>If you don't have account <NavLink to='/sign_up'>Sign up</NavLink> </p>
-          <button type="submit" className={style.Login_form_button}>Submit</button>
+          <button type='submit' className={style.Login_form_button}>Submit</button>
         </Form>
       </Formik>
     </div>

@@ -45,15 +45,15 @@ const SignUp = () => {
           <h2 className={style.SignUp_form_title}>Sign up</h2>
 
           <div className={style.SignUp_form_group}>
-            <label htmlFor="login" className={style.SignUp_form_group_label}>Login</label>
-            <Field name="login">
+            <label htmlFor='login' className={style.SignUp_form_group_label}>Login</label>
+            <Field name='login'>
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div>
-                  <input type="text" {...field} />
+                  <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -63,15 +63,15 @@ const SignUp = () => {
           </div>
 
           <div className={style.SignUp_form_group}>
-            <label htmlFor="first-name" className={style.SignUp_form_group_label}>First name</label>
-            <Field name="firstName">
+            <label htmlFor='first-name' className={style.SignUp_form_group_label}>First name</label>
+            <Field name='firstName'>
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div>
-                  <input type="text" {...field} />
+                  <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -81,15 +81,15 @@ const SignUp = () => {
           </div>
 
           <div className={style.SignUp_form_group}>
-            <label htmlFor="last-name" className={style.SignUp_form_group_label}>Last name</label>
-            <Field name="lastName">
+            <label htmlFor='last-name' className={style.SignUp_form_group_label}>Last name</label>
+            <Field name='lastName'>
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div>
-                  <input type="text" {...field} />
+                  <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -99,15 +99,15 @@ const SignUp = () => {
           </div>
 
           <div className={style.SignUp_form_group}>
-            <label htmlFor="email" className={style.SignUp_form_group_label}>Email</label>
-            <Field name="email">
+            <label htmlFor='email' className={style.SignUp_form_group_label}>Email</label>
+            <Field name='email'>
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div>
-                  <input type="text" {...field} />
+                  <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -117,15 +117,15 @@ const SignUp = () => {
           </div>
 
           <div className={style.SignUp_form_group}>
-            <label htmlFor="password" className={style.SignUp_form_group_label}>Password</label>
-            <Field name="password">
+            <label htmlFor='password' className={style.SignUp_form_group_label}>Password</label>
+            <Field name='password'>
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div>
-                  <input type="password" {...field} />
+                  <input type='password' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -135,16 +135,16 @@ const SignUp = () => {
           </div>
 
           <div className={style.SignUp_form_group}>
-            <label htmlFor="confirm-password" className={style.SignUp_form_group_label}>Confirm Password</label>
+            <label htmlFor='confirm-password' className={style.SignUp_form_group_label}>Confirm Password</label>
 
-            <Field name="confirmPassword">
+            <Field name='confirmPassword'>
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div>
-                  <input type="password" {...field} />
+                  <input type='password' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -153,7 +153,7 @@ const SignUp = () => {
             </Field>
           </div>
           <p className={style.SignUp_form_SignUp}>You already have account <NavLink to='/Login'>Sign in</NavLink> </p>
-          <button type="submit" className={style.SignUp_form_button}>Submit</button>
+          <button type='submit' className={style.SignUp_form_button}>Submit</button>
         </Form>
       </Formik>
     </div>
