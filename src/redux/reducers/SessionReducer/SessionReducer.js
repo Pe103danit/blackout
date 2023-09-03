@@ -7,8 +7,7 @@ const setUser = (user) => (
     payload: user
   }
 )
-export const login = ({email, password}) => async (dispatch) => {
-  console.log(email);
+export const login = ({ email, password }) => async (dispatch) => {
   try {
     const res = await instance.post('/api/customer/login', {
       email, password
