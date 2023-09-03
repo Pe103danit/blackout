@@ -13,10 +13,10 @@ const WhyChooseUs = () => {
             <ul className={`${style.WhyChooseUs_wrapper} ${themeStyle} ${theme ? '' : style.WhyChooseUs_bg}`}>
 
                 {configChoose.map(item => (
-                    <li key={item.title} className={`${style.WhyChooseUs_item} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}` }>
+                    <li key={item.title} className={`${style.WhyChooseUs_wrapper_item} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}` }>
                         {item.src}
-                        <p className={`${style.WhyChooseUs_title_item} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}`}>{item.title}</p>
-                        <p className={`${style.WhyChooseUs_text_item} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}`}>{item.text}</p>
+                        <p className={`${style.WhyChooseUs_wrapper_item_title} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}`}>{item.title}</p>
+                        <p className={`${style.WhyChooseUs_wrapper_item_text} ${themeStyle} ${theme ? '' : style.WhyChooseUs_grey}`}>{item.text}</p>
 
                     </li>
                 ))}

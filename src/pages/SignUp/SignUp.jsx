@@ -1,104 +1,159 @@
 import { instance } from '../../components/assets/axiosUrl'
-import { useEffect } from 'react'
 import { Formik, Field, Form } from 'formik';
 import { login } from '../../redux/reducers/SessionReducer/SessionReducer';
 import style from './SignUp.module.scss'
 import { object, string, number, date, InferType, ref } from 'yup';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useQuery } from 'react-query'
 
-const loginSchema = object({
-  email: string().email().required(),
-  password: string().required('Password is required').min(6, 'Too Short!'),
-  confirmPassword: string()
-  .oneOf([ref('password'), null], 'Passwords must match')
+const signUpSchema = object({
+  email: string().email().required('Email is required'),
+  password: string().required('Password is required').min(7, 'Too Short!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
+  login: string().required('Login required').min(3, 'Too short!').max(10, 'Too long!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
+  firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
+  lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
+  confirmPassword: string().oneOf([ref('password'), null], 'Passwords must match').required('Confirm Password is required'),
 });
 
 const SignUp = () => {
-  const dispatch = useDispatch()
-  // useEffect(() => {
-  //   instance.get('/api/products').then(res => {
-  //     // console.log(res.data)
-  //   })
-  // }, [])
-
+  const signUpUser = async (credentional) => {
+  const {data: response} = await instance.post('/api/customers', credentional)
+  }
+  console.log(1);
+  const navigate = useNavigate()
   return (
-    <div className={style.Login}>
+    <div className={style.SignUp}>
       <Formik
         initialValues={{
           email: '',
           password: '',
           confirmPassword: '',
+          firstName: '',
+          lastName: '',
+          login: '',
         }}
-        validationSchema={loginSchema}
-        onSubmit={async (values) => {
-          // dispatch(login(values))
-          console.log(values);
+        validationSchema={signUpSchema}
+        onSubmit={async (value) => {
+          const { confirmPassword, ...rest } = value
+          console.log(rest);
+          signUpUser(rest)
+          navigate('/login');
         }}
       >
-        <Form className={style.Login_form}>
-          <h2 className={style.Login_form_title}>Sign in</h2>
-          <div className={style.Login_form_group}>
-            <label htmlFor="email" className={style.Login_form_group_label}>Email</label>
-            {/* <Field
-              className={style.Login_form_group_input}
-              id="email"
-              name="email"
-              type="email"
-            /> */}
-            <Field name="email">
-             {({
-               field, // { name, value, onChange, onBlur }
-               form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-               meta,
-             }) => (
-               <div>
-                 <input type="text" {...field} />
-                 {meta.touched && meta.error && (
-                   <div className="error">{meta.error}</div>
-                 )}
-               </div>
-             )}
-           </Field>
+        <Form className={style.SignUp_form}>
+          <h2 className={style.SignUp_form_title}>Sign up</h2>
+
+          <div className={style.SignUp_form_group}>
+            <label htmlFor="login" className={style.SignUp_form_group_label}>Login</label>
+            <Field name="login">
+              {({
+                field,
+                form: { touched, errors },
+                meta,
+              }) => (
+                <div>
+                  <input type="text" {...field} />
+                  {meta.touched && meta.error && (
+                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                  )}
+                </div>
+              )}
+            </Field>
           </div>
 
-          <div className={style.Login_form_group}>
-            <label htmlFor="password" className={style.Login_form_group_label}>Password</label>
+          <div className={style.SignUp_form_group}>
+            <label htmlFor="first-name" className={style.SignUp_form_group_label}>First name</label>
+            <Field name="firstName">
+              {({
+                field,
+                form: { touched, errors },
+                meta,
+              }) => (
+                <div>
+                  <input type="text" {...field} />
+                  {meta.touched && meta.error && (
+                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                  )}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div className={style.SignUp_form_group}>
+            <label htmlFor="last-name" className={style.SignUp_form_group_label}>Last name</label>
+            <Field name="lastName">
+              {({
+                field,
+                form: { touched, errors },
+                meta,
+              }) => (
+                <div>
+                  <input type="text" {...field} />
+                  {meta.touched && meta.error && (
+                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                  )}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div className={style.SignUp_form_group}>
+            <label htmlFor="email" className={style.SignUp_form_group_label}>Email</label>
+            <Field name="email">
+              {({
+                field,
+                form: { touched, errors },
+                meta,
+              }) => (
+                <div>
+                  <input type="text" {...field} />
+                  {meta.touched && meta.error && (
+                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                  )}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div className={style.SignUp_form_group}>
+            <label htmlFor="password" className={style.SignUp_form_group_label}>Password</label>
             <Field name="password">
-             {({
-               field, // { name, value, onChange, onBlur }
-               form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-               meta,
-             }) => (
-               <div>
-                 <input type="password" {...field} />
-                 {meta.touched && meta.error && (
-                   <div className="error">{meta.error}</div>
-                 )}
-               </div>
-             )}
-           </Field>
+              {({
+                field,
+                form: { touched, errors },
+                meta,
+              }) => (
+                <div>
+                  <input type="password" {...field} />
+                  {meta.touched && meta.error && (
+                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                  )}
+                </div>
+              )}
+            </Field>
           </div>
-          
-          <div className={style.Login_form_group}>
-            <label htmlFor="confirm-password" className={style.Login_form_group_label}>Confirm Password</label>
-            {/* <Field id="confirm-password" type='password' name="confirmPassword" className={style.Login_form_group_input} /> */}
+
+          <div className={style.SignUp_form_group}>
+            <label htmlFor="confirm-password" className={style.SignUp_form_group_label}>Confirm Password</label>
+
             <Field name="confirmPassword">
-             {({
-               field, // { name, value, onChange, onBlur }
-               form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-               meta,
-             }) => (
-               <div>
-                 <input type="password" {...field} />
-                 {meta.touched && meta.error && (
-                   <div className="error">{meta.error}</div>
-                 )}
-               </div>
-             )}
-           </Field>
+              {({
+                field,
+                form: { touched, errors },
+                meta,
+              }) => (
+                <div>
+                  <input type="password" {...field} />
+                  {meta.touched && meta.error && (
+                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                  )}
+                </div>
+              )}
+            </Field>
           </div>
-          <button type="submit" className={style.Login_form_button}>Submit</button>
+          <p className={style.SignUp_form_SignUp}>You already have account <NavLink to='/Login'>Sign in</NavLink> </p>
+          <button type="submit" className={style.SignUp_form_button}>Submit</button>
         </Form>
       </Formik>
     </div>

@@ -1,64 +1,63 @@
 @import '../../scss/variables';
 
 .Login{
-    margin: 20px auto;
     max-width: 400px;
     height: 100vh;
-    &_form{
-        width: 300px;
-        padding: 32px;
-        border-radius: 10px;
-        box-shadow: 0 4px 16px #ccc;
-        letter-spacing: 1px;
-    }
+    margin: 0 auto;
+    margin-top: 20px;
     &_form{
         display: flex;
         flex-direction: column;
+        padding: 32px;
+        max-width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 16px $almost-white;
+        letter-spacing: 1px;
         &_title{
-            font-size: $second-size;
-            font-weight: $big-weight;
             text-align: center;
             margin-bottom: 30px;
+            font-size: $second-size;
+            font-weight: $big-weight;
         }
         &_button{
             max-width: 120px;
             height: 40px;
+            padding: 10px 20px;
             letter-spacing: 1px;
             font-size: 16px;
             border-radius: 5px;
             border: none;
-            background-color: #0071f0;
+            background-color: $button-blue;
             color: $white;
-            padding: 10px 20px;
             outline: none;
-            transition: 0.3s;
         }
         &_group{
             position: relative;
             margin-bottom: 32px;
+            &_error{
+                padding-top: 10px;
+                color: $red;
+            }            
         }
         &_label{
             position: absolute;
             top: 0;
-            z-index: -1;
             color:#9e9e9e ;
-            transition: 0.3s;
         }
         &_SignUp{
-            margin-bottom: 20px;
+            line-height: 1.3;
+            margin: 20px 0 20px 0;
         }
         &_group input{
-            width: 100%;
+            width: 90%;
             padding: 10px;
             border: none;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid $seventh-grey;
             background-color: transparent;
-            outline: none;
-            transition: 0.3s;
-            
+            outline: none;          
         }
         &_group input:focus{
-            border-bottom: 1px solid #1a73a8;
+            border-bottom: 1px solid $blue;
         }
 
     }

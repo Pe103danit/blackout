@@ -17,6 +17,7 @@ import PromoBaner from './components/PromoBaner/PromoBaner';
 import FooterContainer from './pages/Footer/footerContainer';
 import SignUp from './pages/SignUp/SignUp'
 import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
+import Account from './pages/Account/Account';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
@@ -64,6 +65,7 @@ const App = (props) => {
         <Route path='cart' element={<Cart/>}/>
         <Route path='/site_map' element={<SiteMapContainer/>}/>
         <Route path='/sign_up' element={<SignUp/>}/>
+        <Route path='/account' element={<Account/>}/>
         <Route path='/products/:id' element={<ProductCardPage/>}/>
         <Route path={'*' || '404'} element={<NotFoundPageContainer/>}/>
       </Routes>
