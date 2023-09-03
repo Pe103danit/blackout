@@ -12,7 +12,7 @@ import 'swiper/css/thumbs';
 import style from './ProductCard.module.scss'
 import StarRating from './StarRating';
 import { instance } from '../assets/axiosUrl';
-import { addToBasket } from '../../redux/reducers/ProductReducer/ProductReducer';
+import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer';
 
 export const ProductCard = () => {
   // variables
@@ -81,6 +81,7 @@ export const ProductCard = () => {
     )
     const countBasket = parseInt(localStorage.getItem('basket'))
     localStorage.setItem('basket', `${countBasket + countToCart}`)
+    dispatch(updateBasket(storageBasket))
   }
   return (
     <section className={`${style.product} ${themeStyle}`}>

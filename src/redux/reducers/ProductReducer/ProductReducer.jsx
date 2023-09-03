@@ -14,6 +14,20 @@ const initialState = {
   powerBanksIsLoading: true,
   product: {}
 }
+const updateBasketR = (state, payload) => {
+  let basketCount = 0
+  payload.forEach(item => {
+    basketCount += item.countToCart
+  })
+  localStorage.setItem('basket', basketCount)
+  return {
+    ...state,
+    basketList: [
+      ...payload
+    ],
+    basket: basketCount
+  }
+}
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
@@ -25,7 +39,6 @@ const productReducer = (state = initialState, { type, payload }) => {
         ...state, products: [...payload], productIsLoading: false
       }
     case types.ADD_TO_BASKET:
-      console.log(payload)
       return {
         ...state,
         basketList: [
@@ -34,6 +47,8 @@ const productReducer = (state = initialState, { type, payload }) => {
         ],
         basket: state.basket + payload.count
       }
+    case types.UPDATE_BASKET: return updateBasketR(state, payload)
+
     default:
       return state;
   }
@@ -51,6 +66,11 @@ export const getProductById = (product) => ({
 export const addToBasket = (idCandidate, count) => ({
   type: types.ADD_TO_BASKET,
   payload: {idCandidate, count}
+})
+
+export const updateBasket = (listCandidate) => ({
+  type: types.UPDATE_BASKET,
+  payload: listCandidate
 })
 
 export default productReducer
