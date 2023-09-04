@@ -36,7 +36,7 @@
           position: absolute;
           top: 30px;
           left: 30px;
-          max-width: 400px;
+          width: 400px;
           color: $white;
           font-weight: $big-weight;
           font-size: 20px;
@@ -73,10 +73,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      max-width: 768px;
 
       &_item {
-        width: 100%;
+        width: 100vw;
 
         &_link {
           &_text {
@@ -120,11 +119,12 @@
           }
 
           &_title {
-            max-width: 280px;
+            width: 280px;
             font-size: 15px;
           }
 
           &_text {
+            width: 100px;
             top: 85px;
           }
         }
