@@ -1,11 +1,11 @@
 import { instance } from '../../components/assets/axiosUrl'
 import { Formik, Field, Form } from 'formik';
-import { login } from '../../redux/reducers/SessionReducer/SessionReducer';
 import style from './SignUp.module.scss'
 import { object, string, number, date, InferType, ref } from 'yup';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
+import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
 
 const signUpSchema = object({
   email: string().email().required('Email is required'),
@@ -18,7 +18,7 @@ const signUpSchema = object({
 
 const SignUp = () => {
   const signUpUser = async (credentional) => {
-  const {data: response} = await instance.post('/api/customers', credentional)
+    await instance.post('/api/customers', credentional)
   }
   console.log(1);
   const navigate = useNavigate()
@@ -36,7 +36,6 @@ const SignUp = () => {
         validationSchema={signUpSchema}
         onSubmit={async (value) => {
           const { confirmPassword, ...rest } = value
-          console.log(rest);
           signUpUser(rest)
           navigate('/login');
         }}
