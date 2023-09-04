@@ -31,7 +31,6 @@ const Basket = (props) => {
       )
     }
   });
-  console.log(matchingProducts)
   const handleRemoveFromBasket = (idCandidateToRemove) => {
     const updatedBasketList = basketList.filter((item) => item.itemNo !== idCandidateToRemove);
     props.updateBasket(updatedBasketList)
