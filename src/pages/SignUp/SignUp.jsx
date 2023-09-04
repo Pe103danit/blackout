@@ -3,7 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import style from './SignUp.module.scss'
 import { object, string, ref } from 'yup';
 import { NavLink, useNavigate } from 'react-router-dom'
-/*import { useQuery } from 'react-query'
+/* import { useQuery } from 'react-query'
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
 */
