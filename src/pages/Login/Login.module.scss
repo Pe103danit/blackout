@@ -16,8 +16,8 @@
         &_title{
             margin-bottom: 30px;
             font-weight: $big-weight;
-            text-align: center;
             font-size: $second-size;
+            text-align: center;
         }
         &_button{
             max-width: 120px;
@@ -26,8 +26,8 @@
             font-size: 16px;
             letter-spacing: 1px;
             background-color: $button-blue;
-            border: none;
             color: $white;
+            border: none;
             border-radius: 5px;
             outline: none;
         }
@@ -39,10 +39,10 @@
                 color: $red;
             }            
             &_eye{
-                width: 20px;
                 position: absolute;
-                height: 20px;
+                width: 20px;
                 top: 50%;
+                height: 20px;
                 right: 5%;
             }
         }
