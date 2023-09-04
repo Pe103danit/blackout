@@ -89,11 +89,10 @@
           &_counter {
             display: flex;
             justify-content: space-between;
-            width: 101px;
 
             &_inner {
-              height: 33px;
-              border: 1px solid $second-white;
+
+
 
               button {
                 width: 33px;
@@ -102,7 +101,7 @@
                 font-weight: $big-weight;
                 text-align: center;
                 background: $main-background;
-                border: 0;
+                border: 0 !important;
                 cursor: pointer;
               }
 
@@ -110,8 +109,8 @@
                 width: 27px;
                 height: 30px;
                 text-align: center;
-                border: 0;
-                outline: none;
+                border: 0 !important;
+                outline: 0 !important;
               }
             }
           }
