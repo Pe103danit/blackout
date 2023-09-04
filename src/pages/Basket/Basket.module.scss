@@ -272,6 +272,9 @@
                 color: $first-grey;
                 @include manrope-bold();
                 text-transform: uppercase;
+                &:hover {
+                  color: $third-grey;
+                }
               }
             }
           }
@@ -407,6 +410,11 @@
 
                   &:hover {
                     transform: none;
+                  }
+                }
+                &_btn2 {
+                  &:hover {
+                    color: $first-grey;
                   }
                 }
               }
