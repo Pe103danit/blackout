@@ -23,11 +23,6 @@ import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
-// import PortablePowerStationsContainer from './pages/ProductCategories/PortablePowerStations/PortablePowerStationsContainer'
-// import GeneratorsContainer from './pages/ProductCategories/Generators/GeneratorsContainer'
-// import AccessoriesContainer from './pages/ProductCategories/Accessories/AccessoriesContainer'
-// import SolarPanelsContainer from './pages/ProductCategories/SolarPanels/SolarPanelsContainer'
-// import PowerBanksContainer from './pages/ProductCategories/PowerBanks/PowerBanksContainer'
 import GoToTop from './components/GoToTop/GoToTop'
 import BasketContainer from './pages/Basket/BasketContainer'
 
