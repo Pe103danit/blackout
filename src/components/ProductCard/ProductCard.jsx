@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
-// import { BsFillHeartFill } from 'react-icons/bs'
 import { HeartIcon, HeartIconDark } from '../assets/Icons';
 import { useQuery } from 'react-query';
 
@@ -137,8 +136,7 @@ export const ProductCard = () => {
                           slidesPerView: 3
                         },
                         481: {
-                          slidesPerView: 2,
-                          // spaceBetween: 30,
+                          slidesPerView: 2
                         },
                         320: {
                           slidesPerView: 2
