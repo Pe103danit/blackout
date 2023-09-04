@@ -216,8 +216,8 @@
     }
 
     &__wishList {
-        padding-left: 15px ;
         width: 30px;
+        padding-left: 15px ;    
         background-color: transparent;
         border: none;
         transform: translate(-50%, -50%);
@@ -268,8 +268,8 @@
 
             &_card_container_for_buttons {
                 display: flex;
-                justify-content: center;
                 align-items: center;
+                justify-content: center;
             }
 
         }
