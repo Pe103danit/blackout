@@ -93,6 +93,7 @@
             &_inner {
               height: 33px;
               border: 1px solid $second-white;
+              border-radius: 3px;
 
               button {
                 width: 33px;
@@ -104,6 +105,16 @@
                 background: $main-background;
                 border: 0 !important;
                 cursor: pointer;
+
+                &:nth-child(1) {
+                  border-top-left-radius: 3px;
+                  border-bottom-left-radius: 3px;
+                }
+
+                &:nth-child(2) {
+                  border-top-right-radius: 3px;
+                  border-bottom-right-radius: 3px;
+                }
               }
 
               input {
@@ -144,6 +155,7 @@
               }
             }
           }
+
           &:hover img {
             width: 90px;
             height: 90px;
@@ -328,6 +340,7 @@
         font-size: $third-size;
         background: $white;
         border-radius: unset;
+
         &::after {
           position: absolute;
           bottom: 0;
@@ -340,47 +353,58 @@
           content: "";
         }
       }
+
       &_body {
         flex-wrap: wrap;
         padding-bottom: 24px;
+
         &_left {
           width: 100%;
           min-height: auto;
           margin: 0 auto;
           border-radius: unset;
+
           &_product {
             flex-wrap: wrap;
+
             &_checkbox {
               display: none;
             }
+
             &_price {
               p:first-child {
                 color: $first-grey;
                 font-size: $fourth-size;
                 @include manrope-bold();
               }
+
               button {
                 &:hover {
                   text-decoration: underline;
                 }
               }
             }
+
             &:hover img {
               width: 88px;
               height: 88px;
             }
           }
         }
+
         &_right {
           width: 100%;
           margin: 0 auto;
           border-radius: unset;
+
           &_top {
             border-radius: unset;
+
             &_inner {
               &_containerButtons {
                 &_btn1 {
                   transition: none;
+
                   &:hover {
                     transform: none;
                   }
@@ -388,6 +412,7 @@
               }
             }
           }
+
           &_bottom {
             border-radius: unset;
           }
@@ -406,9 +431,11 @@
             &_name {
               padding-top: 10px;
             }
+
             &_counter {
               order: 3
             }
+
             &_price {
               order: 2;
             }
@@ -424,23 +451,28 @@
     &_container {
       &_body {
         padding-bottom: 0;
+
         &_left {
           &_product {
             height: 200px;
             padding: 10px 10px 0;
+
             &_name {
               p:nth-child(2) {
-              display: none;
+                display: none;
               }
             }
+
             &_price {
               height: 50px;
             }
           }
         }
+
         &_right {
           width: 100%;
           margin: 0 auto;
+
           &_top {
             &_inner {
               &_container {
@@ -448,6 +480,7 @@
               }
             }
           }
+
           &_bottom {
             display: none;
           }
