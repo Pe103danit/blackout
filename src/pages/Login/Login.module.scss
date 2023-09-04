@@ -10,13 +10,13 @@
         flex-direction: column;
         max-width: 400px;
         padding: 32px;
-        border-radius: 10px;
         letter-spacing: 1px;
+        border-radius: 10px;
         box-shadow: 0 4px 16px $almost-white;
         &_title{
             margin-bottom: 30px;
-            text-align: center;
             font-weight: $big-weight;
+            text-align: center;
             font-size: $second-size;
         }
         &_button{
@@ -27,8 +27,8 @@
             letter-spacing: 1px;
             background-color: $button-blue;
             border: none;
-            border-radius: 5px;
             color: $white;
+            border-radius: 5px;
             outline: none;
         }
         &_group{
@@ -40,10 +40,10 @@
             }            
             &_eye{
                 width: 20px;
-                height: 20px;
                 position: absolute;
-                right: 5%;
+                height: 20px;
                 top: 50%;
+                right: 5%;
             }
         }
         &_label{
@@ -58,8 +58,8 @@
         &_group input{
             width: 90%;
             padding: 10px;
-            border: none;
             background-color: transparent;
+            border: none;
             border-bottom: 1px solid $seventh-grey;
             outline: none;          
         }
