@@ -415,6 +415,13 @@
 
           &_bottom {
             border-radius: unset;
+            &_inner {
+              &_container {
+                &_img {
+                  width: 10%;
+                }
+              }
+            }
           }
         }
       }

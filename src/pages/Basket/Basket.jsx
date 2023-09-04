@@ -11,26 +11,27 @@ const Basket = (props) => {
     : 'darkBasketStyle'
 
   const [basketList, setBasketList] = useState(props.basketList)
-  const basketProducts = basketList.map(item => item.itemNo)
-  const matchingProducts = props.products.filter(product => {
-    let indexBasket = -1
-    basketProducts.forEach((item, index) => {
+  const basketProducts = basketList.map(item => item)
+  const matchingProducts = []
+  props.products.forEach(product => {
+    let basketStatus = false
+    let basketItem = {}
+    basketProducts.forEach((item) => {
       if (product.itemNo === item.itemNo) {
-        indexBasket = index
+        basketStatus = true
+        basketItem = item
       }
     })
-    console.log(indexBasket)
-    if (indexBasket !== 0) {
-      return (
+    if (basketStatus) {
+      matchingProducts.push(
         {
-          ...basketProducts[indexBasket],
-          ...product
+          ...product,
+          ...basketItem
         }
       )
     }
-    return null
   });
-
+  console.log(matchingProducts)
   const handleRemoveFromBasket = (idCandidateToRemove) => {
     const updatedBasketList = basketList.filter((item) => item.itemNo !== idCandidateToRemove);
     props.updateBasket(updatedBasketList)
@@ -48,6 +49,7 @@ const Basket = (props) => {
               <div className={style.section_container_body_left}>
                 {matchingProducts.map((product) => (
                   <BasketItem
+                    key={product.itemNo}
                     product={product}
                     handleRemoveFromBasket={handleRemoveFromBasket}/>
                 ))}
