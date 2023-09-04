@@ -10,12 +10,13 @@
     &_title {
       padding: 55px 0 32px 10px;
       font-size: $second-size;
+      border-radius: $border;
       @include manrope-bold();
     }
 
     &_body {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       width: 100%;
       padding-bottom: 50px;
@@ -88,7 +89,6 @@
           &_counter {
             display: flex;
             justify-content: space-between;
-            width: 99px;
 
             &_inner {
               height: 33px;
@@ -98,19 +98,32 @@
               button {
                 width: 33px;
                 height: 33px;
+                padding: 0;
+                color: $black;
                 font-weight: $big-weight;
                 text-align: center;
                 background: $main-background;
-                border: 0;
+                border: 0 !important;
                 cursor: pointer;
+
+                &:nth-child(1) {
+                  border-top-left-radius: 3px;
+                  border-bottom-left-radius: 3px;
+                }
+
+                &:nth-child(2) {
+                  border-top-right-radius: 3px;
+                  border-bottom-right-radius: 3px;
+                }
               }
 
               input {
-                width: 27px;
-                height: 30px;
+                width: 33px;
+                height: 33px;
+                padding: 0;
                 text-align: center;
-                border: 0;
-                outline: none;
+                border: 0 !important;
+                outline: 0 !important;
               }
             }
           }
@@ -129,16 +142,20 @@
 
             button {
               padding: 0;
+              color: $black;
               text-align: left;
               text-decoration: underline;
               background: none;
               border: none;
               border-bottom: black;
+              @include manrope-regular();
+
               &:hover {
                 text-decoration: none;
               }
             }
           }
+
           &:hover img {
             width: 90px;
             height: 90px;
@@ -255,6 +272,9 @@
                 color: $first-grey;
                 @include manrope-bold();
                 text-transform: uppercase;
+                &:hover {
+                  color: $third-grey;
+                }
               }
             }
           }
@@ -322,7 +342,8 @@
         padding: 25px 0 32px 10px;
         font-size: $third-size;
         background: $white;
-        border-radius: $border;
+        border-radius: unset;
+
         &::after {
           position: absolute;
           bottom: 0;
@@ -335,47 +356,77 @@
           content: "";
         }
       }
+
       &_body {
         flex-wrap: wrap;
         padding-bottom: 24px;
+
         &_left {
           width: 100%;
-          min-height: 580px;
+          min-height: auto;
           margin: 0 auto;
+          border-radius: unset;
+
           &_product {
             flex-wrap: wrap;
+
             &_checkbox {
               display: none;
             }
+
             &_price {
               p:first-child {
                 color: $first-grey;
                 font-size: $fourth-size;
                 @include manrope-bold();
               }
+
               button {
                 &:hover {
                   text-decoration: underline;
                 }
               }
             }
+
             &:hover img {
               width: 88px;
               height: 88px;
             }
           }
         }
+
         &_right {
           width: 100%;
           margin: 0 auto;
+          border-radius: unset;
+
           &_top {
+            border-radius: unset;
+
             &_inner {
               &_containerButtons {
                 &_btn1 {
                   transition: none;
+
                   &:hover {
                     transform: none;
                   }
+                }
+                &_btn2 {
+                  &:hover {
+                    color: $first-grey;
+                  }
+                }
+              }
+            }
+          }
+
+          &_bottom {
+            border-radius: unset;
+            &_inner {
+              &_container {
+                &_img {
+                  width: 10%;
                 }
               }
             }
@@ -395,9 +446,11 @@
             &_name {
               padding-top: 10px;
             }
+
             &_counter {
               order: 3
             }
+
             &_price {
               order: 2;
             }
@@ -413,23 +466,28 @@
     &_container {
       &_body {
         padding-bottom: 0;
+
         &_left {
           &_product {
             height: 200px;
             padding: 10px 10px 0;
+
             &_name {
               p:nth-child(2) {
-              display: none;
+                display: none;
               }
             }
+
             &_price {
               height: 50px;
             }
           }
         }
+
         &_right {
           width: 100%;
           margin: 0 auto;
+
           &_top {
             &_inner {
               &_container {
@@ -437,6 +495,7 @@
               }
             }
           }
+
           &_bottom {
             display: none;
           }
