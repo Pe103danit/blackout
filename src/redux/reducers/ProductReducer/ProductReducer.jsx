@@ -14,6 +14,40 @@ const initialState = {
   powerBanksIsLoading: true,
   product: {}
 }
+const updateBasketR = (state, payload) => {
+  let basketCount = 0
+  payload.forEach(item => {
+    basketCount += item.countToCart
+  })
+  localStorage.setItem('basket', basketCount)
+  return {
+    ...state,
+    basketList: [
+      ...payload
+    ],
+    basket: basketCount
+  }
+}
+const changeBasketCountR = (state, payload) => {
+  let sumCountBasket = 0
+  const newBasketList = state.basketList.map(itemBasket => {
+    if (itemBasket.itemNo === payload.id) {
+      itemBasket = {
+        ...itemBasket,
+        countToCart: payload.newCountValue
+      }
+    }
+    sumCountBasket += itemBasket.countToCart
+    return itemBasket
+  })
+  localStorage.setItem('basketList', JSON.stringify(newBasketList))
+  localStorage.setItem('basket', `${sumCountBasket}`)
+  return {
+      ...state,
+      basket: sumCountBasket,
+      basketList: newBasketList
+  }
+}
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
@@ -25,7 +59,6 @@ const productReducer = (state = initialState, { type, payload }) => {
         ...state, products: [...payload], productIsLoading: false
       }
     case types.ADD_TO_BASKET:
-      console.log(payload)
       return {
         ...state,
         basketList: [
@@ -34,6 +67,10 @@ const productReducer = (state = initialState, { type, payload }) => {
         ],
         basket: state.basket + payload.count
       }
+    case types.UPDATE_BASKET:
+      return updateBasketR(state, payload)
+    case types.CHANGE_COUNT_BASKET:
+      return changeBasketCountR(state, payload)
     default:
       return state;
   }
@@ -51,6 +88,16 @@ export const getProductById = (product) => ({
 export const addToBasket = (idCandidate, count) => ({
   type: types.ADD_TO_BASKET,
   payload: {idCandidate, count}
+})
+
+export const updateBasket = (listCandidate) => ({
+  type: types.UPDATE_BASKET,
+  payload: listCandidate
+})
+
+export const changeCountBasket = (id, newCountValue) => ({
+  type: types.CHANGE_COUNT_BASKET,
+  payload: {id, newCountValue}
 })
 
 export default productReducer

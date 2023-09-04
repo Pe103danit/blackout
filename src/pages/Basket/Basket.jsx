@@ -3,23 +3,41 @@ import style from './Basket.module.scss'
 import { NavLink } from 'react-router-dom'
 import { Payments, Protection, Shipping, Support } from '../../components/assets/Icons'
 import { useState } from 'react'
+import BasketItem from './BasketItem'
 
 const Basket = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightBasketStyle'
     : 'darkBasketStyle'
 
-  const [basketList, setBasketList] = useState(JSON.parse(localStorage.getItem('basketList')));
-  const basketProducts = basketList.map(item => item.itemNo)
-  const matchingProducts = props.products.filter(product =>
-    basketProducts.includes(product.itemNo)
-  );
-
-  const handleRemoveFromBasket = (productToRemove) => {
-    const updatedBasketList = basketList.filter((item) => item.itemNo !== productToRemove.itemNo);
+  const [basketList, setBasketList] = useState(props.basketList)
+  const basketProducts = basketList.map(item => item)
+  const matchingProducts = []
+  props.products.forEach(product => {
+    let basketStatus = false
+    let basketItem = {}
+    basketProducts.forEach((item) => {
+      if (product.itemNo === item.itemNo) {
+        basketStatus = true
+        basketItem = item
+      }
+    })
+    if (basketStatus) {
+      matchingProducts.push(
+        {
+          ...product,
+          ...basketItem
+        }
+      )
+    }
+  });
+  const handleRemoveFromBasket = (idCandidateToRemove) => {
+    const updatedBasketList = basketList.filter((item) => item.itemNo !== idCandidateToRemove);
+    props.updateBasket(updatedBasketList)
     localStorage.setItem('basketList', JSON.stringify(updatedBasketList));
     setBasketList(updatedBasketList);
   };
+
   return (
     <div>
       {props.basketList.length !== 0
@@ -29,35 +47,11 @@ const Basket = (props) => {
             <div className={style.section_container_body}>
               <div className={style.section_container_body_left}>
                 {matchingProducts.map((product) => (
-                <div key={product.itemNo} className={style.section_container_body_left_product}>
-                  <div className={style.section_container_body_left_product_checkbox}>
-                    <input type="checkbox"/>
-                  </div>
-                  <NavLink to={'/'} className={style.section_container_body_left_product_photo}>
-                    <img src={product.imageUrls[0]} alt={product.name} title={product.name}/>
-                  </NavLink>
-                  <div className={style.section_container_body_left_product_name}>
-                    <NavLink to={'/'}>
-                      <p>{product.name}</p>
-                      <p>{product.model}</p>
-                    </NavLink>
-                  </div>
-                  <div className={style.section_container_body_left_product_counter}>
-                    <div className={style.section_container_body_left_product_counter_inner}>
-                      <button>-</button>
-                      <input type="text"/>
-                      <button>+</button>
-                    </div>
-                  </div>
-                  <div className={style.section_container_body_left_product_price}>
-                    <p>
-                      ${product.currentPrice.toFixed(2)}
-                    </p>
-                    <button onClick={() => handleRemoveFromBasket(product)}>
-                      Remove
-                    </button>
-                  </div>
-                </div>))}
+                  <BasketItem
+                    key={product.itemNo}
+                    product={product}
+                    handleRemoveFromBasket={handleRemoveFromBasket}/>
+                ))}
               </div>
               <div className={style.section_container_body_right}>
                 <div className={style.section_container_body_right_top}>

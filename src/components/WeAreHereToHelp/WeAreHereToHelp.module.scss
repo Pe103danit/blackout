@@ -36,6 +36,7 @@
             display: block;
             width: 100%;
             height: 600px;
+            object-fit: cover;
             border-radius: $border;
           }
           &_text {
@@ -68,6 +69,7 @@
             display: block;
             width: 100%;
             height: 295px;
+            object-fit: cover;
             border-radius: $border;
           }
 
@@ -118,9 +120,8 @@
             }
 
             img {
-              width: 90%;
-              height: 400px;
-              box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
+              width: 100%;
+              height: 300px;
             }
             &_text {
               top: 20px;
@@ -143,9 +144,8 @@
             }
 
             img {
-              width: 90%;
-              height: 400px;
-              box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
+              width: 100%;
+              height: 300px;
             }
             &_text {
               top: 20px;

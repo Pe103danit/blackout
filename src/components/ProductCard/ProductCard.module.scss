@@ -141,13 +141,13 @@
     &_card_button_available {
         padding: 20px 30px;
         border: transparent;
-        cursor: pointer;       
+        cursor: pointer;
     }
 
     &_card_button_disable {
         color: $black;
-         background-color: $white;
-        cursor: none;         
+        background-color: $third-grey;
+        cursor: none;
     }
 
     &_card_count {
@@ -194,7 +194,6 @@
     &_card_rating {
         float: none;
         margin: 5px;
-
     }
 
     &_card_star {
@@ -209,12 +208,26 @@
     &_star_rating {
         display: flex;
         flex-direction: column;
-        gap: 5px
+        gap: 5px;
     }
 
     &_card_selected {
-        background-color: $sun;
+        background-color: $orange;
     }
+
+    &__wishList {
+        width: 30px;
+        padding-left: 15px ;    
+        background-color: transparent;
+        border: none;
+        transform: translate(-50%, -50%);
+
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
 
     @media screen and (max-width:$tab) {
         .product {
@@ -223,7 +236,7 @@
             &_card {
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;         
+                justify-content: center;
             }
 
             &_card_info {
@@ -253,7 +266,12 @@
                 height: 350px;
             }
 
-           
+            &_card_container_for_buttons {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
         }
     }
 
