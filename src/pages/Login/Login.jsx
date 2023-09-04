@@ -2,7 +2,7 @@ import { instance } from '../../components/assets/axiosUrl'
 import { useState } from 'react'
 import { Formik, Field, Form } from 'formik';
 import style from './Login.module.scss'
-import { object, string, number, date, InferType } from 'yup';
+import { object, string} from 'yup';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';

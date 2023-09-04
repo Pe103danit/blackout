@@ -21,7 +21,7 @@ import Account from './pages/Account/Account';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
-import { UseSelector, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
 // import PortablePowerStationsContainer from './pages/ProductCategories/PortablePowerStations/PortablePowerStationsContainer'
 // import GeneratorsContainer from './pages/ProductCategories/Generators/GeneratorsContainer'
