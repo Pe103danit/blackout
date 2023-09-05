@@ -2,10 +2,11 @@ import style from './Basket.module.scss'
 import { NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { changeCountBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { changeCountBasket, deleteBasketItem } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const BasketItem = ({ product, handleRemoveFromBasket }) => {
+const BasketItem = ({ product }) => {
   const dispatch = useDispatch()
+  const [deleteStatus, setDeleteStatus] = useState(false)
   const [countToCart, setCountToCart] = useState(Number(product.countToCart))
   const handleChangeCount = (method) => {
     if (countToCart > 1 || method !== 'decrement') {
@@ -14,6 +15,11 @@ const BasketItem = ({ product, handleRemoveFromBasket }) => {
           : countToCart + 1
         )
       }
+  }
+
+  const handleRemoveFromBasket = () => {
+    dispatch(deleteBasketItem(product.itemNo))
+    setDeleteStatus(true)
   }
 
   useEffect(() => {
@@ -32,6 +38,9 @@ const BasketItem = ({ product, handleRemoveFromBasket }) => {
   useEffect(() => {
     dispatch(changeCountBasket(product.itemNo, countToCart))
   }, [countToCart, product.itemNo, dispatch])
+  if (deleteStatus) {
+    return null
+  }
   return (
     <div key={product.itemNo} className={style.section_container_body_left_product}>
       <div className={style.section_container_body_left_product_checkbox}>
@@ -57,7 +66,7 @@ const BasketItem = ({ product, handleRemoveFromBasket }) => {
         <p>
           ${product.currentPrice.toFixed(2)}
         </p>
-        <button onClick={() => handleRemoveFromBasket(product)}>
+        <button onClick={handleRemoveFromBasket}>
           Remove
         </button>
       </div>
