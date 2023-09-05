@@ -10,7 +10,7 @@ const Basket = (props) => {
     ? 'lightBasketStyle'
     : 'darkBasketStyle'
 
-  const [basketList, setBasketList] = useState(props.basketList)
+  const [basketList] = useState(props.basketList)
   const basketProducts = basketList.map(item => item)
   const matchingProducts = []
   props.products.forEach(product => {
@@ -30,13 +30,7 @@ const Basket = (props) => {
         }
       )
     }
-  });
-  const handleRemoveFromBasket = (idCandidateToRemove) => {
-    const updatedBasketList = basketList.filter((item) => item.itemNo !== idCandidateToRemove);
-    props.updateBasket(updatedBasketList)
-    localStorage.setItem('basketList', JSON.stringify(updatedBasketList));
-    setBasketList(updatedBasketList);
-  };
+  })
 
   return (
     <div>
@@ -50,8 +44,7 @@ const Basket = (props) => {
                   <BasketItem
                     key={product.itemNo}
                     product={product}
-                    basketProducts = {basketProducts}
-                    handleRemoveFromBasket={handleRemoveFromBasket}/>
+                  />
                 ))}
               </div>
               <div className={style.section_container_body_right}>
@@ -59,22 +52,29 @@ const Basket = (props) => {
                   <div className={style.section_container_body_right_top_inner}>
                     <div className={style.section_container_body_right_top_inner_container}>
                       <p>Subtotal</p>
-                      <p>Summ</p>
+                      <p>{props.totalBasketSum}</p>
                     </div>
                     <div className={style.section_container_body_right_top_inner_container}>
                       <p>Shipping</p>
-                      <p>Free</p>
+                      {props.totalBasketSum >= 500
+                        ? <p>Free</p>
+                        : <p>10$</p>}
                     </div>
                     <div className={style.section_container_body_right_top_inner_container}>
                       <p>Estimated Tax</p>
                       <p>Calculated at Checkout</p>
                     </div>
                     <div className={style.section_container_body_right_top_inner_containerSum}>
-                      <p className={style.section_container_body_right_top_inner_containerSum_total}>Total summ</p>
+                      <p
+                        className={style.section_container_body_right_top_inner_containerSum_total}>Total {props.totalBasketSum >= 500
+                      ? props.totalBasketSum
+                      : (props.totalBasketSum + 10).toFixed(2)}
+                      </p>
                     </div>
                     <div className={style.section_container_body_right_top_inner_containerButtons}>
                       <button className={style.section_container_body_right_top_inner_containerButtons_btn1}>
-                        <NavLink to={'/'} className={style.section_container_body_right_top_inner_containerButtons_btn1_link}>
+                        <NavLink to={'/order'}
+                                 className={style.section_container_body_right_top_inner_containerButtons_btn1_link}>
                           CHECKOUT
                         </NavLink>
                       </button>

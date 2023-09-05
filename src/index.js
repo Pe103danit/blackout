@@ -25,6 +25,10 @@ if (!localStorage.getItem('basketList')) {
   localStorage.setItem('basketList', JSON.stringify([]))
 }
 
+if (!localStorage.getItem('totalBasketSum')) {
+  localStorage.setItem('totalBasketSum', JSON.stringify(0))
+}
+
 if (!localStorage.getItem('wishListItems')) {
   localStorage.setItem('wishListItems', JSON.stringify([]))
 }
