@@ -50,6 +50,7 @@ const Basket = (props) => {
                   <BasketItem
                     key={product.itemNo}
                     product={product}
+                    basketProducts = {basketProducts}
                     handleRemoveFromBasket={handleRemoveFromBasket}/>
                 ))}
               </div>
