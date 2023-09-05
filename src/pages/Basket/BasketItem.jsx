@@ -15,6 +15,7 @@ const BasketItem = ({ product, handleRemoveFromBasket }) => {
         )
       }
   }
+
   useEffect(() => {
     const basketList = JSON.parse(localStorage.getItem('basketList'))
     let allCountBasket = 0
