@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import { changeCountBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const BasketItem = ({ product, handleRemoveFromBasket }) => {
-
   const dispatch = useDispatch()
   const [countToCart, setCountToCart] = useState(Number(product.countToCart))
   const handleChangeCount = (method) => {
@@ -16,6 +15,7 @@ const BasketItem = ({ product, handleRemoveFromBasket }) => {
         )
       }
   }
+
   useEffect(() => {
     const basketList = JSON.parse(localStorage.getItem('basketList'))
     let allCountBasket = 0
