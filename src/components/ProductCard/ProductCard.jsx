@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
 import { HeartIcon, HeartIconDark } from '../assets/Icons';
+import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai'
 import { useQuery } from 'react-query';
 
 import 'swiper/css';
@@ -31,6 +32,7 @@ export const ProductCard = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [specsArray, setSpecsArray] = useState([])
   const [isSpinner, setSpinner] = useState(true)
+  const [isClicked, setClicked] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
 
   const themeStyle = theme ? 'light' : 'dark'
@@ -160,10 +162,7 @@ export const ProductCard = () => {
                 <div className={style.product_info}>
                   {product?.sale && <p className={style.product_card_hot}>Hot</p>}
                   <h2 className={style.product_card_title}>{product?.name}</h2>
-                  <button className={style.product__wishList} onClick={console.log('Add to WishList')}>
-                    {theme && <HeartIcon/>}
-                    {!theme && <HeartIconDark />}
-                  </button>
+
                   <p><StarRating starsSelected={product?.rating} /></p>
                   <p className={style.product_card_price}> $ {product?.currentPrice} </p>
                   <p className={style.product_card_under_price}>{product?.underPrice}</p>
@@ -217,7 +216,9 @@ export const ProductCard = () => {
                   </div>}
                   <div className={`${style.product_card_total_price} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
                     <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
-                    <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
+                      <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
+                     {!isClicked && <AiOutlineHeart className={style.product_fav_heart} onClick={() => setClicked(true)} />}
+                      {isClicked && <AiTwotoneHeart className={style.product_fav_heart} onClick={() => setClicked(false)} />}
                   </div>
                 </div>
               </div>

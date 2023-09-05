@@ -160,6 +160,7 @@
 
     &_card_total_price {
         display: flex;
+        position: relative;
         flex-direction: column;
         gap: 10px;
         justify-content: space-between;
@@ -181,6 +182,7 @@
     }
 
     &_card_total_price_button {
+        position: relative;
         display: block;
         padding: 15px 25px;
         color: white;
@@ -215,9 +217,24 @@
         background-color: $orange;
     }
 
+    &_fav_heart {
+        position: absolute;
+        top: 65%;
+        right: 100%;
+        height: 35px;
+        width: 35px;
+    }
+
+    &_fav {
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        border-radius: 50%;
+    }
+
     &__wishList {
         width: 30px;
-        padding-left: 15px ;    
+        padding-left: 15px;
         background-color: transparent;
         border: none;
         transform: translate(-50%, -50%);
@@ -226,8 +243,18 @@
             width: 30px;
             height: 30px;
         }
+
     }
 
+    @media screen and (min-width: $tab) {
+        &_card_total_price_button {
+            transition: background-color .3s ease, transform .3s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
 
     @media screen and (max-width:$tab) {
         .product {
@@ -246,6 +273,11 @@
             &_card_swiper {
                 height: 450px;
             }
+            &_fav_heart {
+                top: 18%;
+                right: 3%;
+            }
+
         }
     }
 
@@ -274,5 +306,4 @@
 
         }
     }
-
 }
