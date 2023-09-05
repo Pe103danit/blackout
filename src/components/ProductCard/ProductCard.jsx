@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
-import { HeartIcon, HeartIconDark } from '../assets/Icons';
 import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai'
 import { useQuery } from 'react-query';
 
