@@ -28,25 +28,27 @@ const updateBasketR = (state, payload) => {
     basket: basketCount
   }
 }
+
 const changeBasketCountR = (state, payload) => {
   let sumCountBasket = 0
   const newBasketList = state.basketList.map(itemBasket => {
     if (itemBasket.itemNo === payload.id) {
+      console.log(`old - ${itemBasket.countToCart}`)
       itemBasket = {
         ...itemBasket,
         countToCart: payload.newCountValue
       }
     }
     sumCountBasket += itemBasket.countToCart
+    console.log(`new -- ${payload.newCountValue}`)
     return itemBasket
   })
-  localStorage.setItem('basketList', JSON.stringify(newBasketList))
-  localStorage.setItem('basket', `${sumCountBasket}`)
-  return {
+   console.log(`Reducer --- ${sumCountBasket}`)
+    return {
       ...state,
       basket: sumCountBasket,
       basketList: newBasketList
-  }
+    }
 }
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {

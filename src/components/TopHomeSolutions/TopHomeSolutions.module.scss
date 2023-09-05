@@ -16,14 +16,19 @@
   &_wrapper {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     gap: 10px;
     margin-top: 50px;
 
     &_item {
-      width: 595px;
 
       &_link {
         position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
 
         &_img {
           display: block;
@@ -69,15 +74,14 @@
     max-width: 768px;
 
     &_wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
       &_item {
         width: 100vw;
 
         &_link {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
           &_text {
             &:hover {
               text-decoration: none;
@@ -85,7 +89,7 @@
           }
 
           &_img {
-            width: 100%;
+
             height: 300px;
             object-fit: cover;
             border-radius: 0;
@@ -109,11 +113,10 @@
       justify-content: center;
 
       &_item {
-        width: 100%;
-
+        width: 100vw;
         &_link {
           &_img {
-            width: 100%;
+            width: 100vw;
             height: 300px;
             object-fit: cover;
           }
