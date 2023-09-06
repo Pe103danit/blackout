@@ -9,6 +9,7 @@ const Basket = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightBasketStyle'
     : 'darkBasketStyle'
+
   const [basketList] = useState(props.basketList)
   const basketProducts = basketList.map(item => item)
   const matchingProducts = []
