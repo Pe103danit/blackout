@@ -1,4 +1,4 @@
-import style from './InformationStep1.module.scss'
+import style from './ShippingStep2.module.scss'
 import { NavLink } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
 import {
@@ -33,12 +33,12 @@ const InformationStep1 = (props) => {
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
-              <p className={style.container_main_nav_list_item_link}>
+              <NavLink to={'/information'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
                 Information >
-              </p>
+              </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
-              <p className={`${style.container_main_nav_list_item_link} ${style.unknown}`}>
+              <p className={style.container_main_nav_list_item_link}>
                 Shipping >
               </p>
             </li>
@@ -58,7 +58,7 @@ const InformationStep1 = (props) => {
           </div>
           <div className={style.container_main_form_container}>
             <p className={style.container_main_form_container_title}>
-              Personal information
+              Shipping information
             </p>
             <div className={style.container_main_form_container_inputs}>
               <FormControl className={style.container_main_form_container_inputs_input}>
@@ -130,9 +130,7 @@ const InformationStep1 = (props) => {
               </FormGroup>
             </div>
             <div className={style.container_main_form_container_button}>
-              <NavLink to={'/shipping'}>
-                <Button variant="contained">Continue to payment</Button>
-              </NavLink>
+              <Button variant="contained">Continue to shipping</Button>
             </div>
           </div>
         </form>

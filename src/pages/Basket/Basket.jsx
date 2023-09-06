@@ -69,11 +69,11 @@ const Basket = (props) => {
                         className={style.section_container_body_right_top_inner_containerSum_total}>Total {props.totalBasketSum >= 500
                         ? props.totalBasketSum
                         : (props.totalBasketSum + 10).toFixed(2)}
-                      $</p>
+                        $</p>
                     </div>
                     <div className={style.section_container_body_right_top_inner_containerButtons}>
                       <button className={style.section_container_body_right_top_inner_containerButtons_btn1}>
-                        <NavLink to={'/order'}
+                        <NavLink to={'/information'}
                                  className={style.section_container_body_right_top_inner_containerButtons_btn1_link}>
                           CHECKOUT
                         </NavLink>
