@@ -9,6 +9,7 @@ const Basket = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightBasketStyle'
     : 'darkBasketStyle'
+
   const [basketList] = useState(props.basketList)
   const basketProducts = basketList.map(item => item)
   const matchingProducts = []
@@ -51,7 +52,7 @@ const Basket = (props) => {
                   <div className={style.section_container_body_right_top_inner}>
                     <div className={style.section_container_body_right_top_inner_container}>
                       <p>Subtotal</p>
-                      <p>{props.totalBasketSum}$</p>
+                      <p>{props.totalBasketSum}</p>
                     </div>
                     <div className={style.section_container_body_right_top_inner_container}>
                       <p>Shipping</p>
@@ -68,11 +69,11 @@ const Basket = (props) => {
                         className={style.section_container_body_right_top_inner_containerSum_total}>Total {props.totalBasketSum >= 500
                         ? props.totalBasketSum
                         : (props.totalBasketSum + 10).toFixed(2)}
-                        $</p>
+                      </p>
                     </div>
                     <div className={style.section_container_body_right_top_inner_containerButtons}>
                       <button className={style.section_container_body_right_top_inner_containerButtons_btn1}>
-                        <NavLink to={'/information'}
+                        <NavLink to={'/order'}
                                  className={style.section_container_body_right_top_inner_containerButtons_btn1_link}>
                           CHECKOUT
                         </NavLink>
