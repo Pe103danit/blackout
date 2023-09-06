@@ -1,7 +1,16 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixin';
 
+.active {
+  color: $green-blue !important;
+}
+
+.unknown {
+  color: $fourth-grey !important;
+}
+
 .container {
+  padding-bottom: 30px;
   &_title {
     display: flex;
     align-items: center;
@@ -43,6 +52,7 @@
     justify-content: space-between;
     width: 100%;
     max-width: 1200px;
+    margin: 0 auto;
     &_nav {
       display: flex;
       align-items: center;
@@ -56,12 +66,72 @@
         width: 250px;
         margin: 0 auto;
         &_item {
-
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           &_link {
             color: $black;
             font-size: $fifth-size;
             @include manrope-regular();
           }
+        }
+      }
+    }
+    &_form {
+      width: 100%;
+      margin: 0 auto;
+      &_login {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 500px;
+        margin: 0 auto;
+        &_title {
+          font-size: $third-size;
+          @include manrope-bold();
+        }
+        &_question {
+          color: $black;
+          font-size: $fourth-size;
+          @include manrope-regular();
+          &_link {
+            color: $green-blue;
+            text-decoration: none;
+          }
+        }
+      }
+      &_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 10px;
+        &_title {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          font-size: $third-size;
+          @include manrope-bold();
+        }
+        &_inputs {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 1000px;
+          margin: 0 auto;
+          &_input {
+            width: 600px;
+            margin: 0 auto;
+          }
+        }
+        &_button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 1000px;
         }
       }
     }
