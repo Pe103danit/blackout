@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { HeartIcon, HeartIconDark, MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
+import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 
 import style from './ShopCard.module.scss';
 
