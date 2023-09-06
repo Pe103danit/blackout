@@ -110,9 +110,9 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          margin: 0 auto;
           padding-top: 20px;
           padding-bottom: 20px;
-          margin: 0 auto;
           font-size: $third-size;
           @include manrope-bold();
         }
