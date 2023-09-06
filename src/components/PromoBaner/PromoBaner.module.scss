@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
     width: 100%;
-    height: 50px;
+    height: 52px;
     background-color: $baner-blue;
     &_title{   
       display: flex;
@@ -14,6 +14,7 @@
       padding-left: 20px;
       color: $white;
       font-size: 20px;
+      line-height: 1.4 !important;
     }
     &_cross{
         padding-right: 20px;
@@ -31,7 +32,7 @@
       display: inline-block;
       padding-left: 20px;
       color: $white;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 1;
       text-align: center;
       vertical-align: bottom;    

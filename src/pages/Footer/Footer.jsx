@@ -14,7 +14,7 @@ import style from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
 import {useMutation} from 'react-query';
 import { instance } from '../../components/assets/axiosUrl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Footer = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark';
@@ -37,6 +37,18 @@ const Footer = (props) => {
     const smallOneWhole = 'small-one-whole';
     const siteFooterPolicy = 'site-footer__policy';
     const customPaymentIconsFooter = 'custom_payment_icons--footer';
+
+    const [isSubscribed, setIsSubscribed] = useState(false);
+    const [isErrorSubscribed, setIsErrorSubscribed] = useState(false);
+    useEffect(() => {
+        if (isSubscribed || isErrorSubscribed) {
+            const timer = setTimeout(() => {
+                setIsSubscribed(false);
+                setIsErrorSubscribed(false);
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [isSubscribed, isErrorSubscribed]);
 
     const mutation = useMutation(
       newSubscriber => {
@@ -90,10 +102,12 @@ const Footer = (props) => {
       },
       {
           onSuccess: (data) => {
-            console.log(data)
+              console.log(data)
+              setIsSubscribed(true);
           },
           onError: (error) => {
               console.error(error)
+              setIsErrorSubscribed(true)
           }
       }
     )
@@ -229,7 +243,13 @@ const Footer = (props) => {
                                               name='newsletter-form-email'
                                               id='newsletter-form-email'
                                               className={`${style.input__group__field} ${newsletterInput}`}
-                                              placeholder='Email address'
+                                              placeholder={
+                                                  isSubscribed
+                                                    ? 'Thanks for subscribing!'
+                                                    : (isErrorSubscribed
+                                                      ? 'Something go wrong!'
+                                                      : 'Email address')
+                                            }
                                               value={subscriberCandidate}
                                               onChange={(e) => setSubscriberCandidate(e.target.value)}
                                             />

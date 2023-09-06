@@ -3,8 +3,7 @@ import ProductCard from '../../components/ProductCard/ProductCard'
 
 const ProductCardPage = () => {
   return (
-    <ProductCard />
-
+    <ProductCard/>
   )
 }
 export default ProductCardPage
