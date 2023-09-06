@@ -6,6 +6,7 @@ const initialState = {
   wishListItems: localStorage.getItem('wishListItems') ? JSON.parse(localStorage.getItem('wishListItems')) : [],
   basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
   basketList: localStorage.getItem('basketList') ? JSON.parse(localStorage.getItem('basketList')) : [],
+  totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
   productIsLoading: true,
   portablePowerStation: [],
@@ -14,6 +15,25 @@ const initialState = {
   powerBanksIsLoading: true,
   product: {}
 }
+const getTotalSum = (productsList, basketList) => {
+  let totalSum = 0
+  productsList.forEach(product => {
+    let statusFind = false
+    let countCandidate = null
+    basketList.forEach(basketItem => {
+      if (basketItem.itemNo === product.itemNo) {
+        statusFind = true
+        countCandidate = basketItem.countToCart
+      }
+    })
+    if (statusFind) {
+      totalSum += product.currentPrice * countCandidate
+    }
+  })
+  localStorage.setItem('totalBasketSum', totalSum)
+  return Number(totalSum.toFixed(2));
+}
+
 const updateBasketR = (state, payload) => {
   let basketCount = 0
   payload.forEach(item => {
@@ -28,6 +48,7 @@ const updateBasketR = (state, payload) => {
     basket: basketCount
   }
 }
+
 const changeBasketCountR = (state, payload) => {
   let sumCountBasket = 0
   const newBasketList = state.basketList.map(itemBasket => {
@@ -40,14 +61,32 @@ const changeBasketCountR = (state, payload) => {
     sumCountBasket += itemBasket.countToCart
     return itemBasket
   })
-  localStorage.setItem('basketList', JSON.stringify(newBasketList))
-  localStorage.setItem('basket', `${sumCountBasket}`)
-  return {
+    return {
       ...state,
       basket: sumCountBasket,
-      basketList: newBasketList
-  }
+      basketList: newBasketList,
+      totalBasketSum: getTotalSum(state.products, newBasketList)
+    }
 }
+
+const deleteBasketItemR = (state, payload) => {
+  let allCountBasket = 0
+  const newBasketList = state.basketList.filter(basketItem => basketItem.itemNo !== payload && basketItem)
+  newBasketList.forEach(item => {
+    allCountBasket += item.countToCart
+  })
+  localStorage.setItem('basket', allCountBasket)
+  localStorage.setItem('basketList', JSON.stringify(newBasketList))
+  return ({
+    ...state,
+    basket: allCountBasket,
+    basketList: [
+      ...newBasketList
+    ],
+    totalBasketSum: getTotalSum(state.products, newBasketList)
+  })
+}
+
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
@@ -71,6 +110,8 @@ const productReducer = (state = initialState, { type, payload }) => {
       return updateBasketR(state, payload)
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)
+    case types.DELETE_BASKET_ITEM:
+      return deleteBasketItemR(state, payload)
     default:
       return state;
   }
@@ -98,6 +139,11 @@ export const updateBasket = (listCandidate) => ({
 export const changeCountBasket = (id, newCountValue) => ({
   type: types.CHANGE_COUNT_BASKET,
   payload: {id, newCountValue}
+})
+
+export const deleteBasketItem = (id) => ({
+  type: types.DELETE_BASKET_ITEM,
+  payload: id
 })
 
 export default productReducer

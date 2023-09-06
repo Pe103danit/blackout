@@ -164,6 +164,8 @@
       }
 
       &_right {
+        position: sticky;
+        top: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -396,6 +398,7 @@
         }
 
         &_right {
+          position: unset;
           width: 100%;
           margin: 0 auto;
           border-radius: unset;
