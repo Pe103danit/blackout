@@ -227,7 +227,6 @@
               }
 
               &_total {
-                color: $first-grey !important;
                 font-size: $sixth-size;
                 @include manrope-bold();
               }
@@ -262,12 +261,8 @@
               }
 
               &_btn2 {
-                color: $first-grey;
                 @include manrope-bold();
                 text-transform: uppercase;
-                &:hover {
-                  color: $third-grey;
-                }
               }
             }
           }
@@ -276,7 +271,6 @@
         &_bottom {
           width: 100%;
           margin-top: 24px;
-          background: $white;
           border-radius: $border;
 
           &_inner {
@@ -306,14 +300,12 @@
                 width: 100%;
 
                 p:first-child {
-                  color: $black;
                   font-size: $fourth-size;
                   @include manrope-bold();
                 }
 
                 p:nth-child(2) {
                   padding-top: 10px;
-                  color: $lighter-black;
                   @include manrope-light();
                 }
               }
@@ -406,6 +398,7 @@
                     transform: none;
                   }
                 }
+
                 &_btn2 {
                   &:hover {
                     color: $first-grey;
@@ -417,6 +410,7 @@
 
           &_bottom {
             border-radius: unset;
+
             &_inner {
               &_container {
                 &_img {

@@ -10,11 +10,11 @@ const BasketItem = ({ product }) => {
   const [countToCart, setCountToCart] = useState(Number(product.countToCart))
   const handleChangeCount = (method) => {
     if (countToCart > 1 || method !== 'decrement') {
-        setCountToCart(method === 'decrement'
-          ? countToCart - 1
-          : countToCart + 1
-        )
-      }
+      setCountToCart(method === 'decrement'
+        ? countToCart - 1
+        : countToCart + 1
+      )
+    }
   }
 
   const handleRemoveFromBasket = () => {
@@ -46,11 +46,11 @@ const BasketItem = ({ product }) => {
       <div className={style.section_container_body_left_product_checkbox}>
         <input type="checkbox"/>
       </div>
-      <NavLink to={'/'} className={style.section_container_body_left_product_photo}>
+      <NavLink to={`/products/${product.itemNo}`} className={style.section_container_body_left_product_photo}>
         <img src={product.imageUrls[0]} alt={product.name} title={product.name}/>
       </NavLink>
       <div className={style.section_container_body_left_product_name}>
-        <NavLink to={'/'}>
+        <NavLink to={`/products/${product.itemNo}`}>
           <p>{product.name}</p>
           <p>{product.model}</p>
         </NavLink>
