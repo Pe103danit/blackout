@@ -357,3 +357,99 @@ background: $main-background !important;
     }
   }
 }
+
+.lightInformationStep1 {
+  background: $main-background;
+  div:first-child {
+    background: $eighth-grey;
+  }
+  div:nth-child(2) {
+    nav {
+      ul {
+        li {
+          a {
+            color: $black;
+          }
+        }
+      }
+    }
+    form {
+      div {
+        background: $main-background !important;
+        p:nth-child(2) {
+          color: $black;
+          a {
+            color: $green-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.darkInformationStep1 {
+  background-color: $black;
+  div:first-child {
+    background: $eighth-grey;
+    span:nth-child(2) {
+      color: $black;
+    }
+  }
+  div:nth-child(2) {
+    nav {
+      ul {
+        li {
+          a {
+            color: $white;
+          }
+        }
+      }
+    }
+    form {
+      div:nth-child(1) {
+        background-color: $black !important;
+        p:nth-child(2) {
+          color: $white;
+          a {
+            color: $green-blue;
+          }
+        }
+      }
+      div:nth-child(2) {
+       p {
+         color: $white;
+       }
+        div {
+          div {
+            div {
+              color: $white;
+              background: $light-black;
+              svg {
+                fill: white;
+              }
+            }
+            select {
+              background: $light-black;
+              option {
+                background: $third-grey;
+              }
+            }
+            label {
+              color: $white;
+              span {
+                color: $white;
+              }
+              svg {
+                fill: white;
+              }
+            }
+            input {
+              color: $white;
+              background: $light-black;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,8 +13,11 @@ import {
 } from '@mui/material'
 
 const InformationStep1 = (props) => {
+  const themeStyle = props.lightTheme
+    ? 'lightInformationStep1'
+    : 'darkInformationStep1'
   return (
-    <div className={style.container}>
+    <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_title}>
         <div className={style.container_title_inner}>
           <span><MarketIcon/> Order summary</span>
