@@ -214,13 +214,12 @@ export const ProductCard = () => {
                     </div>
                   </div>}
                   <div className={`${style.product_card_total_price} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
-                    <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
                     <div className={style.product_container_for_heart}>
-                      <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
-                    {!isClicked && <div onClick={() => setClicked(true)} className={style.product_favorite_background}> <AiOutlineHeart className={style.product_fav_heart} /></div>}
-                    {isClicked && <div onClick={() => setClicked(false)} className={style.product_favorite_background}> <AiTwotoneHeart className={style.product_fav_heart} /> </div>}
+                      <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
+                      {!isClicked && <div onClick={() => setClicked(true)} className={style.product_favorite_background}> <AiOutlineHeart className={style.product_fav_heart} /></div>}
+                      {isClicked && <div onClick={() => setClicked(false)} className={style.product_favorite_background}> <AiTwotoneHeart className={style.product_fav_heart} /> </div>}
                     </div>
-                    
+                    <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
                   </div>
                 </div>
               </div>
