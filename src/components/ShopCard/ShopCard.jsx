@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { HeartIcon, HeartIconDark, MarketIcon, MarketIconDark } from '../assets/Icons';
-// import { HeartIconFilled } from '../assets/Icons';
+import { HeartIcon, HeartIconDark, MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 
 import style from './ShopCard.module.scss';
 
 const ShopCard = (props) => {
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
+
+    const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
+
+    const WishItemStatus = () => {
+        // console.log('Add to Wishlist from Card');
+        setWishListHeard(prevWishListHeard => !prevWishListHeard);
+        props.onWishList(props.productItem.itemNo);
+    }
 
     return (
         <div className={`${style.shopCard} ${theme ? '' : style.shopCard__darkTheme}`}>
@@ -28,15 +35,16 @@ const ShopCard = (props) => {
                         <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
                     </div>
                 </Link>
-                <button className={style.shopCard__description__order__wishList} onClick={console.log('Add to WishList')}>
-                    {theme
-                        ? <HeartIcon />
-                        : <HeartIconDark />
+                <button className={style.shopCard__description__order__wishList} onClick={() => WishItemStatus()}>
+                    {/* {theme */
+                        wishListHeard
+                            ? <HeartIconCardFill />
+                            : <HeartIconCard />
                     }
                 </button>
-                <button className={style.shopCard__description__order__cart} onClick={console.log('Add to WishList')}>
+                <button className={style.shopCard__description__order__cart} onClick={null}>
                     {theme
-                        ? <MarketIcon />
+                        ? <MarketIcon fill={'#4164EC'} />
                         : <MarketIconDark />
                     }
                 </button>
