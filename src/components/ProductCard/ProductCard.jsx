@@ -162,7 +162,7 @@ export const ProductCard = () => {
                   {product?.sale && <p className={style.product_card_hot}>Hot</p>}
                   <h2 className={style.product_card_title}>{product?.name}</h2>
 
-                  <p><StarRating starsSelected={product?.rating} /></p>
+                  <div><StarRating starsSelected={product?.rating} /></div>
                   <p className={style.product_card_price}> $ {product?.currentPrice} </p>
                   <p className={style.product_card_under_price}>{product?.underPrice}</p>
                 </div>
@@ -215,9 +215,12 @@ export const ProductCard = () => {
                   </div>}
                   <div className={`${style.product_card_total_price} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
                     <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
+                    <div className={style.product_container_for_heart}>
                       <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
-                     {!isClicked && <AiOutlineHeart className={style.product_fav_heart} onClick={() => setClicked(true)} />}
-                      {isClicked && <AiTwotoneHeart className={style.product_fav_heart} onClick={() => setClicked(false)} />}
+                    {!isClicked && <div onClick={() => setClicked(true)} className={style.product_favorite_background}> <AiOutlineHeart className={style.product_fav_heart} /></div>}
+                    {isClicked && <div onClick={() => setClicked(false)} className={style.product_favorite_background}> <AiTwotoneHeart className={style.product_fav_heart} /> </div>}
+                    </div>
+                    
                   </div>
                 </div>
               </div>
