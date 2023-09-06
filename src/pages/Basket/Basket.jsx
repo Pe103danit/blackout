@@ -67,8 +67,8 @@ const Basket = (props) => {
                     <div className={style.section_container_body_right_top_inner_containerSum}>
                       <p
                         className={style.section_container_body_right_top_inner_containerSum_total}>Total {props.totalBasketSum >= 500
-                      ? props.totalBasketSum
-                      : (props.totalBasketSum + 10).toFixed(2)}
+                        ? props.totalBasketSum
+                        : (props.totalBasketSum + 10).toFixed(2)}
                       </p>
                     </div>
                     <div className={style.section_container_body_right_top_inner_containerButtons}>
