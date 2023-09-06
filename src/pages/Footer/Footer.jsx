@@ -14,8 +14,7 @@ import style from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
 import {useMutation} from 'react-query';
 import { instance } from '../../components/assets/axiosUrl'
-import { useEffect, useState } from 'react'
-import { Notify } from 'notiflix'
+import { useState } from 'react'
 
 const Footer = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark';
@@ -36,20 +35,7 @@ const Footer = (props) => {
     const footerItemAlignLeft = 'footer-item-align-left';
     const footerItemAlignRight = 'footer-item-align-right';
     const smallOneWhole = 'small-one-whole';
-    const siteFooterPolicy = 'site-footer__policy';
     const customPaymentIconsFooter = 'custom_payment_icons--footer';
-
-    const [isSubscribed, setIsSubscribed] = useState(false);
-    const [isErrorSubscribed, setIsErrorSubscribed] = useState(false);
-    useEffect(() => {
-        if (isSubscribed || isErrorSubscribed) {
-            const timer = setTimeout(() => {
-                setIsSubscribed(false);
-                setIsErrorSubscribed(false);
-            }, 5000);
-            return () => clearTimeout(timer);
-        }
-    }, [isSubscribed, isErrorSubscribed]);
 
     const mutation = useMutation(
       newSubscriber => {
@@ -103,14 +89,10 @@ const Footer = (props) => {
       },
       {
           onSuccess: (data) => {
-              console.log(data)
-              setIsSubscribed(true);
-              Notify.success('Thanks for subscribing!')
+            console.log(data)
           },
           onError: (error) => {
               console.error(error)
-              setIsErrorSubscribed(true)
-              Notify.warning('Something go wrong!')
           }
       }
     )
@@ -129,7 +111,7 @@ const Footer = (props) => {
                     <div className={`${style.footer__content}`}>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Products
+                                <div className={`${style.heading5}`}>Products
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -152,7 +134,7 @@ const Footer = (props) => {
                         </div>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Support
+                                <div className={`${style.heading5}`}>Support
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -166,7 +148,7 @@ const Footer = (props) => {
                         </div>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Privacy & Terms
+                                <div className={`${style.heading5}`}>Privacy & Terms
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -183,7 +165,7 @@ const Footer = (props) => {
                         </div>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Company
+                                <div className={`${style.heading5}`}>Company
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -246,13 +228,7 @@ const Footer = (props) => {
                                               name='newsletter-form-email'
                                               id='newsletter-form-email'
                                               className={`${style.input__group__field} ${newsletterInput}`}
-                                              placeholder={
-                                                  isSubscribed
-                                                    ? 'Thanks for subscribing!'
-                                                    : (isErrorSubscribed
-                                                      ? 'Something go wrong!'
-                                                      : 'Email address')
-                                            }
+                                              placeholder='Email address'
                                               value={subscriberCandidate}
                                               onChange={(e) => setSubscriberCandidate(e.target.value)}
                                             />
@@ -283,11 +259,11 @@ const Footer = (props) => {
                             <div className={`${style.grid__item} ${oneHalf} ${footerItemAlignLeft} ${smallOneWhole}`}>
                                 <span className={`${style.footer__copyright_content}`}>
                                     <p>Copyright &copy; 2023
-                                        <NavLink to={'/shop'}> BlackOut Store</NavLink>
+                                        <NavLink to={'/shop'} className={style.blackoutStore__link}> BlackOut Store</NavLink>
                                         . All Right Reserved.
                                     </p>
                                 </span>
-                                <ol className={`${style.footer__linklist} ${siteFooterPolicy} ${listInline}`}>
+                                <ol className={style.footer__linklist__copyright}>
                                     <li className={`${style.footer__linklist_item}`}>
                                         <NavLink to={'/'} className={`${style.footer__linklist_item}`}>Privacy Policy</NavLink>
                                     </li>

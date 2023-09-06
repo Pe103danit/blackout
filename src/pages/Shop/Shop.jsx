@@ -2,6 +2,8 @@ import React, { useState, } from 'react';
 import { connect } from 'react-redux';
 
 import style from './Shop.module.scss';
+import PriceSlider from '../../components/PriceSlider/PriceSlider';
+import CategorySelect from '../../components/CategorySelect/CategorySelect';
 import Spinner from '../../components/Spinner/Spinner';
 import PagePagination from '../../components/PagePagination/PagePagination';
 import ShopCard from '../../components/ShopCard/ShopCard';
@@ -22,6 +24,8 @@ const Shop = ({ productItems, productIsLoading }) => {
         (productIsLoading === true)
             ? (<Spinner />)
             : (<>
+                <PriceSlider/>
+                <CategorySelect/>
                 <div className={style.cardContainer}>
                     {currentItems.map((productItem, index) => (
                         <ShopCard key={index} productItem={productItem} />

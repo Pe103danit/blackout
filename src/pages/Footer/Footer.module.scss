@@ -35,7 +35,7 @@
     }
     &__item {
         display: flex;
-        flex: 1 1 20%;
+        flex: 1 1 21%;
         flex-direction: column;
         width: 200px;
         margin-bottom: 15px;
@@ -74,6 +74,9 @@
                 transition: color .3s ease;
             }
         }
+        &__copyright {
+            display: flex;
+        }
     }
     &__social_icons {
         text-align: left;
@@ -87,7 +90,7 @@
         color: $third-grey;
     }
 }
-.h5 {
+.heading5 {
     position: relative;
     margin: 0 0 17.5px;
     color: $white;
@@ -203,7 +206,7 @@
 .grid, li {
     list-style: none;
 }
-p > a {
+.blackoutStore__link {
     text-decoration: underline;
 }
 .custom_payment_icons {
@@ -222,9 +225,7 @@ p > a {
 .site-footer__policy {
     display: flex;
 }
-ol {
-    display: flex;
-}
+
 li.footer__linklist_item {
     padding: 5px 15px 12px 0;
 }
@@ -259,6 +260,9 @@ li.footer__linklist_item {
                     transition: none;
                 }
             }
+            &__copyright {
+                justify-content: center;
+            }
         }
         &__content::after {
             top: 868px;
@@ -289,13 +293,7 @@ li.footer__linklist_item {
             margin: 0 auto;
         }
     }
-    ol {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    ol>li.footer__linklist_item {
+    .footer__linklist_item {
         padding-right: 15px;
         padding-left: 15px;
     }
