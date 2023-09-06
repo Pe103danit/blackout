@@ -27,7 +27,6 @@
         align-items: center;
         width: 68%;
         min-height: 696px;
-        background: $white;
         border-radius: $border;
 
         &_product {
@@ -73,14 +72,12 @@
 
             a {
               p:first-child {
-                color: $first-grey;
                 font-size: $third-size;
                 @include manrope-bold();
               }
 
               p:nth-child(2) {
                 padding-top: 20px;
-                color: $fourth-grey;
                 @include manrope-light();
               }
             }
@@ -136,18 +133,15 @@
             height: 90px;
 
             p {
-              color: $black;
               font-weight: $big-weight;
             }
 
             button {
               padding: 0;
-              color: $black;
               text-align: left;
               text-decoration: underline;
               background: none;
               border: none;
-              border-bottom: black;
               @include manrope-regular();
 
               &:hover {
@@ -177,7 +171,6 @@
           display: flex;
           flex-direction: column;
           width: 100%;
-          background: $white;
           border-radius: $border;
 
           &_inner {
@@ -195,12 +188,10 @@
               font-size: $fourth-size;
 
               p:first-child {
-                color: $fourth-grey;
                 @include manrope-regular();
               }
 
               p:nth-child(2) {
-                color: $first-grey;
                 @include manrope-bold();
               }
             }
