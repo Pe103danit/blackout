@@ -25,7 +25,7 @@ import { useSelector } from 'react-redux';
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
 import GoToTop from './components/GoToTop/GoToTop'
 import BasketContainer from './pages/Basket/BasketContainer'
-import OrderContainer from './pages/Order/OrderContainer'
+import OrderContainer from './pages/Order/InformationStep1/InformationStep1Container'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
