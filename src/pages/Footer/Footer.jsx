@@ -15,6 +15,7 @@ import { NavLink } from 'react-router-dom';
 import {useMutation} from 'react-query';
 import { instance } from '../../components/assets/axiosUrl'
 import { useEffect, useState } from 'react'
+import { Notify } from 'notiflix'
 
 const Footer = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark';
@@ -104,10 +105,12 @@ const Footer = (props) => {
           onSuccess: (data) => {
               console.log(data)
               setIsSubscribed(true);
+              Notify.success('Thanks for subscribing!')
           },
           onError: (error) => {
               console.error(error)
               setIsErrorSubscribed(true)
+              Notify.warning('Something go wrong!')
           }
       }
     )
@@ -296,16 +299,16 @@ const Footer = (props) => {
                             <div className={`${style.grid__item} ${footerItemAlignRight} ${oneHalf} ${smallOneWhole}`}>
                                 <div className={`${style.custom_payment_icons} ${customPaymentIconsFooter}`}>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt="PayPal" srcSet="https://cdn.shopify.com/s/files/1/1996/9707/files/card_08_7f374817-3a3e-42f2-95ce-077b67f293d2.svg?v=1672025209" />
+                                        <img alt="PayPal" src="https://cdn.shopify.com/s/files/1/1996/9707/files/card_08_7f374817-3a3e-42f2-95ce-077b67f293d2.svg?v=1672025209" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt="Visa" srcSet="https://cdn.shopify.com/s/files/1/1996/9707/files/card_10_d8002835-e25f-4edb-9038-187f75f69a18.svg?v=1672025208" />
+                                        <img alt="Visa" src="https://cdn.shopify.com/s/files/1/1996/9707/files/card_10_d8002835-e25f-4edb-9038-187f75f69a18.svg?v=1672025208" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt="MasterCard" srcSet="https://cdn.shopify.com/s/files/1/1996/9707/files/card_06_7c406d24-0983-49ff-ac8e-cf73032050d9.svg?v=1672025208" />
+                                        <img alt="MasterCard" src="https://cdn.shopify.com/s/files/1/1996/9707/files/card_06_7c406d24-0983-49ff-ac8e-cf73032050d9.svg?v=1672025208" />
                                     </div>
                                     <div className={`${style.payment_icon}`}>
-                                        <img alt='EuroCard' srcSet='https://cdn.shopify.com/s/files/1/1996/9707/files/card_07_be5959d4-9f22-4a31-8e40-285f8e3ac6e7.svg?v=1672025208' />
+                                        <img alt='EuroCard' src='https://cdn.shopify.com/s/files/1/1996/9707/files/card_07_be5959d4-9f22-4a31-8e40-285f8e3ac6e7.svg?v=1672025208' />
                                     </div>
                                 </div>
                             </div>
