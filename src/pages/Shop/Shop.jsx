@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+// import { useParams } from 'react-router-dom';
 
 import style from './Shop.module.scss';
 import Spinner from '../../components/Spinner/Spinner';
@@ -10,6 +11,10 @@ const Shop = ({ productItems, productIsLoading }) => {
     const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
     let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
+
+    useEffect(() => {
+        setCurrentItems(productItems.slice(0, 12))
+    }, [productItems]);
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);

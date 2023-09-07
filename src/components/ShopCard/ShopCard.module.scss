@@ -15,29 +15,6 @@
         box-shadow: 0 0 18px rgba(255, 255, 255, .4);
     }
 
-    &:hover {
-        .shopCard__description__order__btn {
-            display: block;
-        }
-
-        .shopCard__description__order__cart {
-            display: none;
-        }
-
-        .shopCard__description__order__price {
-            display: none;
-        }
-
-        .shopCard__imgBlock__img1 {
-            opacity: 0;
-        }
-
-        .shopCard__imgBlock__img2 {
-            opacity: 1;
-        }
-
-    }
-
     &__imgBlock {
         position: relative;
         width: 268px;
@@ -142,11 +119,22 @@
             &__wishList {
                 position: absolute;
                 top: 7%;
-                right: 2%;
-                width: 30px;
-                background-color: transparent;
-                border: none;
+                right: -5%;
+                display: flex;
+                justify-content: center;
+                box-sizing: border-box;
+                padding: 7px;
+                border: 2px solid $baner-blue;
+                border-radius: 30%;
                 transform: translate(-50%, -50%);
+
+                &--backgroundWhite {
+                    background-color: $white;
+                }
+
+                &--backgroundBlack {
+                    background-color: $black;
+                }
 
                 svg {
                     width: 30px;
@@ -178,7 +166,7 @@
 @media screen and (min-width: 481px) {
     .shopCard {
         &__imgBlock {
-           
+
             &__img1 {
                 width: 368px;
             }
@@ -195,6 +183,7 @@
         &__imgBlock {
             width: 250px;
             height: 250px;
+
             &__img1 {
                 width: 250px;
                 height: 250px;
@@ -205,8 +194,33 @@
                 height: 250px;
             }
         }
+
         &__description__order__cart {
             display: none;
         }
+
+        &:hover {
+            .shopCard__description__order__btn {
+                display: block;
+            }
+
+            .shopCard__description__order__cart {
+                display: none;
+            }
+
+            .shopCard__description__order__price {
+                display: none;
+            }
+
+            .shopCard__imgBlock__img1 {
+                opacity: 0;
+            }
+
+            .shopCard__imgBlock__img2 {
+                opacity: 1;
+            }
+
+        }
+
     }
 }

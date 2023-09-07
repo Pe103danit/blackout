@@ -7,6 +7,7 @@ import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '..
 import style from './ShopCard.module.scss';
 
 const ShopCard = (props) => {
+    console.log(props);
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
 
     const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
@@ -35,11 +36,13 @@ const ShopCard = (props) => {
                         <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
                     </div>
                 </Link>
-                <button className={style.shopCard__description__order__wishList} onClick={() => WishItemStatus()}>
-                    {/* {theme */
-                        wishListHeard
-                            ? <HeartIconCardFill />
-                            : <HeartIconCard />
+                <button className={`${style.shopCard__description__order__wishList} ${theme
+                        ? style['shopCard__description__order__wishList--backgroundWhite']
+                        : style['shopCard__description__order__wishList--backgroundBlack']
+                    }`} onClick={() => WishItemStatus()}>
+                    {wishListHeard
+                        ? <HeartIconCardFill />
+                        : <HeartIconCard />
                     }
                 </button>
                 <button className={style.shopCard__description__order__cart} onClick={null}>
