@@ -89,29 +89,16 @@
 
             &_inner {
               height: 33px;
-              border: 1px solid $second-white;
               border-radius: 3px;
 
               button {
                 width: 33px;
                 height: 33px;
                 padding: 0;
-                color: $black;
                 font-weight: $big-weight;
                 text-align: center;
-                background: $main-background;
                 border: 0 !important;
                 cursor: pointer;
-
-                &:nth-child(1) {
-                  border-top-left-radius: 3px;
-                  border-bottom-left-radius: 3px;
-                }
-
-                &:nth-child(2) {
-                  border-top-right-radius: 3px;
-                  border-bottom-right-radius: 3px;
-                }
               }
 
               input {
