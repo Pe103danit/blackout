@@ -33,6 +33,16 @@
             content: "";
         }
     }
+    &__heading {
+        position: relative;
+        margin: 0 0 17.5px;
+        color: $white;
+        font-size: $third-size;
+        line-height: 1.48;
+        letter-spacing: normal;
+        @include manrope-bold(); 
+    }
+    
     &__item {
         display: flex;
         flex: 1 1 21%;
@@ -90,15 +100,7 @@
         color: $third-grey;
     }
 }
-.heading5 {
-    position: relative;
-    margin: 0 0 17.5px;
-    color: $white;
-    font-size: $third-size;
-    line-height: 1.48;
-    letter-spacing: normal;
-    @include manrope-bold(); 
-}
+
 .page_width_small {
     width: 100%;
     max-width: $max-width;
@@ -221,9 +223,6 @@
         margin-right: 0;
         margin-bottom: 5px;
     }
-}
-.site-footer__policy {
-    display: flex;
 }
 
 li.footer__linklist_item {
