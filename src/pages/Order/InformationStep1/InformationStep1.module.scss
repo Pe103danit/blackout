@@ -149,7 +149,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 1000px;
+          width: 900px;
           margin: 0 auto;
 
           &_input {
@@ -164,11 +164,13 @@
           justify-content: space-between;
           width: 400px;
           column-gap: 20px;
+
           a:nth-child(1) {
             button {
               background: $green-blue !important;
             }
           }
+
           a:nth-child(2) {
             button {
               background: $button-blue !important;
@@ -225,9 +227,11 @@
         &_login {
           width: 90%;
         }
+
         &_container {
           &_button {
-           flex-direction: column;
+            flex-direction: column;
+            width: 80%;
             row-gap: 20px;
           }
         }
