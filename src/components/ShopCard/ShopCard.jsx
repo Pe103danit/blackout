@@ -7,6 +7,7 @@ import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '..
 import style from './ShopCard.module.scss';
 
 const ShopCard = (props) => {
+    console.log(props);
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
 
     const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
