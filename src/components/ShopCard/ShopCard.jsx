@@ -35,11 +35,13 @@ const ShopCard = (props) => {
                         <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
                     </div>
                 </Link>
-                <button className={style.shopCard__description__order__wishList} onClick={() => WishItemStatus()}>
-                    {/* {theme */
-                        wishListHeard
-                            ? <HeartIconCardFill />
-                            : <HeartIconCard />
+                <button className={`${style.shopCard__description__order__wishList} ${theme
+                        ? style['shopCard__description__order__wishList--backgroundWhite']
+                        : style['shopCard__description__order__wishList--backgroundBlack']
+                    }`} onClick={() => WishItemStatus()}>
+                    {wishListHeard
+                        ? <HeartIconCardFill />
+                        : <HeartIconCard />
                     }
                 </button>
                 <button className={style.shopCard__description__order__cart} onClick={null}>

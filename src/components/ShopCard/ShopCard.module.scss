@@ -119,11 +119,22 @@
             &__wishList {
                 position: absolute;
                 top: 7%;
-                right: 2%;
-                width: 30px;
-                background-color: transparent;
-                border: none;
+                right: -5%;
+                display: flex;
+                justify-content: center;
+                padding: 7px;
+                border: 2px solid $baner-blue;
+                border-radius: 30%;
+                box-sizing: border-box;
                 transform: translate(-50%, -50%);
+
+                &--backgroundWhite {
+                    background-color: $white;
+                }
+
+                &--backgroundBlack {
+                    background-color: $black;
+                }
 
                 svg {
                     width: 30px;
@@ -155,7 +166,7 @@
 @media screen and (min-width: 481px) {
     .shopCard {
         &__imgBlock {
-           
+
             &__img1 {
                 width: 368px;
             }
@@ -172,6 +183,7 @@
         &__imgBlock {
             width: 250px;
             height: 250px;
+
             &__img1 {
                 width: 250px;
                 height: 250px;
@@ -182,6 +194,7 @@
                 height: 250px;
             }
         }
+
         &__description__order__cart {
             display: none;
         }
@@ -190,24 +203,24 @@
             .shopCard__description__order__btn {
                 display: block;
             }
-    
+
             .shopCard__description__order__cart {
                 display: none;
             }
-    
+
             .shopCard__description__order__price {
                 display: none;
             }
-    
+
             .shopCard__imgBlock__img1 {
                 opacity: 0;
             }
-    
+
             .shopCard__imgBlock__img2 {
                 opacity: 1;
             }
-    
+
         }
-        
+
     }
 }

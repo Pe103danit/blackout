@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import style from './Shop.module.scss';
 import Spinner from '../../components/Spinner/Spinner';
