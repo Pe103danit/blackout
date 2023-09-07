@@ -161,8 +161,19 @@
         &_button {
           display: flex;
           align-items: center;
-          justify-content: center;
-          width: 1000px;
+          justify-content: space-between;
+          width: 400px;
+          column-gap: 20px;
+          a:nth-child(1) {
+            button {
+              background: $green-blue !important;
+            }
+          }
+          a:nth-child(2) {
+            button {
+              background: $button-blue !important;
+            }
+          }
         }
       }
     }
@@ -191,7 +202,7 @@
           }
 
           &_button {
-            width: 90%;
+            width: 50%;
           }
         }
       }
@@ -213,6 +224,12 @@
       &_form {
         &_login {
           width: 90%;
+        }
+        &_container {
+          &_button {
+           flex-direction: column;
+            row-gap: 20px;
+          }
         }
       }
     }

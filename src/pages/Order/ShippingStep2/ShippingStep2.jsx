@@ -130,7 +130,12 @@ const InformationStep1 = (props) => {
               </FormGroup>
             </div>
             <div className={style.container_main_form_container_button}>
-              <Button variant="contained">Continue to payment</Button>
+              <NavLink to={'/information'}>
+                <Button variant="contained">&#8592; Back</Button>
+              </NavLink>
+              <NavLink to={'/payment'}>
+                <Button variant="contained">Continue to payment &#8594;</Button>
+              </NavLink>
             </div>
           </div>
         </form>
