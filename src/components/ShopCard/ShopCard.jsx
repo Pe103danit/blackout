@@ -1,21 +1,56 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 
 import style from './ShopCard.module.scss';
+import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const ShopCard = (props) => {
-    console.log(props);
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
 
     const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
 
     const WishItemStatus = () => {
-        // console.log('Add to Wishlist from Card');
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
         props.onWishList(props.productItem.itemNo);
+    }
+
+    const dispatch = useDispatch()
+    const [product] = useState([])
+    const [countToCart] = useState(1)
+
+    const handleClick = () => {
+        dispatch(addToBasket(product?.itemNo, countToCart))
+        let storageBasket = JSON.parse(localStorage.getItem('basketList'))
+        let repeat = false
+        storageBasket = storageBasket.map(item => {
+            if (item.itemNo === product?.itemNo) {
+                repeat = true
+                return ({
+                    itemNo: product?.itemNo,
+                    countToCart: item.countToCart + countToCart
+                })
+            } else {
+                return item
+            }
+        })
+        if (!repeat) {
+            storageBasket.push(
+              {
+                  itemNo: product?.itemNo,
+                  countToCart
+              }
+            )
+        }
+        localStorage.setItem('basketList', JSON.stringify([
+              ...storageBasket
+          ])
+        )
+        const countBasket = parseInt(localStorage.getItem('basket'))
+        localStorage.setItem('basket', `${countBasket + countToCart}`)
+        dispatch(updateBasket(storageBasket))
     }
 
     return (
@@ -45,7 +80,7 @@ const ShopCard = (props) => {
                         : <HeartIconCard />
                     }
                 </button>
-                <button className={style.shopCard__description__order__cart} onClick={null}>
+                <button className={style.shopCard__description__order__cart} onClick={handleClick}>
                     {theme
                         ? <MarketIcon fill={'#4164EC'} />
                         : <MarketIconDark />
