@@ -15,29 +15,6 @@
         box-shadow: 0 0 18px rgba(255, 255, 255, .4);
     }
 
-    &:hover {
-        .shopCard__description__order__btn {
-            display: block;
-        }
-
-        .shopCard__description__order__cart {
-            display: none;
-        }
-
-        .shopCard__description__order__price {
-            display: none;
-        }
-
-        .shopCard__imgBlock__img1 {
-            opacity: 0;
-        }
-
-        .shopCard__imgBlock__img2 {
-            opacity: 1;
-        }
-
-    }
-
     &__imgBlock {
         position: relative;
         width: 268px;
@@ -208,5 +185,29 @@
         &__description__order__cart {
             display: none;
         }
+
+        &:hover {
+            .shopCard__description__order__btn {
+                display: block;
+            }
+    
+            .shopCard__description__order__cart {
+                display: none;
+            }
+    
+            .shopCard__description__order__price {
+                display: none;
+            }
+    
+            .shopCard__imgBlock__img1 {
+                opacity: 0;
+            }
+    
+            .shopCard__imgBlock__img2 {
+                opacity: 1;
+            }
+    
+        }
+        
     }
 }
