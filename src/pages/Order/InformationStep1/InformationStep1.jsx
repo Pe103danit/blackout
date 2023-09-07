@@ -130,8 +130,11 @@ const InformationStep1 = (props) => {
               </FormGroup>
             </div>
             <div className={style.container_main_form_container_button}>
+              <NavLink to={'/basket'}>
+                <Button variant="contained">&#8592; Back</Button>
+              </NavLink>
               <NavLink to={'/shipping'}>
-                <Button variant="contained">Continue to shipping</Button>
+                <Button variant="contained">Continue to shipping &#8594;</Button>
               </NavLink>
             </div>
           </div>
