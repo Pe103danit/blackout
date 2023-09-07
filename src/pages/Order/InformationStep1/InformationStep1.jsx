@@ -1,6 +1,9 @@
 import style from './InformationStep1.module.scss'
 import { NavLink } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
+import { useFormik } from 'formik'
+/* import {PatternFormat} from 'react-number-format';
+import * as Yup from 'yup'; */
 import {
   Button,
   Checkbox,
@@ -16,6 +19,19 @@ const InformationStep1 = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
+
+  const formik = useFormik({
+    initialValues: {
+      country: 'USA',
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: ''
+    },
+    onSubmit: values => {
+      console.log(values);
+    }
+  })
   return (
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_title}>
@@ -49,7 +65,7 @@ const InformationStep1 = (props) => {
             </li>
           </ul>
         </nav>
-        <form className={style.container_main_form}>
+        <form className={style.container_main_form} onSubmit={formik.handleSubmit}>
           <div className={style.container_main_form_login}>
             <p className={style.container_main_form_login_title}>Contact</p>
             <p className={style.container_main_form_login_question}>Have an account?
@@ -66,20 +82,19 @@ const InformationStep1 = (props) => {
                   Country/Region
                 </InputLabel>
                 <NativeSelect
-                  defaultValue={1}
-                  inputProps={{
-                    name: 'Country/Region',
-                    id: 'uncontrolled-native',
-                  }}
+                  name='country'
+                  id='uncontrolled-native'
+                  value={formik.values.country}
+                  onChange={formik.handleChange}
                 >
-                  <option value={1}>USA</option>
-                  <option value={2}>United Kingdom</option>
-                  <option value={3}>Ukraine</option>
-                  <option value={4}>Germany</option>
-                  <option value={5}>Spain</option>
-                  <option value={6}>Italy</option>
-                  <option value={7}>Norway</option>
-                  <option value={8}>France</option>
+                  <option value={'USA'}>USA</option>
+                  <option value={'United Kingdom'}>United Kingdom</option>
+                  <option value={'Ukraine'}>Ukraine</option>
+                  <option value={'Germany'}>Germany</option>
+                  <option value={'Spain'}>Spain</option>
+                  <option value={'Italy'}>Italy</option>
+                  <option value={'Norway'}>Norway</option>
+                  <option value={'France'}>France</option>
                 </NativeSelect>
               </FormControl>
             </div>
@@ -90,6 +105,8 @@ const InformationStep1 = (props) => {
                          type="text"
                          name="firstName"
                          placeholder="First Name"
+                         onChange={formik.handleChange}
+                         value={formik.values.firstName}
                          className={style.container_main_form_container_inputs_input}
               />
             </div>
@@ -100,6 +117,8 @@ const InformationStep1 = (props) => {
                          type="text"
                          name="lastName"
                          placeholder="Last Name"
+                         onChange={formik.handleChange}
+                         value={formik.values.lastName}
                          className={style.container_main_form_container_inputs_input}
               />
             </div>
@@ -110,6 +129,8 @@ const InformationStep1 = (props) => {
                          type="text"
                          name="phone"
                          placeholder="Phone"
+                         onChange={formik.handleChange}
+                         value={formik.values.phone}
                          className={style.container_main_form_container_inputs_input}
               />
             </div>
@@ -120,6 +141,8 @@ const InformationStep1 = (props) => {
                          type="email"
                          name="email"
                          placeholder="Email"
+                         onChange={formik.handleChange}
+                         value={formik.values.email}
                          className={style.container_main_form_container_inputs_input}
               />
             </div>
@@ -131,11 +154,9 @@ const InformationStep1 = (props) => {
             </div>
             <div className={style.container_main_form_container_button}>
               <NavLink to={'/basket'}>
-                <Button variant="contained">&#8592; Back</Button>
+                <Button variant='contained'>&#8592; Back</Button>
               </NavLink>
-              <NavLink to={'/shipping'}>
-                <Button variant="contained">Continue to shipping &#8594;</Button>
-              </NavLink>
+                <Button variant='contained' type='submit'>Continue to shipping &#8594;</Button>
             </div>
           </div>
         </form>

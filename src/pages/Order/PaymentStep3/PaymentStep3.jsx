@@ -1,4 +1,4 @@
-import style from './ShippingStep2.module.scss'
+import style from './PaymentStep3..module.scss'
 import { NavLink } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
 import {
@@ -6,7 +6,7 @@ import {
   TextField
 } from '@mui/material'
 
-const ShippingStep2 = (props) => {
+const PaymentStep3 = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
@@ -32,12 +32,12 @@ const ShippingStep2 = (props) => {
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
-              <p className={style.container_main_nav_list_item_link}>
-                Shipping >
-              </p>
+              <NavLink to={'/information'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
+                Shipping>
+              </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
-              <p className={`${style.container_main_nav_list_item_link} ${style.unknown}`}>
+              <p className={style.container_main_nav_list_item_link}>
                 Payment
               </p>
             </li>
@@ -52,7 +52,7 @@ const ShippingStep2 = (props) => {
           </div>
           <div className={style.container_main_form_container}>
             <p className={style.container_main_form_container_title}>
-              Shipping information
+              Payment information
             </p>
             <div className={style.container_main_form_container_inputs}>
               <div className={style.container_main_form_container_inputs}>
@@ -97,11 +97,11 @@ const ShippingStep2 = (props) => {
               />
             </div>
             <div className={style.container_main_form_container_button}>
-              <NavLink to={'/information'}>
+              <NavLink to={'/shipping'}>
                 <Button variant="contained">&#8592; Back</Button>
               </NavLink>
-              <NavLink to={'/finish_order'}>
-                <Button variant="contained">Continue to payment &#8594;</Button>
+              <NavLink to={'/payment'}>
+                <Button variant="contained">Pay now</Button>
               </NavLink>
             </div>
           </div>
@@ -111,4 +111,4 @@ const ShippingStep2 = (props) => {
   )
 }
 
-export default ShippingStep2
+export default PaymentStep3
