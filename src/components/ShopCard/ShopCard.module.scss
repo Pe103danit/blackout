@@ -124,16 +124,16 @@
                 justify-content: center;
                 box-sizing: border-box;
                 padding: 7px;
-                border: 2px solid $baner-blue;
-                border-radius: 30%;
+                border: none;
+                border-radius: 50%;
                 transform: translate(-50%, -50%);
 
                 &--backgroundWhite {
-                    background-color: $white;
+                    background-color: transparent;
                 }
 
                 &--backgroundBlack {
-                    background-color: $black;
+                    background-color: transparent;
                 }
 
                 svg {
@@ -153,8 +153,8 @@
                 transform: translate(-50%, -50%);
 
                 svg {
-                    width: 30px;
-                    height: 30px;
+                    width: 35px;
+                    height: 35px;
                 }
             }
         }
