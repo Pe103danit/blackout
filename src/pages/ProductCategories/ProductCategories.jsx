@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { instance } from '../../components/assets/axiosUrl';
 import { useQuery } from 'react-query';
 
@@ -11,12 +11,12 @@ import style from './ProductCategories.module.scss';
 const ProductCategories = ({ title, categoryName }) => {
     const [products, setProducts] = useState([]);
 
-    const getProductCategories = async () => {
+    const getProductCategories = useCallback(async () => {
         const { data } = await instance.get(`/api/products/filter?categories=${categoryName}`)
         setProducts(data.products);
         setCurrentItems(data.products.slice(0, 12))
         return data
-    }
+    }, [categoryName]);
 
     const { data, isLoading, isError } = useQuery('getProductCategories', getProductCategories)
 
@@ -31,7 +31,7 @@ const ProductCategories = ({ title, categoryName }) => {
         if (categoryName) {
             getProductCategories();
         }
-    }, [categoryName]);
+    }, [categoryName, getProductCategories]);
 
     const [currentItems, setCurrentItems] = useState(products.slice(0, 12));
 
