@@ -130,7 +130,7 @@ const InformationStep1 = (props) => {
               </FormGroup>
             </div>
             <div className={style.container_main_form_container_button}>
-              <Button variant="contained">Continue to shipping</Button>
+              <Button variant="contained">Continue to payment</Button>
             </div>
           </div>
         </form>

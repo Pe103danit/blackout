@@ -131,7 +131,7 @@ const InformationStep1 = (props) => {
             </div>
             <div className={style.container_main_form_container_button}>
               <NavLink to={'/shipping'}>
-                <Button variant="contained">Continue to payment</Button>
+                <Button variant="contained">Continue to shipping</Button>
               </NavLink>
             </div>
           </div>
