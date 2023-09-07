@@ -123,9 +123,9 @@
                 display: flex;
                 justify-content: center;
                 padding: 7px;
+                box-sizing: border-box;
                 border: 2px solid $baner-blue;
                 border-radius: 30%;
-                box-sizing: border-box;
                 transform: translate(-50%, -50%);
 
                 &--backgroundWhite {
