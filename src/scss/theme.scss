@@ -401,6 +401,20 @@
             }
           }
 
+          div:nth-child(4) {
+            div {
+              border: 1px solid $second-white;
+              button {
+                color: $black;
+                background: $main-background !important;
+              }
+              input {
+                color: $black;
+                background: $white !important;
+              }
+            }
+          }
+
           div:nth-child(5) {
             p {
               color: $black;
@@ -486,6 +500,20 @@
 
               p:nth-child(2) {
                 color: $seventh-grey;
+              }
+            }
+          }
+
+          div:nth-child(4) {
+            div {
+              border: 1px solid $second-white;
+              button {
+                color: $black;
+                background: $main-background !important;
+              }
+              input {
+                color: $black;
+                background: $white !important;
               }
             }
           }
