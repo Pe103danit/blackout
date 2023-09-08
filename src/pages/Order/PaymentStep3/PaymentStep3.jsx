@@ -120,11 +120,11 @@ const PaymentStep3 = (props) => {
             </div>
             <div className={style.container_main_form_container_inputs}>
               <TextField id="expiry"
-                         label="Expiry"
+                         label="Expiration date (MM / YY)"
                          variant="outlined"
                          type="text"
                          name="expiry"
-                         placeholder="Expiry"
+                         placeholder="Expiration date (MM / YY)"
                          onChange={formik.handleChange}
                          value={formik.values.expiry}
                          onBlur={formik.handleBlur}
@@ -136,11 +136,11 @@ const PaymentStep3 = (props) => {
             </div>
             <div className={style.container_main_form_container_inputs}>
               <TextField id="cvc"
-                         label="CVC"
+                         label="Security code"
                          variant="outlined"
                          type="text"
                          name="cvc"
-                         placeholder="CVC"
+                         placeholder="Security code"
                          onChange={formik.handleChange}
                          value={formik.values.cvc}
                          onBlur={formik.handleBlur}
@@ -152,11 +152,11 @@ const PaymentStep3 = (props) => {
             </div>
             <div className={style.container_main_form_container_inputs}>
               <TextField id="name"
-                         label="Name"
+                         label="Name on card"
                          variant="outlined"
                          type="text"
                          name="name"
-                         placeholder="Name"
+                         placeholder="Name on card"
                          onChange={formik.handleChange}
                          value={formik.values.name}
                          onBlur={formik.handleBlur}
@@ -171,7 +171,7 @@ const PaymentStep3 = (props) => {
                 <Button variant="contained">&#8592; Back</Button>
               </NavLink>
               <Button variant='contained' type='submit'>
-                Continue to shipping &#8594;
+                Pay now
               </Button>
             </div>
           </div>
