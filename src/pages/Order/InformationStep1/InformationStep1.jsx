@@ -22,6 +22,12 @@ const InformationStep1 = (props) => {
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
 
+  const nextStep = () => {
+    return (
+      props.history.push('/shipping')
+    )
+  }
+
   const formik = useFormik({
     initialValues: {
       country: 'USA',
@@ -32,6 +38,7 @@ const InformationStep1 = (props) => {
     },
     onSubmit: values => {
       console.log({...values, phone: phoneInput});
+      nextStep();
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -208,7 +215,9 @@ const InformationStep1 = (props) => {
               <NavLink to={'/basket'}>
                 <Button variant='contained'>&#8592; Back</Button>
               </NavLink>
-                <Button variant='contained' type='submit'>Continue to shipping &#8594;</Button>
+                <Button variant='contained' type='submit'>
+                  Continue to shipping &#8594;
+                </Button>
             </div>
           </div>
         </form>
