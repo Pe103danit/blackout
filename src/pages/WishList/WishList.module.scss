@@ -1,0 +1,103 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+.wishList {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 68%;
+    min-height: 350px;
+    border-radius: $border;
+
+    &__title {
+        margin: 30px auto;
+        text-align: center;
+        font-size: $second-size;
+        @include manrope-bold();
+    }
+}
+
+.wishListItem {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 90%;
+    height: 150px;
+    padding: 20px 10px 0;
+
+    &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 1px;
+        background: $black;
+        opacity: 15%;
+        content: "";
+    }
+
+    &__checkbox {
+            input {
+                width: 16px;
+                height: 16px;
+            }
+    }
+
+    &__image {
+        width: 88px;
+        height: 88px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__description {
+        width: 230px;
+
+        &__link {
+            &_type {
+                color: #03060B;
+                font-size: $third-size;
+                @include manrope-bold();
+            }
+
+            &_model {
+                color: #757575;
+                padding-top: 20px;
+                @include manrope-light();
+            }
+        }
+    }
+
+    &__leftBlock {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80px;
+        height: 90px;
+
+        &__price {
+            font-weight: $big-weight;
+        }
+
+        &__btn {
+            padding: 0;
+            text-align: left;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            @include manrope-regular();
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}

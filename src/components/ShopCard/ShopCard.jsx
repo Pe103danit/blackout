@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -9,13 +9,17 @@ import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/P
 
 const ShopCard = (props) => {
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
+    // console.log('props.isWished', props.isWished);
 
-    const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
+    const [wishListHeard, setWishListHeard] = useState(props.isWished);
+    useEffect(() => {
+        setWishListHeard(props.isWished);
+    }, [props.isWished]);
 
     const WishItemStatus = () => {
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
         props.onWishList(props.productItem.itemNo);
-    }
+    };
 
     const dispatch = useDispatch()
     const [product] = useState([])
@@ -38,15 +42,15 @@ const ShopCard = (props) => {
         })
         if (!repeat) {
             storageBasket.push(
-              {
-                  itemNo: product?.itemNo,
-                  countToCart
-              }
+                {
+                    itemNo: product?.itemNo,
+                    countToCart
+                }
             )
         }
         localStorage.setItem('basketList', JSON.stringify([
-              ...storageBasket
-          ])
+            ...storageBasket
+        ])
         )
         const countBasket = parseInt(localStorage.getItem('basket'))
         localStorage.setItem('basket', `${countBasket + countToCart}`)
@@ -72,8 +76,8 @@ const ShopCard = (props) => {
                     </div>
                 </Link>
                 <button className={`${style.shopCard__description__order__wishList} ${theme
-                        ? style['shopCard__description__order__wishList--backgroundWhite']
-                        : style['shopCard__description__order__wishList--backgroundBlack']
+                    ? style['shopCard__description__order__wishList--backgroundWhite']
+                    : style['shopCard__description__order__wishList--backgroundBlack']
                     }`} onClick={() => WishItemStatus()}>
                     {wishListHeard
                         ? <HeartIconCardFill />

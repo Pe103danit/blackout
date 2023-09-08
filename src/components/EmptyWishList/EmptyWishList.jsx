@@ -9,9 +9,9 @@ const EmptyWishList = (props) => {
   return (
     <div className={`${style.section} ${themeStyle}`}>
       <div className={style.section_container}>
-        <p className={style.section_container_title}>
+        {/* <p className={style.section_container_title}>
           Wishlist
-        </p>
+        </p> */}
         <div>
           <img src={EmptyWishListImg} alt="EmptyWishlist"/>
         </div>
