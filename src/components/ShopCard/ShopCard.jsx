@@ -22,6 +22,7 @@ const ShopCard = (props) => {
     const [countToCart] = useState(1)
 
     const handleClick = () => {
+        window.scrollTo(0, 0)
         dispatch(addToBasket(product?.itemNo, countToCart))
         let storageBasket = JSON.parse(localStorage.getItem('basketList'))
         let repeat = false
