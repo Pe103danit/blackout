@@ -28,6 +28,7 @@ import BasketContainer from './pages/Basket/BasketContainer'
 import InformationStep1Container from './pages/Order/InformationStep1/InformationStep1Container'
 import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Container'
 import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
+import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -72,6 +73,7 @@ const App = (props) => {
         <Route path='/information' element={<InformationStep1Container />} />
         <Route path='/shipping' element={<ShippingStep2Container />} />
         <Route path='/finish_order' element={<PaymentStep3Container />} />
+        <Route path='/success' element={<SuccessfulOrderContainer />} />
         <Route path='/site_map' element={<SiteMapContainer />} />
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
