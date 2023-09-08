@@ -211,6 +211,10 @@
         &_container {
           &_inputs {
             width: 90%;
+
+            &_input {
+              width: 90%;
+            }
           }
 
           &_button {
@@ -240,6 +244,7 @@
         &_container {
           &_button {
             flex-direction: column;
+            width: 80%;
             row-gap: 20px;
           }
         }
