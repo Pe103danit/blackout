@@ -21,21 +21,23 @@ const initialState = {
 const OrderReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case types.SET_INFORMATION:
-      console.log(payload)
       return {
         ...state,
         ...payload
       }
+
     case types.SET_SHIPPING:
       return {
         ...state,
         ...payload
       }
+
     case types.SET_PAYMENT:
       return {
         ...state,
         ...payload
       }
+
     default:
       return state
   }

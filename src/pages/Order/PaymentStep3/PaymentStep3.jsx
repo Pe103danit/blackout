@@ -25,7 +25,10 @@ const PaymentStep3 = (props) => {
     },
     onSubmit: values => {
       props.setPayment({...values})
-      console.log(values)
+      localStorage.setItem('basket', '0')
+      localStorage.setItem('basketList', JSON.stringify([]))
+      localStorage.setItem('totalBasketSum', JSON.stringify(0))
+      props.successfulOrder()
       navigate({ pathname: '/success' }, { replace: true })
     },
     validationSchema: Yup.object({
