@@ -1,5 +1,5 @@
 import style from './ShippingStep2.module.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
 import {
   Button,
@@ -17,6 +17,8 @@ const ShippingStep2 = (props) => {
     ? 'Free'
     : '10$'
 
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
       address: '',
@@ -25,7 +27,8 @@ const ShippingStep2 = (props) => {
       postcode: '',
     },
     onSubmit: values => {
-      console.log({...values});
+      props.setShipping({...values, delivery})
+      navigate({ pathname: '/finish_order' }, { replace: true })
     },
     validationSchema: Yup.object({
       address: Yup.string()

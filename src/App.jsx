@@ -53,7 +53,7 @@ const App = (props) => {
       <PromoBaner />
       <HeaderContainer />
       <Routes>
-        <Route path='/' element={<HomeContainer />} />
+        <Route index path='/' element={<HomeContainer />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/offers' element={<Offers />} />
         <Route path='/delivery' element={<Delivery />} />
