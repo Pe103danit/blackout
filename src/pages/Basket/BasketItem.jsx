@@ -58,7 +58,11 @@ const BasketItem = ({ product }) => {
       <div className={style.section_container_body_left_product_counter}>
         <div className={style.section_container_body_left_product_counter_inner}>
           <button onClick={() => handleChangeCount('decrement')}>-</button>
-          <input type="text" value={countToCart}/>
+          <input
+            type="text"
+            value={countToCart}
+            onChange={(e) => setCountToCart(e.target.value)}
+          />
           <button onClick={() => handleChangeCount('increment')}>+</button>
         </div>
       </div>
