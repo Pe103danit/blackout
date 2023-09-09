@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -18,19 +18,20 @@ const ShopCard = (props) => {
     }
 
     const dispatch = useDispatch()
-    const [product] = useState([])
     const [countToCart] = useState(1)
 
     const handleClick = () => {
         window.scrollTo(0, 0)
-        dispatch(addToBasket(product?.itemNo, countToCart))
+
+        const candidateId = props.productItem.itemNo
+        dispatch(addToBasket(candidateId, countToCart))
         let storageBasket = JSON.parse(localStorage.getItem('basketList'))
         let repeat = false
         storageBasket = storageBasket.map(item => {
-            if (item.itemNo === product?.itemNo) {
+            if (item.itemNo === candidateId) {
                 repeat = true
                 return ({
-                    itemNo: product?.itemNo,
+                    itemNo: candidateId,
                     countToCart: item.countToCart + countToCart
                 })
             } else {
@@ -40,7 +41,7 @@ const ShopCard = (props) => {
         if (!repeat) {
             storageBasket.push(
               {
-                  itemNo: product?.itemNo,
+                  itemNo: candidateId,
                   countToCart
               }
             )
