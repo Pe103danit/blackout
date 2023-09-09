@@ -1,7 +1,7 @@
 import style from './PaymentStep3..module.scss'
 import cardImg from './card.png'
 import cardGif from './rccs.gif'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
 import {
   Button, TextField
@@ -14,18 +14,22 @@ const PaymentStep3 = (props) => {
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
 
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
-      number: '',
+      cardNumber: '',
       expiry: '',
       cvc: '',
-      name: '',
+      cardName: '',
     },
     onSubmit: values => {
-      console.log({ ...values })
+      props.setPayment({...values})
+      console.log(values)
+      navigate({ pathname: '/success' }, { replace: true })
     },
     validationSchema: Yup.object({
-      number: Yup.string()
+      cardNumber: Yup.string()
         .min(16, 'There should be more characters')
         .max(16, 'There should be less characters')
         .required('Write please your Number'),
@@ -37,7 +41,7 @@ const PaymentStep3 = (props) => {
         .min(3, 'There should be more characters')
         .max(3, 'There should be less characters')
         .required('Write please your CVC'),
-      name: Yup.string()
+      cardName: Yup.string()
         .min(1, 'There should be more characters')
         .max(50, 'There should be less characters')
         .required('Write please your Name')
@@ -99,19 +103,19 @@ const PaymentStep3 = (props) => {
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="number"
+              <TextField id="cardNumber"
                          label="Card number"
                          variant="outlined"
                          type="text"
-                         name="number"
+                         name="cardNumber"
                          placeholder="Card number"
                          onChange={formik.handleChange}
-                         value={formik.values.number}
+                         value={formik.values.cardNumber}
                          onBlur={formik.handleBlur}
                          className={style.container_main_form_container_inputs_input}
               />
-              {formik.touched.number && formik.errors.number && (
-                <p className={style.error}>{formik.errors.number}</p>
+              {formik.touched.cardNumber && formik.errors.cardNumber && (
+                <p className={style.error}>{formik.errors.cardNumber}</p>
               )}
               <img src={cardImg}
                    alt='card'
@@ -151,19 +155,19 @@ const PaymentStep3 = (props) => {
               )}
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="name"
+              <TextField id="cardName"
                          label="Name on card"
                          variant="outlined"
                          type="text"
-                         name="name"
+                         name="cardName"
                          placeholder="Name on card"
                          onChange={formik.handleChange}
-                         value={formik.values.name}
+                         value={formik.values.cardName}
                          onBlur={formik.handleBlur}
                          className={style.container_main_form_container_inputs_input}
               />
-              {formik.touched.name && formik.errors.name && (
-                <p className={style.error}>{formik.errors.name}</p>
+              {formik.touched.cardName && formik.errors.cardName && (
+                <p className={style.error}>{formik.errors.cardName}</p>
               )}
             </div>
             <div className={style.container_main_form_container_button}>

@@ -1,10 +1,10 @@
 import style from './InformationStep1.module.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
 import { useFormik } from 'formik'
-import * as Yup from 'yup';
-import ReactPhoneInput from 'react-phone-input-material-ui';
-import {findCurrentCountry} from './ListCountries'
+import * as Yup from 'yup'
+import ReactPhoneInput from 'react-phone-input-material-ui'
+import { findCurrentCountry } from './ListCountries'
 import {
   Button,
   Checkbox,
@@ -22,11 +22,7 @@ const InformationStep1 = (props) => {
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
 
-  const nextStep = () => {
-    return (
-      props.history.push('/shipping')
-    )
-  }
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
@@ -37,8 +33,13 @@ const InformationStep1 = (props) => {
       email: ''
     },
     onSubmit: values => {
-      console.log({...values, phone: phoneInput});
-      nextStep();
+      const fullForm = {...values, phone: phoneInput, isSubscribed}
+      if (phoneInput.length < 7) {
+        setPhoneValidation(false)
+      } else {
+        props.setInformation(fullForm)
+        navigate({ pathname: '/shipping' }, { replace: true })
+      }
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -53,18 +54,23 @@ const InformationStep1 = (props) => {
         .min(5, 'There should be more characters')
         .max(50, 'There should be less characters')
         .required('Write please your Email'),
-      phone: Yup.string()
-        .required('Write please your Phone number')
     })
   })
   const [phoneInput, setPhoneInput] = useState('')
+  const [phoneValidation, setPhoneValidation] = useState(null)
   const [countryInfo, setCountryInfo] = useState(null)
+  const [isSubscribed, setIsSubscribed] = useState(true);
+
   const handleSetPhone = (e) => {
     setPhoneInput(e)
     setCountryInfo(findCurrentCountry(e))
   }
-  return (
 
+  const handleSubscribing = (event) => {
+    setIsSubscribed(event.target.checked)
+  }
+
+  return (
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_title}>
         <div className={style.container_title_inner}>
@@ -118,8 +124,8 @@ const InformationStep1 = (props) => {
                   Country/Region
                 </InputLabel>
                 <NativeSelect
-                  name='country'
-                  id='uncontrolled-native'
+                  name="country"
+                  id="uncontrolled-native"
                   value={formik.values.country}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -182,13 +188,13 @@ const InformationStep1 = (props) => {
                 onBlur={formik.handleBlur}
                 className={style.container_main_form_container_inputs_input}
               />
-              {formik.touched.phone && formik.errors.phone && (
-                <p className={style.error}>{formik.errors.phone}</p>
-              )}
               {
-                countryInfo !== null && <div className={style.container_main_form_container_inputs_flag}>{countryInfo.flag}</div>
+                countryInfo !== null &&
+                <div className={style.container_main_form_container_inputs_flag}>{countryInfo.flag}</div>
               }
+              {phoneValidation === false && <p className={style.error}>Write please your Phone</p>}
             </div>
+
             <div className={style.container_main_form_container_inputs}>
               <TextField id="email"
                          label="Email"
@@ -207,17 +213,21 @@ const InformationStep1 = (props) => {
             </div>
             <div className={style.container_main_form_container_inputs}>
               <FormGroup>
-                <FormControlLabel control={<Checkbox defaultChecked/>}
-                                  label="I consent to receive news and offers via email"/>
+                <FormControlLabel control={
+                  <Checkbox
+                    checked={isSubscribed}
+                    onChange={handleSubscribing}
+                  />
+                } label="I consent to receive news and offers via email"/>
               </FormGroup>
             </div>
             <div className={style.container_main_form_container_button}>
               <NavLink to={'/basket'}>
-                <Button variant='contained'>&#8592; Back</Button>
+                <Button variant="contained">&#8592; Back</Button>
               </NavLink>
-                <Button variant='contained' type='submit'>
-                  Continue to shipping &#8594;
-                </Button>
+              <Button variant="contained" type="submit">
+                Continue to shipping &#8594;
+              </Button>
             </div>
           </div>
         </form>
