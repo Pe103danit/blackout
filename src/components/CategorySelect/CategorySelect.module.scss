@@ -3,11 +3,12 @@
 
 .checkbox {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 85%;
     max-width: 1000px;
     padding-bottom: 20px;
-    padding-left: 55px;
+    // padding-left: 55px;
+    margin: 0 auto;
 
     &__item {
         padding-right: 10px;
