@@ -25,7 +25,10 @@ import { useSelector } from 'react-redux';
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
 import GoToTop from './components/GoToTop/GoToTop'
 import BasketContainer from './pages/Basket/BasketContainer'
-import OrderContainer from './pages/Order/InformationStep1/InformationStep1Container'
+import InformationStep1Container from './pages/Order/InformationStep1/InformationStep1Container'
+import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Container'
+import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
+import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -67,7 +70,10 @@ const App = (props) => {
         <Route path='/solar_panels' element={<ProductCategoriesContainer categoryName='Solar Panels' title='Solar Panels' />} />
         <Route path='cart' element={<Cart />} />
         <Route path='/policies/privacy-policy' element={<PrivacyPolicy />} />
-        <Route path='/order' element={<OrderContainer />} />
+        <Route path='/information' element={<InformationStep1Container />} />
+        <Route path='/shipping' element={<ShippingStep2Container />} />
+        <Route path='/finish_order' element={<PaymentStep3Container />} />
+        <Route path='/success' element={<SuccessfulOrderContainer />} />
         <Route path='/site_map' element={<SiteMapContainer />} />
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
