@@ -2,6 +2,7 @@
 
 .svgLight {
   fill: $black !important;
+
   &:hover {
     fill: $third-grey !important;
   }
@@ -9,6 +10,7 @@
 
 .svgDark {
   fill: $white !important;
+
   &:hover {
     fill: $third-grey !important;
   }
@@ -63,6 +65,7 @@
 .lightHeader {
   color: $black;
   background: $white;
+
   div {
     &::after {
       background: $black;
@@ -73,6 +76,7 @@
 .darkHeader {
   color: $white;
   background: $black;
+
   div {
     &::after {
       background: $white;
@@ -192,13 +196,15 @@
 
 .lightPictureCategoriesStyle {
   background: $white;
+
   div {
     ul {
       li {
-        &:hover a>p {
+        &:hover a > p {
           color: $button-blue !important;
           font-size: $fourth-size !important;
         }
+
         a {
           p {
             color: $black;
@@ -211,13 +217,15 @@
 
 .darkPictureCategoriesStyle {
   background: $black;
+
   div {
     ul {
       li {
-        &:hover a>p {
+        &:hover a > p {
           color: $sun !important;
           font-size: $fourth-size !important;
         }
+
         a {
           p {
             color: $white;
@@ -249,16 +257,17 @@
 }
 
 .light404Style {
-background: $main-background !important;
+  background: $main-background !important;
 }
 
 .dark404Style {
   color: white;
   background: $second-grey !important;
+
   div {
     a {
-        &:hover button {
-          background: $button-blue;
+      &:hover button {
+        background: $button-blue;
       }
     }
   }
@@ -267,10 +276,12 @@ background: $main-background !important;
 .lightSiteMap {
   color: $black;
   background: $main-background;
+
   ul {
     li {
       a {
         color: $black !important;
+
         &:hover {
           color: $third-grey !important;
         }
@@ -282,10 +293,12 @@ background: $main-background !important;
 .darkSiteMap {
   color: $white;
   background: $black;
+
   ul {
     li {
       a {
         color: $white !important;
+
         &:hover {
           color: $second-grey !important;
         }
@@ -296,15 +309,18 @@ background: $main-background !important;
 
 .lightSwiper {
   background: $white;
+
   div {
     div {
       div {
         p:first-child {
           color: $black;
         }
+
         p:nth-child(2) {
           color: $fourth-grey;
         }
+
         p:nth-child(3) {
           color: $black;
         }
@@ -315,15 +331,18 @@ background: $main-background !important;
 
 .darkSwiper {
   box-shadow: 0 4px 30px $light-shadow;
+
   div {
     div {
       div {
         p:first-child {
           color: $white;
         }
+
         p:nth-child(2) {
           color: $fourth-grey;
         }
+
         p:nth-child(3) {
           color: $white;
         }
@@ -349,10 +368,348 @@ background: $main-background !important;
 .darkEmptyBasketStyle {
   color: white;
   background: $second-grey !important;
+
   div {
     a {
       &:hover button {
         background: $button-blue;
+      }
+    }
+  }
+}
+
+.lightBasketStyle {
+  div {
+    p:nth-child(1) {
+      color: $black;
+    }
+
+    div {
+      div:nth-child(1) {
+        background: $white;
+
+        div {
+          div:nth-child(3) {
+            a {
+              p:nth-child(1) {
+                color: $first-grey;
+              }
+
+              p:nth-child(2) {
+                color: $fourth-grey;
+              }
+            }
+          }
+
+          div:nth-child(4) {
+            div {
+              border: 1px solid $second-white;
+              button {
+                color: $black;
+                background: $main-background !important;
+              }
+              input {
+                color: $black;
+                background: $white !important;
+              }
+            }
+          }
+
+          div:nth-child(5) {
+            p {
+              color: $black;
+            }
+
+            button {
+              color: $black;
+              border-bottom: $black;
+            }
+          }
+        }
+      }
+
+      div:nth-child(2) {
+        div:nth-child(1) {
+          background: $white;
+
+          div {
+            p:nth-child(1) {
+              color: $fourth-grey;
+            }
+
+            p:nth-child(2) {
+              color: $first-grey;
+            }
+          }
+
+          div:nth-child(4) {
+            p {
+              color: $first-grey !important;
+            }
+          }
+
+          div:nth-child(6) {
+            a {
+              color: $first-grey;
+
+              &:hover {
+                color: $third-grey;
+              }
+            }
+          }
+        }
+
+        div:nth-child(2) {
+          background: $white;
+
+          div {
+            div {
+              div {
+                p:first-child {
+                  color: $black;
+                }
+
+                p:nth-child(2) {
+                  color: $lighter-black;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.darkBasketStyle {
+  div {
+    p:nth-child(1) {
+      color: $white;
+      background: $black;
+    }
+
+    div {
+      div:nth-child(1) {
+        background: $second-grey;
+
+        div {
+          div:nth-child(3) {
+            a {
+              p:nth-child(1) {
+                color: $white;
+                background: $second-grey;
+              }
+
+              p:nth-child(2) {
+                color: $seventh-grey;
+                background: $second-grey;
+              }
+            }
+          }
+
+          div:nth-child(4) {
+            div {
+              border: 1px solid $second-white;
+              button {
+                color: $black;
+                background: $main-background !important;
+              }
+              input {
+                color: $black;
+                background: $white !important;
+              }
+            }
+          }
+
+          div:nth-child(5) {
+            p {
+              color: $white;
+              background: $second-grey;
+            }
+
+            button {
+              color: $white;
+              border-bottom: $white;
+            }
+          }
+        }
+      }
+
+      div:nth-child(2) {
+        div:nth-child(1) {
+          background: $second-grey;
+
+          div {
+            p:nth-child(1) {
+              color: $eighth-grey;
+              background: $second-grey;
+            }
+
+            p:nth-child(2) {
+              color: $white;
+              background: $second-grey;
+            }
+          }
+
+          div:nth-child(4) {
+            p:nth-child(1) {
+              color: $white !important;
+              background: $second-grey;
+            }
+
+            p:nth-child(2) {
+              color: $eighth-grey !important;
+              background: $second-grey;
+            }
+          }
+
+          div:nth-child(6) {
+            a {
+              color: $white;
+              background: $second-grey;
+
+              &:hover {
+                color: $third-grey;
+              }
+            }
+          }
+        }
+
+        div:nth-child(2) {
+          background: $second-grey;
+
+          div {
+            div {
+              div {
+                p:first-child {
+                  color: $white;
+                  background: $second-grey;
+                }
+
+                p:nth-child(2) {
+                  color: $eighth-grey;
+                  background: $second-grey;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.lightInformationStep1 {
+  background: $main-background;
+
+  div:first-child {
+    background: $eighth-grey;
+  }
+
+  div:nth-child(2) {
+    nav {
+      ul {
+        li {
+          a {
+            color: $black;
+          }
+        }
+      }
+    }
+
+    form {
+      div {
+        background: $main-background !important;
+
+        p:nth-child(2) {
+          color: $black;
+
+          a {
+            color: $green-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.darkInformationStep1 {
+  background-color: $black;
+
+  div:first-child {
+    background: $eighth-grey;
+
+    span:nth-child(2) {
+      color: $black;
+    }
+  }
+
+  div:nth-child(2) {
+    nav {
+      ul {
+        li {
+          a {
+            color: $white;
+          }
+        }
+      }
+    }
+
+    form {
+      div:nth-child(1) {
+        background-color: $black !important;
+
+        p:nth-child(2) {
+          color: $white;
+
+          a {
+            color: $green-blue;
+          }
+        }
+      }
+
+      div:nth-child(2) {
+        p {
+          color: $white;
+        }
+
+        div {
+          div {
+            div {
+              color: $white;
+              background: $light-black;
+
+              svg {
+                fill: white;
+              }
+            }
+
+            select {
+              background: $light-black;
+
+              option {
+                background: $third-grey;
+              }
+            }
+
+            label {
+              color: $white;
+
+              span {
+                color: $white;
+              }
+
+              svg {
+                fill: white;
+              }
+            }
+
+            input {
+              color: $white;
+              background: $light-black;
+            }
+          }
+        }
       }
     }
   }

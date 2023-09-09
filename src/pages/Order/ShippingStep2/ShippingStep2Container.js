@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { toggleTheme } from '../../../redux/reducers/UIStateReducer/UIStateReducer';
-import InformationStep1 from './InformationStep1'
-import { setInformation } from '../../../redux/reducers/OrderReducer/OrderReducer'
+import ShippingStep2 from './ShippingStep2'
+import { setShipping } from '../../../redux/reducers/OrderReducer/OrderReducer'
 
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   toggleTheme,
-  setInformation
+  setShipping
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InformationStep1);
+export default connect(mapStateToProps, mapDispatchToProps)(ShippingStep2);
