@@ -1,0 +1,45 @@
+@import '../../scss/variables';
+
+
+.Account{
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 100vh;
+    &_wrapper{
+        display: flex;
+        flex-direction: row;
+        background-color: $white;
+        padding: 80px 80px 150px 80px;
+        border-radius: 10px;
+        &_navigate{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            &_title{
+                font-weight: $big-weight;
+                font-size: $second-size;
+                padding-bottom: 50px;
+            }
+            &_item{
+                cursor: pointer;
+                color: black;
+                padding-top: 20px;
+                font-weight: $big-weight;
+            }
+        }
+        &_info{
+            padding-left: 150px;
+            display: flex;
+            flex-direction: column;
+            &_title{
+                font-weight: $big-weight;
+                font-size: $sixth-size;
+                padding-bottom: 30px;
+            }
+            &_item{
+                padding-top: 15px;
+            }
+        }
+    }
+}

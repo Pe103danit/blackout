@@ -79,16 +79,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
 
       &_item {
         width: 100vw;
 
         &_link {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
+          &_title {
+            width: 450px;
+            font-size: 15px;
+          }
+
+          &_text {
+            top: 85px;
+            width: 100px;
+
+          }
           &_text {
             &:hover {
               text-decoration: none;
@@ -96,10 +102,9 @@
           }
 
           &_img {
-
+            width: 100vw;
             height: 300px;
             object-fit: cover;
-            border-radius: 0;
           }
         }
       }
