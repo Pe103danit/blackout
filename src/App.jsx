@@ -18,6 +18,7 @@ import FooterContainer from './pages/Footer/footerContainer';
 import SignUp from './pages/SignUp/SignUp'
 import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import Account from './pages/Account/Account';
+import FAQ from './pages/FAQ/FAQ';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
@@ -69,6 +70,7 @@ const App = (props) => {
         <Route path='/policies/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/order' element={<OrderContainer />} />
         <Route path='/site_map' element={<SiteMapContainer />} />
+        <Route path='/FAQ' element={<FAQ/>}/>
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
