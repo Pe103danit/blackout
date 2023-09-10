@@ -120,6 +120,9 @@ const productReducer = (state = initialState, { type, payload }) => {
       return deleteBasketItemR(state, payload)
 
     case types.SUCCESSFUL_ORDER:
+      localStorage.setItem('basket', '0')
+      localStorage.setItem('basketList', JSON.stringify([]))
+      localStorage.setItem('totalBasketSum', JSON.stringify(0))
       return {
         ...state,
         basket: 0,
