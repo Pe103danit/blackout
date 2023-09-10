@@ -3,13 +3,13 @@
 .faq {
     &_image {
         display: flex;
-        align-items: center;
         flex-direction: column;
-        justify-content: center;     
-        background-image: url('./uper.png');
-         height: 400px;
+        align-items: center;  
+        justify-content: center;  
+        height: 400px;   
+        background-image: url('./uper.png');   
+         background-repeat: no-repeat; 
         background-position: center; 
-        background-repeat: no-repeat;
         background-size: cover;
 
     }
@@ -17,8 +17,8 @@
     &_title {
         margin-bottom: 20px;
         font-weight: 500;
-        font-size: 48px;         
-        color: $white;
+         color: $white;
+        font-size: 48px;            
         font-weight: bold;
     }
 
@@ -50,9 +50,9 @@
     }
 
     &_question_title {
-        font-weight: $small-weight;
-        font-size: 16px; 
-         max-width: 600px;   
+        font-weight: $small-weight; 
+        max-width: 600px;
+        font-size: 16px;  
         line-height: 22px;
     }
     &_item{
@@ -61,8 +61,8 @@
     &_text{
         max-width: 600px;
          color: #666;
+         font-size:$third-size ;
         line-height: 22px; 
-        font-size:$third-size ;
     }
 
 
