@@ -17,11 +17,16 @@ const PaymentStep3 = (props) => {
 
   const basketList = props.basketList
   const products = props.products
-    const getInfoOrderedProducts = () => {
-      return products.filter(product => {
-        return basketList.some(basketItem => basketItem.itemNo === product.itemNo)
-      })
-    }
+  const getInfoOrderedProducts = () => {
+    return products.filter(product => {
+      const matchingBasketItem = basketList.find(basketItem => basketItem.itemNo === product.itemNo);
+      if (matchingBasketItem) {
+        product.countToCart = matchingBasketItem.countToCart;
+        return true;
+      }
+      return false;
+    });
+  };
   const orderedProducts = getInfoOrderedProducts()
 
   const mutation = useMutation(newOrder => {
@@ -35,7 +40,6 @@ const PaymentStep3 = (props) => {
         console.error(error)
       }
     })
-  console.log(...orderedProducts)
 
   const navigate = useNavigate()
 
@@ -49,10 +53,10 @@ const PaymentStep3 = (props) => {
     onSubmit: async (values) => {
       await props.setPayment({ ...values })
       const newOrder = {
-          products: orderedProducts.map(({...rest }) => ({
+          products: orderedProducts.map(({countToCart, ...rest }) => ({
             _id: nanoid(),
             product: {...rest},
-            cartQuantity: 1
+            cartQuantity: countToCart
           })),
         deliveryAddress: {
           country: props.country,
