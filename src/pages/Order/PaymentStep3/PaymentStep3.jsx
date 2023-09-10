@@ -3,21 +3,29 @@ import cardImg from './card.png'
 import cardGif from './rccs.gif'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
-import {
-  Button, TextField
-} from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useMutation } from 'react-query'
 import { instance } from '../../../components/assets/axiosUrl'
+import { nanoid } from 'nanoid'
 
 const PaymentStep3 = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
 
+  const basketList = props.basketList
+  const products = props.products
+    const getInfoOrderedProducts = () => {
+      return products.filter(product => {
+        return basketList.some(basketItem => basketItem.itemNo === product.itemNo)
+      })
+    }
+  const orderedProducts = getInfoOrderedProducts()
+
   const mutation = useMutation(newOrder => {
-    return instance.post('api/orders', newOrder)
+      return instance.post('api/orders', newOrder)
     },
     {
       onSuccess: (data) => {
@@ -27,6 +35,7 @@ const PaymentStep3 = (props) => {
         console.error(error)
       }
     })
+  console.log(...orderedProducts)
 
   const navigate = useNavigate()
 
@@ -37,63 +46,14 @@ const PaymentStep3 = (props) => {
       cvc: '',
       cardName: '',
     },
-    onSubmit: values => {
-      props.setPayment({ ...values })
+    onSubmit: async (values) => {
+      await props.setPayment({ ...values })
       const newOrder = {
-        products: [
-          {
-            _id: '5dac20058b2cb420e0af4677',
-            product: {
-              enabled: true,
-              imageUrls: [
-                'img/products/men/001.png',
-                'img/products/men/002.png',
-                'img/products/men/003.png',
-                'img/products/men/004.png'
-              ],
-              quantity: 156,
-              _id: '5da463678cca382250dd7bc7',
-              name: 'updted product for testing purposes 222',
-              currentPrice: 100,
-              previousPrice: 250,
-              categories: 'men',
-              color: 'red',
-              productUrl: '/men',
-              brand: 'braaaand',
-              myCustomParam: 'some string or json for custom param',
-              itemNo: '291759',
-              date: '2019-10-14T12:00:39.679Z',
-              __v: 0,
-              oneMoreCustomParam: {
-                description: 'blablabla',
-                rate: 4.8,
-                likes: 20
-              }
-            },
-            cartQuantity: 2
-          },
-          {
-            _id: '5dac20058b2cb420e0af4676',
-            product: {
-              enabled: true,
-              imageUrls: ['products/itemNo2'],
-              quantity: 40,
-              _id: '5d73ad04fcad90130470f08b',
-              name: 'test product',
-              currentPrice: 280,
-              categories: 'phones',
-              someOtherFeature: 'Test feature strict false 2222222222',
-              color: 'black',
-              size: 'xl',
-              ram: '5',
-              weight: '200g',
-              itemNo: '243965',
-              __v: 0,
-              date: '2019-10-20T08:51:19.287Z'
-            },
-            cartQuantity: 3
-          }
-        ],
+          products: orderedProducts.map(({...rest }) => ({
+            _id: nanoid(),
+            product: {...rest},
+            cartQuantity: 1
+          })),
         deliveryAddress: {
           country: props.country,
           city: props.city,
@@ -108,10 +68,10 @@ const PaymentStep3 = (props) => {
         firstName: props.firstName,
         lastName: props.lastName,
         apartment: props.apartment,
-        cardNumber: props.cardNumber,
-        expiry: props.expiry,
-        cvc: props.cvc,
-        cardName: props.cardName,
+        cardNumber: values.cardNumber,
+        expiry: values.expiry,
+        cvc: values.cvc,
+        cardName: values.cardName,
         isSubscribed: props.isSubscribed,
         letterSubject: 'Thank you for order! You are welcome!',
         letterHtml:
@@ -159,14 +119,12 @@ const PaymentStep3 = (props) => {
           'style=\'max-width: 100%; ' +
           'border-radius: 8px; ' +
           'margin: 20px 0;\'>\n' +
-          '    <p>Stay tuned for amazing content!</p>\n' +
+          '    <p>We hope to see you soon!</p>\n' +
           '</div>\n' +
           '</body>\n' +
           '</html>'
       }
-      localStorage.setItem('basket', '0')
-      localStorage.setItem('basketList', JSON.stringify([]))
-      localStorage.setItem('totalBasketSum', JSON.stringify(0))
+      console.log(newOrder)
       props.successfulOrder()
       mutation.mutate(newOrder)
       navigate({ pathname: '/success' }, { replace: true })
