@@ -16,82 +16,8 @@ const PaymentStep3 = (props) => {
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
 
-  const newOrder = {
-    deliveryAddress: {
-      country: props.country,
-      city: props.city,
-      address: props.address,
-      postal: props.postcode,
-    },
-    shipping: props.delivery,
-    paymentInfo: 'Credit card',
-    status: 'not shipped',
-    email: props.email,
-    mobile: props.phone,
-    firstName: props.firstName,
-    lastName: props.lastName,
-    apartment: props.apartment,
-    cardNumber: props.cardNumber,
-    expiry: props.expiry,
-    cvc: props.cvc,
-    cardName: props.cardName,
-    isSubscribed: props.isSubscribed,
-    letterSubject: 'Thank you for order! You are welcome!',
-    letterHtml:
-      '<!DOCTYPE html>\n' +
-      '<html lang=\'en\'>\n' +
-      '<head>\n' +
-      '    <meta charset=\'UTF-8\'>\n' +
-      '    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\'>\n' +
-      '    <title>Thanks for Subscribing!</title>\n' +
-      '    <style>\n' +
-      '        body {\n' +
-      '            font-family: Arial, sans-serif;\n' +
-      '            text-align: center;\n' +
-      '            background-color: #f5f5f5;\n' +
-      '            margin: 0;\n' +
-      '            padding: 20px;\n' +
-      '        }\n' +
-      '        .container {\n' +
-      '            max-width: 600px;\n' +
-      '            margin: 0 auto;\n' +
-      '            padding: 20px;\n' +
-      '            background-color: #ffffff;\n' +
-      '            border-radius: 8px;\n' +
-      '            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n' +
-      '        }\n' +
-      '        h1 {\n' +
-      '            color: #333333;\n' +
-      '        }\n' +
-      '        p {\n' +
-      '            color: #666666;\n' +
-      '            line-height: 1.6;\n' +
-      '        }\n' +
-      '    </style>\n' +
-      '</head>\n' +
-      '<body>\n' +
-      '<div class=\'container\'>\n' +
-      '    <h1>Your order is placed</h1>\n' +
-      '    <p>OrderNo is 023689452.</p>\n' +
-      '    <p>If you have any questions or need assistance, feel free to ' +
-      '<a href=\'mailto:pe103danit@gmail.com\'>contact us' +
-      '</a>.' +
-      '</p>\n' +
-      '    <img src=\'https://memeburn.com/gearburn/wp-content/uploads/sites/3/2023/07/EcoFlow-River-2.jpg\' ' +
-      'alt=\'Black out store\' ' +
-      'style=\'max-width: 100%; ' +
-      'border-radius: 8px; ' +
-      'margin: 20px 0;\'>\n' +
-      '    <p>Stay tuned for amazing content!</p>\n' +
-      '</div>\n' +
-      '</body>\n' +
-      '</html>'
-  }
-
   const mutation = useMutation(newOrder => {
-    return (
-      instance.post('api/orders', newOrder)
-      )
+    return instance.post('api/orders', newOrder)
     },
     {
       onSuccess: (data) => {
@@ -113,11 +39,136 @@ const PaymentStep3 = (props) => {
     },
     onSubmit: values => {
       props.setPayment({ ...values })
+      const newOrder = {
+        products: [
+          {
+            _id: '5dac20058b2cb420e0af4677',
+            product: {
+              enabled: true,
+              imageUrls: [
+                'img/products/men/001.png',
+                'img/products/men/002.png',
+                'img/products/men/003.png',
+                'img/products/men/004.png'
+              ],
+              quantity: 156,
+              _id: '5da463678cca382250dd7bc7',
+              name: 'updted product for testing purposes 222',
+              currentPrice: 100,
+              previousPrice: 250,
+              categories: 'men',
+              color: 'red',
+              productUrl: '/men',
+              brand: 'braaaand',
+              myCustomParam: 'some string or json for custom param',
+              itemNo: '291759',
+              date: '2019-10-14T12:00:39.679Z',
+              __v: 0,
+              oneMoreCustomParam: {
+                description: 'blablabla',
+                rate: 4.8,
+                likes: 20
+              }
+            },
+            cartQuantity: 2
+          },
+          {
+            _id: '5dac20058b2cb420e0af4676',
+            product: {
+              enabled: true,
+              imageUrls: ['products/itemNo2'],
+              quantity: 40,
+              _id: '5d73ad04fcad90130470f08b',
+              name: 'test product',
+              currentPrice: 280,
+              categories: 'phones',
+              someOtherFeature: 'Test feature strict false 2222222222',
+              color: 'black',
+              size: 'xl',
+              ram: '5',
+              weight: '200g',
+              itemNo: '243965',
+              __v: 0,
+              date: '2019-10-20T08:51:19.287Z'
+            },
+            cartQuantity: 3
+          }
+        ],
+        deliveryAddress: {
+          country: props.country,
+          city: props.city,
+          address: props.address,
+          postal: props.postcode,
+        },
+        shipping: props.delivery,
+        paymentInfo: 'Credit card',
+        status: 'not shipped',
+        email: props.email,
+        mobile: props.phone,
+        firstName: props.firstName,
+        lastName: props.lastName,
+        apartment: props.apartment,
+        cardNumber: props.cardNumber,
+        expiry: props.expiry,
+        cvc: props.cvc,
+        cardName: props.cardName,
+        isSubscribed: props.isSubscribed,
+        letterSubject: 'Thank you for order! You are welcome!',
+        letterHtml:
+          '<!DOCTYPE html>\n' +
+          '<html lang=\'en\'>\n' +
+          '<head>\n' +
+          '    <meta charset=\'UTF-8\'>\n' +
+          '    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\'>\n' +
+          '    <title>Thanks for Subscribing!</title>\n' +
+          '    <style>\n' +
+          '        body {\n' +
+          '            font-family: Arial, sans-serif;\n' +
+          '            text-align: center;\n' +
+          '            background-color: #f5f5f5;\n' +
+          '            margin: 0;\n' +
+          '            padding: 20px;\n' +
+          '        }\n' +
+          '        .container {\n' +
+          '            max-width: 600px;\n' +
+          '            margin: 0 auto;\n' +
+          '            padding: 20px;\n' +
+          '            background-color: #ffffff;\n' +
+          '            border-radius: 8px;\n' +
+          '            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n' +
+          '        }\n' +
+          '        h1 {\n' +
+          '            color: #333333;\n' +
+          '        }\n' +
+          '        p {\n' +
+          '            color: #666666;\n' +
+          '            line-height: 1.6;\n' +
+          '        }\n' +
+          '    </style>\n' +
+          '</head>\n' +
+          '<body>\n' +
+          '<div class=\'container\'>\n' +
+          '    <h1>Your order is placed</h1>\n' +
+          '    <p>OrderNo is 023689452.</p>\n' +
+          '    <p>If you have any questions or need assistance, feel free to ' +
+          '<a href=\'mailto:pe103danit@gmail.com\'>contact us' +
+          '</a>.' +
+          '</p>\n' +
+          '    <img src=\'https://memeburn.com/gearburn/wp-content/uploads/sites/3/2023/07/EcoFlow-River-2.jpg\' ' +
+          'alt=\'Black out store\' ' +
+          'style=\'max-width: 100%; ' +
+          'border-radius: 8px; ' +
+          'margin: 20px 0;\'>\n' +
+          '    <p>Stay tuned for amazing content!</p>\n' +
+          '</div>\n' +
+          '</body>\n' +
+          '</html>'
+      }
       localStorage.setItem('basket', '0')
       localStorage.setItem('basketList', JSON.stringify([]))
       localStorage.setItem('totalBasketSum', JSON.stringify(0))
       props.successfulOrder()
-      mutation.mutate()
+      mutation.mutate(newOrder)
       navigate({ pathname: '/success' }, { replace: true })
     },
     validationSchema: Yup.object({
@@ -175,7 +226,7 @@ const PaymentStep3 = (props) => {
         </nav>
         <form className={style.container_main_form}
               onSubmit={formik.handleSubmit}
-              autoComplete="off"
+              autoComplete='off'
               noValidate
         >
           <div className={style.container_main_form_login}>
@@ -190,17 +241,17 @@ const PaymentStep3 = (props) => {
             </p>
             <div className={style.container_main_form_container_inputs}>
               <img src={cardGif}
-                   alt="card"
+                   alt='card'
                    className={style.container_main_form_container_inputs_input}
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="cardNumber"
-                         label="Card number"
-                         variant="outlined"
-                         type="text"
-                         name="cardNumber"
-                         placeholder="Card number"
+              <TextField id='cardNumber'
+                         label='Card number'
+                         variant='outlined'
+                         type='text'
+                         name='cardNumber'
+                         placeholder='Card number'
                          onChange={formik.handleChange}
                          value={formik.values.cardNumber}
                          onBlur={formik.handleBlur}
@@ -210,17 +261,17 @@ const PaymentStep3 = (props) => {
                 <p className={style.error}>{formik.errors.cardNumber}</p>
               )}
               <img src={cardImg}
-                   alt="card"
+                   alt='card'
                    className={style.container_main_form_container_inputs_img}
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="expiry"
-                         label="Expiration date (MM / YY)"
-                         variant="outlined"
-                         type="text"
-                         name="expiry"
-                         placeholder="Expiration date (MM / YY)"
+              <TextField id='expiry'
+                         label='Expiration date (MM / YY)'
+                         variant='outlined'
+                         type='text'
+                         name='expiry'
+                         placeholder='Expiration date (MM / YY)'
                          onChange={formik.handleChange}
                          value={formik.values.expiry}
                          onBlur={formik.handleBlur}
@@ -231,12 +282,12 @@ const PaymentStep3 = (props) => {
               )}
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="cvc"
-                         label="Security code"
-                         variant="outlined"
-                         type="text"
-                         name="cvc"
-                         placeholder="Security code"
+              <TextField id='cvc'
+                         label='Security code'
+                         variant='outlined'
+                         type='text'
+                         name='cvc'
+                         placeholder='Security code'
                          onChange={formik.handleChange}
                          value={formik.values.cvc}
                          onBlur={formik.handleBlur}
@@ -247,12 +298,12 @@ const PaymentStep3 = (props) => {
               )}
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="cardName"
-                         label="Name on card"
-                         variant="outlined"
-                         type="text"
-                         name="cardName"
-                         placeholder="Name on card"
+              <TextField id='cardName'
+                         label='Name on card'
+                         variant='outlined'
+                         type='text'
+                         name='cardName'
+                         placeholder='Name on card'
                          onChange={formik.handleChange}
                          value={formik.values.cardName}
                          onBlur={formik.handleBlur}
@@ -264,9 +315,9 @@ const PaymentStep3 = (props) => {
             </div>
             <div className={style.container_main_form_container_button}>
               <NavLink to={'/shipping'}>
-                <Button variant="contained">&#8592; Back</Button>
+                <Button variant='contained'>&#8592; Back</Button>
               </NavLink>
-              <Button variant="contained" type="submit">
+              <Button variant='contained' type='submit'>
                 Pay now
               </Button>
             </div>
