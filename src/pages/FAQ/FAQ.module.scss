@@ -4,27 +4,27 @@
     &_image {
         display: flex;
         align-items: center;
-        justify-content: center;
         flex-direction: column;
+        justify-content: center;     
         background-image: url('./uper.png');
-        background-position: center;
-        height: 400px;
+         height: 400px;
+        background-position: center; 
         background-repeat: no-repeat;
         background-size: cover;
 
     }
 
     &_title {
-        font-size: 48px;
-        font-weight: 500;
         margin-bottom: 20px;
+        font-weight: 500;
+        font-size: 48px;         
         color: $white;
         font-weight: bold;
     }
 
     &_subtitle {
-        font-size: 24px;
-        color: $white;
+         color: $white;
+        font-size: 24px;      
 
     }
 
@@ -50,18 +50,18 @@
     }
 
     &_question_title {
-        font-size: 16px;
         font-weight: $small-weight;
+        font-size: 16px; 
+         max-width: 600px;   
         line-height: 22px;
-        max-width: 600px;
     }
     &_item{
    margin-bottom: 30px;
     }
     &_text{
         max-width: 600px;
-        line-height: 22px;
-        color: #666;
+         color: #666;
+        line-height: 22px; 
         font-size:$third-size ;
     }
 
