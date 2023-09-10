@@ -76,7 +76,7 @@ const App = (props) => {
         <Route path='/finish_order' element={<PaymentStep3Container />} />
         <Route path='/success' element={<SuccessfulOrderContainer />} />
         <Route path='/site_map' element={<SiteMapContainer />} />
-        <Route path='/FAQ' element={<FAQ/>}/>
+        <Route path='/faq' element={<FAQ/>}/>
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />

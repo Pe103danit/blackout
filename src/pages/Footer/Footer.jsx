@@ -155,7 +155,7 @@ const Footer = (props) => {
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/'} className={`${style.footer__linklist_item_link}`}>FAQ</NavLink>
+                                        <NavLink to={'/faq'} className={`${style.footer__linklist_item_link}`}>FAQ</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
                                         <NavLink to={'/site_map'} className={`${style.footer__linklist_item_link}`}>Sitemap</NavLink>
