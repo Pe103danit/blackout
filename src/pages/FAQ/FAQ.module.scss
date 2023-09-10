@@ -16,10 +16,9 @@
 
     &_title {
         margin-bottom: 20px;
-        font-weight: 500;
-         color: $white;
+        color: $white;
+      font-weight: bold;
         font-size: 48px;            
-        font-weight: bold;
     }
 
     &_subtitle {
@@ -50,8 +49,8 @@
     }
 
     &_question_title {
-        font-weight: $small-weight; 
         max-width: 600px;
+        font-weight: $small-weight;  
         font-size: 16px;  
         line-height: 22px;
     }
