@@ -8,11 +8,99 @@ import {
 } from '@mui/material'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useMutation } from 'react-query'
+import { instance } from '../../../components/assets/axiosUrl'
 
 const PaymentStep3 = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
+
+  const newOrder = {
+    deliveryAddress: {
+      country: props.country,
+      city: props.city,
+      address: props.address,
+      postal: props.postcode,
+    },
+    shipping: props.delivery,
+    paymentInfo: 'Credit card',
+    status: 'not shipped',
+    email: props.email,
+    mobile: props.phone,
+    firstName: props.firstName,
+    lastName: props.lastName,
+    apartment: props.apartment,
+    cardNumber: props.cardNumber,
+    expiry: props.expiry,
+    cvc: props.cvc,
+    cardName: props.cardName,
+    isSubscribed: props.isSubscribed,
+    letterSubject: 'Thank you for order! You are welcome!',
+    letterHtml:
+      '<!DOCTYPE html>\n' +
+      '<html lang=\'en\'>\n' +
+      '<head>\n' +
+      '    <meta charset=\'UTF-8\'>\n' +
+      '    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\'>\n' +
+      '    <title>Thanks for Subscribing!</title>\n' +
+      '    <style>\n' +
+      '        body {\n' +
+      '            font-family: Arial, sans-serif;\n' +
+      '            text-align: center;\n' +
+      '            background-color: #f5f5f5;\n' +
+      '            margin: 0;\n' +
+      '            padding: 20px;\n' +
+      '        }\n' +
+      '        .container {\n' +
+      '            max-width: 600px;\n' +
+      '            margin: 0 auto;\n' +
+      '            padding: 20px;\n' +
+      '            background-color: #ffffff;\n' +
+      '            border-radius: 8px;\n' +
+      '            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n' +
+      '        }\n' +
+      '        h1 {\n' +
+      '            color: #333333;\n' +
+      '        }\n' +
+      '        p {\n' +
+      '            color: #666666;\n' +
+      '            line-height: 1.6;\n' +
+      '        }\n' +
+      '    </style>\n' +
+      '</head>\n' +
+      '<body>\n' +
+      '<div class=\'container\'>\n' +
+      '    <h1>Your order is placed</h1>\n' +
+      '    <p>OrderNo is 023689452.</p>\n' +
+      '    <p>If you have any questions or need assistance, feel free to ' +
+      '<a href=\'mailto:pe103danit@gmail.com\'>contact us' +
+      '</a>.' +
+      '</p>\n' +
+      '    <img src=\'https://memeburn.com/gearburn/wp-content/uploads/sites/3/2023/07/EcoFlow-River-2.jpg\' ' +
+      'alt=\'Black out store\' ' +
+      'style=\'max-width: 100%; ' +
+      'border-radius: 8px; ' +
+      'margin: 20px 0;\'>\n' +
+      '    <p>Stay tuned for amazing content!</p>\n' +
+      '</div>\n' +
+      '</body>\n' +
+      '</html>'
+  }
+
+  const mutation = useMutation(newOrder => {
+    return (
+      instance.post('api/orders', newOrder)
+      )
+    },
+    {
+      onSuccess: (data) => {
+        console.log(data)
+      },
+      onError: (error) => {
+        console.error(error)
+      }
+    })
 
   const navigate = useNavigate()
 
@@ -24,11 +112,12 @@ const PaymentStep3 = (props) => {
       cardName: '',
     },
     onSubmit: values => {
-      props.setPayment({...values})
+      props.setPayment({ ...values })
       localStorage.setItem('basket', '0')
       localStorage.setItem('basketList', JSON.stringify([]))
       localStorage.setItem('totalBasketSum', JSON.stringify(0))
       props.successfulOrder()
+      mutation.mutate()
       navigate({ pathname: '/success' }, { replace: true })
     },
     validationSchema: Yup.object({
@@ -101,7 +190,7 @@ const PaymentStep3 = (props) => {
             </p>
             <div className={style.container_main_form_container_inputs}>
               <img src={cardGif}
-                   alt='card'
+                   alt="card"
                    className={style.container_main_form_container_inputs_input}
               />
             </div>
@@ -121,7 +210,7 @@ const PaymentStep3 = (props) => {
                 <p className={style.error}>{formik.errors.cardNumber}</p>
               )}
               <img src={cardImg}
-                   alt='card'
+                   alt="card"
                    className={style.container_main_form_container_inputs_img}
               />
             </div>
@@ -177,7 +266,7 @@ const PaymentStep3 = (props) => {
               <NavLink to={'/shipping'}>
                 <Button variant="contained">&#8592; Back</Button>
               </NavLink>
-              <Button variant='contained' type='submit'>
+              <Button variant="contained" type="submit">
                 Pay now
               </Button>
             </div>

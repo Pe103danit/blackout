@@ -15,7 +15,7 @@ const initialState = {
   cardNumber: '',
   expiry: '',
   cvc: '',
-  cardName: ''
+  cardName: '',
 }
 
 const OrderReducer = (state = initialState, { type, payload }) => {

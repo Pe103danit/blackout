@@ -6,7 +6,8 @@ import { successfulOrder } from '../../../redux/reducers/ProductReducer/ProductR
 
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
-  totalBasketSum: state.ProductReducer.totalBasketSum
+  totalBasketSum: state.ProductReducer.totalBasketSum,
+  ...state.OrderReducer
 });
 
 const mapDispatchToProps = {
