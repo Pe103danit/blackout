@@ -13,9 +13,9 @@ import {
 import style from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
 import {useMutation} from 'react-query';
-import { instance } from '../../components/assets/axiosUrl'
+import { instance } from '../../components/assets/axiosUrl';
 import { useEffect, useState } from 'react'
-import { Notify } from 'notiflix'
+import { Notify } from 'notiflix';
 
 const Footer = (props) => {
     const themeStyle = props.lightTheme ? 'light' : 'dark';
@@ -36,7 +36,6 @@ const Footer = (props) => {
     const footerItemAlignLeft = 'footer-item-align-left';
     const footerItemAlignRight = 'footer-item-align-right';
     const smallOneWhole = 'small-one-whole';
-    const siteFooterPolicy = 'site-footer__policy';
     const customPaymentIconsFooter = 'custom_payment_icons--footer';
 
     const [isSubscribed, setIsSubscribed] = useState(false);
@@ -52,75 +51,75 @@ const Footer = (props) => {
     }, [isSubscribed, isErrorSubscribed]);
 
     const mutation = useMutation(
-      newSubscriber => {
-        return (
-          instance.post('api/subscribers', {
-              email: newSubscriber,
-              letterSubject: 'Black out store subscribing',
-              letterHtml: '<!DOCTYPE html>\n' +
-                '<html lang=\'en\'>\n' +
-                '<head>\n' +
-                '    <meta charset=\'UTF-8\'>\n' +
-                '    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\'>\n' +
-                '    <title>Thanks for Subscribing!</title>\n' +
-                '    <style>\n' +
-                '        body {\n' +
-                '            font-family: Arial, sans-serif;\n' +
-                '            text-align: center;\n' +
-                '            background-color: #f5f5f5;\n' +
-                '            margin: 0;\n' +
-                '            padding: 20px;\n' +
-                '        }\n' +
-                '        .container {\n' +
-                '            max-width: 600px;\n' +
-                '            margin: 0 auto;\n' +
-                '            padding: 20px;\n' +
-                '            background-color: #ffffff;\n' +
-                '            border-radius: 8px;\n' +
-                '            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n' +
-                '        }\n' +
-                '        h1 {\n' +
-                '            color: #333333;\n' +
-                '        }\n' +
-                '        p {\n' +
-                '            color: #666666;\n' +
-                '            line-height: 1.6;\n' +
-                '        }\n' +
-                '    </style>\n' +
-                '</head>\n' +
-                '<body>\n' +
-                '<div class=\'container\'>\n' +
-                '    <h1>Thanks for Subscribing!</h1>\n' +
-                '    <p>We appreciate your decision to subscribe to our updates. You\'re now part of our community, and you\'ll receive the latest news, offers, and exciting content delivered straight to your inbox.</p>\n' +
-                '    <p>If you have any questions or need assistance, feel free to <a href=\'mailto:pe103danit@gmail.com\'>contact us</a>.</p>\n' +
-                '    <img src=\'https://sendpulse.com/blog/wp-content/webp-express/webp-images/uploads/2020/02/cover-6-1110x420.png.webp\' alt=\'Black out store\' style=\'max-width: 100%; border-radius: 8px; margin: 20px 0;\'>\n' +
-                '    <p>Stay tuned for amazing content!</p>\n' +
-                '</div>\n' +
-                '</body>\n' +
-                '</html>'
-            })
-        )
-      },
-      {
-          onSuccess: (data) => {
-              console.log(data)
-              setIsSubscribed(true);
-              Notify.success('Thanks for subscribing!')
-          },
-          onError: (error) => {
-              console.error(error)
-              setIsErrorSubscribed(true)
-              Notify.warning('Something go wrong!')
-          }
+        newSubscriber => {
+          return (
+            instance.post('api/subscribers', {
+                email: newSubscriber,
+                letterSubject: 'Black out store subscribing',
+                letterHtml: '<!DOCTYPE html>\n' +
+                  '<html lang=\'en\'>\n' +
+                  '<head>\n' +
+                  '    <meta charset=\'UTF-8\'>\n' +
+                  '    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\'>\n' +
+                  '    <title>Thanks for Subscribing!</title>\n' +
+                  '    <style>\n' +
+                  '        body {\n' +
+                  '            font-family: Arial, sans-serif;\n' +
+                  '            text-align: center;\n' +
+                  '            background-color: #f5f5f5;\n' +
+                  '            margin: 0;\n' +
+                  '            padding: 20px;\n' +
+                  '        }\n' +
+                  '        .container {\n' +
+                  '            max-width: 600px;\n' +
+                  '            margin: 0 auto;\n' +
+                  '            padding: 20px;\n' +
+                  '            background-color: #ffffff;\n' +
+                  '            border-radius: 8px;\n' +
+                  '            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n' +
+                  '        }\n' +
+                  '        h1 {\n' +
+                  '            color: #333333;\n' +
+                  '        }\n' +
+                  '        p {\n' +
+                  '            color: #666666;\n' +
+                  '            line-height: 1.6;\n' +
+                  '        }\n' +
+                  '    </style>\n' +
+                  '</head>\n' +
+                  '<body>\n' +
+                  '<div class=\'container\'>\n' +
+                  '    <h1>Thanks for Subscribing!</h1>\n' +
+                  '    <p>We appreciate your decision to subscribe to our updates. You\'re now part of our community, and you\'ll receive the latest news, offers, and exciting content delivered straight to your inbox.</p>\n' +
+                  '    <p>If you have any questions or need assistance, feel free to <a href=\'mailto:pe103danit@gmail.com\'>contact us</a>.</p>\n' +
+                  '    <img src=\'https://sendpulse.com/blog/wp-content/webp-express/webp-images/uploads/2020/02/cover-6-1110x420.png.webp\' alt=\'Black out store\' style=\'max-width: 100%; border-radius: 8px; margin: 20px 0;\'>\n' +
+                  '    <p>Stay tuned for amazing content!</p>\n' +
+                  '</div>\n' +
+                  '</body>\n' +
+                  '</html>'
+              })
+          )
+        },
+        {
+            onSuccess: (data) => {
+                console.log(data)
+                setIsSubscribed(true);
+                Notify.success('Thanks for subscribing!')
+            },
+            onError: (error) => {
+                console.error(error)
+                setIsErrorSubscribed(true)
+                Notify.warning('Something go wrong!')
+            }
+        }
+      )
+  
+      const [subscriberCandidate, setSubscriberCandidate] = useState('')
+      const handleNewSubscriber = (e) => {
+          e.preventDefault()
+          mutation.mutate(subscriberCandidate)
+          setSubscriberCandidate('')
       }
-    )
-
-    const [subscriberCandidate, setSubscriberCandidate] = useState('')
-    const handleNewSubscriber = (e) => {
-        e.preventDefault()
-        mutation.mutate(subscriberCandidate)
-        setSubscriberCandidate('')
-    }
 
     return (
         <div className={`${style.footer} ${criticalHidden} ${themeStyle}`}>
@@ -129,7 +128,7 @@ const Footer = (props) => {
                     <div className={`${style.footer__content}`}>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Products
+                                <div className={`${style.footer__heading}`}>Products
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -152,7 +151,7 @@ const Footer = (props) => {
                         </div>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Support
+                                <div className={`${style.footer__heading}`}>Support
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -166,7 +165,7 @@ const Footer = (props) => {
                         </div>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Privacy & Terms
+                                <div className={`${style.footer__heading}`}>Privacy & Terms
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -183,7 +182,7 @@ const Footer = (props) => {
                         </div>
                         <div className={`${style.footer__item} ${footerItemLinkList}`}>
                             <div className={`${style.footer__item} ${footerItemInnerLinkList}`}>
-                                <div className={`${style.h5}`}>Company
+                                <div className={`${style.footer__heading}`}>Company
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
@@ -247,12 +246,12 @@ const Footer = (props) => {
                                               id='newsletter-form-email'
                                               className={`${style.input__group__field} ${newsletterInput}`}
                                               placeholder={
-                                                  isSubscribed
-                                                    ? 'Thanks for subscribing!'
-                                                    : (isErrorSubscribed
-                                                      ? 'Something go wrong!'
-                                                      : 'Email address')
-                                            }
+                                                isSubscribed
+                                                  ? 'Thanks for subscribing!'
+                                                  : (isErrorSubscribed
+                                                    ? 'Something go wrong!'
+                                                    : 'Email address')
+                                          }
                                               value={subscriberCandidate}
                                               onChange={(e) => setSubscriberCandidate(e.target.value)}
                                             />
@@ -283,13 +282,13 @@ const Footer = (props) => {
                             <div className={`${style.grid__item} ${oneHalf} ${footerItemAlignLeft} ${smallOneWhole}`}>
                                 <span className={`${style.footer__copyright_content}`}>
                                     <p>Copyright &copy; 2023
-                                        <NavLink to={'/shop'}> BlackOut Store</NavLink>
+                                        <NavLink to={'/shop'} className={style.blackoutStore__link}> BlackOut Store</NavLink>
                                         . All Right Reserved.
                                     </p>
                                 </span>
-                                <ol className={`${style.footer__linklist} ${siteFooterPolicy} ${listInline}`}>
+                                <ol className={style.footer__linklist__copyright}>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/'} className={`${style.footer__linklist_item}`}>Privacy Policy</NavLink>
+                                        <NavLink to={'/policies/privacy-policy'} className={`${style.footer__linklist_item}`}>Privacy Policy</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
                                         <NavLink to={'/site_map'} className={`${style.footer__linklist_item}`}>Sitemap</NavLink>

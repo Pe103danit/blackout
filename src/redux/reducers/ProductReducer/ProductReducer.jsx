@@ -1,5 +1,6 @@
 import types, { typesOfProducts } from '../../types/types'
-const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts;
+
+const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts
 
 const initialState = {
   wishList: localStorage.getItem('wishList') ? parseInt(localStorage.getItem('wishList')) : 0,
@@ -13,7 +14,7 @@ const initialState = {
   portablePowerStationIsLoading: true,
   powerBanks: [],
   powerBanksIsLoading: true,
-  product: {}
+  product: {},
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -31,7 +32,7 @@ const getTotalSum = (productsList, basketList) => {
     }
   })
   localStorage.setItem('totalBasketSum', totalSum)
-  return Number(totalSum.toFixed(2));
+  return Number(totalSum.toFixed(2))
 }
 
 const updateBasketR = (state, payload) => {
@@ -61,12 +62,12 @@ const changeBasketCountR = (state, payload) => {
     sumCountBasket += itemBasket.countToCart
     return itemBasket
   })
-    return {
-      ...state,
-      basket: sumCountBasket,
-      basketList: newBasketList,
-      totalBasketSum: getTotalSum(state.products, newBasketList)
-    }
+  return {
+    ...state,
+    basket: sumCountBasket,
+    basketList: newBasketList,
+    totalBasketSum: getTotalSum(state.products, newBasketList)
+  }
 }
 
 const deleteBasketItemR = (state, payload) => {
@@ -93,10 +94,12 @@ const productReducer = (state = initialState, { type, payload }) => {
       return {
         ...state, product: payload, productIsLoading: false
       }
+
     case GET_ALL_PRODUCTS:
       return {
         ...state, products: [...payload], productIsLoading: false
       }
+
     case types.ADD_TO_BASKET:
       return {
         ...state,
@@ -106,14 +109,29 @@ const productReducer = (state = initialState, { type, payload }) => {
         ],
         basket: state.basket + payload.count
       }
+
     case types.UPDATE_BASKET:
       return updateBasketR(state, payload)
+
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)
+
     case types.DELETE_BASKET_ITEM:
       return deleteBasketItemR(state, payload)
+
+    case types.SUCCESSFUL_ORDER:
+      localStorage.setItem('basket', '0')
+      localStorage.setItem('basketList', JSON.stringify([]))
+      localStorage.setItem('totalBasketSum', JSON.stringify(0))
+      return {
+        ...state,
+        basket: 0,
+        basketList: [],
+        totalBasketSum: 0
+      }
+
     default:
-      return state;
+      return state
   }
 }
 
@@ -128,7 +146,7 @@ export const getProductById = (product) => ({
 
 export const addToBasket = (idCandidate, count) => ({
   type: types.ADD_TO_BASKET,
-  payload: {idCandidate, count}
+  payload: { idCandidate, count }
 })
 
 export const updateBasket = (listCandidate) => ({
@@ -138,12 +156,16 @@ export const updateBasket = (listCandidate) => ({
 
 export const changeCountBasket = (id, newCountValue) => ({
   type: types.CHANGE_COUNT_BASKET,
-  payload: {id, newCountValue}
+  payload: { id, newCountValue }
 })
 
 export const deleteBasketItem = (id) => ({
   type: types.DELETE_BASKET_ITEM,
   payload: id
+})
+
+export const successfulOrder = () => ({
+  type: types.SUCCESSFUL_ORDER
 })
 
 export default productReducer

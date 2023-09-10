@@ -13,6 +13,12 @@
   color: darkred !important;
 }
 
+.fixedInput {
+  input {
+    background-color: $button-light-blue !important;
+  }
+}
+
 .container {
   position: relative;
   padding-bottom: 30px;
@@ -150,7 +156,6 @@
         }
 
         &_inputs {
-          position: relative;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -162,12 +167,6 @@
             width: 600px;
             margin: 0 auto;
           }
-
-          &_flag {
-            position: absolute;
-            top: 25%;
-            left: 78%;
-          }
         }
 
         &_button {
@@ -175,14 +174,13 @@
           align-items: center;
           justify-content: space-between;
           width: 400px;
+          padding-top: 20px;
           column-gap: 20px;
-
           a:nth-child(1) {
             button {
               background: $green-blue !important;
             }
           }
-
           a:nth-child(2) {
             button {
               background: $button-blue !important;
@@ -217,10 +215,6 @@
             &_input {
               width: 90%;
             }
-
-            &_flag {
-              left: 87%;
-            }
           }
 
           &_button {
@@ -247,13 +241,7 @@
         &_login {
           width: 90%;
         }
-
         &_container {
-          &_inputs {
-            &_flag {
-              left: 83%;
-            }
-          }
           &_button {
             flex-direction: column;
             width: 80%;

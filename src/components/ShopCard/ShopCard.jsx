@@ -1,14 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 
-import { HeartIcon, HeartIconDark, MarketIcon, MarketIconDark } from '../assets/Icons';
-// import { HeartIconFilled } from '../assets/Icons';
+import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 
 import style from './ShopCard.module.scss';
+import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const ShopCard = (props) => {
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
+
+    const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
+
+    const WishItemStatus = () => {
+        setWishListHeard(prevWishListHeard => !prevWishListHeard);
+        props.onWishList(props.productItem.itemNo);
+    }
+
+    const dispatch = useDispatch()
+    const [countToCart] = useState(1)
+
+    const handleClick = () => {
+        window.scrollTo(0, 0)
+
+        const candidateId = props.productItem.itemNo
+        dispatch(addToBasket(candidateId, countToCart))
+        let storageBasket = JSON.parse(localStorage.getItem('basketList'))
+        let repeat = false
+        storageBasket = storageBasket.map(item => {
+            if (item.itemNo === candidateId) {
+                repeat = true
+                return ({
+                    itemNo: candidateId,
+                    countToCart: item.countToCart + countToCart
+                })
+            } else {
+                return item
+            }
+        })
+        if (!repeat) {
+            storageBasket.push(
+              {
+                  itemNo: candidateId,
+                  countToCart
+              }
+            )
+        }
+        localStorage.setItem('basketList', JSON.stringify([
+              ...storageBasket
+          ])
+        )
+        const countBasket = parseInt(localStorage.getItem('basket'))
+        localStorage.setItem('basket', `${countBasket + countToCart}`)
+        dispatch(updateBasket(storageBasket))
+    }
 
     return (
         <div className={`${style.shopCard} ${theme ? '' : style.shopCard__darkTheme}`}>
@@ -28,15 +73,18 @@ const ShopCard = (props) => {
                         <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
                     </div>
                 </Link>
-                <button className={style.shopCard__description__order__wishList} onClick={console.log('Add to WishList')}>
-                    {theme
-                        ? <HeartIcon />
-                        : <HeartIconDark />
+                <button className={`${style.shopCard__description__order__wishList} ${theme
+                        ? style['shopCard__description__order__wishList--backgroundWhite']
+                        : style['shopCard__description__order__wishList--backgroundBlack']
+                    }`} onClick={() => WishItemStatus()}>
+                    {wishListHeard
+                        ? <HeartIconCardFill />
+                        : <HeartIconCard />
                     }
                 </button>
-                <button className={style.shopCard__description__order__cart} onClick={console.log('Add to WishList')}>
+                <button className={style.shopCard__description__order__cart} onClick={handleClick}>
                     {theme
-                        ? <MarketIcon />
+                        ? <MarketIcon fill={'#4164EC'} />
                         : <MarketIconDark />
                     }
                 </button>
