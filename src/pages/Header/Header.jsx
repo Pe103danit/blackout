@@ -89,7 +89,7 @@ const Header = (props) => {
 
                 </ul>
               </nav>
-              : <SearchPanel/>
+              : <SearchPanel themeStyle={props.lightTheme}/>
           }
         </div>
         {!props.searchInput &&
