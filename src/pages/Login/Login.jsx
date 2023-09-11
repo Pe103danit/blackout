@@ -5,7 +5,7 @@ import style from './Login.module.scss'
 import { object, string } from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom'
-import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
+import { setToken, setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 const loginSchema = object({
   loginOrEmail: string().required('Email is required'),
@@ -28,10 +28,8 @@ const Login = () => {
     localStorage.setItem('Signature', signature);
     localStorage.setItem('Header', header);
     localStorage.setItem('Payload', payload);
-    localStorage.setItem('tokenParts', tokenParts);
-    if (token) {
-      dispatch(setUser(credentional.loginOrEmail))
-    }
+    localStorage.setItem('tokenParts', token);
+    dispatch(setToken(token))
     navigate('/account');
   }
   return (

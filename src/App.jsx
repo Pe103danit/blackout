@@ -29,6 +29,7 @@ import InformationStep1Container from './pages/Order/InformationStep1/Informatio
 import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Container'
 import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
+import UserInfo from './pages/UserInfo/UserInfo';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -78,6 +79,7 @@ const App = (props) => {
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
+        <Route path='/user_info' element={<UserInfo />} />
         {(token || user) && <Route path='/account' element={<Account />} />}
       </Routes>
       <FooterContainer />

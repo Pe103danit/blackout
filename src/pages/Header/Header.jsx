@@ -17,8 +17,13 @@ import { NavLink } from 'react-router-dom'
 import SearchPanel from '../../components/SearchPanel/SearchPanel'
 import NavMenuTabletMobile from '../../components/NavMenuTabletMobile/NavMenuTabletMobile'
 import NavMenuCategories from '../../components/NavMenuCategories/NavMenuCategories'
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 const Header = (props) => {
+  const token = useSelector(state => state.SessionReducer.token)
+  console.log(token);
+  // const [token, setToken] = useState(null)
   const themeStyle = props.lightTheme
     ? 'lightHeader'
     : 'darkHeader'
@@ -26,6 +31,9 @@ const Header = (props) => {
   const navStyle = props.lightTheme
     ? 'light_navLink'
     : 'dark_navLink'
+  // useEffect(() => {
+  //   setToken(tokenInState)
+  // }, [tokenInState])
   return (
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_header}>
@@ -54,7 +62,7 @@ const Header = (props) => {
                     <NavLink to={'/shop'}>
                       Shop
                     </NavLink>
-                    <NavMenuCategories themeStyle={props.lightTheme}/>
+                    <NavMenuCategories themeStyle={props.lightTheme} />
                   </li>
 
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
@@ -100,7 +108,7 @@ const Header = (props) => {
                 : <SearchIconDark/>
               }
             </button>
-            <NavLink to={'/login'} className={style.container_header_c2_link}>
+            <NavLink to={token ? '/account' : '/login'} className={style.container_header_c2_link}>
               <button className={style.container_header_c2_link_user}>
                 {props.lightTheme
                   ? <UserIcon/>

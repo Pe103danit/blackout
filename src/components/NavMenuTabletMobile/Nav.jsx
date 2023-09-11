@@ -13,6 +13,7 @@ import {
 } from '../assets/Icons'
 
 const Nav = ({ themeStyle, toggle }) => {
+  const token = localStorage.getItem('tokenParts');
   const navStyle = themeStyle === 'light' ? 'lightMobilePanel' : 'darkMobilePanel'
 
   const [openCategories, setOpenCategories] = useState(false)
@@ -24,7 +25,7 @@ const Nav = ({ themeStyle, toggle }) => {
     <nav className={`${style.container_nav} ${navStyle}`}>
       <ul className={style.container_nav_list}>
         <li className={style.container_nav_list_item}>
-          <NavLink to={'/login'} className={style.container_nav_list_item_link} onClick={toggle}>
+          <NavLink to={token ? '/account' : '/login'} className={style.container_nav_list_item_link} onClick={toggle}>
             {themeStyle === 'light'
               ? <UserIcon/>
               : <UserIconDark/>
