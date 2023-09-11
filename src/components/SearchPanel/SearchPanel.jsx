@@ -65,10 +65,13 @@ const SearchPanel = (props) => {
               className={style.container_btn2}>
         {<CloseIcon/>}
       </button>
-      {showSearchResults && <SearchResults
+      {showSearchResults && resultData && (
+        <SearchResults
         products={resultData}
+        toggle={toggle}
         themeStyle={props.themeStyle}
-      />}
+      />)
+      }
     </div>
   )
 }
