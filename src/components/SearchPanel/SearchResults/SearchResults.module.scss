@@ -4,11 +4,11 @@
   position: absolute;
   top: 100%;
   left: 0;
+  z-index: 5;
   width: 100%;
   max-width: 700px;
   height: 400px;
   margin: 0 auto;
-  z-index: 5;
   overflow-y: scroll;
   div {
     height: 1500px;

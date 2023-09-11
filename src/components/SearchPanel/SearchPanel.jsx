@@ -28,6 +28,7 @@ const SearchPanel = (props) => {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {
       searchProducts();
+      e.target.blur()
     }
   }
 
