@@ -3,8 +3,8 @@
 
 .Account{
     max-width: 900px;
-    margin: 0 auto;
     height: 100vh;
+    margin: 0 auto;
     margin-top: 100px;
     &_wrapper{
         padding: 80px 80px 150px 80px;
@@ -25,19 +25,19 @@
                 margin: 20px;
                 font-size: 16px;
                 background-color: white;
-                border-radius: 10px;
                 padding: 20px;
+                border-radius: 10px;
                 color: black;
-                cursor: pointer;
                 font-weight: $big-weight;
+                cursor: pointer;
                 box-shadow: 0 4px 16px $almost-white;
             }
         }
         &_info{
-            padding-top: 8px;
             display: flex;
-            padding-left: 150px;
             flex-direction: column;
+            padding-top: 8px;
+            padding-left: 150px;
             &_title{
                 padding-bottom: 30px;
                 font-weight: $big-weight;
