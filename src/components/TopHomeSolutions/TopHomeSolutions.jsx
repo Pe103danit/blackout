@@ -9,14 +9,14 @@ const TopHomeSolutions = () => {
             <div className={style.TopHomeSolutions_wrapper}>
                 <div className={style.TopHomeSolutions_wrapper_item}>
                     <NavLink to='/solar_panels' className={style.TopHomeSolutions_wrapper_item_link}>
-                        <img className={style.TopHomeSolutions_wrapper_item_link_img} src={img1} alt='' />
+                        <img className={style.TopHomeSolutions_wrapper_item_link_img} src={img1} alt='Solar panels' title='Solar panels'/>
                         <p className={style.TopHomeSolutions_wrapper_item_link_title}>Capture the Power of the Sun: Illuminate Your Life with Solar Brilliance!</p>
                         <p className={style.TopHomeSolutions_wrapper_item_link_text}>Learn more &#62;</p>
                     </NavLink>
                 </div>
                 <div className={style.TopHomeSolutions_wrapper_item}>
                     <NavLink to='/power_banks' className={style.TopHomeSolutions_wrapper_item_link}>
-                        <img className={style.TopHomeSolutions_wrapper_item_link_img} src={img2} alt='' />
+                        <img className={style.TopHomeSolutions_wrapper_item_link_img} src={img2} alt='Power banks' title='Power banks' />
                         <p className={style.TopHomeSolutions_wrapper_item_link_title}>Empower Your Energy On-the-Go: Power Banks for Uninterrupted Freedom!</p>
                         <p className={style.TopHomeSolutions_wrapper_item_link_text}>Learn more &#62; </p>
                     </NavLink>
