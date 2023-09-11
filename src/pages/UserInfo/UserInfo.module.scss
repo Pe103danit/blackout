@@ -1,0 +1,22 @@
+@import '../../scss/variables';
+
+.UserInfo{
+    max-width: 900px;
+    height: 100vh;
+    margin: 0 auto;
+    margin-top: 100px;
+    &_wrapper{
+        padding: 80px 80px 150px 80px;
+        background-color: white;
+        border-radius: 10px;
+        &_title{
+            padding-bottom: 30px;
+            font-weight: $big-weight;
+            font-size: $sixth-size;
+        }
+        &_item{
+            
+            padding-top: 20px;
+        }
+    }
+}

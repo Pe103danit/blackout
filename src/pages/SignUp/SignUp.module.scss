@@ -2,13 +2,13 @@
 
 .SignUp{
     max-width: 400px;
-    height: 110vh;
     margin: 0 auto;
     margin-top: 20px;
     &_form{
         display: flex;
         flex-direction: column;
         max-width: 400px;
+        margin-bottom: 50px;
         padding: 32px;
         letter-spacing: 1px;
         border-radius: 10px;
@@ -33,11 +33,25 @@
         }
         &_group{
             position: relative;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
             &_error{
+                position: absolute;
+                bottom: 0;
+                left: 0;
                 padding-top: 10px;
                 color: $red;
-            }    
+                font-size: 11px;
+            }   
+            &_eye{
+                position: absolute;
+                top: 40%;
+                right: 5%;
+                width: 20px;
+                height: 20px;
+            } 
+            &_input_wrapper{
+                margin-bottom: 20px;
+            }
         }
         &_SignUp{
             margin: 20px 0 20px 0;
@@ -58,3 +72,32 @@
 
     }
 }
+
+@media screen and (max-width: $tab) {
+    .SignUp {
+        &_form{
+        &_group{
+            position: relative;
+            margin-bottom: 40px;
+            &_error{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                padding-top: 10px;
+                color: $red;
+                font-size: 10px;
+            }   
+            &_eye{
+                position: absolute;
+                top: 35%;
+                right: 5%;
+                width: 20px;
+                height: 20px;
+            } 
+            &_input_wrapper{
+                margin-bottom: 30px;
+            }
+        }
+    }
+    }
+  }

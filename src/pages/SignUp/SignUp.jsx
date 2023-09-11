@@ -2,17 +2,15 @@ import { instance } from '../../components/assets/axiosUrl'
 import { Formik, Field, Form } from 'formik';
 import style from './SignUp.module.scss'
 import { object, string, ref } from 'yup';
+import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-/* import { useQuery } from 'react-query'
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
-*/
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 const signUpSchema = object({
   email: string().email().required('Email is required'),
   password: string().required('Password is required').min(7, 'Too Short!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
-  login: string().required('Login required').min(3, 'Too short!').max(10, 'Too long!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
-  firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
-  lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
+  login: string().required('Login required').min(3, 'Too short!').max(10, 'Too long!').matches(/[A-Z]/, 'Login must contain at least one uppercase letter'),
+  firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'First name must contain at least one uppercase letter'),
+  lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'Last name must contain at least one uppercase letter'),
   confirmPassword: string().oneOf([ref('password'), null], 'Passwords must match').required('Confirm Password is required'),
 });
 
@@ -20,8 +18,9 @@ const SignUp = () => {
   const signUpUser = async (credentional) => {
     await instance.post('/api/customers', credentional)
   }
-  console.log(1);
   const navigate = useNavigate()
+  const [isPasswordShow, setPasswordShow] = useState(false)
+  const [isConfirmPasswordShow, setConfirmPasswordShow] = useState(false)
   return (
     <div className={style.SignUp}>
       <Formik
@@ -51,7 +50,7 @@ const SignUp = () => {
                 form: { touched, errors },
                 meta,
               }) => (
-                <div>
+                <div className={style.SignUp_form_group_input_wrapper}>
                   <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
@@ -69,7 +68,7 @@ const SignUp = () => {
                 form: { touched, errors },
                 meta,
               }) => (
-                <div>
+                <div className={style.SignUp_form_group_input_wrapper}>
                   <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
@@ -87,7 +86,7 @@ const SignUp = () => {
                 form: { touched, errors },
                 meta,
               }) => (
-                <div>
+                <div className={style.SignUp_form_group_input_wrapper}>
                   <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
@@ -105,7 +104,7 @@ const SignUp = () => {
                 form: { touched, errors },
                 meta,
               }) => (
-                <div>
+                <div className={style.SignUp_form_group_input_wrapper}>
                   <input type='text' {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
@@ -117,14 +116,16 @@ const SignUp = () => {
 
           <div className={style.SignUp_form_group}>
             <label htmlFor='password' className={style.SignUp_form_group_label}>Password</label>
-            <Field name='password'>
+            {!isPasswordShow && <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.SignUp_form_group_eye}/>}
+            {isPasswordShow && <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.SignUp_form_group_eye}/>}
+            <Field name='password' >
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
-                <div>
-                  <input type='password' {...field} />
+                <div className={style.SignUp_form_group_input_wrapper}>
+                  <input type={(isPasswordShow) ? 'text' : 'password'} {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -135,15 +136,16 @@ const SignUp = () => {
 
           <div className={style.SignUp_form_group}>
             <label htmlFor='confirm-password' className={style.SignUp_form_group_label}>Confirm Password</label>
-
+            {!isConfirmPasswordShow && <AiOutlineEyeInvisible onClick={() => setConfirmPasswordShow(true)} className={style.SignUp_form_group_eye}/>}
+            {isConfirmPasswordShow && <AiOutlineEye onClick={() => setConfirmPasswordShow(false)} className={style.SignUp_form_group_eye}/>}
             <Field name='confirmPassword'>
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
-                <div>
-                  <input type='password' {...field} />
+                <div className={style.SignUp_form_group_input_wrapper}>
+                  <input type={(isConfirmPasswordShow) ? 'text' : 'password'} {...field} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
