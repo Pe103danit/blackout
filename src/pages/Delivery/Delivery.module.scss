@@ -17,15 +17,15 @@
             position: absolute;
             top: 30%;
             left: 10%;
-            color: $white;
             padding-top: 30px;
+            color: $white;
             font-size: 32px;
             @include manrope-bold();
         }
     }
     &_link {
-        text-decoration: none;
         color: $baner-blue;
+        text-decoration: none;
     }
 
     &_info {
@@ -91,8 +91,8 @@
             & h1 {
                 position: absolute;
                 top: 5%;
-                font-size: 20px;
                 padding-top: 10px;
+                font-size: 20px;
                 @include manrope-bold();
             }
         }
