@@ -6,13 +6,16 @@ import { successfulOrder } from '../../../redux/reducers/ProductReducer/ProductR
 
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
-  totalBasketSum: state.ProductReducer.totalBasketSum
+  totalBasketSum: state.ProductReducer.totalBasketSum,
+  basketList: state.ProductReducer.basketList,
+  products: state.ProductReducer.products,
+  ...state.OrderReducer
 });
 
 const mapDispatchToProps = {
   toggleTheme,
   setPayment,
-  successfulOrder
+  successfulOrder,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentStep3);

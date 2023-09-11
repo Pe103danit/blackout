@@ -2,10 +2,11 @@ import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishList
 
 const WishList = () => {
   return (
+  <>
     <div>
       <EmptyWishListContainer/>
     </div>
+   </>
   )
 }
-
 export default WishList
