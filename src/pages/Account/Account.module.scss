@@ -4,44 +4,44 @@
 .Account{
     max-width: 900px;
     margin: 0 auto;
-    margin-top: 100px;
     height: 100vh;
+    margin-top: 100px;
     &_wrapper{
-        background-color: white;
         padding: 80px 80px 150px 80px;
+        background-color: white;
         border-radius: 10px;
         &_navigate{
             position: relative;
             display: flex;
             flex-direction: column;
             &_title{
+                padding-bottom: 50px;
                 font-weight: $big-weight;
                 font-size: $second-size;
-                padding-bottom: 50px;
             }
             &_item{
-                max-width: 700px;
                 width: 100%;
-                font-size: 16px;
+                max-width: 700px;
                 margin: 20px;
+                font-size: 16px;
                 background-color: white;
                 border-radius: 10px;
-                cursor: pointer;
-                color: black;
                 padding: 20px;
+                color: black;
+                cursor: pointer;
                 font-weight: $big-weight;
                 box-shadow: 0 4px 16px $almost-white;
             }
         }
         &_info{
             padding-top: 8px;
-            padding-left: 150px;
             display: flex;
+            padding-left: 150px;
             flex-direction: column;
             &_title{
+                padding-bottom: 30px;
                 font-weight: $big-weight;
                 font-size: $sixth-size;
-                padding-bottom: 30px;
             }
             &_item{
                 padding-top: 15px;
