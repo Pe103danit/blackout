@@ -1,0 +1,110 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
+.delivery {
+    width: 100%;
+    border-bottom: 1px solid $third-grey;
+    @include manrope-light();
+
+    &_imgContainer {
+        position: relative;
+        padding-bottom: 20px;
+
+        & img {
+            max-width: 100%;
+        }
+        & h1 {
+            position: absolute;
+            top: 30%;
+            left: 10%;
+            color: $white;
+            padding-top: 30px;
+            font-size: 32px;
+            @include manrope-bold();
+        }
+    }
+    &_link {
+        text-decoration: none;
+        color: $baner-blue;
+    }
+
+    &_info {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        padding-left: 10px;
+
+        & p {
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+
+        &_heading {
+            @include manrope-bold();
+            padding-top: 40px;
+            font-size: large;
+        }
+    }
+}
+
+.deliveryBold {
+    @include manrope-bold();
+}
+
+@media screen and (max-width: $tab) {
+    .delivery {
+        width: 100%;
+        border-bottom: 1px solid $third-grey;
+        @include manrope-light();
+
+        &_imgContainer {
+    
+            & h1 {
+                position: absolute;
+                top: 15%;
+                padding-top: 20px;
+                font-size: 22px;
+                @include manrope-bold();
+            }
+        }
+
+        &_info {
+            max-width: 768px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+
+            & p {
+                padding-top: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $mobile) {
+    .delivery {
+        width: 100%;
+        border-bottom: 1px solid $third-grey;
+        @include manrope-light();
+
+        &_imgContainer {
+    
+            & h1 {
+                position: absolute;
+                top: 5%;
+                font-size: 20px;
+                padding-top: 10px;
+                @include manrope-bold();
+            }
+        }
+
+        &_info {
+            max-width: 320px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+
+            & p {
+                padding-top: 10px;
+            }
+        }
+    }
+}
