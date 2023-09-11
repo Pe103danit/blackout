@@ -24,13 +24,13 @@
                 max-width: 700px;
                 margin: 20px;
                 font-size: 16px;
-                background-color: white;
                 padding: 20px;
-                border-radius: 10px;
+                background-color: white;
                 color: black;
+                border-radius: 10px;
                 font-weight: $big-weight;
-                cursor: pointer;
                 box-shadow: 0 4px 16px $almost-white;
+                cursor: pointer;
             }
         }
         &_info{
