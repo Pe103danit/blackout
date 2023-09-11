@@ -18,7 +18,7 @@ const UserInfo = () => {
         if (data) {
             dispatch(setUser(data))
         }
-    }, [data])
+    }, [data, dispatch])
     return (
         <div className={style.UserInfo}>
             <div className={style.UserInfo_wrapper}>
