@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { Formik, Field, Form } from 'formik';
 import style from './Login.module.scss'
 import { object, string } from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom'
-import { setToken, setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
+import { setToken } from '../../redux/reducers/SessionReducer/SessionReducer';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 const loginSchema = object({
   loginOrEmail: string().required('Email is required'),
@@ -15,10 +15,6 @@ const loginSchema = object({
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const theme = useSelector(state => state.UIStateReducer.lightTheme)
-  const themeStyle = theme
-    ? 'lightLogin'
-    : 'darkLogin'
   const [isPasswordShow, setPasswordShow] = useState(false)
   const login = async credentional => {
     const { data } = await instance.post('/api/customers/login', credentional)

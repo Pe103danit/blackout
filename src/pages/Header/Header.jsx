@@ -17,7 +17,6 @@ import { NavLink } from 'react-router-dom'
 import SearchPanel from '../../components/SearchPanel/SearchPanel'
 import NavMenuTabletMobile from '../../components/NavMenuTabletMobile/NavMenuTabletMobile'
 import NavMenuCategories from '../../components/NavMenuCategories/NavMenuCategories'
-import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 const Header = (props) => {

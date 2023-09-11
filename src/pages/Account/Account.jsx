@@ -1,10 +1,5 @@
 import style from './Account.module.scss'
 import { NavLink, useNavigate } from 'react-router-dom'
-import {
-  UserIcon,
-  HeartIcon,
-  MarketIcon,
-} from '../../components/assets/Icons'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../redux/reducers/SessionReducer/SessionReducer'
 const Account = () => {
