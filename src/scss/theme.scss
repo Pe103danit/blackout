@@ -714,3 +714,13 @@
     }
   }
 }
+
+.lightSearchResults {
+  color: $black;
+  background-color: $super-light-blue;
+}
+
+.darkSearchResults {
+  color: $white;
+  background-color: $light-black;
+}

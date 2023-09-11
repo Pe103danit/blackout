@@ -1,0 +1,68 @@
+@import '../../scss/variables';
+
+.faq {
+    &_image {
+        display: flex;
+        flex-direction: column;
+        align-items: center;  
+        justify-content: center;  
+        height: 400px;   
+        background-image: url('./uper.png');   
+         background-repeat: no-repeat; 
+        background-position: center; 
+        background-size: cover;
+
+    }
+
+    &_title {
+        margin-bottom: 20px;
+        color: $white;
+      font-weight: bold;
+        font-size: 48px;            
+    }
+
+    &_subtitle {
+         color: $white;
+        font-size: 24px;      
+
+    }
+
+    &_questions_section {
+        width: 100%;
+        max-width: 750px;
+        margin: 0 auto;
+        padding: 50px 0px
+    }
+
+    &_how_to_power {
+        margin-bottom: 30px;
+    }
+
+    &_arrow {
+        cursor: pointer;
+    }
+
+    &_wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    &_question_title {
+        max-width: 600px;
+        font-weight: $small-weight;  
+        font-size: 16px;  
+        line-height: 22px;
+    }
+    &_item{
+   margin-bottom: 30px;
+    }
+    &_text{
+        max-width: 600px;
+         color: #666;
+         font-size:$third-size ;
+        line-height: 22px; 
+    }
+
+
+}
