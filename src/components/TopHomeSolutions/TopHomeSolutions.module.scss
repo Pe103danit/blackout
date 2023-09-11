@@ -16,11 +16,11 @@
   &_wrapper {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     gap: 10px;
     width: 100%;
     max-width: $max-width;
-    align-items: center;
-    justify-content: space-between;
     margin-top: 50px;
 
     &_item {
@@ -80,12 +80,12 @@
     overflow-x: hidden;
 
     &_wrapper {
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       width: 100%;
       max-width: 100vw;
-      display: flex;
 
       &_item {
         width: 100%;
