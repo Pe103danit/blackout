@@ -49,9 +49,9 @@
 
 @media screen and (max-width: $tab) {
   .container {
-    height: 500px;
     width: 100vw;
     max-width: 100%;
+    height: 500px;
     &::-webkit-scrollbar {
       display: none;
     }
