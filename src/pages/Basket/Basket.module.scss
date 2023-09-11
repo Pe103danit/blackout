@@ -1,0 +1,490 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+.section {
+  &_container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    &_title {
+      padding: 55px 0 32px 10px;
+      font-size: $second-size;
+      border-radius: $border;
+      @include manrope-bold();
+    }
+
+    &_body {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      padding-bottom: 50px;
+
+      &_left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 68%;
+        min-height: 696px;
+        border-radius: $border;
+
+        &_product {
+          position: relative;
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          width: 90%;
+          height: 150px;
+          padding: 20px 10px 0;
+
+          &::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: $black;
+            opacity: 15%;
+            content: "";
+          }
+
+          &_checkbox {
+            input {
+              width: 16px;
+              height: 16px;
+            }
+          }
+
+          &_photo {
+            width: 88px;
+            height: 88px;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          &_name {
+            width: 230px;
+
+            a {
+              p:first-child {
+                font-size: $third-size;
+                @include manrope-bold();
+              }
+
+              p:nth-child(2) {
+                padding-top: 20px;
+                @include manrope-light();
+              }
+            }
+          }
+
+          &_counter {
+            display: flex;
+            justify-content: space-between;
+
+            &_inner {
+              height: 33px;
+              border-radius: 3px;
+
+              button {
+                width: 33px;
+                height: 33px;
+                padding: 0;
+                font-weight: $big-weight;
+                text-align: center;
+                border: 0 !important;
+                cursor: pointer;
+              }
+
+              input {
+                width: 33px;
+                height: 33px;
+                padding: 0;
+                text-align: center;
+                border: 0 !important;
+                border-radius: 0;
+                outline: 0 !important;
+                appearance: none;
+              }
+            }
+          }
+
+          &_price {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 80px;
+            height: 90px;
+
+            p {
+              font-weight: $big-weight;
+            }
+
+            button {
+              padding: 0;
+              text-align: left;
+              text-decoration: underline;
+              background: none;
+              border: none;
+              @include manrope-regular();
+
+              &:hover {
+                text-decoration: none;
+              }
+            }
+          }
+
+          &:hover img {
+            width: 90px;
+            height: 90px;
+          }
+        }
+      }
+
+      &_right {
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 30%;
+        border-radius: $border;
+
+        &_top {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          border-radius: $border;
+
+          &_inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 90%;
+            margin: 0 auto;
+
+            &_container {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding-top: 20px;
+              font-size: $fourth-size;
+
+              p:first-child {
+                @include manrope-regular();
+              }
+
+              p:nth-child(2) {
+                @include manrope-bold();
+              }
+            }
+
+            &_containerSum {
+              position: relative;
+              display: flex;
+              justify-content: space-between;
+              padding-top: 30px;
+
+              &::before {
+                position: absolute;
+                top: 10px;
+                left: 0;
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: $black;
+                opacity: 15%;
+                content: "";
+              }
+
+              &::after {
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: $black;
+                opacity: 15%;
+                content: "";
+              }
+
+              &_total {
+                font-size: $sixth-size;
+                @include manrope-bold();
+              }
+            }
+
+            &_containerButtons {
+              display: flex;
+              justify-content: center;
+              padding-top: 20px;
+              padding-bottom: 20px;
+
+              &_btn1 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 90%;
+                height: 56px;
+                background: $button-blue;
+                border: none;
+                border-radius: 50px;
+                transition: background-color .3s ease, transform .3s ease;
+                a {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 100%;
+                  height: 100%;
+                }
+
+                &:hover {
+                  transform: scale(1.1);
+                }
+
+                &_link {
+                  color: $white;
+                  font-size: $third-size;
+                  @include manrope-bold();
+                }
+              }
+
+              &_btn2 {
+                @include manrope-bold();
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+
+        &_bottom {
+          width: 100%;
+          margin-top: 24px;
+          border-radius: $border;
+
+          &_inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 32px;
+
+            &_container {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding-bottom: 32px;
+
+              &_img {
+                width: 20%;
+
+                svg {
+                  width: 30px;
+                  height: 30px;
+                }
+              }
+
+              &_text {
+                width: 100%;
+
+                p:first-child {
+                  font-size: $fourth-size;
+                  @include manrope-bold();
+                }
+
+                p:nth-child(2) {
+                  padding-top: 10px;
+                  @include manrope-light();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .section {
+    &_container {
+      &_title {
+        position: relative;
+        width: 100%;
+        margin: 1px auto 0;
+        padding: 25px 0 32px 10px;
+        font-size: $third-size;
+        background: $white;
+        border-radius: unset;
+
+        &::after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 1px;
+          background: $black;
+          opacity: 15%;
+          content: "";
+        }
+      }
+
+      &_body {
+        flex-wrap: wrap;
+        padding-bottom: 24px;
+
+        &_left {
+          width: 100%;
+          min-height: auto;
+          margin: 0 auto;
+          border-radius: unset;
+
+          &_product {
+            flex-wrap: wrap;
+
+            &_checkbox {
+              display: none;
+            }
+
+            &_price {
+              p:first-child {
+                color: $first-grey;
+                font-size: $fourth-size;
+                @include manrope-bold();
+              }
+
+              button {
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+
+            &:hover img {
+              width: 88px;
+              height: 88px;
+            }
+          }
+        }
+
+        &_right {
+          position: unset;
+          width: 100%;
+          margin: 0 auto;
+          border-radius: unset;
+
+          &_top {
+            border-radius: unset;
+
+            &_inner {
+              &_containerButtons {
+                &_btn1 {
+                  transition: none;
+
+                  &:hover {
+                    transform: none;
+                  }
+                }
+
+                &_btn2 {
+                  &:hover {
+                    color: $first-grey;
+                  }
+                }
+              }
+            }
+          }
+
+          &_bottom {
+            border-radius: unset;
+
+            &_inner {
+              &_container {
+                &_img {
+                  width: 10%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .section {
+    &_container {
+      &_body {
+        &_left {
+          &_product {
+            &_name {
+              padding-top: 10px;
+            }
+
+            &_counter {
+              order: 3
+            }
+
+            &_price {
+              order: 2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .section {
+    &_container {
+      &_body {
+        padding-bottom: 0;
+
+        &_left {
+          &_product {
+            height: 200px;
+            padding: 10px 10px 0;
+
+            &_name {
+              p:nth-child(2) {
+                display: none;
+              }
+            }
+
+            &_price {
+              height: 50px;
+            }
+          }
+        }
+
+        &_right {
+          width: 100%;
+          margin: 0 auto;
+
+          &_top {
+            &_inner {
+              &_container {
+                font-size: 13px;
+              }
+            }
+          }
+
+          &_bottom {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

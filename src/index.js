@@ -21,6 +21,18 @@ if (!localStorage.getItem('basket')) {
   localStorage.setItem('basket', '0')
 }
 
+if (!localStorage.getItem('basketList')) {
+  localStorage.setItem('basketList', JSON.stringify([]))
+}
+
+if (!localStorage.getItem('totalBasketSum')) {
+  localStorage.setItem('totalBasketSum', JSON.stringify(0))
+}
+
+if (!localStorage.getItem('wishListItems')) {
+  localStorage.setItem('wishListItems', JSON.stringify([]))
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient()
 root.render(

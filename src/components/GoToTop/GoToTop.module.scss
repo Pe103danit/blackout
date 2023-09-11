@@ -2,8 +2,8 @@
 
 .container {
   position: fixed;
-  top: 70%;
-  left: 95%;
+  top: 80%;
+  left: 92%;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -31,6 +31,14 @@
       background-color: $button-blue;
       transition-duration: 0s;
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    left: 85%;
+    width: 43px;
+    height: 43px;
   }
 }
 

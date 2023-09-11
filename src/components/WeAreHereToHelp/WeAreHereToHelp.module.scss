@@ -36,6 +36,7 @@
             display: block;
             width: 100%;
             height: 600px;
+            object-fit: cover;
             border-radius: $border;
           }
           &_text {
@@ -68,6 +69,7 @@
             display: block;
             width: 100%;
             height: 295px;
+            object-fit: cover;
             border-radius: $border;
           }
 
@@ -105,22 +107,20 @@
           justify-content: center;
           width: 100%;
           overflow: hidden;
-          border-radius: $border;
 
           &_link {
             display: flex;
             justify-content: center;
             overflow: hidden;
-            border-radius: $border;
 
             &:hover p {
               text-decoration: none;
             }
 
             img {
-              width: 90%;
-              height: 400px;
-              box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
+              width: 100%;
+              height: 300px;
+              border-radius: 0;
             }
             &_text {
               top: 20px;
@@ -136,16 +136,15 @@
             display: flex;
             justify-content: center;
             overflow: hidden;
-            border-radius: $border;
 
             &:hover p {
               text-decoration: none;
             }
 
             img {
-              width: 90%;
-              height: 400px;
-              box-shadow: 0 0 80px rgba(0, 0, 0, 1.0);
+              width: 100%;
+              height: 300px;
+              border-radius: 0;
             }
             &_text {
               top: 20px;

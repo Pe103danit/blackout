@@ -1,0 +1,266 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixin';
+
+.active {
+  color: $green-blue !important;
+}
+
+.unknown {
+  color: $fourth-grey !important;
+}
+
+.error {
+  color: darkred !important;
+}
+
+.container {
+  position: relative;
+  padding-bottom: 30px;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: $white;
+    opacity: 15%;
+    content: "";
+  }
+
+  &_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+
+    &_inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      svg {
+        width: 15px;
+        height: 15px;
+        fill: $green-blue !important;
+
+        &:hover {
+          fill: $green-blue !important;
+        }
+      }
+
+      span {
+        padding: 0 10px 0 10px;
+
+        &:first-child {
+          color: $green-blue;
+        }
+
+        &:nth-child(2) {
+          font-size: $third-size;
+          @include manrope-bold();
+        }
+      }
+    }
+  }
+
+  &_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    &_nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+
+      &_list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 250px;
+        margin: 0 auto;
+
+        &_item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          &_link {
+            font-size: $fifth-size;
+            @include manrope-regular();
+          }
+        }
+      }
+    }
+
+    &_form {
+      width: 100%;
+      margin: 0 auto;
+
+      &_login {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 500px;
+        margin: 0 auto;
+
+        &_title {
+          font-size: $third-size;
+          @include manrope-bold();
+        }
+
+        &_question {
+          font-size: $fourth-size;
+          @include manrope-regular();
+
+          &_link {
+            text-decoration: none;
+          }
+        }
+      }
+
+      &_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 10px;
+
+        &_title {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          font-size: $third-size;
+          @include manrope-bold();
+        }
+
+        &_inputs {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 900px;
+          margin: 0 auto;
+
+          &_input {
+            width: 600px;
+            margin: 0 auto;
+          }
+
+          &_flag {
+            position: absolute;
+            top: 25%;
+            left: 78%;
+          }
+        }
+
+        &_button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 400px;
+          column-gap: 20px;
+
+          a:nth-child(1) {
+            button {
+              background: $green-blue !important;
+            }
+          }
+
+          a:nth-child(2) {
+            button {
+              background: $button-blue !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .container {
+    &_inner {
+      width: 100%;
+      max-width: 768px;
+    }
+
+    &_main {
+      width: 100%;
+      max-width: 768px;
+
+      &_form {
+        &_login {
+          width: 65%;
+        }
+
+        &_container {
+          &_inputs {
+            width: 90%;
+
+            &_input {
+              width: 90%;
+            }
+
+            &_flag {
+              left: 87%;
+            }
+          }
+
+          &_button {
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .container {
+    &_inner {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    &_main {
+      width: 100%;
+      max-width: 320px;
+
+      &_form {
+        &_login {
+          width: 90%;
+        }
+
+        &_container {
+          &_inputs {
+            &_flag {
+              left: 83%;
+            }
+          }
+          &_button {
+            flex-direction: column;
+            width: 80%;
+            row-gap: 20px;
+          }
+        }
+      }
+    }
+  }
+}
