@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import style from './FAQ.module.scss'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 const FAQConfig = [{
@@ -19,7 +19,7 @@ const FAQConfig = [{
     answer: 'Use the DELTA Max Extra Battery Cable to directly connect to Wave.',
     id: '3'
 }, {
-    question: 'Under cooling mode, how long can Wave battery pack, DELTA Max, and DELTA Pro support the operation of Wave?',
+    question: 'How long can Wave battery support the operation of Wave?',
     answer: 'It depends on the battery you choose to use:',
     answerList: ['Wave add-on battery: 3 hours',
         'DELTA Max: 5-6 hours',
@@ -36,12 +36,16 @@ const FAQConfig = [{
     ],
     id: '5'
 },]
+
 const FAQ = () => {
     const [currentId, setCurrentId] = useState(null)
 
+useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
     return (
         <div className={style.faq}>
-            <div className={style.faq_image}>
+            <div alt='Welcome to EcoFlow Support' title='EcoSupport' className={style.faq_image}>
                 <h3 className={style.faq_title} >Welcome to EcoFlow Support</h3>
                 <h5 className={style.faq_subtitle} >We're here for you</h5>
             </div>
