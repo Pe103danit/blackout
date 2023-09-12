@@ -41,7 +41,7 @@ const FAQ = () => {
 
     return (
         <div className={style.faq}>
-            <div className={style.faq_image}>
+            <div zltclassName={style.faq_image}>
                 <h3 className={style.faq_title} >Welcome to EcoFlow Support</h3>
                 <h5 className={style.faq_subtitle} >We're here for you</h5>
             </div>
