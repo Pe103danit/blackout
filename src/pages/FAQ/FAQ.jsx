@@ -45,7 +45,7 @@ useEffect(() => {
 }, []);
     return (
         <div className={style.faq}>
-            <div alt='Welcome to EcoFlow Support' className={style.faq_image}>
+            <div alt='Welcome to EcoFlow Support' title='EcoSupport' className={style.faq_image}>
                 <h3 className={style.faq_title} >Welcome to EcoFlow Support</h3>
                 <h5 className={style.faq_subtitle} >We're here for you</h5>
             </div>
