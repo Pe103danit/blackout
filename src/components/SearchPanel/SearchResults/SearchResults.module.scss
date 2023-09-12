@@ -10,15 +10,50 @@
   height: 400px;
   margin: 0 auto;
   overflow-y: scroll;
-  div {
-    height: 1500px;
+
+  &_noResults {
+    overflow-y: unset;
+    div {
+      height: 400px !important;
+      min-height: 400px !important;
+    }
   }
+
+  &_inner {
+    min-height: 800px;
+    margin: 0 auto;
+    padding-top: 10px;
+
+    &_title {
+      padding-left: 20px;
+      color: $third-grey;
+    }
+    &_list {
+      padding-top: 5px;
+    }
+  }
+}
+
+.noResults {
+  font-size: $third-size;
+  text-align: center;
+}
+
+.lightNoResults {
+  color: $black;
+}
+
+.darkNoResults {
+  color: $white;
 }
 
 @media screen and (max-width: $tab) {
   .container {
     width: 100vw;
     max-width: 100%;
-    height: 300px;
+    height: 500px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
