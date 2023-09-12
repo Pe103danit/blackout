@@ -2,13 +2,17 @@ import style from './Account.module.scss'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../redux/reducers/SessionReducer/SessionReducer'
+import { useEffect } from 'react'
 const Account = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem('tokenParts')
+    if (token) {
+      dispatch(setToken(token))
+    }
+  }, [])
   const handleLogout = () => {
-    localStorage.removeItem('Signature')
-    localStorage.removeItem('Payload')
-    localStorage.removeItem('Header')
     localStorage.removeItem('tokenParts')
     dispatch(setToken(null))
     navigate('/')

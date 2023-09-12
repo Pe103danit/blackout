@@ -15,18 +15,24 @@ const loginSchema = object({
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const [err, setErr] = useState(null)
   const [isPasswordShow, setPasswordShow] = useState(false)
   const login = async credentional => {
-    const { data } = await instance.post('/api/customers/login', credentional)
+    setErr(null)
+    try {
+    const { data, error } = await instance.post('/api/customers/login', credentional)
+    if (error) {
+      throw new Error('invalid credentional')
+    }
     const token = data.token;
     const tokenParts = token.split('.');
-    const [header, payload, signature] = tokenParts;
-    localStorage.setItem('Signature', signature);
-    localStorage.setItem('Header', header);
-    localStorage.setItem('Payload', payload);
+    const [payload] = tokenParts;
     localStorage.setItem('tokenParts', token);
     dispatch(setToken(token))
     navigate('/account');
+    } catch (e) {
+      setErr('invalid credentional')
+    }
   }
   return (
     <div className={style.Login}>
@@ -56,6 +62,7 @@ const Login = () => {
             {!isPasswordShow && <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.Login_form_group_eye} />}
             {isPasswordShow && <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.Login_form_group_eye} />}
             <Field id='password' type={(isPasswordShow) ? 'text' : 'password'} name='password' />
+            {err && <span className={style.Login_form_group_err}>{err}</span>}
           </div>
           <p className={style.Login_form_SignUp}>If you don't have account <NavLink to='/sign_up'>Sign up</NavLink> </p>
           <button type='submit' className={style.Login_form_button}>Submit</button>

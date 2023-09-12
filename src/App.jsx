@@ -21,8 +21,8 @@ import Account from './pages/Account/Account';
 import FAQ from './pages/FAQ/FAQ';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
 import GoToTop from './components/GoToTop/GoToTop'
 import BasketContainer from './pages/Basket/BasketContainer'
@@ -31,11 +31,12 @@ import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Con
 import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
+import { setToken } from './redux/reducers/SessionReducer/SessionReducer'
 
 const App = (props) => {
+  const dispatch = useDispatch()
   const themeStyle = props.lightTheme ? 'light' : 'dark'
-  const user = useSelector(state => state.SessionReducer.user)
-  const [token, setToken] = useState(null)
+  const token = useSelector(state => state.SessionReducer.token)
   const getSwiperProducts = async () => {
     const { data } = await instance.get('/api/products')
     return data
@@ -47,8 +48,11 @@ const App = (props) => {
     }
   }, [data, props])
   useEffect(() => {
-    const token = localStorage.getItem('Signature')
-    setToken(token)
+    const token = localStorage.getItem('tokenParts')
+    console.log(token);
+    if (token) {
+      dispatch(setToken(token))
+    }
   }, [])
   return (
     <div className={themeStyle}>
@@ -77,12 +81,12 @@ const App = (props) => {
         <Route path='/finish_order' element={<PaymentStep3Container />} />
         <Route path='/success' element={<SuccessfulOrderContainer />} />
         <Route path='/site_map' element={<SiteMapContainer />} />
-        <Route path='/faq' element={<FAQ/>}/>
+        <Route path='/faq' element={<FAQ />} />
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
         <Route path='/user_info' element={<UserInfo />} />
-        {(token || user) && <Route path='/account' element={<Account />} />}
+        {(token) && <Route path='/account' element={<Account />} />}
       </Routes>
       <FooterContainer />
       <GoToTop />

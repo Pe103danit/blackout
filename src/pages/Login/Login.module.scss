@@ -45,6 +45,12 @@
                 width: 20px;
                 height: 20px;
             }
+            &_err{
+                position: absolute;
+                left: 0;
+                top: 70px;
+                color: $red;
+            }
         }
         &_label{
             position: absolute;

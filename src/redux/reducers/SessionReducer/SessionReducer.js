@@ -12,12 +12,13 @@ export const setToken = (token) => (
     payload: token
   }
 )
-const initialState = { user: null, token: null }
+const initialState = { user: null, token: null, userIsLoading: true }
 const SessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_USER:
-      return {...state, user: action.payload}
-      case types.SET_TOKEN: return {...state, token: action.payload}
+      return { ...state, user: action.payload, userIsLoading: false }
+    case types.SET_TOKEN:
+      return { ...state, token: action.payload }
     default:
       return state
   }
