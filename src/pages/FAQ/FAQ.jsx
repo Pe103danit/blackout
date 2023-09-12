@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import style from './FAQ.module.scss'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 const FAQConfig = [{
@@ -36,9 +36,13 @@ const FAQConfig = [{
     ],
     id: '5'
 },]
+
 const FAQ = () => {
     const [currentId, setCurrentId] = useState(null)
 
+useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
     return (
         <div className={style.faq}>
             <div alt='Welcome to EcoFlow Support' className={style.faq_image}>
