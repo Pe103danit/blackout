@@ -66,7 +66,9 @@ const ProductCategories = ({ title, categoryName }) => {
                 : (<>
                     <div className={style.productCategories__container}>
                         {currentItems.map((productItem) => (
-                            <ShopCard key={productItem.itemNo} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)}/>
+                            <ShopCard key={productItem.itemNo}
+                            productItem={productItem}
+                            onWishList={() => WishListHandler(productItem.itemNo)} />
                         ))}
                     </div>
                     <PagePagination cardOnPage={12} productItems={products} changesOnPage={handlePageChange} />

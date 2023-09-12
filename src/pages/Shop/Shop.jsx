@@ -33,7 +33,7 @@ const Shop = ({ productItems, productIsLoading }) => {
         wishList = wishListItems.length;
         window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
         window.localStorage.setItem('wishList', wishList);
-        };
+    };
 
     window.scrollTo({
         top: 0,

@@ -7,15 +7,14 @@ import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishList
 import WishListItem from './WishListItem';
 
 const WishList = ({ productItems, productIsLoading }) => {
-  const [isOnWishList, setIsOnWishList] = useState(JSON.parse(window.localStorage.getItem('wishList')) !== 0);
-  const [wishListItems, setWishListItems] = useState(JSON.parse(window.localStorage.getItem('wishListItems')) || []);
-  // console.log(isOnWishList, JSON.parse(window.localStorage.getItem('wishList')));
+  const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0);
+  const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   console.log(wishListItems);
   console.log(productItems);
   let wishProducts = [];
 
   useEffect(() => {
-    setIsOnWishList(JSON.parse(window.localStorage.getItem('wishList')) !== 0)
+    setIsOnWishList(JSON.parse(localStorage.getItem('wishList')) !== 0)
   }, [isOnWishList]);
 
   if (isOnWishList) {
@@ -35,7 +34,7 @@ const WishList = ({ productItems, productIsLoading }) => {
           {wishProducts.map((wishProduct, index) => (
             <WishListItem
               key={index}
-              wishItem={wishProduct}
+              wishProduct={'wishProduct'}
             />
           ))}
           <WishListItem />
