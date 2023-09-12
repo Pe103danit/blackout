@@ -82,3 +82,12 @@
         }
     }
 }
+@media screen and (max-width: $mobile) {
+    .Login{
+        &_form{
+            &_group input, textarea, select{
+                font-size: 14px;     
+            }
+        }
+    }
+}
