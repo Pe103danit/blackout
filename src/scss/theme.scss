@@ -628,6 +628,15 @@
             color: $green-blue;
           }
         }
+        div {
+          input {
+            color: $black !important;
+            background: $main-background !important;
+            &::placeholder {
+              color: $black;
+            }
+          }
+        }
       }
     }
   }
@@ -707,6 +716,15 @@
             input {
               color: $white;
               background: $light-black;
+            }
+          }
+        }
+        div {
+          input {
+            color: $white !important;
+            background: $light-black !important;
+            &::placeholder {
+              color: $white;
             }
           }
         }
