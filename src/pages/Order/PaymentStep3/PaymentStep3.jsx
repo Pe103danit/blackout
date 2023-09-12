@@ -1,15 +1,158 @@
 import style from './PaymentStep3..module.scss'
-import { NavLink } from 'react-router-dom'
+import cardImg from './card.png'
+import cardGif from './rccs.gif'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
-import {
-  Button,
-  TextField
-} from '@mui/material'
+import { Button, TextField } from '@mui/material'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { useMutation } from 'react-query'
+import { instance } from '../../../components/assets/axiosUrl'
+import { nanoid } from 'nanoid'
 
 const PaymentStep3 = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
+
+  const basketList = props.basketList
+  const products = props.products
+  const getInfoOrderedProducts = () => {
+    return products.filter(product => {
+      const matchingBasketItem = basketList.find(basketItem => basketItem.itemNo === product.itemNo);
+      if (matchingBasketItem) {
+        product.countToCart = matchingBasketItem.countToCart;
+        return true;
+      }
+      return false;
+    });
+  };
+  const orderedProducts = getInfoOrderedProducts()
+
+  const mutation = useMutation(newOrder => {
+      return instance.post('api/orders', newOrder)
+    },
+    {
+      onSuccess: (data) => {
+        console.log(data)
+      },
+      onError: (error) => {
+        console.error(error)
+      }
+    })
+
+  const navigate = useNavigate()
+
+  const formik = useFormik({
+    initialValues: {
+      cardNumber: '',
+      expiry: '',
+      cvc: '',
+      cardName: '',
+    },
+    onSubmit: async (values) => {
+      await props.setPayment({ ...values })
+      const newOrder = {
+          products: orderedProducts.map(({countToCart, ...rest }) => ({
+            _id: nanoid(),
+            product: {...rest},
+            cartQuantity: countToCart
+          })),
+        deliveryAddress: {
+          country: props.country,
+          city: props.city,
+          address: props.address,
+          postal: props.postcode,
+        },
+        shipping: props.delivery,
+        paymentInfo: 'Credit card',
+        status: 'not shipped',
+        email: props.email,
+        mobile: props.phone,
+        firstName: props.firstName,
+        lastName: props.lastName,
+        apartment: props.apartment,
+        cardNumber: values.cardNumber,
+        expiry: values.expiry,
+        cvc: values.cvc,
+        cardName: values.cardName,
+        isSubscribed: props.isSubscribed,
+        letterSubject: 'Thank you for order! You are welcome!',
+        letterHtml:
+          '<!DOCTYPE html>\n' +
+          '<html lang=\'en\'>\n' +
+          '<head>\n' +
+          '    <meta charset=\'UTF-8\'>\n' +
+          '    <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\'>\n' +
+          '    <title>Thanks for Subscribing!</title>\n' +
+          '    <style>\n' +
+          '        body {\n' +
+          '            font-family: Arial, sans-serif;\n' +
+          '            text-align: center;\n' +
+          '            background-color: #f5f5f5;\n' +
+          '            margin: 0;\n' +
+          '            padding: 20px;\n' +
+          '        }\n' +
+          '        .container {\n' +
+          '            max-width: 600px;\n' +
+          '            margin: 0 auto;\n' +
+          '            padding: 20px;\n' +
+          '            background-color: #ffffff;\n' +
+          '            border-radius: 8px;\n' +
+          '            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n' +
+          '        }\n' +
+          '        h1 {\n' +
+          '            color: #333333;\n' +
+          '        }\n' +
+          '        p {\n' +
+          '            color: #666666;\n' +
+          '            line-height: 1.6;\n' +
+          '        }\n' +
+          '    </style>\n' +
+          '</head>\n' +
+          '<body>\n' +
+          '<div class=\'container\'>\n' +
+          '    <h1>Your order is placed</h1>\n' +
+          '    <p>OrderNo is 023689452.</p>\n' +
+          '    <p>If you have any questions or need assistance, feel free to ' +
+          '<a href=\'mailto:pe103danit@gmail.com\'>contact us' +
+          '</a>.' +
+          '</p>\n' +
+          '    <img src=\'https://memeburn.com/gearburn/wp-content/uploads/sites/3/2023/07/EcoFlow-River-2.jpg\' ' +
+          'alt=\'Black out store\' ' +
+          'style=\'max-width: 100%; ' +
+          'border-radius: 8px; ' +
+          'margin: 20px 0;\'>\n' +
+          '    <p>We hope to see you soon!</p>\n' +
+          '</div>\n' +
+          '</body>\n' +
+          '</html>'
+      }
+      console.log(newOrder)
+      props.successfulOrder()
+      mutation.mutate(newOrder)
+      navigate({ pathname: '/success' }, { replace: true })
+    },
+    validationSchema: Yup.object({
+      cardNumber: Yup.string()
+        .min(16, 'There should be more characters')
+        .max(16, 'There should be less characters')
+        .required('Write please your Number'),
+      expiry: Yup.string()
+        .min(5, 'There should be more characters')
+        .max(5, 'There should be less characters')
+        .required('Write please your Expiry'),
+      cvc: Yup.string()
+        .min(3, 'There should be more characters')
+        .max(3, 'There should be less characters')
+        .required('Write please your CVC'),
+      cardName: Yup.string()
+        .min(1, 'There should be more characters')
+        .max(50, 'There should be less characters')
+        .required('Write please your Name')
+    })
+  })
+
   return (
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_title}>
@@ -32,7 +175,7 @@ const PaymentStep3 = (props) => {
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
-              <NavLink to={'/information'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
+              <NavLink to={'/shipping'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
                 Shipping>
               </NavLink>
             </li>
@@ -43,7 +186,11 @@ const PaymentStep3 = (props) => {
             </li>
           </ul>
         </nav>
-        <form className={style.container_main_form}>
+        <form className={style.container_main_form}
+              onSubmit={formik.handleSubmit}
+              autoComplete='off'
+              noValidate
+        >
           <div className={style.container_main_form_login}>
             <p className={style.container_main_form_login_title}>Contact</p>
             <p className={style.container_main_form_login_question}>Have an account?
@@ -55,54 +202,86 @@ const PaymentStep3 = (props) => {
               Payment information
             </p>
             <div className={style.container_main_form_container_inputs}>
-              <div className={style.container_main_form_container_inputs}>
-                <TextField id="address"
-                           label="Address"
-                           variant="outlined"
-                           type="text"
-                           name="address"
-                           placeholder="Address"
-                           className={style.container_main_form_container_inputs_input}
-                />
-              </div>
-            </div>
-            <div className={style.container_main_form_container_inputs}>
-              <TextField id="apartment"
-                         label="Apartment, suite etc. (optional)"
-                         variant="outlined"
-                         type="text"
-                         name="apartment"
-                         placeholder="Apartment, suite etc. (optional)"
-                         className={style.container_main_form_container_inputs_input}
+              <img src={cardGif}
+                   alt='card'
+                   className={style.container_main_form_container_inputs_input}
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="city"
-                         label="City"
-                         variant="outlined"
-                         type="text"
-                         name="city"
-                         placeholder="City"
+              <TextField id='cardNumber'
+                         label='Card number'
+                         variant='outlined'
+                         type='text'
+                         name='cardNumber'
+                         placeholder='Card number'
+                         onChange={formik.handleChange}
+                         value={formik.values.cardNumber}
+                         onBlur={formik.handleBlur}
                          className={style.container_main_form_container_inputs_input}
+              />
+              {formik.touched.cardNumber && formik.errors.cardNumber && (
+                <p className={style.error}>{formik.errors.cardNumber}</p>
+              )}
+              <img src={cardImg}
+                   alt='card'
+                   className={style.container_main_form_container_inputs_img}
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id="postcode"
-                         label="Postcode"
-                         variant="outlined"
-                         type="text"
-                         name="postcode"
-                         placeholder="Postcode"
+              <TextField id='expiry'
+                         label='Expiration date (MM / YY)'
+                         variant='outlined'
+                         type='text'
+                         name='expiry'
+                         placeholder='Expiration date (MM / YY)'
+                         onChange={formik.handleChange}
+                         value={formik.values.expiry}
+                         onBlur={formik.handleBlur}
                          className={style.container_main_form_container_inputs_input}
               />
+              {formik.touched.expiry && formik.errors.expiry && (
+                <p className={style.error}>{formik.errors.expiry}</p>
+              )}
+            </div>
+            <div className={style.container_main_form_container_inputs}>
+              <TextField id='cvc'
+                         label='Security code'
+                         variant='outlined'
+                         type='text'
+                         name='cvc'
+                         placeholder='Security code'
+                         onChange={formik.handleChange}
+                         value={formik.values.cvc}
+                         onBlur={formik.handleBlur}
+                         className={style.container_main_form_container_inputs_input}
+              />
+              {formik.touched.cvc && formik.errors.cvc && (
+                <p className={style.error}>{formik.errors.cvc}</p>
+              )}
+            </div>
+            <div className={style.container_main_form_container_inputs}>
+              <TextField id='cardName'
+                         label='Name on card'
+                         variant='outlined'
+                         type='text'
+                         name='cardName'
+                         placeholder='Name on card'
+                         onChange={formik.handleChange}
+                         value={formik.values.cardName}
+                         onBlur={formik.handleBlur}
+                         className={style.container_main_form_container_inputs_input}
+              />
+              {formik.touched.cardName && formik.errors.cardName && (
+                <p className={style.error}>{formik.errors.cardName}</p>
+              )}
             </div>
             <div className={style.container_main_form_container_button}>
               <NavLink to={'/shipping'}>
-                <Button variant="contained">&#8592; Back</Button>
+                <Button variant='contained'>&#8592; Back</Button>
               </NavLink>
-              <NavLink to={'/payment'}>
-                <Button variant="contained">Pay now</Button>
-              </NavLink>
+              <Button variant='contained' type='submit'>
+                Pay now
+              </Button>
             </div>
           </div>
         </form>

@@ -9,6 +9,10 @@
   color: $fourth-grey !important;
 }
 
+.error {
+  color: darkred !important;
+}
+
 .container {
   position: relative;
   padding-bottom: 30px;
@@ -146,7 +150,9 @@
         }
 
         &_inputs {
+          position: relative;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           width: 900px;
@@ -155,6 +161,12 @@
           &_input {
             width: 600px;
             margin: 0 auto;
+          }
+
+          &_flag {
+            position: absolute;
+            top: 25%;
+            left: 78%;
           }
         }
 
@@ -201,6 +213,14 @@
         &_container {
           &_inputs {
             width: 90%;
+
+            &_input {
+              width: 90%;
+            }
+
+            &_flag {
+              left: 87%;
+            }
           }
 
           &_button {
@@ -229,6 +249,11 @@
         }
 
         &_container {
+          &_inputs {
+            &_flag {
+              left: 83%;
+            }
+          }
           &_button {
             flex-direction: column;
             width: 80%;

@@ -3,7 +3,7 @@ import HeaderContainer from './pages/Header/headerContainer';
 import HomeContainer from './pages/Home/homeContainer'
 import Shop from './pages/Shop/Shop'
 import Offers from './pages/Offers/Offers'
-import Delivery from './pages/Delivery/Delivery'
+import DeliveryContainer from './pages/Delivery/DeliveryContainer'
 import Payment from './pages/Payment/Payment'
 import AboutUs from './pages/AboutUs/AboutUs'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
@@ -18,6 +18,7 @@ import FooterContainer from './pages/Footer/footerContainer';
 import SignUp from './pages/SignUp/SignUp'
 import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import Account from './pages/Account/Account';
+import FAQ from './pages/FAQ/FAQ';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
@@ -28,6 +29,8 @@ import BasketContainer from './pages/Basket/BasketContainer'
 import InformationStep1Container from './pages/Order/InformationStep1/InformationStep1Container'
 import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Container'
 import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
+import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
+import UserInfo from './pages/UserInfo/UserInfo';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -52,10 +55,10 @@ const App = (props) => {
       <PromoBaner />
       <HeaderContainer />
       <Routes>
-        <Route path='/' element={<HomeContainer />} />
+        <Route index path='/' element={<HomeContainer />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/offers' element={<Offers />} />
-        <Route path='/delivery' element={<Delivery />} />
+        <Route path='/delivery' element={<DeliveryContainer />} />
         <Route path='/payment' element={<Payment />} />
         <Route path='/about_us' element={<AboutUs />} />
         <Route path='/contacts' element={<ContactsContainer />} />
@@ -72,10 +75,13 @@ const App = (props) => {
         <Route path='/information' element={<InformationStep1Container />} />
         <Route path='/shipping' element={<ShippingStep2Container />} />
         <Route path='/finish_order' element={<PaymentStep3Container />} />
+        <Route path='/success' element={<SuccessfulOrderContainer />} />
         <Route path='/site_map' element={<SiteMapContainer />} />
+        <Route path='/faq' element={<FAQ/>}/>
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
+        <Route path='/user_info' element={<UserInfo />} />
         {(token || user) && <Route path='/account' element={<Account />} />}
       </Routes>
       <FooterContainer />

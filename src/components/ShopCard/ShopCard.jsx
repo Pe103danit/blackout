@@ -22,18 +22,20 @@ const ShopCard = (props) => {
     };
 
     const dispatch = useDispatch()
-    const [product] = useState([])
     const [countToCart] = useState(1)
 
     const handleClick = () => {
-        dispatch(addToBasket(product?.itemNo, countToCart))
+        window.scrollTo(0, 0)
+
+        const candidateId = props.productItem.itemNo
+        dispatch(addToBasket(candidateId, countToCart))
         let storageBasket = JSON.parse(localStorage.getItem('basketList'))
         let repeat = false
         storageBasket = storageBasket.map(item => {
-            if (item.itemNo === product?.itemNo) {
+            if (item.itemNo === candidateId) {
                 repeat = true
                 return ({
-                    itemNo: product?.itemNo,
+                    itemNo: candidateId,
                     countToCart: item.countToCart + countToCart
                 })
             } else {
@@ -42,10 +44,10 @@ const ShopCard = (props) => {
         })
         if (!repeat) {
             storageBasket.push(
-                {
-                    itemNo: product?.itemNo,
-                    countToCart
-                }
+              {
+                  itemNo: candidateId,
+                  countToCart
+              }
             )
         }
         localStorage.setItem('basketList', JSON.stringify([

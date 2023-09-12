@@ -9,6 +9,16 @@
   color: $fourth-grey !important;
 }
 
+.error {
+  color: darkred !important;
+}
+
+.fixedInput {
+  input {
+    background-color: $button-light-blue !important;
+  }
+}
+
 .container {
   position: relative;
   padding-bottom: 30px;
@@ -147,9 +157,10 @@
 
         &_inputs {
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 1000px;
+          width: 900px;
           margin: 0 auto;
 
           &_input {
@@ -200,6 +211,10 @@
         &_container {
           &_inputs {
             width: 90%;
+
+            &_input {
+              width: 90%;
+            }
           }
 
           &_button {
@@ -229,6 +244,7 @@
         &_container {
           &_button {
             flex-direction: column;
+            width: 80%;
             row-gap: 20px;
           }
         }

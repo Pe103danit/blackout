@@ -19,10 +19,13 @@
     gap: 10px;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    max-width: $max-width;
     margin-top: 50px;
 
     &_item {
-
+      width: 100%;
+      max-width: $max-width;
       &_link {
         position: relative;
         display: flex;
@@ -33,6 +36,7 @@
         &_img {
           display: block;
           width: 100%;
+          max-width: $max-width;
           height: 395px;
           border-radius: 10px;
         }
@@ -41,7 +45,8 @@
           position: absolute;
           top: 30px;
           left: 30px;
-          width: 400px;
+          width: 100%;
+          max-width: 400px;
           color: $white;
           font-weight: $big-weight;
           font-size: 20px;
@@ -71,17 +76,34 @@
 @media screen and (max-width: $tab) {
   .TopHomeSolutions {
     width: 100%;
-    max-width: 768px;
+    max-width: 100vw;
+    overflow-x: hidden;
 
     &_wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 100vw;
+
       &_item {
-        width: 100vw;
+        width: 100%;
+        max-width: 100vw;
 
         &_link {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
+
+          &_title {
+            width: 100%;
+            max-width: 400px;
+            font-size: 15px;
+          }
+
+          &_text {
+            top: 85px;
+            width: 100px;
+
+          }
           &_text {
             &:hover {
               text-decoration: none;
@@ -89,7 +111,8 @@
           }
 
           &_img {
-
+            width: 100%;
+            max-width: 100vw;
             height: 300px;
             object-fit: cover;
             border-radius: 0;
@@ -104,25 +127,30 @@
 
   .TopHomeSolutions {
     width: 100%;
-    max-width: 480px;
+    max-width: 100vw;
 
     &_wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 100vw;
 
       &_item {
-        width: 100vw;
+        width: 100%;
+        max-width: 100vw;
         &_link {
           &_img {
-            width: 100vw;
+            width: 100%;
+            max-width: 100vw;
             height: 300px;
             object-fit: cover;
           }
 
           &_title {
-            width: 280px;
+            width: 100%;
+            max-width: 280px;
             font-size: 15px;
           }
 
@@ -132,8 +160,6 @@
           }
         }
       }
-
     }
-
   }
 }

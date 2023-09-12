@@ -9,6 +9,10 @@
   color: $fourth-grey !important;
 }
 
+.error {
+  color: darkred !important;
+}
+
 .container {
   position: relative;
   padding-bottom: 30px;
@@ -146,15 +150,22 @@
         }
 
         &_inputs {
+          position: relative;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 1000px;
+          width: 900px;
           margin: 0 auto;
 
           &_input {
             width: 600px;
             margin: 0 auto;
+          }
+          &_img {
+            position: absolute;
+            top: 25%;
+            left: 78%;
           }
         }
 
@@ -200,6 +211,13 @@
         &_container {
           &_inputs {
             width: 90%;
+
+            &_input {
+              width: 90%;
+            }
+            &_img {
+              left: 87%;
+            }
           }
 
           &_button {
@@ -227,8 +245,15 @@
           width: 90%;
         }
         &_container {
+          &_inputs {
+            &_img {
+              left: 83%;
+            }
+          }
+
           &_button {
             flex-direction: column;
+            width: 80%;
             row-gap: 20px;
           }
         }
