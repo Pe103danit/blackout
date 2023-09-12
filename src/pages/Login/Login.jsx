@@ -25,7 +25,6 @@ const Login = () => {
       throw new Error('invalid credentional')
     }
     const token = data.token;
-    const tokenParts = token.split('.');
     localStorage.setItem('tokenParts', token);
     dispatch(setToken(token))
     navigate('/account');
