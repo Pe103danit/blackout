@@ -116,7 +116,7 @@ export const ProductCard = () => {
                     {product?.imageUrls?.map((item, index) => (
                       <SwiperSlide key={index} className="swiper-slide">
                         <div className={`${style.product_card_img_wrapper} ${style.product_card_img_wrapper_big}`}>
-                          <img src={item} alt="Power-Delta"/>
+                          <img src={item} alt="Main Product" title='Main Product'/>
                         </div>
                       </SwiperSlide>
                     ))}
@@ -149,7 +149,7 @@ export const ProductCard = () => {
                       {product?.imageUrls?.map((item, index) => (
                         <SwiperSlide key={index} className="swiper-slide">
                           <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
-                            <img className={style.product_image_swiper_mini_img} src={item} alt="Nav Images"/>
+                            <img className={style.product_image_swiper_mini_img} src={item} alt='Nav Images' title='Navigation Photos'/>
                           </div>
                         </SwiperSlide>
                       ))}
