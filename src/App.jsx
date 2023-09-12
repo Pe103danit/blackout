@@ -53,7 +53,7 @@ const App = (props) => {
     if (token) {
       dispatch(setToken(token))
     }
-  }, [])
+  }, [dispatch])
   return (
     <div className={themeStyle}>
       <PromoBaner />

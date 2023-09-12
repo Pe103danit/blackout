@@ -11,7 +11,7 @@ const Account = () => {
     if (token) {
       dispatch(setToken(token))
     }
-  }, [])
+  }, [dispatch])
   const handleLogout = () => {
     localStorage.removeItem('tokenParts')
     dispatch(setToken(null))

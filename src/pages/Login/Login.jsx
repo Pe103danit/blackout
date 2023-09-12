@@ -26,7 +26,6 @@ const Login = () => {
     }
     const token = data.token;
     const tokenParts = token.split('.');
-    const [payload] = tokenParts;
     localStorage.setItem('tokenParts', token);
     dispatch(setToken(token))
     navigate('/account');
