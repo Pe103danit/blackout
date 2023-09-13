@@ -87,15 +87,15 @@ export const ProductCard = () => {
       )
     }
     localStorage.setItem('basketList', JSON.stringify([
-        ...storageBasket
-      ])
+      ...storageBasket
+    ])
     )
     const countBasket = parseInt(localStorage.getItem('basket'))
     localStorage.setItem('basket', `${countBasket + countToCart}`)
     dispatch(updateBasket(storageBasket))
   }
   return (
-    <>{isSpinner && <Spinner/>}
+    <>{isSpinner && <Spinner />}
       {!isSpinner &&
         <section className={`${style.product} ${themeStyle}`}>
           <div className={style.product_container}>
@@ -116,7 +116,7 @@ export const ProductCard = () => {
                     {product?.imageUrls?.map((item, index) => (
                       <SwiperSlide key={index} className="swiper-slide">
                         <div className={`${style.product_card_img_wrapper} ${style.product_card_img_wrapper_big}`}>
-                          <img src={item} alt=""/>
+                          <img src={item} alt={product?.name} title={product?.name} />
                         </div>
                       </SwiperSlide>
                     ))}
@@ -149,7 +149,7 @@ export const ProductCard = () => {
                       {product?.imageUrls?.map((item, index) => (
                         <SwiperSlide key={index} className="swiper-slide">
                           <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
-                            <img className={style.product_image_swiper_mini_img} src={item} alt=""/>
+                            <img className={style.product_image_swiper_mini_img} src={item} alt={product?.name} title={product?.name} />
                           </div>
                         </SwiperSlide>
                       ))}
@@ -163,7 +163,7 @@ export const ProductCard = () => {
                   {product?.sale && <p className={style.product_card_hot}>Hot</p>}
                   <h2 className={style.product_card_title}>{product?.name}</h2>
 
-                  <div><StarRating starsSelected={product?.rating}/></div>
+                  <div><StarRating starsSelected={product?.rating} /></div>
                   <p className={style.product_card_price}> $ {product?.currentPrice} </p>
                   <p className={style.product_card_under_price}>{product?.underPrice}</p>
                 </div>
@@ -180,8 +180,8 @@ export const ProductCard = () => {
                       ))}
                     </ul>
                     {(specsArray?.length > 4) && <p className={style.product_card_overview}
-                                                    onClick={() => { setOverWeightOpen(!isOverWeightOpen) }}>Overview {isOverWeightOpen &&
-                      <SlArrowUp/>} {!isOverWeightOpen && < SlArrowDown/>}</p>}
+                      onClick={() => { setOverWeightOpen(!isOverWeightOpen) }}>Overview {isOverWeightOpen &&
+                        <SlArrowUp />} {!isOverWeightOpen && < SlArrowDown />}</p>}
                   </div>
                   {!product?.quantity && <div>
                     <h6 className={style.product_card_description_subtitle_available}>
@@ -196,30 +196,30 @@ export const ProductCard = () => {
                       <button
                         className={`${style.product_card_button_available} ${(countToCart === 1) ? style.product_card_button_disable : ''}`}
                         disabled={countToCart === 1} onClick={() => {
-                        setCountToCart(prev => prev -= 1)
-                        setCountOfAvailable(prev => prev += 1)
-                        if (countToCart > 0) {
-                          setMultipliedPrice(prev => (prev = Number(prev) - product?.currentPrice).toFixed(2))
-                        }
-                        if (countToCart === 1) {
-                          setMultipliedPrice(product?.currentPrice)
-                        }
-                      }}>-
+                          setCountToCart(prev => prev -= 1)
+                          setCountOfAvailable(prev => prev += 1)
+                          if (countToCart > 0) {
+                            setMultipliedPrice(prev => (prev = Number(prev) - product?.currentPrice).toFixed(2))
+                          }
+                          if (countToCart === 1) {
+                            setMultipliedPrice(product?.currentPrice)
+                          }
+                        }}>-
                       </button>
                       <span className={style.product_card_count}>{countToCart}</span>
                       <button
                         className={`${style.product_card_button_available} ${(!countOfAvailable) ? style.product_card_button_disable : ''}`}
                         disabled={!countOfAvailable} onClick={() => {
-                        setCountToCart(prev => prev += 1)
-                        setCountOfAvailable(prev => prev -= 1)
+                          setCountToCart(prev => prev += 1)
+                          setCountOfAvailable(prev => prev -= 1)
 
-                        if (countToCart > 0) {
-                          setMultipliedPrice(prev => (prev = Number(prev) + product?.currentPrice).toFixed(2))
-                        }
-                        if (!countToCart) {
-                          setMultipliedPrice(product?.currentPrice)
-                        }
-                      }}>+
+                          if (countToCart > 0) {
+                            setMultipliedPrice(prev => (prev = Number(prev) + product?.currentPrice).toFixed(2))
+                          }
+                          if (!countToCart) {
+                            setMultipliedPrice(product?.currentPrice)
+                          }
+                        }}>+
                       </button>
                     </div>
                   </div>}
@@ -229,10 +229,10 @@ export const ProductCard = () => {
                       <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
                       {!isClicked &&
                         <div onClick={() => setClicked(true)} className={style.product_favorite_background}>
-                          <AiOutlineHeart className={style.product_fav_heart}/></div>}
+                          <AiOutlineHeart className={style.product_fav_heart} /></div>}
                       {isClicked &&
                         <div onClick={() => setClicked(false)} className={style.product_favorite_background}>
-                          <AiTwotoneHeart className={style.product_fav_heart}/></div>}
+                          <AiTwotoneHeart className={style.product_fav_heart} /></div>}
                     </div>
                     <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
                   </div>
