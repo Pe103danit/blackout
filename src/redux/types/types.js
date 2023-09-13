@@ -14,6 +14,7 @@ const types = {
   SET_PAYMENT: 'SET_PAYMENT',
   SUCCESSFUL_ORDER: 'SUCCESSFUL_ORDER',
   SET_TOKEN: 'SET_TOKEN',
+  SET_ORDER_LIST: 'SET_ORDER_LIST',
 }
 export const typesOfProducts = {
   GET_PRODUCT: 'GET_PRODUCT',
