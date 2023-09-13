@@ -6,14 +6,8 @@ import { useEffect } from 'react'
 const Account = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem('tokenParts')
-    if (token) {
-      dispatch(setToken(token))
-    }
-  }, [dispatch])
   const handleLogout = () => {
-    localStorage.removeItem('tokenParts')
+    localStorage.setItem('tokenParts', '')
     dispatch(setToken(null))
     navigate('/')
   }
@@ -26,7 +20,7 @@ const Account = () => {
           <NavLink className={style.Account_wrapper_navigate_item} to='/user_info'>Personal information</NavLink>
           <NavLink className={style.Account_wrapper_navigate_item} to='/basket'>Cart</NavLink>
           <NavLink className={style.Account_wrapper_navigate_item} to='/wishlist'>Wish list</NavLink>
-          <NavLink className={style.Account_wrapper_navigate_item} to='/wish-list'>My orders</NavLink>
+          <NavLink className={style.Account_wrapper_navigate_item} to='/user_orders'>My orders</NavLink>
         </div>
       </div>
     </div>

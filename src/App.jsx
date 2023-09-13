@@ -22,7 +22,6 @@ import FAQ from './pages/FAQ/FAQ';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
 import GoToTop from './components/GoToTop/GoToTop'
 import BasketContainer from './pages/Basket/BasketContainer'
@@ -31,12 +30,11 @@ import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Con
 import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
-import { setToken } from './redux/reducers/SessionReducer/SessionReducer'
+import userOrders from './pages/userOrders/userOrders';
 
 const App = (props) => {
-  const dispatch = useDispatch()
   const themeStyle = props.lightTheme ? 'light' : 'dark'
-  const token = useSelector(state => state.SessionReducer.token)
+  const token = props.token
   const getSwiperProducts = async () => {
     const { data } = await instance.get('/api/products')
     return data
@@ -49,11 +47,10 @@ const App = (props) => {
   }, [data, props])
   useEffect(() => {
     const token = localStorage.getItem('tokenParts')
-    console.log(token);
     if (token) {
-      dispatch(setToken(token))
+      props.setToken(token)
     }
-  }, [dispatch])
+  }, [props])
   return (
     <div className={themeStyle}>
       <PromoBaner />
@@ -86,6 +83,7 @@ const App = (props) => {
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
         <Route path='/user_info' element={<UserInfo />} />
+        <Route path='/user_orders' element={<UserOrders />} />
         {(token) && <Route path='/account' element={<Account />} />}
       </Routes>
       <FooterContainer />
