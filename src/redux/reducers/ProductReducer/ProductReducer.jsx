@@ -7,6 +7,7 @@ const initialState = {
   wishListItems: localStorage.getItem('wishListItems') ? JSON.parse(localStorage.getItem('wishListItems')) : [],
   basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
   basketList: localStorage.getItem('basketList') ? JSON.parse(localStorage.getItem('basketList')) : [],
+  basketCard: {},
   totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
   productIsLoading: true,
@@ -113,6 +114,10 @@ const productReducer = (state = initialState, { type, payload }) => {
     case types.UPDATE_BASKET:
       return updateBasketR(state, payload)
 
+    case types.TOGGLE_PRODUCT_TO_CARD:
+      console.log(payload, 1231231)
+      return { ...state, basketCard: payload }
+
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)
 
@@ -163,7 +168,10 @@ export const deleteBasketItem = (id) => ({
   type: types.DELETE_BASKET_ITEM,
   payload: id
 })
-
+export const toggleProductToCart = (product) => ({
+  type: types.TOGGLE_PRODUCT_TO_CARD,
+  payload: product
+})
 export const successfulOrder = () => ({
   type: types.SUCCESSFUL_ORDER
 })
