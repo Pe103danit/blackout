@@ -14,8 +14,8 @@
 
         & h1 {
             padding-top: 40px;
-            text-align: center;
             font-size: x-large;
+            text-align: center;
         }
 
 
@@ -37,14 +37,14 @@
                 @include manrope-light();
 
                 &_imgCards {
-                    padding-left: 40px;
                     width: 80%;
+                    padding-left: 40px;
                 }
 
                 &_tabImgCards {
                     display: none;
-                    padding-left: 40px;
                     width: 80%;
+                    padding-left: 40px;
                 }
 
                 &_icon {
@@ -101,8 +101,8 @@
 
                     &_tabImgCards {
                         display: inline-block;
-                        padding-left: 40px;
                         width: 80%;
+                        padding-left: 40px;
                     }
 
                     & span {
@@ -149,8 +149,8 @@
 
                     &_tabImgCards {
                         display: inline-block;
-                        padding-left: 20px;
                         width: 80%;
+                        padding-left: 20px;
                     }
 
                     & span {
