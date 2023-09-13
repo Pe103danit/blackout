@@ -1,0 +1,164 @@
+@import '../../scss/_mixin.scss';
+@import '../../scss/_variables.scss';
+
+.payment {
+    width: 100%;
+    border-bottom: 1px solid $third-grey;
+    @include manrope-bold();
+
+    &_info {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        padding-left: 10px;
+
+        & h1 {
+            padding-top: 40px;
+            font-size: x-large;
+            text-align: center;
+        }
+
+
+        & p {
+            padding-top: 30px;
+            line-height: 1.5;
+        }
+
+        &_ul {
+            display: flex;
+            align-items: center;
+
+            &_li {
+                display: flex;
+                flex-direction: column;
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                @include manrope-light();
+
+                &_imgCards {
+                    width: 80%;
+                    padding-left: 40px;
+                }
+
+                &_tabImgCards {
+                    display: none;
+                    width: 80%;
+                    padding-left: 40px;
+                }
+
+                &_icon {
+                    display: flex;
+                    padding: 10px 0;
+                }
+
+                & span {
+                    @include manrope-light();
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    line-height: 1.5;
+                }
+
+                &_last {
+                    padding-top: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $tab) {
+    .payment {
+        width: 100%;
+        border-bottom: 1px solid $third-grey;
+        @include manrope-bold();
+
+        &_imgContainer {
+
+            & img {
+                max-width: 100%;
+            }
+        }
+
+        &_info {
+            max-width: 768px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+
+            & p {
+                padding-top: 20px;
+            }
+
+            &_ul {
+
+                &_li {
+                    flex-direction: column;
+                    align-items: start;
+
+                    &_imgCards {
+                        display: none;
+                    }
+
+                    &_tabImgCards {
+                        display: inline-block;
+                        width: 80%;
+                        padding-left: 40px;
+                    }
+
+                    & span {
+                        padding-top: 10px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: $mobile) {
+    .payment {
+        width: 100%;
+        border-bottom: 1px solid $third-grey;
+        @include manrope-bold();
+
+        &_imgContainer {
+
+            & img {
+                max-width: 100%;
+            }
+        }
+
+        &_info {
+            max-width: 320px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+
+            & p {
+                padding-top: 20px;
+            }
+
+            &_ul {
+
+                &_li {
+                    flex-direction: column;
+                    align-items: start;
+
+                    &_imgCards {
+                        display: none;
+                    }
+
+                    &_tabImgCards {
+                        display: inline-block;
+                        width: 80%;
+                        padding-left: 20px;
+                    }
+
+                    & span {
+                        padding-top: 10px;
+                    }
+                }
+            }
+        }
+
+    }
+}
