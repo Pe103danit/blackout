@@ -30,7 +30,6 @@ import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Con
 import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
-import UserOrders from './pages/UserOrders/UserOrders';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -83,7 +82,6 @@ const App = (props) => {
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
         <Route path='/user_info' element={<UserInfo />} />
-        <Route path='/user_orders' element={<UserOrders/>} />
         {(token) && <Route path='/account' element={<Account />} />}
       </Routes>
       <FooterContainer />
