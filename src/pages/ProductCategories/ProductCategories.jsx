@@ -35,16 +35,10 @@ const ProductCategories = ({ title, categoryName }) => {
             getProductCategories();
         }
     }, [categoryName, getProductCategories]);
-    // const [currentItems, setCurrentItems] = useState(products.slice(0, 12));
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);
     };
-
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    });
 
     const WishListHandler = (itemNo) => {
         if (!wishListItems.includes(itemNo)) {
@@ -58,6 +52,13 @@ const ProductCategories = ({ title, categoryName }) => {
         window.localStorage.setItem('wishList', wishList)
     };
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
+
     return (
         <div className={style.productCategories}>
             <h3 className={style.productCategories__title}>{title}</h3>
@@ -66,7 +67,9 @@ const ProductCategories = ({ title, categoryName }) => {
                 : (<>
                     <div className={style.productCategories__container}>
                         {currentItems.map((productItem) => (
-                            <ShopCard key={productItem.itemNo} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)}/>
+                            <ShopCard key={productItem.itemNo}
+                            productItem={productItem}
+                            onWishList={() => WishListHandler(productItem.itemNo)} />
                         ))}
                     </div>
                     <PagePagination cardOnPage={12} productItems={products} changesOnPage={handlePageChange} />

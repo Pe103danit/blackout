@@ -14,6 +14,11 @@ const WishListReducer = (state = initialState, action) => {
                 ...state,
                 wishList: state.wishList.filter((item) => item !== action.payload),
             };
+        case 'UPDATE_WISHLIST':
+            return {
+                ...state,
+                wishList: [...state.wishList, action.payload],
+            };
         default:
             return state;
     }
