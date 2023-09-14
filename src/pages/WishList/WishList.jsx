@@ -1,28 +1,20 @@
 import { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 import style from './WishList.module.scss';
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
 import WishListItem from './WishListItem';
 
-const WishList = ({ productItems, productIsLoading }) => {
-  const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0);
+const WishList = (props) => {
+  const products = useSelector(state => state.ProductReducer.products);
+  const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
-  console.log(wishListItems);
-  console.log(productItems);
-  let wishProducts = [];
-
-  useEffect(() => {
-    setIsOnWishList(JSON.parse(localStorage.getItem('wishList')) !== 0)
-  }, [isOnWishList]);
-
-  if (isOnWishList) {
-    wishProducts = productItems.filter((product) => {
-      return wishListItems.includes(product.itemNo)
-    })
-  }
-  console.log(wishProducts);
+  const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || null);
+console.log('products', products);
+console.log('productsIsLoading', productsIsLoading);
+console.log('wishListItems', wishListItems);
+console.log('isOnWishList', isOnWishList);
 
   return (<>
     <h2 className={style.wishList__title}>
@@ -31,13 +23,19 @@ const WishList = ({ productItems, productIsLoading }) => {
     <div>
       {isOnWishList
         ? (<div className={style.wishList}>
-          {wishProducts.map((wishProduct, index) => (
-            <WishListItem
-              key={index}
-              wishProduct={'wishProduct'}
-            />
-          ))}
-          <WishListItem />
+          {wishListItems.map((itemNo, index) => {
+            const wishList = products.find((product) => itemNo === product.itemNo);
+            console.log('wishList', wishList);
+            return (
+
+              // <div>WishLIST</div>
+              <WishListItem
+                key={index}
+                product={wishList}
+              />
+            )
+          })
+          }
         </div>)
         : (<EmptyWishListContainer />)
       }
@@ -46,11 +44,4 @@ const WishList = ({ productItems, productIsLoading }) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    productItems: state.ProductReducer.products,
-    productIsLoading: state.ProductReducer.productIsLoading
-  };
-};
-
-export default connect(mapStateToProps)(WishList);
+export default connect()(WishList);
