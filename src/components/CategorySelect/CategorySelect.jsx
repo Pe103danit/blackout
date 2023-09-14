@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Checkbox } from 'primereact/checkbox';
 import style from './CategorySelect.module.scss';
+import { addCategoryToFilter } from '../../redux/reducers/ProductReducer/ProductReducer';
 
-const CategorySelect = () => {
+export const CategorySelect = () => {
+    const dispatch = useDispatch()
     const [categories, setCategories] = useState([]);
 
     const onCategoriesChange = (e) => {
         const _categories = [...categories];
 
         if (e.checked) { _categories.push(e.value); } else { _categories.splice(_categories.indexOf(e.value), 1); }
-
-        setCategories(_categories);
+        setCategories(_categories)
+        dispatch(addCategoryToFilter(_categories));
     }
 
     return (
@@ -39,4 +42,4 @@ const CategorySelect = () => {
     )
 }
 
-export default CategorySelect
+export default CategorySelect;
