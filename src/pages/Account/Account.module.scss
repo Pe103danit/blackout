@@ -3,11 +3,11 @@
 
 .Account{
     max-width: 900px;
-    height: 100vh;
     margin: 0 auto;
     margin-top: 100px;
+    margin-bottom: 100px;
     &_wrapper{
-        padding: 80px 80px 150px 80px;
+        padding: 80px 80px 100px 80px;
         background-color: white;
         border-radius: 10px;
         &_navigate{
@@ -20,8 +20,10 @@
                 font-size: $second-size;
             }
             &_item{
-                width: 100%;
-                max-width: 700px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-width: 100%;
                 margin: 20px;
                 padding: 20px;
                 color: black;
@@ -31,20 +33,35 @@
                 border-radius: 10px;
                 box-shadow: 0 4px 16px $almost-white;
                 cursor: pointer;
+                &_icon{
+                    width: 20px;
+                    height: 20px;
+                }
             }
         }
-        &_info{
-            display: flex;
-            flex-direction: column;
-            padding-top: 8px;
-            padding-left: 150px;
-            &_title{
-                padding-bottom: 30px;
-                font-weight: $big-weight;
-                font-size: $sixth-size;
+    }
+}
+@media screen and (max-width: $tab) {
+    .Account{
+        &_wrapper{
+            &_navigate{   
+                &_item{                   
+                    font-size: 16px;                  
+                }
             }
-            &_item{
-                padding-top: 15px;
+        }
+    }
+}
+@media screen and (max-width: $mobile) {
+    .Account{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        &_wrapper{
+            padding: 20px 20px 100px 20px;
+            &_navigate{   
+                &_item{                   
+                    font-size: 14px;                  
+                }
             }
         }
     }

@@ -89,6 +89,29 @@ const deleteBasketItemR = (state, payload) => {
   })
 }
 
+const filterProducts = (state, payload) => {
+  let result = [];
+  console.log(state.categories);
+  if (Array.isArray(state.categories)) {
+    const categories = state.categories.map((cat) => {
+      return cat.toLowerCase()
+    });
+    result = payload.filter((product) => {
+      console.log(state.categories.includes(product.categories));
+      console.log(product.categories);
+      if (categories.includes(product.categories.toLowerCase())) {
+        return true
+      } else {
+        return false
+      }
+    })
+  } else {
+    result = payload
+  }
+  console.log(result)
+  return result
+}
+
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
@@ -98,7 +121,13 @@ const productReducer = (state = initialState, { type, payload }) => {
 
     case GET_ALL_PRODUCTS:
       return {
-        ...state, products: [...payload], productIsLoading: false
+        ...state, products: [...filterProducts(state, payload)], productIsLoading: false
+      }
+
+    case types.ADD_CATEGORY_TO_FILTER:
+      console.log('ADD_CATEGORY_TO_FILTER');
+      return {
+        ...state, categories: [...payload]
       }
 
     case types.ADD_TO_BASKET:
@@ -152,6 +181,11 @@ export const getProductById = (product) => ({
 export const addToBasket = (idCandidate, count) => ({
   type: types.ADD_TO_BASKET,
   payload: { idCandidate, count }
+})
+
+export const addCategoryToFilter = (categories) => ({
+  type: types.ADD_CATEGORY_TO_FILTER,
+  payload: categories
 })
 
 export const updateBasket = (listCandidate) => ({

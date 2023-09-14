@@ -45,6 +45,12 @@
                 width: 20px;
                 height: 20px;
             }
+            &_err{
+                position: absolute;
+                top: 70px;
+                left: 0;
+                color: $red;
+            }
         }
         &_label{
             position: absolute;
@@ -77,7 +83,7 @@
     .Login{
         &_form{
             &_group input, textarea, select{
-                font-size: 14px;     
+                font-size: 10px;     
             }
         }
     }
@@ -86,7 +92,7 @@
     .Login{
         &_form{
             &_group input, textarea, select{
-                font-size: 14px;     
+                font-size: 10px;     
             }
         }
     }

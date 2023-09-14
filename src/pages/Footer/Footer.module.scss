@@ -154,13 +154,13 @@
         flex-basis: 15rem;
         padding-left: 10px;
         color: $third-grey;
+        font-size: 16px;
         text-align: left;
         background-color: $black;
         border-right: 0;
         border-radius: 8px 0 0 8px;
     }
     &__btn {
-        flex-grow: 1;
         & .light {
             border-radius: 0 8px 8px 0;
         }

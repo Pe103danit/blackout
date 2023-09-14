@@ -9,7 +9,7 @@
     gap: 10px;
     flex-direction: column;
     top: 0%;
-    
+    color: $black !important;
     z-index: 10;
     padding: 20px;
     border-radius: 10px;
@@ -23,8 +23,8 @@
      gap: 10px;
     }
     &_image{
-        height: 70px;
-        width: 70px;
+        height: 90px;
+        width: 90px;
     }
     &_price{
         font-size: 18px;
