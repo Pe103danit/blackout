@@ -42,14 +42,14 @@ export const ProductCard = () => {
     return data
   }
   const { data } = useQuery('getProduct', getProduct)
-  // useEffects
-  // useEffect(() => {
-  //   if (isOpenCartWindow) {
-  //     setTimeout(() => {
-  //       setOpenCartWindow(false)
-  //     }, 1000)
-  //   }
-  // }, [isOpenCartWindow])
+  useEffects
+  useEffect(() => {
+    if (isOpenCartWindow) {
+      setTimeout(() => {
+        setOpenCartWindow(false)
+      }, 1000)
+    }
+  }, [isOpenCartWindow])
   useEffect(() => {
     if (data) {
       setProduct(data)
