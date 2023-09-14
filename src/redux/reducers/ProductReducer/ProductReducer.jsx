@@ -111,22 +111,6 @@ const filterProducts = (state, payload) => {
   return result
 }
 
-// const getRangePrice = (state) => {
-//   let minPrice = 0;
-//   let maxPrice = 0;
-//   state.products.forEach((product) => {
-//     if (product.currentPrice < minPrice) {
-//       minPrice = product.currentPrice;
-//     }
-//     if (product.currentPrice > maxPrice) {
-//       maxPrice = product.currentPrice;
-//     }
-//   })
-//   state.minPrice = minPrice
-//   state.maxPrice = maxPrice
-//   return state
-// }
-
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
