@@ -12,7 +12,7 @@ export const setToken = (token) => (
     payload: token
   }
 )
-const initialState = { user: null, token: null, userIsLoading: true }
+const initialState = { user: null, token: localStorage.getItem('tokenParts') || null, userIsLoading: true }
 const SessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_USER:
