@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { connect, useSelector } from 'react-redux';
 
 import style from './WishList.module.scss';
 import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
@@ -11,25 +11,31 @@ import WishListItem from './WishListItem';
 const WishList = (props) => {
   const products = useSelector(state => state.ProductReducer.products);
   const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
-  let [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
+  const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || null);
-  let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
+  const wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
 
-console.log('products', products);
-console.log('productsIsLoading', productsIsLoading);
-console.log('wishListItems', wishListItems);
-console.log('isOnWishList', isOnWishList);
+  console.log('products', products);
+  console.log('productsIsLoading', productsIsLoading);
+  console.log('wishListItems', wishListItems);
+  console.log('isOnWishList', isOnWishList);
 
-const WishListHandler = (itemNo) => {
-  if (!wishListItems.includes(itemNo)) {
-      wishListItems.push(itemNo);
-  } else {
-      wishListItems = wishListItems.filter(item => item !== itemNo);
-  }
-  wishList = wishListItems.length;
-  window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
-  window.localStorage.setItem('wishList', wishList);
-};
+  const WishListHandler = (itemNo) => {
+    let updatedWishListItems;
+
+    if (!wishListItems.includes(itemNo)) {
+      updatedWishListItems = [...wishListItems, itemNo];
+    } else {
+      updatedWishListItems = wishListItems.filter(item => item !== itemNo);
+    }
+    const updatedWishList = updatedWishListItems.length;
+
+    setWishListItems(updatedWishListItems);
+    setIsOnWishList(updatedWishList !== 0 || null);
+
+    window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
+    window.localStorage.setItem('wishList', wishList);
+  };
 
   return (<>
     <h2 className={style.wishList__title}>
