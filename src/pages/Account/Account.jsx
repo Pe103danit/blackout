@@ -2,7 +2,6 @@ import style from './Account.module.scss'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../redux/reducers/SessionReducer/SessionReducer'
-import { useEffect } from 'react'
 import { AiOutlineLogin } from 'react-icons/ai'
 const Account = () => {
   const dispatch = useDispatch()
