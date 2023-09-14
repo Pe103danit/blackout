@@ -6,7 +6,7 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl'
 import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai'
 import { useQuery } from 'react-query'
-
+import CartWindow from '../CartWindow/CartWindow'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
@@ -15,7 +15,7 @@ import style from './ProductCard.module.scss'
 import StarRating from './StarRating'
 import Spinner from '../Spinner/Spinner'
 import { instance } from '../assets/axiosUrl'
-import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { addToBasket, toggleProductToCart, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 export const ProductCard = () => {
   // variables
@@ -32,6 +32,7 @@ export const ProductCard = () => {
   const [specsArray, setSpecsArray] = useState([])
   const [isSpinner, setSpinner] = useState(true)
   const [isClicked, setClicked] = useState(false)
+  const [isOpenCartWindow, setOpenCartWindow] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
 
   const themeStyle = theme ? 'light' : 'dark'
@@ -42,6 +43,13 @@ export const ProductCard = () => {
   }
   const { data } = useQuery('getProduct', getProduct)
   // useEffects
+  // useEffect(() => {
+  //   if (isOpenCartWindow) {
+  //     setTimeout(() => {
+  //       setOpenCartWindow(false)
+  //     }, 1000)
+  //   }
+  // }, [isOpenCartWindow])
   useEffect(() => {
     if (data) {
       setProduct(data)
@@ -65,6 +73,9 @@ export const ProductCard = () => {
   const handleClick = () => {
     window.scrollTo(0, 0)
     dispatch(addToBasket(product?.itemNo, countToCart))
+    console.log(product, 1212)
+    dispatch(toggleProductToCart(product))
+    setOpenCartWindow(true)
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
     let repeat = false
     storageBasket = storageBasket.map(item => {
@@ -99,6 +110,7 @@ export const ProductCard = () => {
     <>{isSpinner && <Spinner />}
       {!isSpinner &&
         <section className={`${style.product} ${themeStyle}`}>
+          {isOpenCartWindow && <CartWindow />}
           <div className={style.product_container}>
             <div className={style.product_card}>
               <div className={style.product_swiper_wrapper}>
