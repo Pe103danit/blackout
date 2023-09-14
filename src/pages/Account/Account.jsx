@@ -2,14 +2,12 @@ import style from './Account.module.scss'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setToken } from '../../redux/reducers/SessionReducer/SessionReducer'
+import { AiOutlineLogin } from 'react-icons/ai'
 const Account = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem('Signature')
-    localStorage.removeItem('Payload')
-    localStorage.removeItem('Header')
-    localStorage.removeItem('tokenParts')
+    localStorage.setItem('tokenParts', '')
     dispatch(setToken(null))
     navigate('/')
   }
@@ -18,11 +16,11 @@ const Account = () => {
       <div className={style.Account_wrapper}>
         <div className={style.Account_wrapper_navigate}>
           <h3 className={style.Account_wrapper_navigate_title}>My Account</h3>
-          <p className={style.Account_wrapper_navigate_item} onClick={handleLogout}>Logout</p>
-          <NavLink className={style.Account_wrapper_navigate_item} to='/user_info'>Personal information</NavLink>
-          <NavLink className={style.Account_wrapper_navigate_item} to='/basket'>Cart</NavLink>
-          <NavLink className={style.Account_wrapper_navigate_item} to='/wishlist'>Wish list</NavLink>
-          <NavLink className={style.Account_wrapper_navigate_item} to='/wish-list'>My orders</NavLink>
+          <p className={style.Account_wrapper_navigate_item} onClick={handleLogout}>Logout <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></p>
+          <NavLink className={style.Account_wrapper_navigate_item} to='/user_info'>Personal information <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
+          <NavLink className={style.Account_wrapper_navigate_item} to='/basket'>Cart <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
+          <NavLink className={style.Account_wrapper_navigate_item} to='/wishlist'>Wish list <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
+          <NavLink className={style.Account_wrapper_navigate_item} to='/user_orders'>My orders <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
         </div>
       </div>
     </div>

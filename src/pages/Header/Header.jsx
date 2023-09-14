@@ -21,8 +21,6 @@ import { useSelector } from 'react-redux'
 
 const Header = (props) => {
   const token = useSelector(state => state.SessionReducer.token)
-  console.log(token);
-  // const [token, setToken] = useState(null)
   const themeStyle = props.lightTheme
     ? 'lightHeader'
     : 'darkHeader'
@@ -30,9 +28,6 @@ const Header = (props) => {
   const navStyle = props.lightTheme
     ? 'light_navLink'
     : 'dark_navLink'
-  // useEffect(() => {
-  //   setToken(tokenInState)
-  // }, [tokenInState])
   return (
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_header}>
