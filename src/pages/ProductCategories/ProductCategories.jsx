@@ -35,16 +35,10 @@ const ProductCategories = ({ title, categoryName }) => {
             getProductCategories();
         }
     }, [categoryName, getProductCategories]);
-    // const [currentItems, setCurrentItems] = useState(products.slice(0, 12));
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);
     };
-
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    });
 
     const WishListHandler = (itemNo) => {
         if (!wishListItems.includes(itemNo)) {

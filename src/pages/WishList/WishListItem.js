@@ -16,6 +16,9 @@ const WishListItem = ({product}) => {
         setDeleteStatus(true)
     }
 
+    if (deleteStatus) {
+        return null
+      }
     return (
         <div className={style.wishListItem}>
             <div className={style.wishListItem__checkbox}>
