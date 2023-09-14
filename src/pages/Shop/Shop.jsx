@@ -11,9 +11,11 @@ import ShopCard from '../../components/ShopCard/ShopCard';
 
 const Shop = ({ productItems, productIsLoading }) => {
     const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
-    let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
-    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
+    let wishList = JSON.parse(window.localStorage.getItem('wishList'));
+    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems'));
 
+    // console.log('wishList ', wishList);
+    // console.log('wishListItems ', wishListItems);
     useEffect(() => {
         setCurrentItems(productItems.slice(0, 12))
     }, [productItems]);
@@ -29,25 +31,28 @@ const Shop = ({ productItems, productIsLoading }) => {
             wishListItems = wishListItems.filter(item => item !== itemNo);
         }
         wishList = wishListItems.length;
-        // console.log(wishListItems, itemNo);
         window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
-        window.localStorage.setItem('wishList', wishList)
+        window.localStorage.setItem('wishList', wishList);
     };
-
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    });
+    // window.scrollTo({
+    //     top: 0,
+    //     behavior: 'smooth',
+    // })
 
     return (
         (productIsLoading === true)
             ? (<Spinner />)
             : (<>
-                <PriceSlider/>
-                <CategorySelect/>
+                <PriceSlider />
+                <CategorySelect />
                 <div className={style.cardContainer}>
                     {currentItems.map((productItem, index) => (
-                        <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
+                        <ShopCard
+                            key={index}
+                            productItem={productItem}
+                            onWishList={(itemNo) => WishListHandler(itemNo)}
+                            isWished={wishListItems.includes(productItem.itemNo)}
+                        />
                     ))}
                 </div>
                 <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange} />
