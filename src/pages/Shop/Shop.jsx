@@ -18,6 +18,10 @@ const Shop = ({ productItems, productIsLoading }) => {
     // console.log('wishListItems ', wishListItems);
     useEffect(() => {
         setCurrentItems(productItems.slice(0, 12))
+        // window.scrollTo({
+        //     top: 0,
+        //     behavior: 'smooth',
+        // });
     }, [productItems]);
 
     const handlePageChange = (newItems) => {
@@ -34,11 +38,6 @@ const Shop = ({ productItems, productIsLoading }) => {
         window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
         window.localStorage.setItem('wishList', wishList);
     };
-
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    });
 
     return (
         (productIsLoading === true)
