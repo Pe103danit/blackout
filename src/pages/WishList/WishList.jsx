@@ -12,8 +12,8 @@ const WishList = (props) => {
   const products = useSelector(state => state.ProductReducer.products);
   const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
-  const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || null);
-  const wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
+  const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || false);
+  const [wishList, setWishList] = useState(JSON.parse(window.localStorage.getItem('wishList')) || 0);
 
   console.log('products', products);
   console.log('productsIsLoading', productsIsLoading);
@@ -28,12 +28,12 @@ const WishList = (props) => {
     } else {
       updatedWishListItems = wishListItems.filter(item => item !== itemNo);
     }
-    const updatedWishList = updatedWishListItems.length;
+    setWishList(updatedWishListItems.length);
 
     setWishListItems(updatedWishListItems);
-    setIsOnWishList(updatedWishList !== 0 || null);
+    setIsOnWishList(wishList !== 0 || false);
 
-    window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
+    window.localStorage.setItem('wishListItems', JSON.stringify(updatedWishListItems));
     window.localStorage.setItem('wishList', wishList);
   };
 
