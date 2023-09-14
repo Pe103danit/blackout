@@ -4,7 +4,7 @@ import HomeContainer from './pages/Home/homeContainer'
 import Shop from './pages/Shop/Shop'
 import Offers from './pages/Offers/Offers'
 import DeliveryContainer from './pages/Delivery/DeliveryContainer'
-import Payment from './pages/Payment/Payment'
+import PaymentContainer from './pages/Payment/PaymentContainer'
 import AboutUs from './pages/AboutUs/AboutUs'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
@@ -59,7 +59,7 @@ const App = (props) => {
         <Route path='/shop' element={<Shop />} />
         <Route path='/offers' element={<Offers />} />
         <Route path='/delivery' element={<DeliveryContainer />} />
-        <Route path='/payment' element={<Payment />} />
+        <Route path='/payment' element={<PaymentContainer />} />
         <Route path='/about_us' element={<AboutUs />} />
         <Route path='/contacts' element={<ContactsContainer />} />
         <Route path='/login' element={<Login />} />

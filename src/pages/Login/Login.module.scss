@@ -2,9 +2,9 @@
 
 .Login{
     max-width: 400px;
-    height: 100vh;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 40px;
     &_form{
         display: flex;
         flex-direction: column;
@@ -41,7 +41,7 @@
             &_eye{
                 position: absolute;
                 top: 50%;
-                right: 5%;
+                right: 10%;
                 width: 20px;
                 height: 20px;
             }
@@ -64,9 +64,30 @@
             border-bottom: 1px solid $seventh-grey;
             outline: none;          
         }
+        &_group input, textarea, select{
+            font-size: 16px;     
+        }
         &_group input:focus{
             border-bottom: 1px solid $blue;
         }
 
+    }
+}
+@media screen and (max-width: $tab) {
+    .Login{
+        &_form{
+            &_group input, textarea, select{
+                font-size: 14px;     
+            }
+        }
+    }
+}
+@media screen and (max-width: $mobile) {
+    .Login{
+        &_form{
+            &_group input, textarea, select{
+                font-size: 14px;     
+            }
+        }
     }
 }

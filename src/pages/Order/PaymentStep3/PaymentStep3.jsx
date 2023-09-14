@@ -3,12 +3,13 @@ import cardImg from './card.png'
 import cardGif from './rccs.gif'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { MarketIcon } from '../../../components/assets/Icons'
-import { Button, TextField } from '@mui/material'
+import { Button } from '@mui/material'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useMutation } from 'react-query'
 import { instance } from '../../../components/assets/axiosUrl'
 import { nanoid } from 'nanoid'
+import { InputMask } from 'primereact/inputmask'
 
 const PaymentStep3 = (props) => {
   const themeStyle = props.lightTheme
@@ -135,16 +136,10 @@ const PaymentStep3 = (props) => {
     },
     validationSchema: Yup.object({
       cardNumber: Yup.string()
-        .min(16, 'There should be more characters')
-        .max(16, 'There should be less characters')
         .required('Write please your Number'),
       expiry: Yup.string()
-        .min(5, 'There should be more characters')
-        .max(5, 'There should be less characters')
         .required('Write please your Expiry'),
       cvc: Yup.string()
-        .min(3, 'There should be more characters')
-        .max(3, 'There should be less characters')
         .required('Write please your CVC'),
       cardName: Yup.string()
         .min(1, 'There should be more characters')
@@ -208,16 +203,19 @@ const PaymentStep3 = (props) => {
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id='cardNumber'
-                         label='Card number'
-                         variant='outlined'
-                         type='text'
-                         name='cardNumber'
-                         placeholder='Card number'
-                         onChange={formik.handleChange}
-                         value={formik.values.cardNumber}
-                         onBlur={formik.handleBlur}
-                         className={style.container_main_form_container_inputs_input}
+              <InputMask
+                mask='9999-9999-9999-9999'
+                maskChar=''
+                id='cardNumber'
+                label='Card number'
+                variant='outlined'
+                type='text'
+                name='cardNumber'
+                placeholder='Card number'
+                onChange={formik.handleChange}
+                value={formik.values.cardNumber}
+                onBlur={formik.handleBlur}
+                className={style.container_main_form_container_inputs_input}
               />
               {formik.touched.cardNumber && formik.errors.cardNumber && (
                 <p className={style.error}>{formik.errors.cardNumber}</p>
@@ -228,48 +226,55 @@ const PaymentStep3 = (props) => {
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id='expiry'
-                         label='Expiration date (MM / YY)'
-                         variant='outlined'
-                         type='text'
-                         name='expiry'
-                         placeholder='Expiration date (MM / YY)'
-                         onChange={formik.handleChange}
-                         value={formik.values.expiry}
-                         onBlur={formik.handleBlur}
-                         className={style.container_main_form_container_inputs_input}
+              <InputMask
+                mask='99 / 9999'
+                maskChar=''
+                id='expiry'
+                label='Expiration date (MM / YY)'
+                variant='outlined'
+                type='text'
+                name='expiry'
+                placeholder='Expiration date (MM / YY)'
+                onChange={formik.handleChange}
+                value={formik.values.expiry}
+                onBlur={formik.handleBlur}
+                className={style.container_main_form_container_inputs_input}
               />
               {formik.touched.expiry && formik.errors.expiry && (
                 <p className={style.error}>{formik.errors.expiry}</p>
               )}
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id='cvc'
-                         label='Security code'
-                         variant='outlined'
-                         type='text'
-                         name='cvc'
-                         placeholder='Security code'
-                         onChange={formik.handleChange}
-                         value={formik.values.cvc}
-                         onBlur={formik.handleBlur}
-                         className={style.container_main_form_container_inputs_input}
+              <InputMask
+                mask='999'
+                maskChar=''
+                id='cvc'
+                label='Security code'
+                variant='outlined'
+                type='text'
+                name='cvc'
+                placeholder='Security code'
+                onChange={formik.handleChange}
+                value={formik.values.cvc}
+                onBlur={formik.handleBlur}
+                className={style.container_main_form_container_inputs_input}
               />
               {formik.touched.cvc && formik.errors.cvc && (
                 <p className={style.error}>{formik.errors.cvc}</p>
               )}
             </div>
             <div className={style.container_main_form_container_inputs}>
-              <TextField id='cardName'
-                         label='Name on card'
-                         variant='outlined'
-                         type='text'
-                         name='cardName'
-                         placeholder='Name on card'
-                         onChange={formik.handleChange}
-                         value={formik.values.cardName}
-                         onBlur={formik.handleBlur}
-                         className={style.container_main_form_container_inputs_input}
+              <input
+
+                id='cardName'
+
+                type='text'
+                name='cardName'
+                placeholder='Name on card'
+                onChange={formik.handleChange}
+                value={formik.values.cardName}
+                onBlur={formik.handleBlur}
+                className={`${style.container_main_form_container_inputs_input} p-inputtext p-component p-inputmask`}
               />
               {formik.touched.cardName && formik.errors.cardName && (
                 <p className={style.error}>{formik.errors.cardName}</p>
