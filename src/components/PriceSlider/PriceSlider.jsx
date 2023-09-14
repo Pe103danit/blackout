@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { Slider } from 'primereact/slider'
+import style from './PriceSlider.module.scss'
 import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/lara-light-blue/theme.css'
-import style from './PriceSlider.module.scss'
 
 const PriceSlider = () => {
   const [value, setValue] = useState([0, 1000]);

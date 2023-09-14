@@ -2,38 +2,32 @@ import style from './SearchPanel.module.scss'
 import { SearchIcon, CloseIcon } from '../assets/Icons'
 import { connect } from 'react-redux'
 import { toggleSearchInput } from '../../redux/reducers/UIStateReducer/UIStateReducer'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { instance } from '../assets/axiosUrl'
 import SearchResults from './SearchResults/SearchResults'
 
 const SearchPanel = (props) => {
-  const [searchValue, setSearchValue] = useState('')
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [resultData, setResultData] = useState(null)
 
-  const searchValueObject = {
-    query: searchValue
-  }
+  const toggle = useCallback(() => {
+    props.toggleSearchInput();
+  }, [props]);
 
-  const toggle = () => {
-    props.toggleSearchInput()
-  }
-
-  const searchProducts = () => {
-    mutation.mutate(searchValueObject)
-    setShowSearchResults(!showSearchResults)
-  }
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && searchValue.trim() !== '') {
-      searchProducts();
-      e.target.blur()
+  const searchProducts = (searchValue) => {
+    const searchValueObject = {
+      query: searchValue
     }
+    mutation.mutate(searchValueObject)
   }
 
   const handleInputChange = (e) => {
-    setSearchValue(e.target.value);
+    if (e.target.value.length > 2) {
+      searchProducts(e.target.value)
+    } else {
+      setShowSearchResults(false)
+    }
   };
 
   const mutation = useMutation(searchValueObject => {
@@ -43,23 +37,34 @@ const SearchPanel = (props) => {
       onSuccess: (data) => {
         console.log(data)
         setResultData(data)
+        setShowSearchResults(true)
       },
       onError: (error) => {
         console.error(error)
       }
     })
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        toggle();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [toggle]);
+
   return (
     <div className={style.container}>
-      <button onClick={searchProducts}
-        className={style.container_btn1}>
+      <button className={style.container_btn1}>
         {<SearchIcon/>}
       </button>
       <input
         type='text'
         placeholder='e.g. Power Station'
-        value={searchValue}
         onChange={handleInputChange}
-        onKeyUp={handleKeyPress}
       />
       <button onClick={toggle}
               className={style.container_btn2}>
