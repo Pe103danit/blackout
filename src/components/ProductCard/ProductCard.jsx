@@ -94,6 +94,7 @@ export const ProductCard = () => {
     localStorage.setItem('basket', `${countBasket + countToCart}`)
     dispatch(updateBasket(storageBasket))
   }
+  
   return (
     <>{isSpinner && <Spinner />}
       {!isSpinner &&

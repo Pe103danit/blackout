@@ -6,14 +6,15 @@ import { removeFromWishList } from '../../redux/reducers/WishListReducer/WishLis
 
 import style from './WishList.module.scss';
 
-const WishListItem = ({product}) => {
-    //  console.log(props);
+const WishListItem = ({product, onWishList}) => {
+     console.log(product);
     const dispatch = useDispatch()
     const [deleteStatus, setDeleteStatus] = useState(false)
 
     const handleRemoveFromWishlist = () => {
-        dispatch(removeFromWishList(product.itemNo))
-        setDeleteStatus(true)
+        dispatch(removeFromWishList(product.itemNo));
+        setDeleteStatus(true);
+        onWishList(product.itemNo);
     }
 
     if (deleteStatus) {
@@ -21,9 +22,9 @@ const WishListItem = ({product}) => {
       }
     return (
         <div className={style.wishListItem}>
-            <div className={style.wishListItem__checkbox}>
+            {/* <div className={style.wishListItem__checkbox}>
                 <input type='checkbox' />
-            </div>
+            </div> */}
             <NavLink to={`/products/${product.itemNo}`} className={style.wishListItem__image}>
                 <img src={product.imageUrls[0]} alt={product.name} title={product.name} />
             </NavLink>

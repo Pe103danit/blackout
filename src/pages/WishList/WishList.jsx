@@ -2,19 +2,34 @@ import { useState, useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 import style from './WishList.module.scss';
+import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
+
 import WishListItem from './WishListItem';
 
 const WishList = (props) => {
   const products = useSelector(state => state.ProductReducer.products);
   const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
-  const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
+  let [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || null);
+  let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
+
 console.log('products', products);
 console.log('productsIsLoading', productsIsLoading);
 console.log('wishListItems', wishListItems);
 console.log('isOnWishList', isOnWishList);
+
+const WishListHandler = (itemNo) => {
+  if (!wishListItems.includes(itemNo)) {
+      wishListItems.push(itemNo);
+  } else {
+      wishListItems = wishListItems.filter(item => item !== itemNo);
+  }
+  wishList = wishListItems.length;
+  window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
+  window.localStorage.setItem('wishList', wishList);
+};
 
   return (<>
     <h2 className={style.wishList__title}>
@@ -32,6 +47,7 @@ console.log('isOnWishList', isOnWishList);
               <WishListItem
                 key={index}
                 product={wishList}
+                onWishList={(itemNo) => WishListHandler(itemNo)}
               />
             )
           })
@@ -44,4 +60,13 @@ console.log('isOnWishList', isOnWishList);
   )
 }
 
-export default connect()(WishList);
+const mapStateToProps = (state) => ({
+  ...state.UIStateReducer,
+  products: state.ProductReducer.products,
+});
+
+const mapDispatchToProps = {
+  toggleTheme,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WishList);

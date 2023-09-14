@@ -11,17 +11,13 @@ import ShopCard from '../../components/ShopCard/ShopCard';
 
 const Shop = ({ productItems, productIsLoading }) => {
     const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
-    let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
-    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
+    let wishList = JSON.parse(window.localStorage.getItem('wishList'));
+    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems'));
 
     // console.log('wishList ', wishList);
     // console.log('wishListItems ', wishListItems);
     useEffect(() => {
         setCurrentItems(productItems.slice(0, 12))
-        // window.scrollTo({
-        //     top: 0,
-        //     behavior: 'smooth',
-        // });
     }, [productItems]);
 
     const handlePageChange = (newItems) => {
@@ -38,6 +34,10 @@ const Shop = ({ productItems, productIsLoading }) => {
         window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
         window.localStorage.setItem('wishList', wishList);
     };
+    // window.scrollTo({
+    //     top: 0,
+    //     behavior: 'smooth',
+    // })
 
     return (
         (productIsLoading === true)
