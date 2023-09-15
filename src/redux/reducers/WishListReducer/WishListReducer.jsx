@@ -3,20 +3,20 @@ const initialState = {
   wishList: localStorage.getItem('wishListItems') ? JSON.parse(localStorage.getItem('wishListItems')) : []
 }
 const toggleWishListR = (state, payload) => {
-  const isWishItem = state.wishList.includes(payload)
-  if (isWishItem) {
-    state.wishList = state.wishList.filter(item => item !== payload)
-  } else {
-    state = {
-      ...state,
-      wishList: [...state.wishList, payload]
-    }
-  }
-  localStorage.setItem('wishListItems', JSON.stringify(state.wishList))
-  localStorage.setItem('wishList', state.wishList.length)
-  state.wishCount = state.wishList.length
-  return state
-}
+  const isWishItem = state.wishList.includes(payload);
+  const updatedWishList = isWishItem
+    ? state.wishList.filter((item) => item !== payload)
+    : [...state.wishList, payload];
+
+  localStorage.setItem('wishListItems', JSON.stringify(updatedWishList));
+  localStorage.setItem('wishList', updatedWishList.length);
+
+  return {
+    ...state,
+    wishList: updatedWishList,
+    wishCount: updatedWishList.length,
+  };
+};
 
 const WishListReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -29,6 +29,7 @@ const WishListReducer = (state = initialState, action) => {
       return {
         ...state,
         wishList: state.wishList.filter((item) => item !== action.payload),
+        wishCount: state.wishCount - 1
       }
     case 'UPDATE_WISHLIST':
       return {

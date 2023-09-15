@@ -11,7 +11,6 @@ import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListRed
 const ShopCard = (props) => {
     const dispatch = useDispatch()
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
-    // console.log('props.isWished', props.isWished);
 
     const [wishListHeard, setWishListHeard] = useState(props.isWished);
     useEffect(() => {
