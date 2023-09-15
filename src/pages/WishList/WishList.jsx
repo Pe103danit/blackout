@@ -8,7 +8,7 @@ import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishList
 
 import WishListItem from './WishListItem';
 
-const WishList = (props) => {
+const WishList = () => {
   const products = useSelector(state => state.ProductReducer.products);
   const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
@@ -46,7 +46,6 @@ const WishList = (props) => {
             console.log('wishList', currentWishList);
             return (
 
-              // <div>WishLIST</div>
               <WishListItem
                 key={index}
                 product={currentWishList}

@@ -12,6 +12,8 @@ import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListRed
 const Shop = ({ productItems, productIsLoading }) => {
   const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12))
   const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems'))
+  const [hasScrolled, setHasScrolled] = useState(false)
+
   useEffect(() => {
     setCurrentItems(productItems.slice(0, 12))
   }, [productItems])
@@ -20,10 +22,15 @@ const Shop = ({ productItems, productIsLoading }) => {
     setCurrentItems(newItems)
   }
 
-  // window.scrollTo({
-  //     top: 0,
-  //     behavior: 'smooth',
-  // })
+  useEffect(() => {
+    if (!hasScrolled) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+      setHasScrolled(true)
+    }
+  }, [hasScrolled])
 
   return (
     (productIsLoading === true)
@@ -32,9 +39,9 @@ const Shop = ({ productItems, productIsLoading }) => {
           <PriceSlider/>
           <CategorySelect/>
           <div className={style.cardContainer}>
-            {currentItems.map((productItem, index) => (
+            {currentItems.map(productItem => (
               <ShopCard
-                key={index}
+                key={productItem.itemNo}
                 productItem={productItem}
                 isWished={wishListItems.includes(productItem.itemNo)}
               />
