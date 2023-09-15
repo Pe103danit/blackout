@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -6,25 +6,17 @@ import { removeFromWishList } from '../../redux/reducers/WishListReducer/WishLis
 
 import style from './WishList.module.scss';
 
-const WishListItem = ({product, onWishList}) => {
-     console.log(product);
+const WishListItem = ({ product, onWishList }) => {
+    console.log(product);
     const dispatch = useDispatch()
-    const [deleteStatus, setDeleteStatus] = useState(false)
 
     const handleRemoveFromWishlist = () => {
         dispatch(removeFromWishList(product.itemNo));
-        setDeleteStatus(true);
         onWishList(product.itemNo);
     }
 
-    if (deleteStatus) {
-        return null
-      }
     return (
         <div className={style.wishListItem}>
-            {/* <div className={style.wishListItem__checkbox}>
-                <input type='checkbox' />
-            </div> */}
             <NavLink to={`/products/${product.itemNo}`} className={style.wishListItem__image}>
                 <img src={product.imageUrls[0]} alt={product.name} title={product.name} />
             </NavLink>

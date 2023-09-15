@@ -13,7 +13,6 @@ const WishList = (props) => {
   const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || false);
-  const [wishList, setWishList] = useState(JSON.parse(window.localStorage.getItem('wishList')) || 0);
 
   console.log('products', products);
   console.log('productsIsLoading', productsIsLoading);
@@ -28,13 +27,11 @@ const WishList = (props) => {
     } else {
       updatedWishListItems = wishListItems.filter(item => item !== itemNo);
     }
-    setWishList(updatedWishListItems.length);
-
     setWishListItems(updatedWishListItems);
-    setIsOnWishList(wishList !== 0 || false);
+    setIsOnWishList(updatedWishListItems.length !== 0 || false);
 
     window.localStorage.setItem('wishListItems', JSON.stringify(updatedWishListItems));
-    window.localStorage.setItem('wishList', wishList);
+    window.localStorage.setItem('wishList', updatedWishListItems.length);
   };
 
   return (<>
@@ -45,14 +42,14 @@ const WishList = (props) => {
       {isOnWishList
         ? (<div className={style.wishList}>
           {wishListItems.map((itemNo, index) => {
-            const wishList = products.find((product) => itemNo === product.itemNo);
-            console.log('wishList', wishList);
+            const currentWishList = products.find((product) => itemNo === product.itemNo);
+            console.log('wishList', currentWishList);
             return (
 
               // <div>WishLIST</div>
               <WishListItem
                 key={index}
-                product={wishList}
+                product={currentWishList}
                 onWishList={(itemNo) => WishListHandler(itemNo)}
               />
             )
