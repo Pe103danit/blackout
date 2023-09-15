@@ -6,8 +6,10 @@ import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '..
 
 import style from './ShopCard.module.scss';
 import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 
 const ShopCard = (props) => {
+    const dispatch = useDispatch()
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
     // console.log('props.isWished', props.isWished);
 
@@ -18,10 +20,9 @@ const ShopCard = (props) => {
 
     const WishItemStatus = () => {
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
-        props.onWishList(props.productItem.itemNo);
+        dispatch(toggleWishlist(props.productItem.itemNo))
     };
 
-    const dispatch = useDispatch()
     const [countToCart] = useState(1)
 
     const handleClick = () => {
