@@ -13,6 +13,10 @@
     background-color: $white;
     border-radius: $border;
 
+    &__darkTheme {
+        background-color: $second-grey;
+    }
+
     &__title {
         margin: 30px auto;
         font-size: $second-size;
@@ -65,12 +69,20 @@
                 color: #03060B;
                 font-size: $third-size;
                 @include manrope-bold();
+
+                &__darkTheme {
+                    color: $white;
+                }
             }
 
             &_model {
                 padding-top: 20px;
                 color: #757575;
                 @include manrope-light();
+
+                &__darkTheme {
+                    color: $seventh-grey;
+                }
             }
         }
     }
@@ -93,6 +105,10 @@
             background: none;
             border: none;
             @include manrope-regular();
+
+            &__darkTheme {
+                color: $white;
+            }
 
             &:hover {
                 text-decoration: none;

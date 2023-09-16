@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { connect, useSelector } from 'react-redux';
 
 import style from './WishList.module.scss';
-import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
+// import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
 
@@ -11,6 +11,8 @@ import WishListItem from './WishListItem';
 const WishList = () => {
   const products = useSelector(state => state.ProductReducer.products);
   const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
+  const theme = useSelector(state => state.UIStateReducer.lightTheme);
+  
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || false);
 
@@ -40,21 +42,22 @@ const WishList = () => {
     </h2>
     <div>
       {isOnWishList
-        ? (<div className={style.wishList}>
-          {wishListItems.map((itemNo, index) => {
-            const currentWishList = products.find((product) => itemNo === product.itemNo);
-            console.log('wishList', currentWishList);
-            return (
+        ? (
+          <div className={`${style.wishList} ${theme ? '' : style.wishList__darkTheme}`}>
+            {wishListItems.map((itemNo, index) => {
+              const currentWishList = products.find((product) => itemNo === product.itemNo);
+              console.log('wishList', currentWishList);
+              return (
 
-              <WishListItem
-                key={index}
-                product={currentWishList}
-                onWishList={(itemNo) => WishListHandler(itemNo)}
-              />
-            )
-          })
-          }
-        </div>)
+                <WishListItem
+                  key={index}
+                  product={currentWishList}
+                  onWishList={(itemNo) => WishListHandler(itemNo)}
+                />
+              )
+            })
+            }
+          </div>)
         : (<EmptyWishListContainer />)
       }
     </div>
@@ -67,8 +70,4 @@ const mapStateToProps = (state) => ({
   products: state.ProductReducer.products,
 });
 
-const mapDispatchToProps = {
-  toggleTheme,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WishList);
+export default connect(mapStateToProps)(WishList);
