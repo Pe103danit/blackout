@@ -8,6 +8,7 @@ const initialState = {
   basketCard: {},
   totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
+  productsPerPage: [],
   productIsLoading: true,
   portablePowerStation: [],
   portablePowerStationIsLoading: true,
@@ -158,6 +159,12 @@ const productReducer = (state = initialState, { type, payload }) => {
         totalBasketSum: 0
       }
 
+    case types.GET_PRODUCTS_PER_PAGE:
+      return {
+        ...state,
+        productsPerPage: [...payload]
+      }
+
     default:
       return state
   }
@@ -202,6 +209,11 @@ export const toggleProductToCart = (product) => ({
 })
 export const successfulOrder = () => ({
   type: types.SUCCESSFUL_ORDER
+})
+
+export const getProductsPerPage = (productsList) => ({
+  type: types.GET_PRODUCTS_PER_PAGE,
+  payload: productsList
 })
 
 export default productReducer

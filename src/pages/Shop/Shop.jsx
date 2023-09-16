@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 
 import style from './Shop.module.scss'
 import PriceSlider from '../../components/PriceSlider/PriceSlider'
@@ -9,18 +9,10 @@ import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 
-const Shop = ({ productItems, productIsLoading }) => {
-  const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12))
+const Shop = ({ productItems }) => {
+  const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
   const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems'))
   const [hasScrolled, setHasScrolled] = useState(false)
-
-  useEffect(() => {
-    setCurrentItems(productItems.slice(0, 12))
-  }, [productItems])
-
-  const handlePageChange = (newItems) => {
-    setCurrentItems(newItems)
-  }
 
   useEffect(() => {
     if (!hasScrolled) {
@@ -33,7 +25,7 @@ const Shop = ({ productItems, productIsLoading }) => {
   }, [hasScrolled])
 
   return (
-    (productIsLoading === true)
+    (currentItems[0] === 'loading')
       ? (<Spinner/>)
       : (<>
           <PriceSlider/>
@@ -47,7 +39,7 @@ const Shop = ({ productItems, productIsLoading }) => {
               />
             ))}
           </div>
-          <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange}/>
+          <PagePagination cardOnPage={12} productItems={productItems} />
         </>
       )
   )
