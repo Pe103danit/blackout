@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import CartWindow from '../CartWindow/CartWindow';
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer';
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 import style from './ShopCard.module.scss';

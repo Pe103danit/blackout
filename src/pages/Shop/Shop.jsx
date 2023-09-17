@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useDispatch} from 'react-redux';
+import { connect} from 'react-redux';
 import CartWindow from '../../components/CartWindow/CartWindow';
 
 // import { useParams } from 'react-router-dom';
@@ -29,7 +29,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
                toggleProductToCart(null)
             }, 1000)
         }
-    }, [isOpenCartWindow])
+    }, [isOpenCartWindow, toggleProductToCart])
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);
