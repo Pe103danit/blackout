@@ -3,14 +3,13 @@ import types, { typesOfProducts } from '../../types/types'
 const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts
 
 const initialState = {
-  wishList: localStorage.getItem('wishList') ? parseInt(localStorage.getItem('wishList')) : 0,
-  wishListItems: localStorage.getItem('wishListItems') ? JSON.parse(localStorage.getItem('wishListItems')) : [],
   basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
   basketList: localStorage.getItem('basketList') ? JSON.parse(localStorage.getItem('basketList')) : [],
   basketCard: {},
   totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
   isOpenCartWindow: false,
+  productsPerPage: [],
   productIsLoading: true,
   portablePowerStation: [],
   portablePowerStationIsLoading: true,
@@ -100,11 +99,7 @@ const filterProducts = (state, payload) => {
     result = payload.filter((product) => {
       console.log(state.categories.includes(product.categories));
       console.log(product.categories);
-      if (categories.includes(product.categories.toLowerCase())) {
-        return true
-      } else {
-        return false
-      }
+      return !!categories.includes(product.categories.toLowerCase());
     })
   } else {
     result = payload
@@ -145,10 +140,10 @@ const productReducer = (state = initialState, { type, payload }) => {
       return updateBasketR(state, payload)
 
     case types.TOGGLE_PRODUCT_TO_CARD:
-      return { ...state, basketCard: payload }
+      return { ...state, basketCard: payload, isOpenCartWindow: !state.isOpenCartWindow }
 
-case types.IS_OPEN_CART_WINDOW:
-  return {...state, isOpenCartWindow: true}
+    case types.IS_OPEN_CART_WINDOW:
+      return { ...state, isOpenCartWindow: true }
 
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)
@@ -165,6 +160,12 @@ case types.IS_OPEN_CART_WINDOW:
         basket: 0,
         basketList: [],
         totalBasketSum: 0
+      }
+
+    case types.GET_PRODUCTS_PER_PAGE:
+      return {
+        ...state,
+        productsPerPage: [...payload]
       }
 
     default:
@@ -211,6 +212,11 @@ export const toggleProductToCart = (product) => ({
 })
 export const successfulOrder = () => ({
   type: types.SUCCESSFUL_ORDER
+})
+
+export const getProductsPerPage = (productsList) => ({
+  type: types.GET_PRODUCTS_PER_PAGE,
+  payload: productsList
 })
 
 export default productReducer

@@ -16,11 +16,11 @@ const Account = () => {
       <div className={style.Account_wrapper}>
         <div className={style.Account_wrapper_navigate}>
           <h3 className={style.Account_wrapper_navigate_title}>My Account</h3>
-          <p className={style.Account_wrapper_navigate_item} onClick={handleLogout}>Logout <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></p>
           <NavLink className={style.Account_wrapper_navigate_item} to='/user_info'>Personal information <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
           <NavLink className={style.Account_wrapper_navigate_item} to='/basket'>Cart <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
           <NavLink className={style.Account_wrapper_navigate_item} to='/wishlist'>Wish list <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
           <NavLink className={style.Account_wrapper_navigate_item} to='/user_orders'>My orders <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></NavLink>
+          <p className={style.Account_wrapper_navigate_item} onClick={handleLogout}>Logout <AiOutlineLogin className={style.Account_wrapper_navigate_item_icon} /></p>
         </div>
       </div>
     </div>

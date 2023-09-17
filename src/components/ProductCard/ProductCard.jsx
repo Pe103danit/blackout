@@ -16,6 +16,7 @@ import StarRating from './StarRating'
 import Spinner from '../Spinner/Spinner'
 import { instance } from '../assets/axiosUrl'
 import { addToBasket, toggleProductToCart, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 
 export const ProductCard = () => {
   // variables
@@ -104,6 +105,12 @@ export const ProductCard = () => {
     localStorage.setItem('basket', `${countBasket + countToCart}`)
     dispatch(updateBasket(storageBasket))
   }
+  const isWishlisted = useSelector(state => state.WishListReducer.wishList.includes(product.itemNo));
+
+  const WishItemStatus = () => {
+    dispatch(toggleWishlist(product.itemNo))
+  };
+  
   return (
     <>{isSpinner && <Spinner />}
       {!isSpinner &&
@@ -238,12 +245,21 @@ export const ProductCard = () => {
                     className={`${style.product_card_total_price} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
                     <div className={style.product_container_for_heart}>
                       <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
-                      {!isClicked &&
-                        <div onClick={() => setClicked(true)} className={style.product_favorite_background}>
-                          <AiOutlineHeart className={style.product_fav_heart} /></div>}
-                      {isClicked &&
-                        <div onClick={() => setClicked(false)} className={style.product_favorite_background}>
-                          <AiTwotoneHeart className={style.product_fav_heart} /></div>}
+                      <div
+                        onClick={() => {
+                          setClicked(!isClicked)
+                          WishItemStatus()
+                        }}
+                        className={style.product_favorite_background}
+                      >
+                        {isWishlisted
+                          ? (
+                          <AiTwotoneHeart className={style.product_fav_heart} />
+                        )
+                          : (
+                          <AiOutlineHeart className={style.product_fav_heart} />
+                        )}
+                      </div>
                     </div>
                     <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
                   </div>

@@ -2,26 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import CartWindow from '../CartWindow/CartWindow';
+import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer';
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 import style from './ShopCard.module.scss';
 import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const ShopCard = (props) => {
+    const dispatch = useDispatch()
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
-    const [isOpenCartWindow, setOpenCartWindow] = useState(false)
     const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
 
     const WishItemStatus = () => {
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
-        props.onWishList(props.productItem.itemNo);
-    }
+        dispatch(toggleWishlist(props.productItem.itemNo))
+    };
 
-    const dispatch = useDispatch()
     const [countToCart] = useState(1)
     const handleClick = () => {
         window.scrollTo(0, 0)
         dispatch(toggleProductToCart(props.productItem))
-        setOpenCartWindow(true)
         const candidateId = props.productItem.itemNo
         dispatch(addToBasket(candidateId, countToCart))
         let storageBasket = JSON.parse(localStorage.getItem('basketList'))

@@ -4,7 +4,8 @@ import Header from './Header'
 
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
-  ...state.ProductReducer
+  ...state.ProductReducer,
+  wishCount: state.WishListReducer.wishCount
 })
 
 const mapDispatchToProps = {

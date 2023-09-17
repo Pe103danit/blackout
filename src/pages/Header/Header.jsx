@@ -117,7 +117,7 @@ const Header = (props) => {
                   : <HeartIconDark/>
                 }
                 <div className={style.container_header_c2_link_button_container}>
-                  {props.wishList}
+                  {props.wishCount}
                 </div>
               </button>
             </NavLink>
