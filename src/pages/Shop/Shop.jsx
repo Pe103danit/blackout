@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import CartWindow from '../../components/CartWindow/CartWindow';
 // import { useParams } from 'react-router-dom';
 
 import style from './Shop.module.scss';
@@ -9,7 +10,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import PagePagination from '../../components/PagePagination/PagePagination';
 import ShopCard from '../../components/ShopCard/ShopCard';
 
-const Shop = ({ productItems, productIsLoading }) => {
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow }) => {
     const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
     let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
@@ -17,6 +18,14 @@ const Shop = ({ productItems, productIsLoading }) => {
     useEffect(() => {
         setCurrentItems(productItems.slice(0, 12))
     }, [productItems]);
+
+    useEffect(() => {
+        if (isOpenCartWindow) {
+            setTimeout(() => {
+                // setOpenCartWindow(false)
+            }, 1000)
+        }
+    }, [isOpenCartWindow])
 
     const handlePageChange = (newItems) => {
         setCurrentItems(newItems);
@@ -43,9 +52,10 @@ const Shop = ({ productItems, productIsLoading }) => {
         (productIsLoading === true)
             ? (<Spinner />)
             : (<>
-                <PriceSlider/>
-                <CategorySelect/>
+                <PriceSlider />
+                <CategorySelect />
                 <div className={style.cardContainer}>
+                    {isOpenCartWindow && <CartWindow />}
                     {currentItems.map((productItem, index) => (
                         <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
                     ))}
@@ -58,7 +68,8 @@ const Shop = ({ productItems, productIsLoading }) => {
 const mapStateToProps = state => {
     return {
         productItems: state.ProductReducer.products,
-        productIsLoading: state.ProductReducer.productIsLoading
+        productIsLoading: state.ProductReducer.productIsLoading,
+        isOpenCartWindow: state.ProductReducer.isOpenCartWindow
     };
 };
 
