@@ -1,5 +1,8 @@
 @import '../../scss/variables';
+.shop{
+position:relative;
 
+}
 .cardContainer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
