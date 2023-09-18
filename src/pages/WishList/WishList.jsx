@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { instance } from '../../components/assets/axiosUrl';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -18,23 +18,24 @@ const WishList = () => {
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || false);
 
-  const getProducts = async () => {
-    const { data } = await instance.get('/api/products');
-    console.log('products from request', data);
+  // const getProducts = useCallback(async () => {
+  //   const { data } = await instance.get('/api/products');
+  //   console.log('products from request', data);
+  //   setProducts(data);
+  //   setProductsIsLoading(false);
+  //   return data
+  // }, []);
 
-    setProducts(data);
-    setProductsIsLoading(false);
-    return data
-  };
-
-  const { data, isLoading, isError } = useQuery('getProducts', getProducts);
+  // const { data, isLoading, isError } = useQuery('getProducts', getProducts);
 
   useEffect(() => {
-    if (data) {
+    // if (data) {
+      const { data } = instance.get('/api/products');
+      console.log('products from request - 1', data)
       setProducts(data)
       setProductsIsLoading(false);
-    }
-  }, [data]);
+    // }
+  }, []);
 
   console.log('products', products);
   console.log('productsIsLoading', productsIsLoading);
