@@ -9,9 +9,9 @@
     }
 
     &__container {
-        display: grid;
+        display: grid; 
+        position: relative;
         grid-template-columns: repeat(1, 1fr);
-         position: relative;
         gap: 20px; 
         padding: 20px 55px;
     }
