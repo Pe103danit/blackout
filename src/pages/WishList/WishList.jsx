@@ -3,7 +3,6 @@ import { connect, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 import style from './WishList.module.scss';
-// import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
 

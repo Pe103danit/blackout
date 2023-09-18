@@ -2,6 +2,9 @@
 
 .offers {
     position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 
     &__title {
         margin: 55px 0 32px;
@@ -46,6 +49,11 @@
 }
 
 @media screen and (min-width: $desktop-mobileFirst) {
+    .offers__sale {
+        left: 0;
+        top: 0;
+    }
+
     .offers__container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
