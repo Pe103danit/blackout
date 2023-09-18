@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { connect, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 import style from './WishList.module.scss';
 // import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
@@ -12,7 +13,7 @@ const WishList = () => {
   const products = useSelector(state => state.ProductReducer.products);
   const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
-  
+
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || false);
 
@@ -57,6 +58,11 @@ const WishList = () => {
               )
             })
             }
+            <Link to={'/shop'} className={`${style.wishList__btn_shop} ${theme ? '' : style.wishList__btn_shop__darkTheme}`}>
+              <button>
+                CONTINUE SHOPPING
+              </button>
+            </Link>
           </div>)
         : (<EmptyWishListContainer />)
       }

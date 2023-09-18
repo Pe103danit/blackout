@@ -44,13 +44,13 @@ export const ProductCard = () => {
   }
   const { data } = useQuery('getProduct', getProduct)
   // useEffects
-  // useEffect(() => {
-  //   if (isOpenCartWindow) {
-  //     setTimeout(() => {
-  //       setOpenCartWindow(false)
-  //     }, 1000)
-  //   }
-  // }, [isOpenCartWindow])
+  useEffect(() => {
+    if (isOpenCartWindow) {
+      setTimeout(() => {
+        setOpenCartWindow(false)
+      }, 1000)
+    }
+  }, [isOpenCartWindow])
   useEffect(() => {
     if (data) {
       setProduct(data)
@@ -74,7 +74,6 @@ export const ProductCard = () => {
   const handleClick = () => {
     window.scrollTo(0, 0)
     dispatch(addToBasket(product?.itemNo, countToCart))
-    console.log(product, 1212)
     dispatch(toggleProductToCart(product))
     setOpenCartWindow(true)
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))

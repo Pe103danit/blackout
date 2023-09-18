@@ -52,9 +52,10 @@
                 left: 0;
                 color: $red;
             }
-            input, textarea, select{
+            input{
                 width: 90%;
                 padding: 10px;
+                font-size: 16px;
                 border: none;
                 border-bottom: 1px solid $seventh-grey;
                 outline: none;          

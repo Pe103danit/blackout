@@ -8,6 +8,7 @@ const initialState = {
   basketCard: {},
   totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
+  isOpenCartWindow: false,
   productsPerPage: [],
   productIsLoading: true,
   portablePowerStation: [],
@@ -138,7 +139,10 @@ const productReducer = (state = initialState, { type, payload }) => {
       return updateBasketR(state, payload)
 
     case types.TOGGLE_PRODUCT_TO_CARD:
-      return { ...state, basketCard: payload }
+      return { ...state, basketCard: payload, isOpenCartWindow: !state.isOpenCartWindow }
+
+    case types.IS_OPEN_CART_WINDOW:
+      return { ...state, isOpenCartWindow: true }
 
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)

@@ -23,6 +23,34 @@
         text-align: center;
         @include manrope-bold();
     }
+
+    &__btn_shop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+
+        button {
+            width: 225px;
+            height: 40px;
+            margin: 30px auto;
+            color: $white;
+            font-size: $fourth-size;
+            background: $black;
+            border: none;
+            border-radius: 50px;
+        }
+
+        &:hover button {
+            background: $second-grey;
+        }
+
+        &__darkTheme {
+            &:hover button {
+                background: $button-blue;
+            }
+        }
+    }
 }
 
 .wishListItem {
