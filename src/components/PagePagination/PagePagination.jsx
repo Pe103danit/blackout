@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useQuery, useQueryClient} from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 import { setCategories } from './setCategories'
 
 import style from './PagePagination.module.scss'
@@ -10,14 +10,17 @@ import { useLocation } from 'react-router-dom'
 
 const PagePagination = ({ cardOnPage, productItems }) => {
   const [currentPage, setCurrentPage] = useState(1)
+  const [prevCategory, setPrevCategory] = useState(null)
   const dispatch = useDispatch()
   const queryClient = useQueryClient()
   const location = useLocation()
   const totalPages = Math.ceil(productItems.length / cardOnPage)
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
+
   const GeneratePathName = (pathname) => {
     return setCategories(pathname.substring(1))
   }
+
   const getProductsPage = useCallback(async (req) => {
     let filterCategory = ''
     if (location.pathname !== '/shop') {
@@ -32,15 +35,20 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   }, [currentPage, queryClient, getProductsPage])
 
   useEffect(() => {
-    updateListProducts()
-    setCurrentPage(1)
-  }, [updateListProducts, location.pathname])
+    const currentCategory = GeneratePathName(location.pathname)
+    if (prevCategory !== currentCategory) {
+      setCurrentPage(1)
+      setPrevCategory(currentCategory)
+    }
+    updateListProducts();
+  }, [updateListProducts, location.pathname, prevCategory])
 
   const { data } = useQuery(
     ['products', currentPage],
     getProductsPage,
     { keepPreviousData: true }
   )
+
   const handlePageChange = (page) => {
     setCurrentPage(page)
   }
@@ -52,9 +60,11 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const handlePrevPage = () => {
     setCurrentPage((prev) => prev - 1)
   }
+
   useEffect(() => {
-     updateListProducts()
+    updateListProducts()
   }, [updateListProducts])
+
   useEffect(() => {
     if (data) {
       dispatch(getProductsPerPage(data))
@@ -63,7 +73,6 @@ const PagePagination = ({ cardOnPage, productItems }) => {
 
   return (
     <div className={style.pagination}>
-
       <button
         className={`${style.pagination__btn} ${theme ? '' : style.pagination__btn__darkTheme} ${currentPage === 1 ? style.activePage : ''}`}
         onClick={handlePrevPage} disabled={currentPage === 1}>Prev

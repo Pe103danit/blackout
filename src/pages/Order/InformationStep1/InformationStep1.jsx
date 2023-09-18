@@ -18,6 +18,7 @@ import {
 import { useState } from 'react'
 
 const InformationStep1 = (props) => {
+  const [errorPhone, setErrorPhone] = useState(false)
   const themeStyle = props.lightTheme
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
@@ -63,9 +64,12 @@ const InformationStep1 = (props) => {
 
   const handleSetPhone = (e) => {
     setPhoneInput(e)
+    setErrorPhone(e.length < 11)
     setCountryInfo(findCurrentCountry(e))
   }
-
+  const onFocusPhone = () => {
+    setErrorPhone(false)
+  }
   const handleSubscribing = (event) => {
     setIsSubscribed(event.target.checked)
   }
@@ -184,10 +188,14 @@ const InformationStep1 = (props) => {
                 name="phone"
                 placeholder="Phone"
                 onChange={handleSetPhone}
+                onFocus={onFocusPhone}
                 value={phoneInput}
                 onBlur={formik.handleBlur}
                 className={style.container_main_form_container_inputs_input}
               />
+              {errorPhone && (
+                <p className={style.error}>Write please your Phone</p>
+              )}
               {
                 countryInfo !== null &&
                 <div className={style.container_main_form_container_inputs_flag}>{countryInfo.flag}</div>
