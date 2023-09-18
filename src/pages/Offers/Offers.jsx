@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { instance } from '../../components/assets/axiosUrl';
 import { useQuery } from 'react-query';
 
@@ -14,6 +14,7 @@ const Offers = () => {
     const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
 
     const [hasScrolled, setHasScrolled] = useState(false);
+    const prevOffersProductsRef = useRef([]);
 
     const getProducts = async () => {
         const { data } = await instance.get('/api/products');
@@ -27,12 +28,26 @@ const Offers = () => {
     const { data, isLoading, isError } = useQuery('getProducts', getProducts);
     console.log('Offers data', data);
 
+    // useEffect(() => {
+    //     if (data) {
+    //         const offersProductArr = data.filter((product) => product.sale === true);
+    //         console.log('offersProductArr', offersProductArr);
+    //         setOffersProducts(offersProductArr);
+    //         setCurrentItems(offersProducts.slice(0, 12))
+    //     }
+    // }, [data]);
+
     useEffect(() => {
         if (data) {
             const offersProductArr = data.filter((product) => product.sale === true);
-            console.log('offersProductArr', offersProductArr);
-            setOffersProducts(offersProductArr);
-            setCurrentItems(offersProducts.slice(0, 12))
+            
+            if (JSON.stringify(offersProductArr) !== JSON.stringify(prevOffersProductsRef.current)) {
+                console.log('offersProductArr', offersProductArr);
+                setOffersProducts(offersProductArr);
+                prevOffersProductsRef.current = offersProductArr;
+            }
+
+            setCurrentItems(offersProductArr.slice(0, 12));
         }
     }, [data]);
 
