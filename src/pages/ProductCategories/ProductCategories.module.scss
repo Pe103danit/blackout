@@ -11,8 +11,8 @@
     &__container {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
+         position: relative;
         gap: 20px; 
-          position: relative;
         padding: 20px 55px;
     }
 }
