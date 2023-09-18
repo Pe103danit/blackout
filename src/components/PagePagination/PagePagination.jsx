@@ -1,31 +1,46 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useQuery, useQueryClient} from 'react-query'
+import { setCategories } from './setCategories'
 
 import style from './PagePagination.module.scss'
 import { instance } from '../assets/axiosUrl'
 import { getProductsPerPage } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { useLocation } from 'react-router-dom'
 
 const PagePagination = ({ cardOnPage, productItems }) => {
+  const [currentPage, setCurrentPage] = useState(1)
   const dispatch = useDispatch()
   const queryClient = useQueryClient()
+  const location = useLocation()
   const totalPages = Math.ceil(productItems.length / cardOnPage)
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
-
+  const GeneratePathName = (pathname) => {
+    return setCategories(pathname.substring(1))
+  }
   const getProductsPage = useCallback(async (req) => {
-    console.log(req)
-    const { data } = await instance.get(`/api/products/filter?perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
+    let filterCategory = ''
+    if (location.pathname !== '/shop') {
+      filterCategory = `categories=${GeneratePathName(location.pathname)}&`
+    }
+    const { data } = await instance.get(`/api/products/filter?${filterCategory}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
     return data.products
-  }, [cardOnPage])
-  const [currentPage, setCurrentPage] = useState(1)
+  }, [cardOnPage, location.pathname])
+
+  const updateListProducts = useCallback(async () => {
+    await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
+  }, [currentPage, queryClient, getProductsPage])
+
+  useEffect(() => {
+    updateListProducts()
+    setCurrentPage(1)
+  }, [updateListProducts, location.pathname])
+
   const { data } = useQuery(
     ['products', currentPage],
     getProductsPage,
     { keepPreviousData: true }
   )
-  const updateListProducts = useCallback(async () => {
-   await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
-  }, [currentPage, queryClient, getProductsPage])
   const handlePageChange = (page) => {
     setCurrentPage(page)
   }

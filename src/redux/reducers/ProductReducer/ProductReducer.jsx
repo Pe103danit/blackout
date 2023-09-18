@@ -121,7 +121,6 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
 
     case types.ADD_CATEGORY_TO_FILTER:
-      console.log('ADD_CATEGORY_TO_FILTER');
       return {
         ...state, categories: [...payload]
       }
@@ -162,12 +161,12 @@ const productReducer = (state = initialState, { type, payload }) => {
         totalBasketSum: 0
       }
 
-    case types.GET_PRODUCTS_PER_PAGE:
+    case types.GET_PRODUCTS_PER_PAGE: {
       return {
         ...state,
         productsPerPage: [...payload]
       }
-
+    }
     default:
       return state
   }
