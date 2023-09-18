@@ -6,6 +6,8 @@ import Spinner from '../../components/Spinner/Spinner';
 import ShopCard from '../../components/ShopCard/ShopCard';
 import PagePagination from '../../components/PagePagination/PagePagination';
 
+import { SaleIcon } from '../../components/assets/Icons'
+
 import style from './Offers.module.scss';
 
 const Offers = () => {
@@ -40,7 +42,7 @@ const Offers = () => {
     useEffect(() => {
         if (data) {
             const offersProductArr = data.filter((product) => product.sale === true);
-            
+
             if (JSON.stringify(offersProductArr) !== JSON.stringify(prevOffersProductsRef.current)) {
                 console.log('offersProductArr', offersProductArr);
                 setOffersProducts(offersProductArr);
@@ -68,6 +70,8 @@ const Offers = () => {
     return (
         <div className={style.offers}>
             <h3 className={style.offers__title}>Offers</h3>
+            <div className={style.offers__sale}><SaleIcon /></div>
+
             {(isLoading)
                 ? (<Spinner />)
                 : (<>

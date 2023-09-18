@@ -1,11 +1,24 @@
-@import  '../../scss/variables';
+@import '../../scss/variables';
 
 .offers {
+    position: relative;
 
     &__title {
         margin: 55px 0 32px;
         font-size: 28px;
         text-align: center;
+    }
+
+    &__sale {
+        position: absolute;
+        top: 25px;
+        left: -30px;
+        z-index: 1;
+
+        svg {
+            width: 100px;
+            height: 100px;
+        }
     }
 
     &__container {
@@ -17,6 +30,15 @@
 }
 
 @media screen and (min-width: $tab-mobileFirst) {
+    .offers__sale {
+        left: -20px;
+
+        svg {
+            width: 150px;
+            height: 150px;
+        }
+    }
+
     .offers__container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
