@@ -7,18 +7,18 @@ import ShopCard from '../../components/ShopCard/ShopCard'
 import PagePagination from '../../components/PagePagination/PagePagination'
 
 import style from './ProductCategories.module.scss'
+import { useSelector } from 'react-redux'
 
 const ProductCategories = ({ title, categoryName }) => {
   const [products, setProducts] = useState([])
-  const [currentItems, setCurrentItems] = useState(products.slice(0, 12))
   const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
+  const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
 
   const [hasScrolled, setHasScrolled] = useState(false)
 
   const getProductCategories = useCallback(async () => {
     const { data } = await instance.get(`/api/products/filter?categories=${categoryName}`)
     setProducts(data.products)
-    setCurrentItems(data.products.slice(0, 12))
     return data
   }, [categoryName])
 
@@ -27,7 +27,6 @@ const ProductCategories = ({ title, categoryName }) => {
   useEffect(() => {
     if (data) {
       setProducts(data.products)
-      setCurrentItems(data.products.slice(0, 12))
     }
   }, [data])
 
@@ -36,10 +35,6 @@ const ProductCategories = ({ title, categoryName }) => {
       getProductCategories()
     }
   }, [categoryName, getProductCategories])
-
-  const handlePageChange = (newItems) => {
-    setCurrentItems(newItems)
-  }
 
   useEffect(() => {
     if (!hasScrolled) {
@@ -66,7 +61,7 @@ const ProductCategories = ({ title, categoryName }) => {
                 />
               ))}
             </div>
-            <PagePagination cardOnPage={12} productItems={products} changesOnPage={handlePageChange}/>
+            <PagePagination cardOnPage={12} productItems={products} />
           </>
         )}
       {isError && <p>Something went wrong</p>}
