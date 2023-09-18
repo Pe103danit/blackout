@@ -9,7 +9,7 @@ import AboutUs from './pages/AboutUs/AboutUs'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
-import WishList from './pages/WishList/WishList'
+// import WishList from './pages/WishList/WishList'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
@@ -31,6 +31,7 @@ import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Conta
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
 import UserOrders from './pages/UserOrder/UserOrder';
+import WishListContainer from './pages/WishList/WishListContainer';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -64,7 +65,7 @@ const App = (props) => {
         <Route path='/about_us' element={<AboutUs />} />
         <Route path='/contacts' element={<ContactsContainer />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/wishlist' element={<WishList />} />
+        <Route path='/wishlist' element={<WishListContainer />} />
         <Route path='/basket' element={<BasketContainer />} />
         <Route path='/accessories' element={<ProductCategoriesContainer categoryName='Accessories' title='Accessories' />} />
         <Route path='/generators' element={<ProductCategoriesContainer categoryName='Generators' title='Generators' />} />

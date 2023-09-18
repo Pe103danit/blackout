@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getProducts } from '../../redux/reducers/ProductReducer/ProductReducer';
-import Offers from './Offers';
+import WishList from './WishList';
 
 const mapStateToProps = (state) => ({
   products: state.ProductReducer.products,
@@ -11,4 +11,4 @@ const mapDispatchToProps = {
   getProducts,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Offers);
+export default connect(mapStateToProps, mapDispatchToProps)(WishList);

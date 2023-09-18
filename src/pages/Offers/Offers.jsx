@@ -21,23 +21,12 @@ const Offers = () => {
     const getProducts = async () => {
         const { data } = await instance.get('/api/products');
         const offersProductArr = data.filter((product) => product.sale === true);
-        console.log('offersProductArr', offersProductArr);
         setOffersProducts(offersProductArr);
         setCurrentItems(offersProducts.slice(0, 12))
         return offersProductArr
     }
 
     const { data, isLoading, isError } = useQuery('getProducts', getProducts);
-    console.log('Offers data', data);
-
-    // useEffect(() => {
-    //     if (data) {
-    //         const offersProductArr = data.filter((product) => product.sale === true);
-    //         console.log('offersProductArr', offersProductArr);
-    //         setOffersProducts(offersProductArr);
-    //         setCurrentItems(offersProducts.slice(0, 12))
-    //     }
-    // }, [data]);
 
     useEffect(() => {
         if (data) {
