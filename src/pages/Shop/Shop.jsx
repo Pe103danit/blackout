@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux'
 import CartWindow from '../../components/CartWindow/CartWindow';
-
-// import { useParams } from 'react-router-dom';
-
 import style from './Shop.module.scss'
 import PriceSlider from '../../components/PriceSlider/PriceSlider'
 import CategorySelect from '../../components/CategorySelect/CategorySelect'
@@ -11,9 +8,12 @@ import Spinner from '../../components/Spinner/Spinner'
 import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
-import { toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer';
+import { clearAllCategoriesToFilter, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart }) => {
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter }) => {
+    useEffect(() => {
+        clearAllCategoriesToFilter()
+    }, [clearAllCategoriesToFilter])
     const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
     const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
@@ -77,7 +77,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     toggleWishlist,
-    toggleProductToCart
+    toggleProductToCart,
+    clearAllCategoriesToFilter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop)
