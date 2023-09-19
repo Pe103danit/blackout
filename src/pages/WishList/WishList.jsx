@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { instance } from '../../components/assets/axiosUrl';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
+// import { useQuery } from 'react-query';
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
 
