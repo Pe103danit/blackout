@@ -26,6 +26,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     if (location.pathname !== '/shop') {
       filterCategory = `categories=${GeneratePathName(location.pathname)}&`
     }
+
     const { data } = await instance.get(`/api/products/filter?${filterCategory}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
     return data.products
   }, [cardOnPage, location.pathname])
