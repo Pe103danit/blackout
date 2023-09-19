@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import Spinner from '../../components/Spinner/Spinner';
 import ShopCard from '../../components/ShopCard/ShopCard';
 import PagePagination from '../../components/PagePagination/PagePagination';
+import SelectBar from '../../components/SelectBar/SelectBar';
 
 import { SaleIcon } from '../../components/assets/Icons'
 
@@ -63,7 +64,7 @@ const Offers = () => {
 
             {(isLoading)
                 ? (<Spinner />)
-                : (<>
+                : (<>  <SelectBar />
                     <div className={style.offers__container}>
                         {currentItems.map((productItem) => (
                             <ShopCard

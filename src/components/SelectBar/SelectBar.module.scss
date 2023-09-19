@@ -1,0 +1,8 @@
+.filterBar {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 55px;
+}

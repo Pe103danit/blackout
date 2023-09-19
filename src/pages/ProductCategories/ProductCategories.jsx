@@ -2,9 +2,10 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { instance } from '../../components/assets/axiosUrl'
 import { useQuery } from 'react-query'
 
-import Spinner from '../../components/Spinner/Spinner'
-import ShopCard from '../../components/ShopCard/ShopCard'
-import PagePagination from '../../components/PagePagination/PagePagination'
+import Spinner from '../../components/Spinner/Spinner';
+import ShopCard from '../../components/ShopCard/ShopCard';
+import PagePagination from '../../components/PagePagination/PagePagination';
+import SelectBar from '../../components/SelectBar/SelectBar';
 
 import style from './ProductCategories.module.scss'
 
@@ -16,7 +17,7 @@ const ProductCategories = ({ title, categoryName }) => {
   const [hasScrolled, setHasScrolled] = useState(false)
 
   const getProductCategories = useCallback(async () => {
-    const { data } = await instance.get(`/api/products/filter?categories=${categoryName}`)
+    const { data } = await instance.get(`/api/products/filter?categories=${categoryName}&sort=+currentPrice`)
     setProducts(data.products)
     setCurrentItems(data.products.slice(0, 12))
     return data
@@ -55,19 +56,20 @@ const ProductCategories = ({ title, categoryName }) => {
     <div className={style.productCategories}>
       <h3 className={style.productCategories__title}>{title}</h3>
       {(isLoading)
-        ? (<Spinner/>)
+        ? (<Spinner />)
         : (<>
-            <div className={style.productCategories__container}>
-              {currentItems.map((productItem) => (
-                <ShopCard
-                  key={productItem.itemNo}
-                  productItem={productItem}
-                  isWished={wishListItems.includes(productItem.itemNo)}
-                />
-              ))}
-            </div>
-            <PagePagination cardOnPage={12} productItems={products} changesOnPage={handlePageChange}/>
-          </>
+          <SelectBar />
+          <div className={style.productCategories__container}>
+            {currentItems.map((productItem) => (
+              <ShopCard
+                key={productItem.itemNo}
+                productItem={productItem}
+                isWished={wishListItems.includes(productItem.itemNo)}
+              />
+            ))}
+          </div>
+          <PagePagination cardOnPage={12} productItems={products} changesOnPage={handlePageChange} />
+        </>
         )}
       {isError && <p>Something went wrong</p>}
     </div>
