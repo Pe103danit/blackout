@@ -16,6 +16,10 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const location = useLocation()
   const totalPages = Math.ceil(productItems.length / cardOnPage)
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
+  const categorySelectFilter = useSelector(state => state.ProductReducer.categories)
+  const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : '';
+  const queryCategorySelectFilterString = categorySelectFilterString ? `categories=${categorySelectFilterString}&` : '';
+  console.log(queryCategorySelectFilterString);
 
   const GeneratePathName = (pathname) => {
     return setCategories(pathname.substring(1))
