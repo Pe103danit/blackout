@@ -4,7 +4,8 @@ import WishList from './WishList';
 
 const mapStateToProps = (state) => ({
   products: state.ProductReducer.products,
-  productIsLoading: state.ProductReducer.productIsLoading
+  productIsLoading: state.ProductReducer.productIsLoading,
+  ...state.UIStateReducer,
 });
 
 const mapDispatchToProps = {

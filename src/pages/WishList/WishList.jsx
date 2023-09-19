@@ -1,41 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { instance } from '../../components/assets/axiosUrl';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom'
+
+import style from './WishList.module.scss';
+// import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
 
 import WishListItem from './WishListItem';
 
-import style from './WishList.module.scss';
-
 const WishList = () => {
-  const [products, setProducts] = useState([]);
-  const [productsIsLoading, setProductsIsLoading] = useState(true);
+  const products = useSelector(state => state.ProductReducer.products);
+  const productsIsLoading = useSelector(state => state.ProductReducer.productIsLoading);
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
 
   const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem('wishListItems')) || []);
   const [isOnWishList, setIsOnWishList] = useState(JSON.parse(localStorage.getItem('wishList')) !== 0 || false);
-
-  // const getProducts = useCallback(async () => {
-  //   const { data } = await instance.get('/api/products');
-  //   console.log('products from request', data);
-  //   setProducts(data);
-  //   setProductsIsLoading(false);
-  //   return data
-  // }, []);
-
-  // const { data, isLoading, isError } = useQuery('getProducts', getProducts);
-
-  useEffect(() => {
-    // if (data) {
-      const { data } = instance.get('/api/products');
-      console.log('products from request - 1', data)
-      setProducts(data)
-      setProductsIsLoading(false);
-    // }
-  }, []);
 
   console.log('products', products);
   console.log('productsIsLoading', productsIsLoading);
@@ -58,15 +38,18 @@ const WishList = () => {
   };
 
   return (<>
-    <h2 className={style.wishList__title}>Wishlist</h2>
+    <h2 className={style.wishList__title}>
+      Wishlist
+    </h2>
     <div>
-      {(isOnWishList)
+      {isOnWishList
         ? (
           <div className={`${style.wishList} ${theme ? '' : style.wishList__darkTheme}`}>
             {wishListItems.map((itemNo, index) => {
               const currentWishList = products.find((product) => itemNo === product.itemNo);
               console.log('wishList', currentWishList);
               return (
+
                 <WishListItem
                   key={index}
                   product={currentWishList}
@@ -76,7 +59,9 @@ const WishList = () => {
             })
             }
             <Link to={'/shop'} className={`${style.wishList__btn_shop} ${theme ? '' : style.wishList__btn_shop__darkTheme}`}>
-              <button>CONTINUE SHOPPING</button>
+              <button>
+                CONTINUE SHOPPING
+              </button>
             </Link>
           </div>)
         : (<EmptyWishListContainer />)
