@@ -15,7 +15,7 @@ import {
   NativeSelect,
   TextField
 } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 const InformationStep1 = (props) => {
   const themeStyle = props.lightTheme
@@ -57,14 +57,34 @@ const InformationStep1 = (props) => {
     })
   })
   const [phoneInput, setPhoneInput] = useState('')
+  const [firstTypePhone, setFirstTypePhone] = useState(false)
   const [phoneValidation, setPhoneValidation] = useState(null)
+  const [phoneFocus, setPhoneFocus] = useState(false)
   const [countryInfo, setCountryInfo] = useState(null)
-  const [isSubscribed, setIsSubscribed] = useState(true);
+  const [isSubscribed, setIsSubscribed] = useState(true)
 
+  const phoneInputRef = useRef(null)
   const handleSetPhone = (e) => {
     setPhoneInput(e)
     setCountryInfo(findCurrentCountry(e))
   }
+
+  const onFocusPhone = () => {
+     if (!firstTypePhone) {
+      setFirstTypePhone(true)
+    }
+  }
+
+  useEffect(() => {
+    if (document.activeElement.type === 'tel') {
+      setPhoneFocus(true)
+    } else {
+      setPhoneFocus(false)
+    }
+    if (!firstTypePhone) {
+      setPhoneFocus(true)
+    }
+  }, [firstTypePhone])
 
   const handleSubscribing = (event) => {
     setIsSubscribed(event.target.checked)
@@ -175,6 +195,7 @@ const InformationStep1 = (props) => {
             </div>
             <div className={style.container_main_form_container_inputs}>
               <ReactPhoneInput
+                ref={phoneInputRef}
                 defaultCountry={'us'}
                 component={TextField}
                 id="phone"
@@ -184,10 +205,14 @@ const InformationStep1 = (props) => {
                 name="phone"
                 placeholder="Phone"
                 onChange={handleSetPhone}
+                onFocus={onFocusPhone}
                 value={phoneInput}
                 onBlur={formik.handleBlur}
                 className={style.container_main_form_container_inputs_input}
               />
+              {!phoneFocus && (
+                phoneInput.length < 11 && <p className={style.error}>Write please your Phone</p>
+              )}
               {
                 countryInfo !== null &&
                 <div className={style.container_main_form_container_inputs_flag}>{countryInfo.flag}</div>

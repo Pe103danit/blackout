@@ -8,6 +8,7 @@ const initialState = {
   basketCard: {},
   totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
+  isOpenCartWindow: false,
   productsPerPage: [],
   productIsLoading: true,
   portablePowerStation: [],
@@ -120,7 +121,6 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
 
     case types.ADD_CATEGORY_TO_FILTER:
-      console.log('ADD_CATEGORY_TO_FILTER');
       return {
         ...state, categories: [...payload]
       }
@@ -139,8 +139,10 @@ const productReducer = (state = initialState, { type, payload }) => {
       return updateBasketR(state, payload)
 
     case types.TOGGLE_PRODUCT_TO_CARD:
-      console.log(payload, 1231231)
-      return { ...state, basketCard: payload }
+      return { ...state, basketCard: payload, isOpenCartWindow: !state.isOpenCartWindow }
+
+    case types.IS_OPEN_CART_WINDOW:
+      return { ...state, isOpenCartWindow: true }
 
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)
@@ -159,12 +161,12 @@ const productReducer = (state = initialState, { type, payload }) => {
         totalBasketSum: 0
       }
 
-    case types.GET_PRODUCTS_PER_PAGE:
+    case types.GET_PRODUCTS_PER_PAGE: {
       return {
         ...state,
         productsPerPage: [...payload]
       }
-
+    }
     default:
       return state
   }

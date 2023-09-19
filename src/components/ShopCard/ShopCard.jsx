@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-
+import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer';
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
-
 import style from './ShopCard.module.scss';
-import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
-import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
+import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const ShopCard = (props) => {
     const dispatch = useDispatch()
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
-
-    const [wishListHeard, setWishListHeard] = useState(props.isWished);
-    useEffect(() => {
-        setWishListHeard(props.isWished);
-    }, [props.isWished]);
+    const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
 
     const WishItemStatus = () => {
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
@@ -23,10 +17,9 @@ const ShopCard = (props) => {
     };
 
     const [countToCart] = useState(1)
-
     const handleClick = () => {
         window.scrollTo(0, 0)
-
+        dispatch(toggleProductToCart(props.productItem))
         const candidateId = props.productItem.itemNo
         dispatch(addToBasket(candidateId, countToCart))
         let storageBasket = JSON.parse(localStorage.getItem('basketList'))
@@ -44,10 +37,10 @@ const ShopCard = (props) => {
         })
         if (!repeat) {
             storageBasket.push(
-              {
-                  itemNo: candidateId,
-                  countToCart
-              }
+                {
+                    itemNo: candidateId,
+                    countToCart
+                }
             )
         }
         localStorage.setItem('basketList', JSON.stringify([
