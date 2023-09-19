@@ -34,7 +34,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
             wishListItems = wishListItems.filter(item => item !== itemNo);
         }
         wishList = wishListItems.length;
-        // console.log(wishListItems, itemNo);
+
         window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
         window.localStorage.setItem('wishList', wishList)
     };
