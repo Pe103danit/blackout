@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect} from 'react-redux';
+import { connect, useSelector } from 'react-redux'
 import CartWindow from '../../components/CartWindow/CartWindow';
 
 // import { useParams } from 'react-router-dom';
@@ -14,14 +14,10 @@ import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListRed
 import { toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer';
 
 const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart }) => {
-    const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
+    const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
     const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
     let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
-
-    useEffect(() => {
-        setCurrentItems(productItems.slice(0, 12))
-    }, [productItems]);
 
     useEffect(() => {
         if (isOpenCartWindow) {
@@ -30,10 +26,6 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
             }, 1000)
         }
     }, [isOpenCartWindow, toggleProductToCart])
-
-    const handlePageChange = (newItems) => {
-        setCurrentItems(newItems);
-    };
 
     const WishListHandler = (itemNo) => {
         if (!wishListItems.includes(itemNo)) {
@@ -70,7 +62,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
                         <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
                     ))}
                 </div>
-                <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange} />
+                <PagePagination cardOnPage={12} productItems={productItems} />
             </div>
             )
     )
