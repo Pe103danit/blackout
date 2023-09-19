@@ -4,9 +4,10 @@ import CartWindow from '../../components/CartWindow/CartWindow';
 
 // import { useParams } from 'react-router-dom';
 
-import style from './Shop.module.scss'
-import PriceSlider from '../../components/PriceSlider/PriceSlider'
-import CategorySelect from '../../components/CategorySelect/CategorySelect'
+import style from './Shop.module.scss';
+import PriceSlider from '../../components/PriceSlider/PriceSlider';
+import CategorySelect from '../../components/CategorySelect/CategorySelect';
+import SelectBar from '../../components/SelectBar/SelectBar';
 import Spinner from '../../components/Spinner/Spinner'
 import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
@@ -22,7 +23,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
     useEffect(() => {
         if (isOpenCartWindow) {
             setTimeout(() => {
-               toggleProductToCart(null)
+                toggleProductToCart(null)
             }, 1000)
         }
     }, [isOpenCartWindow, toggleProductToCart])
@@ -53,9 +54,9 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
         (productIsLoading === true)
             ? (<Spinner />)
             : (<div className={style.shop}>
-            
                 <PriceSlider />
                 <CategorySelect />
+                <><SelectBar /></>
                 <div className={style.cardContainer}>
                     {isOpenCartWindow && <CartWindow />}
                     {currentItems.map((productItem, index) => (
