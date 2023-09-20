@@ -16,6 +16,7 @@ const initialState = {
   powerBanks: [],
   powerBanksIsLoading: true,
   product: {},
+  priceFilter: []
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -153,6 +154,14 @@ const productReducer = (state = initialState, { type, payload }) => {
         productsPerPage: [...payload]
       }
     }
+
+    case types.SET_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: [...payload]
+      }
+    }
+
     default:
       return state
   }
@@ -161,10 +170,6 @@ const productReducer = (state = initialState, { type, payload }) => {
 export const getProducts = (productsList) => ({
   type: GET_ALL_PRODUCTS,
   payload: productsList
-})
-export const getProductById = (product) => ({
-  type: typesOfProducts.GET_PRODUCT,
-  payload: product
 })
 
 export const addToBasket = (idCandidate, count) => ({
@@ -206,6 +211,11 @@ export const successfulOrder = () => ({
 export const getProductsPerPage = (productsList) => ({
   type: types.GET_PRODUCTS_PER_PAGE,
   payload: productsList
+})
+
+export const setPriceFilter = (currentPrice) => ({
+  type: types.SET_PRICE_FILTER,
+  payload: currentPrice
 })
 
 export default productReducer

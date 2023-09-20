@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { useQuery } from 'react-query';
-import { instance } from '../../components/assets/axiosUrl';
+import { instance } from '../assets/axiosUrl';
 
 import { Slider } from 'primereact/slider'
 import style from './PriceSlider.module.scss'
 import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/lara-light-blue/theme.css'
+import { setPriceFilter } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const PriceSlider = () => {
+const PriceSlider = (props) => {
   const getProductsReq = async () => {
     const { data } = await instance('/api/products')
     return data
@@ -29,6 +30,9 @@ const PriceSlider = () => {
   });
 
   const [value, setValue] = useState([minPrice, maxPrice]);
+  useEffect(() => {
+    props.setPriceFilter(value)
+  }, [value, props])
   return (
     <div className={style.container}>
       <div className={style.slider}>
@@ -54,6 +58,10 @@ const mapStateToProps = (state) => ({
   products: state.ProductReducer.products,
   wishList: state.WishListReducer.wishList,
   wishCount: state.WishListReducer.wishCount
-});
+})
 
-export default connect(mapStateToProps)(PriceSlider);
+const mapDispatchToProps = {
+  setPriceFilter
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PriceSlider);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import Select from 'react-select';
 import style from './SelectBar.module.scss';
 
@@ -14,9 +14,8 @@ const SelectBar = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const handleOptionChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
-    console.log(selectedOption.value);
-  };
+    setSelectedOption(selectedOption)
+  }
 
   return (
     <div className={style.selectBar}>
