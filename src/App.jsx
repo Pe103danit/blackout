@@ -30,7 +30,7 @@ import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Conta
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
 import UserOrders from './pages/UserOrder/UserOrder';
-import WishListContainer from './pages/WishList/WishListContainer';
+import WishList from './pages/WishList/WishList';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -64,7 +64,7 @@ const App = (props) => {
         <Route path='/about_us' element={<AboutUsContainer />} />
         <Route path='/contacts' element={<ContactsContainer />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/wishlist' element={<WishListContainer />} />
+        <Route path='/wishlist' element={<WishList />} />
         <Route path='/basket' element={<BasketContainer />} />
         <Route path='/accessories' element={<ProductCategoriesContainer categoryName='Accessories' title='Accessories' />} />
         <Route path='/generators' element={<ProductCategoriesContainer categoryName='Generators' title='Generators' />} />
