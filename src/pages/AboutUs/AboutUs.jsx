@@ -41,9 +41,9 @@ const AboutUs = (props) => {
                 <ul className={style.aboutUs_info_ul}>
                     <li className={style.aboutUs_info_ul_li}>
                         <div className={style.aboutUs_info_ul_li_centeredDiv}>
-                            <span>Quality: We uphold the highest standards in the products we offer.</span>
-                            <span>Sustainability: We are committed to reducing our environmental footprint.</span>
-                            <span>Community: We believe in the power of unity and cooperation to achieve lasting change.</span>
+                            <span className={style.aboutUs_info_ul_li_centeredDiv_values}><span>Quality:</span> We uphold the highest standards in the products we offer.</span>
+                            <span className={style.aboutUs_info_ul_li_centeredDiv_values}><span>Sustainability:</span> We are committed to reducing our environmental footprint.</span>
+                            <span className={style.aboutUs_info_ul_li_centeredDiv_values}><span>Community:</span> We believe in the power of unity and cooperation to achieve lasting change.</span>
                         </div>
                         <span>Discover the future of power with BlackOut Store. Together, we'll light up the world, one innovation at a time.</span>
                     </li>
