@@ -55,7 +55,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
         (productIsLoading === true)
             ? (<Spinner />)
             : (<div className={style.shop}>
-                <PriceSlider />
+                <PriceSlider productItems={productItems}/>
                 <CategorySelect />
                 <><SelectBar /></>
                 <div className={style.cardContainer}>
