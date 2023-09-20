@@ -9,7 +9,6 @@ import AboutUsContainer from './pages/AboutUs/AboutUsContainer'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
-import WishList from './pages/WishList/WishList'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
@@ -31,6 +30,7 @@ import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Conta
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
 import UserOrders from './pages/UserOrder/UserOrder';
+import WishList from './pages/WishList/WishList';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'

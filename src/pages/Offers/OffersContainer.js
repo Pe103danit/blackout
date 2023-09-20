@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer';
+import { getProducts } from '../../redux/reducers/ProductReducer/ProductReducer';
 import Offers from './Offers';
 
 const mapStateToProps = (state) => ({
@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  toggleTheme,
+  getProducts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Offers);

@@ -6,6 +6,7 @@ import CartWindow from '../../components/CartWindow/CartWindow'
 import Spinner from '../../components/Spinner/Spinner'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import PagePagination from '../../components/PagePagination/PagePagination'
+import SelectBar from '../../components/SelectBar/SelectBar';
 import style from './ProductCategories.module.scss'
 import { useSelector } from 'react-redux'
 
@@ -61,10 +62,9 @@ const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProduc
       <h3 className={style.productCategories__title}>{title}</h3>
       {isOpenCartWindow && <CartWindow />}
       {(isLoading)
-        ? (<Spinner/>)
-        : (<>
+        ? (<Spinner />)
+        : (<> <SelectBar />
             <div className={style.productCategories__container}>
-            
               {currentItems.map((productItem) => (
                 <ShopCard
                   key={productItem.itemNo}

@@ -1,0 +1,35 @@
+@import '../../scss/variables';
+
+.selectBar {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+
+    & span {
+        justify-self: end;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (min-width: $tab-mobileFirst) {
+    .selectBar {
+        grid-template-columns: 1fr 250px;
+        padding: 0 55px;
+    }
+}
+
+@media screen and (min-width: $desktop-mobileFirst) {
+    .selectBar {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+.css-13cymwt-control {
+    background-color: (0, 0%, 50%) !important;
+}
