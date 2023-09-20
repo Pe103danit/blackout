@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux'
 import CartWindow from '../../components/CartWindow/CartWindow';
 
-// import { useParams } from 'react-router-dom';
-
 import style from './Shop.module.scss';
 import PriceSlider from '../../components/PriceSlider/PriceSlider';
 import CategorySelect from '../../components/CategorySelect/CategorySelect';

@@ -1,4 +1,4 @@
-@import  '../../scss/variables';
+@import '../../scss/variables';
 
 .selectBar {
     display: grid;
@@ -13,10 +13,6 @@
         justify-self: end;
         margin-right: 10px;
     }
-
-    // &__option {
-    //     width: 200px; 
-    // }
 }
 
 @media screen and (min-width: $tab-mobileFirst) {

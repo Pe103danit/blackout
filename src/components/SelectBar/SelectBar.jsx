@@ -3,7 +3,7 @@ import Select from 'react-select';
 import style from './SelectBar.module.scss';
 
 const options = [
-    
+
   { value: '', label: 'Default', isSelected: true },
   { value: 'sort=-currentPrice', label: 'Decrease Price' },
   { value: 'sort=+currentPrice', label: 'Increase Price' },
@@ -20,12 +20,11 @@ const SelectBar = () => {
 
   return (
     <div className={style.selectBar}>
-        <span>Sort by</span>
+      <span>Sort by</span>
       <Select className={style.selectBar__option}
         value={selectedOption}
         onChange={handleOptionChange}
         options={options}
-        // placeholder="Default"
       />
     </div>
   );
