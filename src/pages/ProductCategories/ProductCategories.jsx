@@ -10,7 +10,10 @@ import SelectBar from '../../components/SelectBar/SelectBar';
 import style from './ProductCategories.module.scss'
 import { useSelector } from 'react-redux'
 
-const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProductToCart }) => {
+const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter }) => {
+  useEffect(() => {
+    clearAllCategoriesToFilter()
+  }, [clearAllCategoriesToFilter])
   const [products, setProducts] = useState([])
   const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
   const currentItems = useSelector(state => state.ProductReducer.productsPerPage)

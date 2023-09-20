@@ -11,12 +11,18 @@ import { useLocation } from 'react-router-dom'
 const PagePagination = ({ cardOnPage, productItems }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [prevCategory, setPrevCategory] = useState(null)
+  const [totalPages, setTotalPages] = useState(Math.ceil(productItems.length / cardOnPage))
   const dispatch = useDispatch()
   const queryClient = useQueryClient()
   const location = useLocation()
-  const totalPages = Math.ceil(productItems.length / cardOnPage)
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
+  const categorySelectFilter = useSelector(state => state.ProductReducer.categories)
+  const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : '';
+  const queryCategorySelectFilterString = categorySelectFilterString ? `categories=${categorySelectFilterString}&` : '';
 
+   useEffect(() => {
+    setCurrentPage(1)
+  }, [categorySelectFilter])
   const GeneratePathName = (pathname) => {
     return setCategories(pathname.substring(1))
   }
@@ -27,9 +33,10 @@ const PagePagination = ({ cardOnPage, productItems }) => {
       filterCategory = `categories=${GeneratePathName(location.pathname)}&`
     }
 
-    const { data } = await instance.get(`/api/products/filter?${filterCategory}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
+    const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
+    setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
     return data.products
-  }, [cardOnPage, location.pathname])
+  }, [cardOnPage, location.pathname, queryCategorySelectFilterString])
 
   const updateListProducts = useCallback(async () => {
     await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
@@ -83,6 +90,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
           key={index}
           className={`${index + 1 === currentPage ? style.activePage : ''} ${style.pagination__btn} ${theme ? '' : style.pagination__btn__darkTheme}`}
           onClick={() => handlePageChange(index + 1)}
+
         >
           {index + 1}
         </button>
