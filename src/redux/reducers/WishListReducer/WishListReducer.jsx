@@ -4,9 +4,13 @@ const initialState = {
 }
 const toggleWishListR = (state, payload) => {
   const isWishItem = state.wishList.includes(payload);
-  const updatedWishList = isWishItem
-    ? state.wishList.filter((item) => item !== payload)
-    : [...state.wishList, payload];
+  let updatedWishList = [...state.wishList];
+
+  if (isWishItem) {
+    updatedWishList = updatedWishList.filter((item) => item !== payload);
+  } else {
+    updatedWishList.push(payload);
+  }
 
   localStorage.setItem('wishListItems', JSON.stringify(updatedWishList));
   localStorage.setItem('wishList', updatedWishList.length);

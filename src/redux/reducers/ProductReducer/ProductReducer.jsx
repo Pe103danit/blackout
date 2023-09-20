@@ -89,21 +89,6 @@ const deleteBasketItemR = (state, payload) => {
   })
 }
 
-const filterProducts = (state, payload) => {
-  let result = [];
-  if (Array.isArray(state.categories)) {
-    const categories = state.categories.map((cat) => {
-      return cat.toLowerCase()
-    });
-    result = payload.filter((product) => {
-      return !!categories.includes(product.categories.toLowerCase());
-    })
-  } else {
-    result = payload
-  }
-  return result
-}
-
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
@@ -113,7 +98,7 @@ const productReducer = (state = initialState, { type, payload }) => {
 
     case GET_ALL_PRODUCTS:
       return {
-        ...state, products: [...filterProducts(state, payload)], productIsLoading: false
+        ...state, products: [...payload], productIsLoading: false
       }
 
     case types.ADD_CATEGORY_TO_FILTER:

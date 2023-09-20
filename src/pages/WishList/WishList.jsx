@@ -38,11 +38,12 @@ const WishList = (props) => {
 
     window.localStorage.setItem('wishListItems', JSON.stringify(updatedWishListItems));
     window.localStorage.setItem('wishList', updatedWishListItems.length);
-  };
+  }
+
   useEffect(() => {
     setIsLoading(props.products.length === 0)
-    console.log(isLoading)
   }, [props.products, isLoading])
+
   if (isLoading) {
     return <Spinner />
   }
@@ -56,13 +57,18 @@ const WishList = (props) => {
             <div className={`${style.wishList} ${theme ? '' : style.wishList__darkTheme}`}>
               {wishListItems.map((itemNo, index) => {
                 const currentWishList = products.find((product) => itemNo === product.itemNo);
-                return (
-                  <WishListItem
-                    key={index}
-                    product={currentWishList}
-                    onWishList={() => WishListHandler(itemNo)}
-                  />
-                )
+                if (currentWishList) {
+                  return (
+
+                    <WishListItem
+                      key={index}
+                      product={currentWishList}
+                      onWishList={() => WishListHandler(itemNo)}
+                    />
+                  )
+                } else {
+                  return null
+                }
               })
               }
               <Link to={'/shop'} className={`${style.wishList__btn_shop} ${theme ? '' : style.wishList__btn_shop__darkTheme}`}>
