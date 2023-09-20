@@ -14,7 +14,8 @@ import style from './Offers.module.scss';
 const Offers = () => {
     const [offersProducts, setOffersProducts] = useState([])
     const [currentItems, setCurrentItems] = useState(offersProducts.slice(0, 12))
-    const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
+    let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
+    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
 
     const [hasScrolled, setHasScrolled] = useState(false);
     const prevOffersProductsRef = useRef([]);
@@ -43,9 +44,17 @@ const Offers = () => {
         }
     }, [data]);
 
-    const handlePageChange = (newItems) => {
-        setCurrentItems(newItems)
-    }
+    const WishListHandler = (itemNo) => {
+        if (!wishListItems.includes(itemNo)) {
+            wishListItems.push(itemNo);
+        } else {
+            wishListItems = wishListItems.filter(item => item !== itemNo);
+        }
+        wishList = wishListItems.length;
+
+        window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
+        window.localStorage.setItem('wishList', wishList)
+    };
 
     useEffect(() => {
         if (!hasScrolled) {
@@ -70,11 +79,11 @@ const Offers = () => {
                             <ShopCard
                                 key={productItem.itemNo}
                                 productItem={productItem}
-                                isWished={wishListItems.includes(productItem.itemNo)}
+                                onWishList={() => WishListHandler(productItem.itemNo)}
                             />
                         ))}
                     </div>
-                    <PagePagination cardOnPage={12} productItems={offersProducts} changesOnPage={handlePageChange} />
+                    <PagePagination cardOnPage={12} productItems={offersProducts} />
                 </>
                 )}
             {isError && <p>Something went wrong</p>}
