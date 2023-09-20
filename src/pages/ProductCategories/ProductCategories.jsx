@@ -21,7 +21,7 @@ const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProduc
   const [hasScrolled, setHasScrolled] = useState(false)
 
   const getProductCategories = useCallback(async () => {
-    const { data } = await instance.get(`/api/products/filter?categories=${categoryName}&sort=-currentPrice`)
+    const { data } = await instance.get(`/api/products/filter?categories=${categoryName}`)
     setProducts(data.products)
     return data
   }, [categoryName])
