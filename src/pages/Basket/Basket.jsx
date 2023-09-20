@@ -13,6 +13,7 @@ const Basket = (props) => {
   const [basketList] = useState(props.basketList)
   const basketProducts = basketList.map(item => item)
   const matchingProducts = []
+
   props.products.forEach(product => {
     let basketStatus = false
     let basketItem = {}
