@@ -21,7 +21,11 @@ const SelectBar = () => {
   return (
     <div className={style.selectBar}>
       <span>Sort by</span>
-      <Select className={style.selectBar__option}
+      <Select
+        className={style.selectBar__option}
+        style={{
+          '.css-13cymwt-control ': '#2164FF',
+        }}
         value={selectedOption}
         onChange={handleOptionChange}
         options={options}
