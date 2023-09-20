@@ -17,12 +17,18 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const location = useLocation()
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
   const categorySelectFilter = useSelector(state => state.ProductReducer.categories)
-  const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : '';
-  const queryCategorySelectFilterString = categorySelectFilterString ? `categories=${categorySelectFilterString}&` : '';
+  const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : ''
+  const [queryCategorySelectFilterString, setQueryCategorySelectFilterString] = useState('')
 
    useEffect(() => {
     setCurrentPage(1)
   }, [categorySelectFilter])
+
+  useEffect(() => {
+    const categorySelectFilterValue = categorySelectFilter ? categorySelectFilter.join(',') : ''
+    setQueryCategorySelectFilterString(categorySelectFilterValue ? `categories=${categorySelectFilterValue}&` : '')
+  }, [categorySelectFilterString, categorySelectFilter])
+
   const GeneratePathName = (pathname) => {
     return setCategories(pathname.substring(1))
   }
