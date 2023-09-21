@@ -6,7 +6,7 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import { SlArrowUp, SlArrowDown } from 'react-icons/sl'
 import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai'
 import { useQuery } from 'react-query'
-
+import CartWindow from '../CartWindow/CartWindow'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
@@ -15,7 +15,8 @@ import style from './ProductCard.module.scss'
 import StarRating from './StarRating'
 import Spinner from '../Spinner/Spinner'
 import { instance } from '../assets/axiosUrl'
-import { addToBasket, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { addToBasket, toggleProductToCart, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 
 export const ProductCard = () => {
   // variables
@@ -32,6 +33,7 @@ export const ProductCard = () => {
   const [specsArray, setSpecsArray] = useState([])
   const [isSpinner, setSpinner] = useState(true)
   const [isClicked, setClicked] = useState(false)
+  const [isOpenCartWindow, setOpenCartWindow] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
 
   const themeStyle = theme ? 'light' : 'dark'
@@ -42,6 +44,13 @@ export const ProductCard = () => {
   }
   const { data } = useQuery('getProduct', getProduct)
   // useEffects
+  useEffect(() => {
+    if (isOpenCartWindow) {
+      setTimeout(() => {
+        setOpenCartWindow(false)
+      }, 1000)
+    }
+  }, [isOpenCartWindow])
   useEffect(() => {
     if (data) {
       setProduct(data)
@@ -65,6 +74,8 @@ export const ProductCard = () => {
   const handleClick = () => {
     window.scrollTo(0, 0)
     dispatch(addToBasket(product?.itemNo, countToCart))
+    dispatch(toggleProductToCart(product))
+    setOpenCartWindow(true)
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
     let repeat = false
     storageBasket = storageBasket.map(item => {
@@ -94,10 +105,17 @@ export const ProductCard = () => {
     localStorage.setItem('basket', `${countBasket + countToCart}`)
     dispatch(updateBasket(storageBasket))
   }
+  const isWishlisted = useSelector(state => state.WishListReducer.wishList.includes(product.itemNo));
+
+  const WishItemStatus = () => {
+    dispatch(toggleWishlist(product.itemNo))
+  };
+  
   return (
     <>{isSpinner && <Spinner />}
       {!isSpinner &&
         <section className={`${style.product} ${themeStyle}`}>
+          {isOpenCartWindow && <CartWindow />}
           <div className={style.product_container}>
             <div className={style.product_card}>
               <div className={style.product_swiper_wrapper}>
@@ -227,12 +245,21 @@ export const ProductCard = () => {
                     className={`${style.product_card_total_price} ${(themeStyle === 'dark') ? themeStyle : style.product_card_description_items_bg}`}>
                     <div className={style.product_container_for_heart}>
                       <p className={style.product_card_total_price_cash}>${multipliedPrice} </p>
-                      {!isClicked &&
-                        <div onClick={() => setClicked(true)} className={style.product_favorite_background}>
-                          <AiOutlineHeart className={style.product_fav_heart} /></div>}
-                      {isClicked &&
-                        <div onClick={() => setClicked(false)} className={style.product_favorite_background}>
-                          <AiTwotoneHeart className={style.product_fav_heart} /></div>}
+                      <div
+                        onClick={() => {
+                          setClicked(!isClicked)
+                          WishItemStatus()
+                        }}
+                        className={style.product_favorite_background}
+                      >
+                        {isWishlisted
+                          ? (
+                          <AiTwotoneHeart className={style.product_fav_heart} />
+                        )
+                          : (
+                          <AiOutlineHeart className={style.product_fav_heart} />
+                        )}
+                      </div>
                     </div>
                     <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>
                   </div>

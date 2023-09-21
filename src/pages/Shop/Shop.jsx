@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-// import { useParams } from 'react-router-dom';
+import { connect, useSelector } from 'react-redux'
+import CartWindow from '../../components/CartWindow/CartWindow';
 
 import style from './Shop.module.scss';
 import PriceSlider from '../../components/PriceSlider/PriceSlider';
 import CategorySelect from '../../components/CategorySelect/CategorySelect';
-import Spinner from '../../components/Spinner/Spinner';
-import PagePagination from '../../components/PagePagination/PagePagination';
-import ShopCard from '../../components/ShopCard/ShopCard';
+import SelectBar from '../../components/SelectBar/SelectBar';
+import Spinner from '../../components/Spinner/Spinner'
+import PagePagination from '../../components/PagePagination/PagePagination'
+import ShopCard from '../../components/ShopCard/ShopCard'
+import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
+import { clearAllCategoriesToFilter, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading }) => {
-    const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter }) => {
+    useEffect(() => {
+        clearAllCategoriesToFilter()
+    }, [clearAllCategoriesToFilter])
+    const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
+    const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
     let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
 
     useEffect(() => {
-        setCurrentItems(productItems.slice(0, 12))
-    }, [productItems]);
-
-    const handlePageChange = (newItems) => {
-        setCurrentItems(newItems);
-    };
+        if (isOpenCartWindow) {
+            setTimeout(() => {
+                toggleProductToCart(null)
+            }, 1000)
+        }
+    }, [isOpenCartWindow, toggleProductToCart])
 
     const WishListHandler = (itemNo) => {
         if (!wishListItems.includes(itemNo)) {
@@ -29,37 +36,51 @@ const Shop = ({ productItems, productIsLoading }) => {
             wishListItems = wishListItems.filter(item => item !== itemNo);
         }
         wishList = wishListItems.length;
-        // console.log(wishListItems, itemNo);
+
         window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
         window.localStorage.setItem('wishList', wishList)
     };
 
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    });
+    useEffect(() => {
+        if (!hasScrolled) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+            setHasScrolled(true)
+        }
+    }, [hasScrolled])
 
     return (
         (productIsLoading === true)
             ? (<Spinner />)
-            : (<>
-                <PriceSlider/>
-                <CategorySelect/>
+            : (<div className={style.shop}>
+                <PriceSlider productItems={productItems}/>
+                <CategorySelect />
+                <><SelectBar /></>
                 <div className={style.cardContainer}>
+                    {isOpenCartWindow && <CartWindow />}
                     {currentItems.map((productItem, index) => (
                         <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
                     ))}
                 </div>
-                <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange} />
-            </>
+                <PagePagination cardOnPage={12} productItems={productItems} />
+            </div>
             )
     )
 }
 const mapStateToProps = state => {
     return {
         productItems: state.ProductReducer.products,
-        productIsLoading: state.ProductReducer.productIsLoading
+        productIsLoading: state.ProductReducer.productIsLoading,
+        isOpenCartWindow: state.ProductReducer.isOpenCartWindow
     };
 };
 
-export default connect(mapStateToProps)(Shop);
+const mapDispatchToProps = {
+    toggleWishlist,
+    toggleProductToCart,
+    clearAllCategoriesToFilter
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop)

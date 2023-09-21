@@ -3,18 +3,20 @@ import types, { typesOfProducts } from '../../types/types'
 const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts
 
 const initialState = {
-  wishList: localStorage.getItem('wishList') ? parseInt(localStorage.getItem('wishList')) : 0,
-  wishListItems: localStorage.getItem('wishListItems') ? JSON.parse(localStorage.getItem('wishListItems')) : [],
   basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
   basketList: localStorage.getItem('basketList') ? JSON.parse(localStorage.getItem('basketList')) : [],
+  basketCard: {},
   totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
+  isOpenCartWindow: false,
+  productsPerPage: [],
   productIsLoading: true,
   portablePowerStation: [],
   portablePowerStationIsLoading: true,
   powerBanks: [],
   powerBanksIsLoading: true,
   product: {},
+  priceFilter: []
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -88,29 +90,6 @@ const deleteBasketItemR = (state, payload) => {
   })
 }
 
-const filterProducts = (state, payload) => {
-  let result = [];
-  console.log(state.categories);
-  if (Array.isArray(state.categories)) {
-    const categories = state.categories.map((cat) => {
-      return cat.toLowerCase()
-    });
-    result = payload.filter((product) => {
-      console.log(state.categories.includes(product.categories));
-      console.log(product.categories);
-      if (categories.includes(product.categories.toLowerCase())) {
-        return true
-      } else {
-        return false
-      }
-    })
-  } else {
-    result = payload
-  }
-  console.log(result)
-  return result
-}
-
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
@@ -120,13 +99,17 @@ const productReducer = (state = initialState, { type, payload }) => {
 
     case GET_ALL_PRODUCTS:
       return {
-        ...state, products: [...filterProducts(state, payload)], productIsLoading: false
+        ...state, products: [...payload], productIsLoading: false
       }
 
     case types.ADD_CATEGORY_TO_FILTER:
-      console.log('ADD_CATEGORY_TO_FILTER');
       return {
         ...state, categories: [...payload]
+      }
+
+    case types.CLEAR_ALL_CATEGORIES_TO_FILTER:
+      return {
+        ...state, categories: []
       }
 
     case types.ADD_TO_BASKET:
@@ -141,6 +124,12 @@ const productReducer = (state = initialState, { type, payload }) => {
 
     case types.UPDATE_BASKET:
       return updateBasketR(state, payload)
+
+    case types.TOGGLE_PRODUCT_TO_CARD:
+      return { ...state, basketCard: payload, isOpenCartWindow: !state.isOpenCartWindow }
+
+    case types.IS_OPEN_CART_WINDOW:
+      return { ...state, isOpenCartWindow: true }
 
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)
@@ -159,6 +148,20 @@ const productReducer = (state = initialState, { type, payload }) => {
         totalBasketSum: 0
       }
 
+    case types.GET_PRODUCTS_PER_PAGE: {
+      return {
+        ...state,
+        productsPerPage: [...payload]
+      }
+    }
+
+    case types.SET_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: [...payload]
+      }
+    }
+
     default:
       return state
   }
@@ -167,10 +170,6 @@ const productReducer = (state = initialState, { type, payload }) => {
 export const getProducts = (productsList) => ({
   type: GET_ALL_PRODUCTS,
   payload: productsList
-})
-export const getProductById = (product) => ({
-  type: typesOfProducts.GET_PRODUCT,
-  payload: product
 })
 
 export const addToBasket = (idCandidate, count) => ({
@@ -181,6 +180,10 @@ export const addToBasket = (idCandidate, count) => ({
 export const addCategoryToFilter = (categories) => ({
   type: types.ADD_CATEGORY_TO_FILTER,
   payload: categories
+})
+
+export const clearAllCategoriesToFilter = () => ({
+  type: types.CLEAR_ALL_CATEGORIES_TO_FILTER
 })
 
 export const updateBasket = (listCandidate) => ({
@@ -197,9 +200,22 @@ export const deleteBasketItem = (id) => ({
   type: types.DELETE_BASKET_ITEM,
   payload: id
 })
-
+export const toggleProductToCart = (product) => ({
+  type: types.TOGGLE_PRODUCT_TO_CARD,
+  payload: product
+})
 export const successfulOrder = () => ({
   type: types.SUCCESSFUL_ORDER
+})
+
+export const getProductsPerPage = (productsList) => ({
+  type: types.GET_PRODUCTS_PER_PAGE,
+  payload: productsList
+})
+
+export const setPriceFilter = (currentPrice) => ({
+  type: types.SET_PRICE_FILTER,
+  payload: currentPrice
 })
 
 export default productReducer

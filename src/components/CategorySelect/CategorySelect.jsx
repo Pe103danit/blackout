@@ -19,11 +19,11 @@ export const CategorySelect = () => {
     return (
         <div className={style.checkbox}>
             <div className={style.checkbox__item}>
-                <Checkbox inputId="category1" name="shop" value="Portable power stations" onChange={onCategoriesChange} checked={categories.includes('Portable power stations')} />
+                <Checkbox inputId="category1" name="shop" value="Portable Power Stations" onChange={onCategoriesChange} checked={categories.includes('Portable Power Stations')} />
                 <label htmlFor="category1" className={style.checkbox__item__text}>Portable power station</label>
             </div>
             <div className={style.checkbox__item}>
-                <Checkbox inputId="category2" name="shop" value="Power banks" onChange={onCategoriesChange} checked={categories.includes('Power banks')} />
+                <Checkbox inputId="category2" name="shop" value="Power Banks" onChange={onCategoriesChange} checked={categories.includes('Power Banks')} />
                 <label htmlFor="category2" className={style.checkbox__item__text}>Power banks</label>
             </div>
             <div className={style.checkbox__item}>
@@ -31,7 +31,7 @@ export const CategorySelect = () => {
                 <label htmlFor="category3" className={style.checkbox__item__text}>Generators</label>
             </div>
             <div className={style.checkbox__item}>
-                <Checkbox inputId="category4" name="shop" value="Solar panels" onChange={onCategoriesChange} checked={categories.includes('Solar panels')} />
+                <Checkbox inputId="category4" name="shop" value="Solar Panels" onChange={onCategoriesChange} checked={categories.includes('Solar Panels')} />
                 <label htmlFor="category4" className={style.checkbox__item__text}>Solar panels</label>
             </div>
             <div className={style.checkbox__item}>

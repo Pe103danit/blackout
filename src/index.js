@@ -45,6 +45,7 @@ root.render(
       <meta charSet='utf-8' />
       <title>BlackOut store</title>
       <meta name='description' content='BlackOut store - best products for cheapest prices' />
+      <meta name='keywords' content='ecommerce, online shopping, products, deals' />
     </Helmet>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
