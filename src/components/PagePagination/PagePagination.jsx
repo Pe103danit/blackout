@@ -17,8 +17,10 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const location = useLocation()
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
   const categorySelectFilter = useSelector(state => state.ProductReducer.categories)
+  const priceFilter = useSelector(state => state.ProductReducer.priceFilter)
   const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : ''
   const [queryCategorySelectFilterString, setQueryCategorySelectFilterString] = useState('')
+  console.log(priceFilter)
 
    useEffect(() => {
     setCurrentPage(1)
