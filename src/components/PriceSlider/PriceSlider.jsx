@@ -8,14 +8,14 @@ import 'primereact/resources/themes/lara-light-blue/theme.css'
 import { setPriceFilter } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const PriceSlider = (props) => {
-  let minPrice = 0;
-  props.products.forEach(product => {
+  let minPrice = Infinity;
+  props.productItems.forEach(product => {
     if (product.currentPrice < minPrice) {
       minPrice = product.currentPrice
     }
   });
   let maxPrice = 0;
-  props.products.forEach(product => {
+  props.productItems.forEach(product => {
     if (product.currentPrice > maxPrice) {
       maxPrice = product.currentPrice
     }
@@ -45,9 +45,6 @@ const PriceSlider = (props) => {
 const mapStateToProps = (state) => ({
   lightTheme: state.UIStateReducer.lightTheme,
   productIsLoading: state.ProductReducer.productIsLoading,
-  products: state.ProductReducer.products,
-  wishList: state.WishListReducer.wishList,
-  wishCount: state.WishListReducer.wishCount
 })
 
 const mapDispatchToProps = {
