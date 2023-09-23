@@ -21,6 +21,9 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : ''
   const [queryCategorySelectFilterString, setQueryCategorySelectFilterString] = useState('')
 
+  const priceMinReq = priceFilter[0]
+  const priceMaxReq = priceFilter[1]
+
    useEffect(() => {
     setCurrentPage(1)
   }, [categorySelectFilter])
@@ -36,18 +39,18 @@ const PagePagination = ({ cardOnPage, productItems }) => {
 
   const getProductsPage = useCallback(async (req) => {
     let filterCategory = ''
+    let priceReq = ''
     if (location.pathname !== '/shop') {
       filterCategory = `categories=${GeneratePathName(location.pathname)}&`
     }
-    let priceReq = ''
 
-    if (priceFilter[0] || priceFilter[1]) {
-      priceReq = `minPrice=${priceFilter[0]}&maxPrice=${priceFilter[1]}&`
+    if (priceMinReq || priceMaxReq) {
+      priceReq = `minPrice=${priceMinReq}&maxPrice=${priceMaxReq}&`
     }
     const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
     setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
     return data.products
-  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceFilter[0], priceFilter[1]])
+  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq])
 
   const updateListProducts = useCallback(async () => {
     await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
@@ -65,9 +68,8 @@ const PagePagination = ({ cardOnPage, productItems }) => {
 
   }, [location.pathname])
   useEffect(() => {
-    console.log(priceFilter)
     updateListProducts()
-  }, [priceFilter[0], priceFilter[1], updateListProducts])
+  }, [priceMinReq, priceMaxReq, updateListProducts])
   const { data } = useQuery(
     ['products', currentPage],
     getProductsPage,
