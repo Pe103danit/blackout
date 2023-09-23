@@ -3,7 +3,7 @@ import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 import ProductCategories from './ProductCategories';
 import {
   clearAllCategoriesToFilter,
-  clearPriceFilter,
+  clearPriceFilter, clearSelectValue,
   toggleProductToCart
 } from '../../redux/reducers/ProductReducer/ProductReducer'
 
@@ -15,7 +15,8 @@ const mapDispatchToProps = {
   toggleTheme,
   toggleProductToCart,
   clearAllCategoriesToFilter,
-  clearPriceFilter
+  clearPriceFilter,
+  clearSelectValue
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCategories);
