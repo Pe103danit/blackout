@@ -11,12 +11,12 @@ import {
   MarketIconDark,
   HeartIcon,
   HeartIconDark
-} from '../../components/assets/Icons'
+} from '../assets/Icons'
 import style from './Header.module.scss'
 import { NavLink } from 'react-router-dom'
-import SearchPanel from '../../components/SearchPanel/SearchPanel'
-import NavMenuTabletMobile from '../../components/NavMenuTabletMobile/NavMenuTabletMobile'
-import NavMenuCategories from '../../components/NavMenuCategories/NavMenuCategories'
+import SearchPanel from '../SearchPanel/SearchPanel'
+import NavMenuTabletMobile from '../NavMenuTabletMobile/NavMenuTabletMobile'
+import NavMenuCategories from '../NavMenuCategories/NavMenuCategories'
 import { useSelector } from 'react-redux'
 
 const Header = (props) => {

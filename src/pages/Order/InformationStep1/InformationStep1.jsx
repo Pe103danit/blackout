@@ -130,7 +130,7 @@ const InformationStep1 = (props) => {
         >
           <div className={style.container_main_form_login}>
             <p className={style.container_main_form_login_title}>Contact</p>
-              {props.user === null
+              {props.user === ''
                 ? (
                   <p className={style.container_main_form_login_question}>Have an account?
                   <NavLink to={'/login'} className={style.container_main_form_login_question_link}>
