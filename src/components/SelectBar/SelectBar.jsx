@@ -22,6 +22,8 @@ const SelectBar = ({ selectValue, setSelectValue }) => {
         <option className={style.selectBar__input__option} value=''>Default</option>
         <option className={style.selectBar__input__option} value='&sort=-currentPrice'>Low to High</option>
         <option className={style.selectBar__input__option} value='&sort=+currentPrice'>High to Low</option>
+        <option className={style.selectBar__input__option} value='&sort=-name'>A to Z</option>
+        <option className={style.selectBar__input__option} value='&sort=+name'>Z to A</option>
       </select>
     </div>
   );
