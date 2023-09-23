@@ -216,6 +216,10 @@
         &:hover {
             .shopCard__description__order__btn {
                 display: block;
+
+                &__hoverDisable {
+                    display: none;
+                }
             }
 
             .shopCard__description__order__cart {
@@ -224,6 +228,10 @@
 
             .shopCard__description__order__price {
                 display: none;
+
+                &__hoverDisable {
+                    display: block;
+                }
             }
 
             .shopCard__imgBlock__img1 {

@@ -1,9 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { setSelectValue } from '../../redux/reducers/ProductReducer/ProductReducer';
 import style from './SelectBar.module.scss';
 
 const SelectBar = ({ selectValue, setSelectValue }) => {
+  const theme = useSelector(state => state.UIStateReducer.lightTheme);
+
   const handleChange = (e) => {
     const newValue = e.target.value;
     setSelectValue(newValue);
@@ -14,16 +16,16 @@ const SelectBar = ({ selectValue, setSelectValue }) => {
       <span>Sort by</span>
       <select
         name='select'
-        className={style.selectBar__input}
+        className={`${style.selectBar__input} ${theme ? '' : style.selectBar__input__darkTheme}`}
         defaultValue=''
         value={selectValue}
         onChange={handleChange}
       >
         <option className={style.selectBar__input__option} value=''>Default</option>
-        <option className={style.selectBar__input__option} value='&sort=+currentPrice'>Low ... High</option>
-        <option className={style.selectBar__input__option} value='&sort=-currentPrice'>High ... Low</option>
-        <option className={style.selectBar__input__option} value='&sort=+name'>A ... Z</option>
-        <option className={style.selectBar__input__option} value='&sort=-name'>Z ... A</option>
+        <option className={style.selectBar__input__option} value='&sort=+currentPrice'>&#129145; Low ... High</option>
+        <option className={style.selectBar__input__option} value='&sort=-currentPrice'>&#129147; High ... Low</option>
+        <option className={style.selectBar__input__option} value='&sort=+name'>&#129146; A ... Z</option>
+        <option className={style.selectBar__input__option} value='&sort=-name'>&#129144; Z ... A</option>
       </select>
     </div>
   );

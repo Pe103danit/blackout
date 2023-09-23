@@ -5,6 +5,7 @@ import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListRed
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 import style from './ShopCard.module.scss';
 import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer';
+import { makeShortText } from '../assets/makeShortText';
 
 const ShopCard = (props) => {
     const dispatch = useDispatch()
@@ -61,14 +62,19 @@ const ShopCard = (props) => {
                 </div>
             </Link>
             <div className={style.shopCard__description}>
-                <h3 className={`${style.shopCard__description__name} ${theme ? '' : style.shopCard__description__name__darkTheme}`}>{props.productItem.name}</h3>
+                <h3 className={`${style.shopCard__description__name} ${theme ? '' : style.shopCard__description__name__darkTheme}`}>
+                    {props.productItem.name.length > 30
+                        ? makeShortText(props.productItem.name)
+                        : props.productItem.name
+                    }
+                </h3>
                 <h3 className={`${style.shopCard__description__categories} ${theme ? '' : style.shopCard__description__categories__darkTheme}`}>{props.productItem.categories}</h3>
                 <p className={`${style.shopCard__description__model} ${theme ? '' : style.shopCard__description__model__darkTheme}`}>{props.productItem.model}</p>
                 <>{props.offerPrice && (<div className={style.shopCard__description__prevPrice}>${props.productItem.previousPrice} USD</div>)}</>
                 <Link to={`/products/${props.productItem.itemNo}`}>
                     <div className={style.shopCard__description__order}>
-                        <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme} ${props.offerPrice ? style.shopCard__priceColorRed : ''}`}>${props.productItem.currentPrice} USD</h5>
-                        <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
+                        <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme} ${props.offerPrice ? `${style.shopCard__priceColorRed} ${style.shopCard__description__order__price__hoverDisable}` : ''} `}>${props.productItem.currentPrice} USD</h5>
+                        <button className={`${style.shopCard__description__order__btn} ${props.offerPrice ? style.shopCard__description__order__btn__hoverDisable : ''}`}>SHOP NOW</button>
                     </div>
                 </Link>
                 <button className={`${style.shopCard__description__order__wishList} ${theme
