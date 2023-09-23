@@ -177,6 +177,7 @@ const productReducer = (state = initialState, { type, payload }) => {
       };
 
     case types.CLEAR_SELECT_VALUE: {
+      console.log('clear')
       return {
         ...state,
         selectValue: ''
@@ -249,7 +250,7 @@ export const setSelectValue = (value) => ({
 });
 
 export const clearSelectValue = () => ({
-  type: types.CLEAR_PRICE_FILTER
+  type: types.CLEAR_SELECT_VALUE
 })
 
 export default productReducer
