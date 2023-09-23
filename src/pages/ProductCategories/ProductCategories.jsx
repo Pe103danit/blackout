@@ -9,11 +9,13 @@ import PagePagination from '../../components/PagePagination/PagePagination'
 import SelectBar from '../../components/SelectBar/SelectBar';
 import style from './ProductCategories.module.scss'
 import { useSelector } from 'react-redux'
+import PriceSlider from '../../components/PriceSlider/PriceSlider'
 
-const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter }) => {
+const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter }) => {
   useEffect(() => {
     clearAllCategoriesToFilter()
-  }, [clearAllCategoriesToFilter])
+    clearPriceFilter()
+  }, [clearAllCategoriesToFilter, clearPriceFilter])
   const [products, setProducts] = useState([])
   const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
   const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
@@ -63,7 +65,9 @@ const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProduc
       {isOpenCartWindow && <CartWindow />}
       {(isLoading)
         ? (<Spinner />)
-        : (<> <SelectBar />
+        : (<>
+            <PriceSlider productItems={products}/>
+            <SelectBar />
             <div className={style.productCategories__container}>
               {currentItems.map((productItem) => (
                 <ShopCard

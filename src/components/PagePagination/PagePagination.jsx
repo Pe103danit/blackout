@@ -20,7 +20,6 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const priceFilter = useSelector(state => state.ProductReducer.priceFilter)
   const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : ''
   const [queryCategorySelectFilterString, setQueryCategorySelectFilterString] = useState('')
-  console.log(priceFilter)
 
    useEffect(() => {
     setCurrentPage(1)
@@ -40,11 +39,15 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     if (location.pathname !== '/shop') {
       filterCategory = `categories=${GeneratePathName(location.pathname)}&`
     }
+    let priceReq = ''
 
-    const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
+    if (priceFilter[0] || priceFilter[1]) {
+      priceReq = `minPrice=${priceFilter[0]}&maxPrice=${priceFilter[1]}&`
+    }
+    const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
     setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
     return data.products
-  }, [cardOnPage, location.pathname, queryCategorySelectFilterString])
+  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceFilter[0], priceFilter[1]])
 
   const updateListProducts = useCallback(async () => {
     await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
@@ -58,7 +61,13 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     }
     updateListProducts();
   }, [updateListProducts, location.pathname, prevCategory])
+  useEffect(() => {
 
+  }, [location.pathname])
+  useEffect(() => {
+    console.log(priceFilter)
+    updateListProducts()
+  }, [priceFilter[0], priceFilter[1], updateListProducts])
   const { data } = useQuery(
     ['products', currentPage],
     getProductsPage,

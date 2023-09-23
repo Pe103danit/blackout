@@ -162,6 +162,13 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
     }
 
+    case types.CLEAR_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: []
+      }
+    }
+
     default:
       return state
   }
@@ -216,6 +223,10 @@ export const getProductsPerPage = (productsList) => ({
 export const setPriceFilter = (currentPrice) => ({
   type: types.SET_PRICE_FILTER,
   payload: currentPrice
+})
+
+export const clearPriceFilter = () => ({
+  type: types.CLEAR_PRICE_FILTER
 })
 
 export default productReducer
