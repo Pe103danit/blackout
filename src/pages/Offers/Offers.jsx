@@ -6,17 +6,15 @@ import Spinner from '../../components/Spinner/Spinner';
 import ShopCard from '../../components/ShopCard/ShopCard';
 import SelectBar from '../../components/SelectBar/SelectBar';
 
-import { SaleIcon } from '../../components/assets/Icons'
+import { SaleIcon } from '../../components/assets/Icons';
 
 import style from './Offers.module.scss';
 
 const Offers = () => {
-    const [offersProducts, setOffersProducts] = useState([])
-    const [currentItems, setCurrentItems] = useState(offersProducts.slice(0, 12))
+    const [offersProducts, setOffersProducts] = useState([]);
+    const [currentItems, setCurrentItems] = useState(offersProducts.slice(0, 12));
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
     let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
-
-    console.log('offersProducts', offersProducts);
 
     const [hasScrolled, setHasScrolled] = useState(false);
     const prevOffersProductsRef = useRef([]);
@@ -36,7 +34,6 @@ const Offers = () => {
             const offersProductArr = data.filter((product) => product.sale === true);
 
             if (JSON.stringify(offersProductArr) !== JSON.stringify(prevOffersProductsRef.current)) {
-                console.log('offersProductArr', offersProductArr);
                 setOffersProducts(offersProductArr);
                 prevOffersProductsRef.current = offersProductArr;
             }
@@ -71,7 +68,6 @@ const Offers = () => {
         <div className={style.offers}>
             <h3 className={style.offers__title}>Offers</h3>
             <div className={style.offers__sale}><SaleIcon /></div>
-
             {(isLoading)
                 ? (<Spinner />)
                 : (<>  <SelectBar />
@@ -91,4 +87,5 @@ const Offers = () => {
         </div>
     )
 }
+
 export default Offers

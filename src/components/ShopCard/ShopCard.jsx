@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer';
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons';
 import style from './ShopCard.module.scss';
-import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer';
 
 const ShopCard = (props) => {
     const dispatch = useDispatch()
@@ -90,4 +90,5 @@ const ShopCard = (props) => {
         </div>
     )
 }
+
 export default ShopCard
