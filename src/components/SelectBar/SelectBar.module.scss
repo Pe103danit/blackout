@@ -13,6 +13,20 @@
         justify-self: end;
         margin-right: 10px;
     }
+
+    &__input {
+        height: 35px;
+        padding: 0 5px;
+        font-size: 16px;
+        line-height: 35px;
+        border: 1px #000000 solid;
+        border-radius: 3px;
+
+        &__option {
+            font-size: 16px;
+            line-height: 2 !important;
+        }
+    }
 }
 
 @media screen and (min-width: $tab-mobileFirst) {
@@ -27,9 +41,19 @@
         width: 90%;
         max-width: 1200px;
         margin: 0 auto;
-    }
-}
 
-.css-13cymwt-control {
-    background-color: (0, 0%, 50%) !important;
+        &__input {
+            height: 35px;
+            padding: 0 5px;
+            font-size: 16px;
+            line-height: 35px;
+            border: 1px #000000 solid;
+            border-radius: 3px;
+
+            &__option {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+    }
 }
