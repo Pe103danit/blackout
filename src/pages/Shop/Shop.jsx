@@ -10,12 +10,18 @@ import Spinner from '../../components/Spinner/Spinner'
 import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
-import { clearAllCategoriesToFilter, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
+import {
+    clearAllCategoriesToFilter,
+    clearPriceFilter,
+    toggleProductToCart,
+} from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter }) => {
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter }) => {
     useEffect(() => {
         clearAllCategoriesToFilter()
-    }, [clearAllCategoriesToFilter])
+        clearPriceFilter()
+    }, [clearAllCategoriesToFilter, clearPriceFilter])
+
     const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
     const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
@@ -55,7 +61,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
         (productIsLoading === true)
             ? (<Spinner />)
             : (<div className={style.shop}>
-                <PriceSlider productItems={productItems}/>
+                <PriceSlider productItems={productItems} />
                 <CategorySelect />
                 <><SelectBar /></>
                 <div className={style.cardContainer}>
@@ -73,14 +79,16 @@ const mapStateToProps = state => {
     return {
         productItems: state.ProductReducer.products,
         productIsLoading: state.ProductReducer.productIsLoading,
-        isOpenCartWindow: state.ProductReducer.isOpenCartWindow
+        isOpenCartWindow: state.ProductReducer.isOpenCartWindow,
+        priceFilter: state.ProductReducer.priceFilter
     };
 };
 
 const mapDispatchToProps = {
     toggleWishlist,
     toggleProductToCart,
-    clearAllCategoriesToFilter
+    clearAllCategoriesToFilter,
+    clearPriceFilter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop)

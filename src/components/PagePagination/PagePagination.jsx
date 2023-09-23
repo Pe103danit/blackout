@@ -17,8 +17,12 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const location = useLocation()
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
   const categorySelectFilter = useSelector(state => state.ProductReducer.categories)
+  const priceFilter = useSelector(state => state.ProductReducer.priceFilter)
   const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : ''
   const [queryCategorySelectFilterString, setQueryCategorySelectFilterString] = useState('')
+
+  const priceMinReq = priceFilter[0]
+  const priceMaxReq = priceFilter[1]
 
    useEffect(() => {
     setCurrentPage(1)
@@ -35,14 +39,18 @@ const PagePagination = ({ cardOnPage, productItems }) => {
 
   const getProductsPage = useCallback(async (req) => {
     let filterCategory = ''
+    let priceReq = ''
     if (location.pathname !== '/shop') {
       filterCategory = `categories=${GeneratePathName(location.pathname)}&`
     }
 
-    const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
+    if (priceMinReq || priceMaxReq) {
+      priceReq = `minPrice=${priceMinReq}&maxPrice=${priceMaxReq}&`
+    }
+    const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}`)
     setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
     return data.products
-  }, [cardOnPage, location.pathname, queryCategorySelectFilterString])
+  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq])
 
   const updateListProducts = useCallback(async () => {
     await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
@@ -56,7 +64,12 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     }
     updateListProducts();
   }, [updateListProducts, location.pathname, prevCategory])
+  useEffect(() => {
 
+  }, [location.pathname])
+  useEffect(() => {
+    updateListProducts()
+  }, [priceMinReq, priceMaxReq, updateListProducts])
   const { data } = useQuery(
     ['products', currentPage],
     getProductsPage,

@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import { toggleTheme } from '../../redux/reducers/UIStateReducer/UIStateReducer';
 import ProductCategories from './ProductCategories';
-import { clearAllCategoriesToFilter, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
+import {
+  clearAllCategoriesToFilter,
+  clearPriceFilter,
+  toggleProductToCart
+} from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const mapStateToProps = (state) => ({
   ...state.ProductReducer
@@ -10,7 +14,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   toggleTheme,
   toggleProductToCart,
-  clearAllCategoriesToFilter
+  clearAllCategoriesToFilter,
+  clearPriceFilter
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCategories);

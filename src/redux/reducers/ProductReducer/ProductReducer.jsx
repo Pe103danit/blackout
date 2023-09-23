@@ -169,6 +169,13 @@ const productReducer = (state = initialState, { type, payload }) => {
         selectValue: payload,
       };
     
+    case types.CLEAR_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: []
+      }
+    }
+
     default:
       return state
   }
@@ -229,5 +236,8 @@ export const setSelectValue = (value) => ({
   type: types.SET_SELECT_VALUE,
   payload: value
 });
+export const clearPriceFilter = () => ({
+  type: types.CLEAR_PRICE_FILTER
+})
 
 export default productReducer
