@@ -27,10 +27,10 @@ const InformationStep1 = (props) => {
   const formik = useFormik({
     initialValues: {
       country: 'USA',
-      firstName: '',
-      lastName: '',
+      firstName: props.user.firstName || '',
+      lastName: props.user.lastName || '',
       phone: '',
-      email: ''
+      email: props.user.email || ''
     },
     onSubmit: values => {
       const fullForm = {...values, phone: phoneInput, isSubscribed}
@@ -130,9 +130,16 @@ const InformationStep1 = (props) => {
         >
           <div className={style.container_main_form_login}>
             <p className={style.container_main_form_login_title}>Contact</p>
-            <p className={style.container_main_form_login_question}>Have an account?
-              <NavLink to={'/login'} className={style.container_main_form_login_question_link}> Log in</NavLink>
-            </p>
+              {props.user === null
+                ? (
+                  <p className={style.container_main_form_login_question}>Have an account?
+                  <NavLink to={'/login'} className={style.container_main_form_login_question_link}>
+                  Log in
+                </NavLink>
+                  </p>
+                )
+                : (<p>{props.user.firstName} {props.user.lastName}</p>)
+              }
           </div>
           <div className={style.container_main_form_container}>
             <p className={style.container_main_form_container_title}>
