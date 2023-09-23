@@ -26,6 +26,13 @@
             font-size: 16px;
             line-height: 2 !important;
         }
+
+        &__darkTheme {
+            color: $white;
+            background-color: $black;
+            border-color: $third-grey;
+            box-shadow: 0 0 18px rgba(255, 255, 255, .4);
+        }
     }
 }
 

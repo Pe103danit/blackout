@@ -1,9 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { setSelectValue } from '../../redux/reducers/ProductReducer/ProductReducer';
 import style from './SelectBar.module.scss';
 
 const SelectBar = ({ selectValue, setSelectValue }) => {
+  const theme = useSelector(state => state.UIStateReducer.lightTheme);
+
   const handleChange = (e) => {
     const newValue = e.target.value;
     setSelectValue(newValue);
@@ -14,7 +16,7 @@ const SelectBar = ({ selectValue, setSelectValue }) => {
       <span>Sort by</span>
       <select
         name='select'
-        className={style.selectBar__input}
+        className={`${style.selectBar__input} ${theme ? '' : style.selectBar__input__darkTheme}`}
         defaultValue=''
         value={selectValue}
         onChange={handleChange}
