@@ -11,11 +11,12 @@ import style from './ProductCategories.module.scss'
 import { useSelector } from 'react-redux'
 import PriceSlider from '../../components/PriceSlider/PriceSlider'
 
-const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter }) => {
+const ProductCategories = ({ title, categoryName, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue }) => {
   useEffect(() => {
     clearAllCategoriesToFilter()
     clearPriceFilter()
-  }, [clearAllCategoriesToFilter, clearPriceFilter])
+    clearSelectValue()
+  }, [clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue])
   const [products, setProducts] = useState([])
   const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
   const currentItems = useSelector(state => state.ProductReducer.productsPerPage)

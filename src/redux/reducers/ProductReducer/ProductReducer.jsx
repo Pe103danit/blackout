@@ -163,16 +163,23 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
     }
 
+    case types.CLEAR_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: []
+      }
+    }
+
     case types.SET_SELECT_VALUE:
       return {
         ...state,
         selectValue: payload,
       };
-    
-    case types.CLEAR_PRICE_FILTER: {
+
+    case types.CLEAR_SELECT_VALUE: {
       return {
         ...state,
-        priceFilter: []
+        selectValue: ''
       }
     }
 
@@ -232,11 +239,16 @@ export const setPriceFilter = (currentPrice) => ({
   payload: currentPrice
 })
 
+export const clearPriceFilter = () => ({
+  type: types.CLEAR_PRICE_FILTER
+})
+
 export const setSelectValue = (value) => ({
   type: types.SET_SELECT_VALUE,
   payload: value
 });
-export const clearPriceFilter = () => ({
+
+export const clearSelectValue = () => ({
   type: types.CLEAR_PRICE_FILTER
 })
 
