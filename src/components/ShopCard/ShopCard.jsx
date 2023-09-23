@@ -67,8 +67,8 @@ const ShopCard = (props) => {
                 <>{props.offerPrice && (<div className={style.shopCard__description__prevPrice}>${props.productItem.previousPrice} USD</div>)}</>
                 <Link to={`/products/${props.productItem.itemNo}`}>
                     <div className={style.shopCard__description__order}>
-                        <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme} ${props.offerPrice ? style.shopCard__priceColorRed : ''}`}>${props.productItem.currentPrice} USD</h5>
-                        <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
+                        <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme} ${props.offerPrice ? `${style.shopCard__priceColorRed} ${style.shopCard__description__order__price__hoverDisable}` : ''} `}>${props.productItem.currentPrice} USD</h5>
+                       <button className={`${style.shopCard__description__order__btn} ${props.offerPrice ? style.shopCard__description__order__btn__hoverDisable : ''}`}>SHOP NOW</button>
                     </div>
                 </Link>
                 <button className={`${style.shopCard__description__order__wishList} ${theme
