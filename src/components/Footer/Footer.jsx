@@ -9,11 +9,11 @@ import {
     YoutubeIconDark,
     TiktokIconDark,
     NewsletterIconDark,
-} from '../../components/assets/Icons';
+} from '../assets/Icons';
 import style from './Footer.module.scss';
 import { NavLink } from 'react-router-dom';
 import {useMutation} from 'react-query';
-import { instance } from '../../components/assets/axiosUrl';
+import { instance } from '../assets/axiosUrl';
 import { useEffect, useState } from 'react'
 import { Notify } from 'notiflix';
 
