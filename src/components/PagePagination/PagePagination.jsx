@@ -48,6 +48,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     if (priceMinReq || priceMaxReq) {
       priceReq = `minPrice=${priceMinReq}&maxPrice=${priceMaxReq}&`
     }
+
     const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}${selectValue}`)
     setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
     return data.products
@@ -65,6 +66,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     }
     updateListProducts();
   }, [updateListProducts, location.pathname, prevCategory])
+
   useEffect(() => {
 
   }, [location.pathname])
