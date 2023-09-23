@@ -16,7 +16,8 @@ const initialState = {
   powerBanks: [],
   powerBanksIsLoading: true,
   product: {},
-  priceFilter: []
+  priceFilter: [],
+  selectValue: ''
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -162,6 +163,12 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
     }
 
+    case types.SET_SELECT_VALUE:
+      return {
+        ...state,
+        selectValue: payload,
+      };
+    
     case types.CLEAR_PRICE_FILTER: {
       return {
         ...state,
@@ -225,6 +232,10 @@ export const setPriceFilter = (currentPrice) => ({
   payload: currentPrice
 })
 
+export const setSelectValue = (value) => ({
+  type: types.SET_SELECT_VALUE,
+  payload: value
+});
 export const clearPriceFilter = () => ({
   type: types.CLEAR_PRICE_FILTER
 })
