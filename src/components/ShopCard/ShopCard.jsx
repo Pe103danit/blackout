@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer';
@@ -64,9 +64,10 @@ const ShopCard = (props) => {
                 <h3 className={`${style.shopCard__description__name} ${theme ? '' : style.shopCard__description__name__darkTheme}`}>{props.productItem.name}</h3>
                 <h3 className={`${style.shopCard__description__categories} ${theme ? '' : style.shopCard__description__categories__darkTheme}`}>{props.productItem.categories}</h3>
                 <p className={`${style.shopCard__description__model} ${theme ? '' : style.shopCard__description__model__darkTheme}`}>{props.productItem.model}</p>
+                <>{props.offerPrice && (<div className={style.shopCard__description__prevPrice}>${props.productItem.previousPrice} USD</div>)}</>
                 <Link to={`/products/${props.productItem.itemNo}`}>
                     <div className={style.shopCard__description__order}>
-                        <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme}`}>${props.productItem.currentPrice} USD</h5>
+                        <h5 className={`${style.shopCard__description__order__price} ${theme ? '' : style.shopCard__description__order__price__darkTheme} ${props.offerPrice ? style.shopCard__priceColorRed : ''}`}>${props.productItem.currentPrice} USD</h5>
                         <button className={style.shopCard__description__order__btn}>SHOP NOW</button>
                     </div>
                 </Link>

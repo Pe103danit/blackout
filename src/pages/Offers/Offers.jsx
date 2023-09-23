@@ -4,7 +4,6 @@ import { useQuery } from 'react-query';
 
 import Spinner from '../../components/Spinner/Spinner';
 import ShopCard from '../../components/ShopCard/ShopCard';
-import PagePagination from '../../components/PagePagination/PagePagination';
 import SelectBar from '../../components/SelectBar/SelectBar';
 
 import { SaleIcon } from '../../components/assets/Icons'
@@ -15,7 +14,9 @@ const Offers = () => {
     const [offersProducts, setOffersProducts] = useState([])
     const [currentItems, setCurrentItems] = useState(offersProducts.slice(0, 12))
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
-    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
+    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
+
+    console.log('offersProducts', offersProducts);
 
     const [hasScrolled, setHasScrolled] = useState(false);
     const prevOffersProductsRef = useRef([]);
@@ -79,11 +80,11 @@ const Offers = () => {
                             <ShopCard
                                 key={productItem.itemNo}
                                 productItem={productItem}
+                                offerPrice={true}
                                 onWishList={() => WishListHandler(productItem.itemNo)}
                             />
                         ))}
                     </div>
-                    <PagePagination cardOnPage={12} productItems={offersProducts} />
                 </>
                 )}
             {isError && <p>Something went wrong</p>}

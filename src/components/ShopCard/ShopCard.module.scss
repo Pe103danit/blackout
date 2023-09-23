@@ -140,6 +140,7 @@
                     width: 30px;
                     height: 30px;
                 }
+
             }
 
             &__cart {
@@ -158,8 +159,22 @@
                 }
             }
         }
+
+        &__prevPrice {
+            position: relative;
+            top: 20px;
+            display: block;
+            color: $third-grey;
+            @include manrope-regular;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: line-through;
+        }
     }
 
+    &__priceColorRed {
+        color: $red;
+    }
 
 }
 
