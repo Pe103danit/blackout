@@ -138,7 +138,7 @@ const InformationStep1 = (props) => {
                 </NavLink>
                   </p>
                 )
-                : (<p>{props.user.firstName} {props.user.lastName}</p>)
+                : (<p>{props.user?.firstName} {props.user?.lastName}</p>)
               }
           </div>
           <div className={style.container_main_form_container}>
