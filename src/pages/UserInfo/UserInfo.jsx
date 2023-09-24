@@ -1,5 +1,4 @@
 import style from './UserInfo.module.scss'
-import { useQuery } from 'react-query';
 import { instanceToken } from '../../components/assets/axiosUrl';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
@@ -9,17 +8,21 @@ const UserInfo = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.SessionReducer.user)
     const userIsLoading = useSelector(state => state.SessionReducer.userIsLoading)
-    const token = localStorage.getItem('tokenParts');
-    const getUser = async () => {
-        const { data } = await instanceToken.get('/api/customers/customer')
-        return data
-    }
-    const { data } = useQuery(['getUser', { headers: { Authorization: token } }], getUser)
+    const token = useSelector(state => state.SessionReducer.token)
     useEffect(() => {
-        if (data) {
-            dispatch(setUser(data))
+        if (!user) {
+            const getUser = async () => {
+                const { data } = await instanceToken.get('/api/customers/customer', {
+                  headers: { Authorization: token }
+                });
+                if (data !== 'Unauthorized') {
+                  dispatch(setUser(data))
+                }
+              };
+        
+              getUser();
         }
-    }, [data, dispatch])
+    }, [user, dispatch])
     return (
         <>  {userIsLoading && <Spinner />}
             {!userIsLoading &&

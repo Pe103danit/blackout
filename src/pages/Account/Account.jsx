@@ -1,14 +1,18 @@
 import style from './Account.module.scss'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setToken } from '../../redux/reducers/SessionReducer/SessionReducer'
+import { setToken, setUser } from '../../redux/reducers/SessionReducer/SessionReducer'
 import { AiOutlineLogin } from 'react-icons/ai'
+import { setOrderList } from '../../redux/reducers/OrderListReducer/OrderListReducer'
 const Account = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.setItem('tokenParts', '')
+    localStorage.setItem('user', JSON.stringify({}))
     dispatch(setToken(null))
+    dispatch(setUser(null))
+    dispatch(setOrderList(null))
     navigate('/')
   }
   return (

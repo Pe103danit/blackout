@@ -1,1 +1,68 @@
 @import '../../scss/variables';
+@import '../../scss/mixin';
+
+.userOrder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    background-color: $white;
+    border-radius: $border;
+
+    &__darkTheme {
+        background-color: $second-grey;
+    }
+
+    &__title {
+        margin: 30px auto;
+        font-size: $second-size;
+        text-align: center;
+        @include manrope-bold();
+    }
+    &__date{
+        text-align: center;
+        font-size: 20px;
+        font-weight: $big-weight;
+        padding: 40px 0 20px 0 ;
+    }
+
+    &__btn_shop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+
+        button {
+            width: 225px;
+            height: 40px;
+            margin: 30px auto;
+            color: $white;
+            font-size: $fourth-size;
+            background: $black;
+            border: none;
+            border-radius: 50px;
+        }
+
+        &:hover button {
+            background: $second-grey;
+        }
+
+        &__darkTheme {
+            &:hover button {
+                background: $button-blue;
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: $tab-mobileFirst) {
+    .userOrder {
+        width: 90%;
+    }
+}
+

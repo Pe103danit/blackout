@@ -20,6 +20,9 @@ if (!localStorage.getItem('wishList')) {
 if (!localStorage.getItem('basket')) {
   localStorage.setItem('basket', '0')
 }
+if (!localStorage.getItem('user')) {
+  localStorage.setItem('user', JSON.stringify({}))
+}
 
 if (!localStorage.getItem('basketList')) {
   localStorage.setItem('basketList', JSON.stringify([]))
