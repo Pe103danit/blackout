@@ -5,7 +5,8 @@ import { setInformation } from '../../../redux/reducers/OrderReducer/OrderReduce
 
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
-  totalBasketSum: state.ProductReducer.totalBasketSum
+  totalBasketSum: state.ProductReducer.totalBasketSum,
+  user: state.SessionReducer.user
 });
 
 const mapDispatchToProps = {

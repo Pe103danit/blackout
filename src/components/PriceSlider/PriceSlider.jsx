@@ -23,6 +23,7 @@ const PriceSlider = (props) => {
 
   const [value, setValue] = useState([minPrice, maxPrice]);
   const handleChanges = (event, newValue) => {
+    console.log(newValue)
     setValue(newValue);
     props.setPriceFilter(newValue);
   };

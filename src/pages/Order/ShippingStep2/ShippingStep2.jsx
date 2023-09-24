@@ -88,9 +88,16 @@ const ShippingStep2 = (props) => {
         >
           <div className={style.container_main_form_login}>
             <p className={style.container_main_form_login_title}>Contact</p>
-            <p className={style.container_main_form_login_question}>Have an account?
-              <NavLink to={'/login'} className={style.container_main_form_login_question_link}> Log in</NavLink>
-            </p>
+            {props.user === ''
+              ? (
+                <p className={style.container_main_form_login_question}>Have an account?
+                  <NavLink to={'/login'} className={style.container_main_form_login_question_link}>
+                    Log in
+                  </NavLink>
+                </p>
+              )
+              : (<p>{props.user.firstName} {props.user.lastName}</p>)
+            }
           </div>
           <div className={style.container_main_form_container}>
             <p className={style.container_main_form_container_title}>

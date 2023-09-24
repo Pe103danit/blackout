@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import HeaderContainer from './pages/Header/headerContainer';
+import HeaderContainer from './components/Header/headerContainer';
 import HomeContainer from './pages/Home/homeContainer'
 import Shop from './pages/Shop/Shop'
 import Offers from './pages/Offers/Offers'
@@ -13,7 +13,7 @@ import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
-import FooterContainer from './pages/Footer/footerContainer';
+import FooterContainer from './components/Footer/footerContainer';
 import SignUp from './pages/SignUp/SignUp'
 import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import Account from './pages/Account/Account';

@@ -33,9 +33,8 @@ export const ProductCard = () => {
   const [specsArray, setSpecsArray] = useState([])
   const [isSpinner, setSpinner] = useState(true)
   const [isClicked, setClicked] = useState(false)
-  const [isOpenCartWindow, setOpenCartWindow] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-
+  const isOpenCartWindow = useSelector(state => state.ProductReducer.isOpenCartWindow)
   const themeStyle = theme ? 'light' : 'dark'
   // get one product
   const getProduct = async () => {
@@ -47,10 +46,10 @@ export const ProductCard = () => {
   useEffect(() => {
     if (isOpenCartWindow) {
       setTimeout(() => {
-        setOpenCartWindow(false)
+        dispatch(toggleProductToCart({}))
       }, 1000)
     }
-  }, [isOpenCartWindow])
+  }, [isOpenCartWindow, dispatch])
   useEffect(() => {
     if (data) {
       setProduct(data)
@@ -75,7 +74,6 @@ export const ProductCard = () => {
     window.scrollTo(0, 0)
     dispatch(addToBasket(product?.itemNo, countToCart))
     dispatch(toggleProductToCart(product))
-    setOpenCartWindow(true)
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
     let repeat = false
     storageBasket = storageBasket.map(item => {
@@ -110,7 +108,7 @@ export const ProductCard = () => {
   const WishItemStatus = () => {
     dispatch(toggleWishlist(product.itemNo))
   };
-  
+
   return (
     <>{isSpinner && <Spinner />}
       {!isSpinner &&
@@ -254,11 +252,11 @@ export const ProductCard = () => {
                       >
                         {isWishlisted
                           ? (
-                          <AiTwotoneHeart className={style.product_fav_heart} />
-                        )
+                            <AiTwotoneHeart className={style.product_fav_heart} />
+                          )
                           : (
-                          <AiOutlineHeart className={style.product_fav_heart} />
-                        )}
+                            <AiOutlineHeart className={style.product_fav_heart} />
+                          )}
                       </div>
                     </div>
                     <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>

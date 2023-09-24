@@ -1,6 +1,9 @@
 @import '../../scss/mixin';
 @import '../../scss/variables';
 
+.timer {
+    display: none !important;
+}
 .shopCard {
     position: relative;
     display: flex;
@@ -21,7 +24,7 @@
         max-width: 100%;
         height: 268px;
         margin-right: auto;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         margin-left: auto;
         object-fit: cover;
 
@@ -76,7 +79,7 @@
         &__model {
             margin-top: 10px;
             color: $sixth-grey;
-            font-size: 14;
+            font-size: $fourth-size;
             text-align: center;
 
             &__darkTheme {
@@ -166,7 +169,7 @@
             display: block;
             color: $third-grey;
             @include manrope-regular;
-            font-size: 14px;
+            font-size: $fourth-size;
             text-align: center;
             text-decoration: line-through;
         }

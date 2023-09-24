@@ -12,15 +12,17 @@ import ShopCard from '../../components/ShopCard/ShopCard'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 import {
     clearAllCategoriesToFilter,
-    clearPriceFilter, clearSelectValue,
+    clearPriceFilter,
     toggleProductToCart,
+    clearSelectValue
 } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue }) => {
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue}) => {
     useEffect(() => {
         clearAllCategoriesToFilter()
         clearPriceFilter()
         clearSelectValue()
+        console.log(clearSelectValue)
     }, [clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue])
 
     const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
@@ -81,7 +83,8 @@ const mapStateToProps = state => {
         productItems: state.ProductReducer.products,
         productIsLoading: state.ProductReducer.productIsLoading,
         isOpenCartWindow: state.ProductReducer.isOpenCartWindow,
-        priceFilter: state.ProductReducer.priceFilter
+        priceFilter: state.ProductReducer.priceFilter,
+        selectValue: state.ProductReducer.selectValue
     };
 };
 
