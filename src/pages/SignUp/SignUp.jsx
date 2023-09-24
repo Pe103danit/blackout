@@ -5,6 +5,7 @@ import { object, string, ref } from 'yup';
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
+import { useSelector } from 'react-redux';
 const signUpSchema = object({
   email: string().email().required('Email is required'),
   password: string().required('Password is required').min(7, 'Too Short!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
@@ -15,6 +16,10 @@ const signUpSchema = object({
 });
 
 const SignUp = () => {
+  const theme = useSelector(state => state.UIStateReducer.lightTheme)
+  const inputStyle = theme
+    ? 'lightInput'
+    : 'darkInput'
   const signUpUser = async (credentional) => {
     await instance.post('/api/customers', credentional)
   }
@@ -51,7 +56,7 @@ const SignUp = () => {
                 meta,
               }) => (
                 <div className={style.SignUp_form_group_input_wrapper}>
-                  <input type='text' {...field} />
+                  <input type='text' {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -62,14 +67,14 @@ const SignUp = () => {
 
           <div className={style.SignUp_form_group}>
             <label htmlFor='first-name' className={style.SignUp_form_group_label}>First name</label>
-            <Field name='firstName'>
+            <Field name='firstName' >
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div className={style.SignUp_form_group_input_wrapper}>
-                  <input type='text' {...field} />
+                  <input type='text' {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -80,14 +85,14 @@ const SignUp = () => {
 
           <div className={style.SignUp_form_group}>
             <label htmlFor='last-name' className={style.SignUp_form_group_label}>Last name</label>
-            <Field name='lastName'>
+            <Field name='lastName' >
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div className={style.SignUp_form_group_input_wrapper}>
-                  <input type='text' {...field} />
+                  <input type='text' {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -98,14 +103,14 @@ const SignUp = () => {
 
           <div className={style.SignUp_form_group}>
             <label htmlFor='email' className={style.SignUp_form_group_label}>Email</label>
-            <Field name='email'>
+            <Field name='email' >
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div className={style.SignUp_form_group_input_wrapper}>
-                  <input type='text' {...field} />
+                  <input type='text' {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -116,8 +121,8 @@ const SignUp = () => {
 
           <div className={style.SignUp_form_group}>
             <label htmlFor='password' className={style.SignUp_form_group_label}>Password</label>
-            {!isPasswordShow && <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.SignUp_form_group_eye}/>}
-            {isPasswordShow && <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.SignUp_form_group_eye}/>}
+            {!isPasswordShow && <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.SignUp_form_group_eye} />}
+            {isPasswordShow && <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.SignUp_form_group_eye} />}
             <Field name='password' >
               {({
                 field,
@@ -125,7 +130,7 @@ const SignUp = () => {
                 meta,
               }) => (
                 <div className={style.SignUp_form_group_input_wrapper}>
-                  <input type={(isPasswordShow) ? 'text' : 'password'} {...field} />
+                  <input type={(isPasswordShow) ? 'text' : 'password'} {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}
@@ -136,16 +141,16 @@ const SignUp = () => {
 
           <div className={style.SignUp_form_group}>
             <label htmlFor='confirm-password' className={style.SignUp_form_group_label}>Confirm Password</label>
-            {!isConfirmPasswordShow && <AiOutlineEyeInvisible onClick={() => setConfirmPasswordShow(true)} className={style.SignUp_form_group_eye}/>}
-            {isConfirmPasswordShow && <AiOutlineEye onClick={() => setConfirmPasswordShow(false)} className={style.SignUp_form_group_eye}/>}
-            <Field name='confirmPassword'>
+            {!isConfirmPasswordShow && <AiOutlineEyeInvisible onClick={() => setConfirmPasswordShow(true)} className={style.SignUp_form_group_eye} />}
+            {isConfirmPasswordShow && <AiOutlineEye onClick={() => setConfirmPasswordShow(false)} className={style.SignUp_form_group_eye} />}
+            <Field name='confirmPassword' >
               {({
                 field,
                 form: { touched, errors },
                 meta,
               }) => (
                 <div className={style.SignUp_form_group_input_wrapper}>
-                  <input type={(isConfirmPasswordShow) ? 'text' : 'password'} {...field} />
+                  <input type={(isConfirmPasswordShow) ? 'text' : 'password'} {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
                   {meta.touched && meta.error && (
                     <div className={style.SignUp_form_group_error}>{meta.error}</div>
                   )}

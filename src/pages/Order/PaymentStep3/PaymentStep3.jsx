@@ -32,7 +32,6 @@ const PaymentStep3 = (props) => {
   const newSubscriber = props.email
 
   const mutation = useMutation(newOrder => {
-    console.log(newOrder, 777);
     return instance.post('api/orders', newOrder)
   },
     {

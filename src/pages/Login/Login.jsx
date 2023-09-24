@@ -14,9 +14,9 @@ const loginSchema = object({
 
 const Login = () => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-    const inputStyle = theme
-        ? 'lightInput'
-        : 'darkInput'
+  const inputStyle = theme
+    ? 'lightInput'
+    : 'darkInput'
   const token = useSelector(state => state.SessionReducer.token)
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -74,6 +74,7 @@ const Login = () => {
           <div className={style.Login_form_group}>
             <label htmlFor='loginOrEmail' className={style.Login_form_group_label}>Email</label>
             <Field
+              className={`${style.Login_form_group_input} ${inputStyle} ${theme ? '' : style.Login_darkInput}`}
               id='loginOrEmail'
               name='loginOrEmail'
               type='loginOrEmail'
@@ -84,7 +85,11 @@ const Login = () => {
             <label htmlFor='password' className={style.Login_form_group_label}>Password</label>
             {!isPasswordShow && <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.Login_form_group_eye} />}
             {isPasswordShow && <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.Login_form_group_eye} />}
-            <Field id='password' type={(isPasswordShow) ? 'text' : 'password'} name='password' />
+            <Field
+              className={`${style.Login_form_group_input} ${inputStyle} ${theme ? '' : style.Login_darkInput}`}
+              id='password'
+              type={(isPasswordShow) ? 'text' : 'password'}
+              name='password' />
             {err && <span className={style.Login_form_group_err}>{err}</span>}
           </div>
           <p className={style.Login_form_SignUp}>If you don't have account <NavLink to='/sign_up' className={style.Login_form_SignUp_text}>Sign up</NavLink> </p>

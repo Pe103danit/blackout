@@ -4,6 +4,9 @@
     max-width: 400px;
     margin: 0 auto;
     margin-top: 20px;
+    &_darkInput{
+        color: white !important;
+    }
     &_form{
         display: flex;
         flex-direction: column;

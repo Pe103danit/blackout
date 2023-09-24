@@ -33,8 +33,6 @@ const OrderReducer = (state = initialState, { type, payload }) => {
       }
 
     case types.SET_PAYMENT:
-      console.log(state, 99);
-      console.log(payload, 88);
       return {
         ...state,
         ...payload

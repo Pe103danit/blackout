@@ -10,7 +10,6 @@ const initialState = { orderList: null, orderIsLoading: true }
 const OrderListReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.SET_ORDER_LIST:
-            console.log(action.payload);
             if (!action.payload) {
                 return { ...state, orderList: action.payload, orderIsLoading: true }
             }

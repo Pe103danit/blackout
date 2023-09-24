@@ -23,7 +23,6 @@ export const setToken = (token) => (
 const SessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_USER:
-      console.log(action.payload);
       if (!action.payload) {
         return { ...state, user: action.payload, userIsLoading: true }
       }

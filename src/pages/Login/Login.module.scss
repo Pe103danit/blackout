@@ -5,6 +5,9 @@
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 40px;
+    &_darkInput{
+        color: white !important;
+    }
     &_form{
         display: flex;
         flex-direction: column;
@@ -32,6 +35,7 @@
             outline: none;
         }
         &_group{
+            max-width: 290px;
             position: relative;
             margin-bottom: 32px;
             font-size: 16px;
@@ -52,7 +56,8 @@
                 left: 0;
                 color: $red;
             }
-            input{
+            &_input{
+                background-color: transparent;
                 width: 90%;
                 padding: 10px;
                 font-size: 16px;
