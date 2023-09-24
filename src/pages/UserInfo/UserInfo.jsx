@@ -9,9 +9,6 @@ const UserInfo = () => {
     const wrapperStyle = theme
         ? 'lightWrapper'
         : 'darkWrapper'
-        const navStyle = theme
-        ? 'lightNav'
-        : 'darkNav'
     const dispatch = useDispatch()
     const user = useSelector(state => state.SessionReducer.user)
     const userIsLoading = useSelector(state => state.SessionReducer.userIsLoading)
