@@ -29,7 +29,7 @@ const UserInfo = () => {
         
               getUser();
         }
-    }, [user, dispatch])
+    }, [user, token, dispatch])
     return (
         <>  {userIsLoading && <Spinner />}
             {!userIsLoading &&
