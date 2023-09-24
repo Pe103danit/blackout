@@ -810,3 +810,27 @@ export const SaleIcon = () => {
     </svg>
   )
 }
+
+export const ArrowUp = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12.0002 3.58569L19.4144 10.9999L18.0002 12.4141L13.0002 7.41412V19.9999H11.0002V7.41412L6.00015 12.4141L4.58594 10.9999L12.0002 3.58569Z" fill="black"/></svg>
+  )
+}
+
+export const ArrowDown = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12.0002 20.4142L19.4144 13L18.0002 11.5858L13.0002 16.5858V4H11.0002V16.5858L6.00015 11.5858L4.58594 13L12.0002 20.4142Z" fill="black"/></svg>
+  )
+}
+
+export const ArrowLeft = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8.00015 6.58569L2.58594 11.9999L8.00015 17.4141L9.41436 15.9999L6.41437 12.9999L21.0002 12.9999V10.9999L6.41436 10.9999L9.41436 7.99991L8.00015 6.58569Z" fill="black"/></svg>
+  )
+}
+
+export const ArrowRight = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 6.58569L21.4142 11.9999L16 17.4141L14.5858 15.9999L17.5858 12.9999L3 12.9999L3 10.9999L17.5858 10.9999L14.5858 7.99991L16 6.58569Z" fill="black"/></svg>
+  )
+}

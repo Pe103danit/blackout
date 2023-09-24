@@ -2,9 +2,6 @@
 
 .offers {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
 
     &__title {
         margin: 55px 0 32px;
@@ -33,20 +30,34 @@
 }
 
 @media screen and (min-width: $tab-mobileFirst) {
-    .offers__sale {
-        top: -50px;
-        left: -20px;
+    .offers {
+        &__container {
+            padding: 20px 35px;
+        }
 
-        svg {
-            width: 150px;
-            height: 150px;
+        &__sale {
+            top: -50px;
+            left: -20px;
+
+            svg {
+                width: 150px;
+                height: 150px;
+            }
         }
     }
 
     .offers__container {
         display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 20px 35px;
+    }
+}
+
+@media screen and (min-width: 650px) {
+    .offers__container {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        padding: 20px 55px;
+        padding: 20px 35px;
     }
 }
 
@@ -60,6 +71,7 @@
         grid-template-columns: repeat(3, 1fr);
         width: 90%;
         max-width: 1200px;
-        margin: 0 auto;
+        margin: auto;
+        padding: 20px 55px;
     }
 }
