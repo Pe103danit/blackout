@@ -1,0 +1,107 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+.userOrderItem {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding: 20px 10px 10px;
+
+    &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 1px;
+        background: $black;
+        opacity: 15%;
+        content: "";
+    }
+
+    &__checkbox {
+        input {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__image {
+        width: 88px;
+        height: 88px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__description {
+        width: 230px;
+
+        &__link {
+            &_type {
+                color: #03060B;
+                font-size: $third-size;
+                @include manrope-bold();
+
+                &__darkTheme {
+                    color: $white;
+                }
+            }
+
+            &_model {
+                padding-top: 20px;
+                color: #757575;
+                @include manrope-light();
+
+                &__darkTheme {
+                    color: $seventh-grey;
+                }
+            }
+        }
+    }
+
+    &__leftBlock {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80px;
+        height: 90px;
+
+        &__price {
+            font-weight: $big-weight;
+        }
+
+        &__btn {
+            padding: 0;
+            text-align: left;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            @include manrope-regular();
+
+            &__darkTheme {
+                color: $white;
+            }
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $tab-mobileFirst) {
+    .userOrderItem {
+        flex-wrap: nowrap;
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: $desktop-mobileFirst) {
+    .userOrderItem {
+        width: 68%;
+    }
+}

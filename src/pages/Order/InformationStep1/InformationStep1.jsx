@@ -27,10 +27,10 @@ const InformationStep1 = (props) => {
   const formik = useFormik({
     initialValues: {
       country: 'USA',
-      firstName: props.user.firstName || '',
-      lastName: props.user.lastName || '',
+      firstName: props.user?.firstName || '',
+      lastName: props.user?.lastName || '',
       phone: '',
-      email: props.user.email || ''
+      email: props.user?.email || ''
     },
     onSubmit: values => {
       const fullForm = {...values, phone: phoneInput, isSubscribed}
@@ -103,17 +103,17 @@ const InformationStep1 = (props) => {
           <ul className={style.container_main_nav_list}>
             <li className={style.container_main_nav_list_item}>
               <NavLink to={'/basket'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
-                Cart >
+                Cart &gt;
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
               <p className={style.container_main_nav_list_item_link}>
-                Information >
+                Information &gt;
               </p>
             </li>
             <li className={style.container_main_nav_list_item}>
               <p className={`${style.container_main_nav_list_item_link} ${style.unknown}`}>
-                Shipping >
+                Shipping &gt;
               </p>
             </li>
             <li className={style.container_main_nav_list_item}>

@@ -2,9 +2,13 @@
 
 .UserInfo{
     max-width: 900px;
-    height: 100vh;
     margin: 0 auto;
     margin-top: 100px;
+    margin-bottom: 100px;
+    &_darkWrapper{
+        background-color: #000000 !important ;
+        box-shadow: 0 4px 16px #ccc;
+    }
     &_wrapper{
         padding: 80px 80px 150px 80px;
         background-color: white;
@@ -16,6 +20,15 @@
         }
         &_item{   
             padding-top: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: $mobile) {
+    .UserInfo{
+        &_wrapper{
+            padding: 50px 45px 80px 45px;
+           
         }
     }
 }

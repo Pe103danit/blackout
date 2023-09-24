@@ -29,7 +29,7 @@ import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Con
 import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
-import UserOrders from './pages/UserOrder/UserOrder';
+import UserOrder from './pages/UserOrder/UserOrder';
 import WishList from './pages/WishList/WishList';
 
 const App = (props) => {
@@ -63,7 +63,6 @@ const App = (props) => {
         <Route path='/payment' element={<PaymentContainer />} />
         <Route path='/about_us' element={<AboutUsContainer />} />
         <Route path='/contacts' element={<ContactsContainer />} />
-        <Route path='/login' element={<Login />} />
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/basket' element={<BasketContainer />} />
         <Route path='/accessories' element={<ProductCategoriesContainer categoryName='Accessories' title='Accessories' />} />
@@ -80,11 +79,13 @@ const App = (props) => {
         <Route path='/site_map' element={<SiteMapContainer />} />
         <Route path='/faq' element={<FAQ />} />
         <Route path='/products/:id' element={<ProductCardPage />} />
-        <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
-        <Route path='/user_info' element={<UserInfo />} />
-        <Route path='/user_orders' element={<UserOrders />} />
+        <Route path='/login' element={<Login />} />
+        {(token) && <Route path='/user_info' element={<UserInfo />} />}
+        {(token) && <Route path='/user_orders' element={<UserOrder />} />}
         {(token) && <Route path='/account' element={<Account />} />}
+        <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
+       
       </Routes>
       <FooterContainer />
       <GoToTop />
