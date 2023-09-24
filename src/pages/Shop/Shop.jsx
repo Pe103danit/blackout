@@ -1,39 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { connect} from 'react-redux';
+import { connect, useSelector } from 'react-redux'
 import CartWindow from '../../components/CartWindow/CartWindow';
 
-// import { useParams } from 'react-router-dom';
-
-import style from './Shop.module.scss'
-import PriceSlider from '../../components/PriceSlider/PriceSlider'
-import CategorySelect from '../../components/CategorySelect/CategorySelect'
+import style from './Shop.module.scss';
+import PriceSlider from '../../components/PriceSlider/PriceSlider';
+import CategorySelect from '../../components/CategorySelect/CategorySelect';
+import SelectBar from '../../components/SelectBar/SelectBar';
 import Spinner from '../../components/Spinner/Spinner'
 import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
-import { toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer';
+import {
+    clearAllCategoriesToFilter,
+    clearPriceFilter,
+    toggleProductToCart,
+    clearSelectValue
+} from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart }) => {
-    const [currentItems, setCurrentItems] = useState(productItems.slice(0, 12));
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue}) => {
+    useEffect(() => {
+        clearAllCategoriesToFilter()
+        clearPriceFilter()
+        clearSelectValue()
+        console.log(clearSelectValue)
+    }, [clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue])
+
+    const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
     const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
     let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
 
     useEffect(() => {
-        setCurrentItems(productItems.slice(0, 12))
-    }, [productItems]);
-
-    useEffect(() => {
         if (isOpenCartWindow) {
             setTimeout(() => {
-               toggleProductToCart(null)
+                toggleProductToCart(null)
             }, 1000)
         }
     }, [isOpenCartWindow, toggleProductToCart])
-
-    const handlePageChange = (newItems) => {
-        setCurrentItems(newItems);
-    };
 
     const WishListHandler = (itemNo) => {
         if (!wishListItems.includes(itemNo)) {
@@ -42,7 +45,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
             wishListItems = wishListItems.filter(item => item !== itemNo);
         }
         wishList = wishListItems.length;
-        // console.log(wishListItems, itemNo);
+
         window.localStorage.setItem('wishListItems', JSON.stringify([...wishListItems]))
         window.localStorage.setItem('wishList', wishList)
     };
@@ -61,16 +64,16 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
         (productIsLoading === true)
             ? (<Spinner />)
             : (<div className={style.shop}>
-            
-                <PriceSlider />
+                <PriceSlider productItems={productItems} />
                 <CategorySelect />
+                <><SelectBar /></>
                 <div className={style.cardContainer}>
                     {isOpenCartWindow && <CartWindow />}
                     {currentItems.map((productItem, index) => (
                         <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
                     ))}
                 </div>
-                <PagePagination cardOnPage={12} productItems={productItems} changesOnPage={handlePageChange} />
+                <PagePagination cardOnPage={12} productItems={productItems} />
             </div>
             )
     )
@@ -79,13 +82,18 @@ const mapStateToProps = state => {
     return {
         productItems: state.ProductReducer.products,
         productIsLoading: state.ProductReducer.productIsLoading,
-        isOpenCartWindow: state.ProductReducer.isOpenCartWindow
+        isOpenCartWindow: state.ProductReducer.isOpenCartWindow,
+        priceFilter: state.ProductReducer.priceFilter,
+        selectValue: state.ProductReducer.selectValue
     };
 };
 
 const mapDispatchToProps = {
     toggleWishlist,
-    toggleProductToCart
+    toggleProductToCart,
+    clearAllCategoriesToFilter,
+    clearPriceFilter,
+    clearSelectValue
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop)

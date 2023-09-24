@@ -11,7 +11,6 @@ const mapStateToProps = (state) => ({
   basketList: state.ProductReducer.basketList,
   products: state.ProductReducer.products,
   user: state.SessionReducer.user,
-  token: state.SessionReducer.token,
   ...state.OrderReducer
 });
 

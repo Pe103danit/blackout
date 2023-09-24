@@ -16,6 +16,8 @@ const initialState = {
   powerBanks: [],
   powerBanksIsLoading: true,
   product: {},
+  priceFilter: [],
+  selectValue: ''
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -89,25 +91,6 @@ const deleteBasketItemR = (state, payload) => {
   })
 }
 
-const filterProducts = (state, payload) => {
-  let result = [];
-  console.log(state.categories);
-  if (Array.isArray(state.categories)) {
-    const categories = state.categories.map((cat) => {
-      return cat.toLowerCase()
-    });
-    result = payload.filter((product) => {
-      console.log(state.categories.includes(product.categories));
-      console.log(product.categories);
-      return !!categories.includes(product.categories.toLowerCase());
-    })
-  } else {
-    result = payload
-  }
-  console.log(result)
-  return result
-}
-
 const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT:
@@ -117,13 +100,17 @@ const productReducer = (state = initialState, { type, payload }) => {
 
     case GET_ALL_PRODUCTS:
       return {
-        ...state, products: [...filterProducts(state, payload)], productIsLoading: false
+        ...state, products: [...payload], productIsLoading: false
       }
 
     case types.ADD_CATEGORY_TO_FILTER:
-      console.log('ADD_CATEGORY_TO_FILTER');
       return {
         ...state, categories: [...payload]
+      }
+
+    case types.CLEAR_ALL_CATEGORIES_TO_FILTER:
+      return {
+        ...state, categories: []
       }
 
     case types.ADD_TO_BASKET:
@@ -162,11 +149,40 @@ const productReducer = (state = initialState, { type, payload }) => {
         totalBasketSum: 0
       }
 
-    case types.GET_PRODUCTS_PER_PAGE:
+    case types.GET_PRODUCTS_PER_PAGE: {
       return {
         ...state,
         productsPerPage: [...payload]
       }
+    }
+
+    case types.SET_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: [...payload]
+      }
+    }
+
+    case types.CLEAR_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: []
+      }
+    }
+
+    case types.SET_SELECT_VALUE:
+      return {
+        ...state,
+        selectValue: payload,
+      };
+
+    case types.CLEAR_SELECT_VALUE: {
+      console.log('clear')
+      return {
+        ...state,
+        selectValue: ''
+      }
+    }
 
     default:
       return state
@@ -177,10 +193,6 @@ export const getProducts = (productsList) => ({
   type: GET_ALL_PRODUCTS,
   payload: productsList
 })
-export const getProductById = (product) => ({
-  type: typesOfProducts.GET_PRODUCT,
-  payload: product
-})
 
 export const addToBasket = (idCandidate, count) => ({
   type: types.ADD_TO_BASKET,
@@ -190,6 +202,10 @@ export const addToBasket = (idCandidate, count) => ({
 export const addCategoryToFilter = (categories) => ({
   type: types.ADD_CATEGORY_TO_FILTER,
   payload: categories
+})
+
+export const clearAllCategoriesToFilter = () => ({
+  type: types.CLEAR_ALL_CATEGORIES_TO_FILTER
 })
 
 export const updateBasket = (listCandidate) => ({
@@ -217,6 +233,24 @@ export const successfulOrder = () => ({
 export const getProductsPerPage = (productsList) => ({
   type: types.GET_PRODUCTS_PER_PAGE,
   payload: productsList
+})
+
+export const setPriceFilter = (currentPrice) => ({
+  type: types.SET_PRICE_FILTER,
+  payload: currentPrice
+})
+
+export const clearPriceFilter = () => ({
+  type: types.CLEAR_PRICE_FILTER
+})
+
+export const setSelectValue = (value) => ({
+  type: types.SET_SELECT_VALUE,
+  payload: value
+});
+
+export const clearSelectValue = () => ({
+  type: types.CLEAR_SELECT_VALUE
 })
 
 export default productReducer

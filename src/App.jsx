@@ -1,20 +1,19 @@
 import { Routes, Route } from 'react-router-dom';
-import HeaderContainer from './pages/Header/headerContainer';
+import HeaderContainer from './components/Header/headerContainer';
 import HomeContainer from './pages/Home/homeContainer'
 import Shop from './pages/Shop/Shop'
 import Offers from './pages/Offers/Offers'
 import DeliveryContainer from './pages/Delivery/DeliveryContainer'
 import PaymentContainer from './pages/Payment/PaymentContainer'
-import AboutUs from './pages/AboutUs/AboutUs'
+import AboutUsContainer from './pages/AboutUs/AboutUsContainer'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
-import WishList from './pages/WishList/WishList'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
-import FooterContainer from './pages/Footer/footerContainer';
+import FooterContainer from './components/Footer/footerContainer';
 import SignUp from './pages/SignUp/SignUp'
 import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import Account from './pages/Account/Account';
@@ -31,6 +30,7 @@ import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Conta
 import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
 import UserInfo from './pages/UserInfo/UserInfo';
 import UserOrder from './pages/UserOrder/UserOrder';
+import WishList from './pages/WishList/WishList';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -61,7 +61,7 @@ const App = (props) => {
         <Route path='/offers' element={<Offers />} />
         <Route path='/delivery' element={<DeliveryContainer />} />
         <Route path='/payment' element={<PaymentContainer />} />
-        <Route path='/about_us' element={<AboutUs />} />
+        <Route path='/about_us' element={<AboutUsContainer />} />
         <Route path='/contacts' element={<ContactsContainer />} />
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/basket' element={<BasketContainer />} />

@@ -18,6 +18,9 @@
     }
 }
 @media screen and (max-width: $tab) {
+    .container {
+        padding: 30px 70px 30px 70px;
+    }
     .slider {
         width: 100%;
         font-size: 24px;
