@@ -27,7 +27,9 @@ const UserOrder = () => {
   }, [token, dispatch]);
   const dateHelper = (date) => {
     const newDate = new Date(date)
-    return `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()} ${newDate.getHours()}.${newDate.getMinutes()}`
+    const min = newDate.getMinutes().toString()
+    const minutes = (min.length < 2) ? `0${min}` : `${min}`
+    return `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()} ${newDate.getHours()}:${minutes}`
   }
   return (
     <>
@@ -53,7 +55,7 @@ const UserOrder = () => {
                 }
               </div>
             </li>
-        ))}</ul>}
+          ))}</ul>}
         </>
       )}
       <div>

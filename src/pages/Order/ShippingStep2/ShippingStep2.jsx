@@ -61,17 +61,17 @@ const ShippingStep2 = (props) => {
           <ul className={style.container_main_nav_list}>
             <li className={style.container_main_nav_list_item}>
               <NavLink to={'/basket'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
-                Cart >
+                Cart &gt;
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
               <NavLink to={'/information'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
-                Information >
+                Information &gt;
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
               <p className={style.container_main_nav_list_item_link}>
-                Shipping >
+                Shipping &gt;
               </p>
             </li>
             <li className={style.container_main_nav_list_item}>

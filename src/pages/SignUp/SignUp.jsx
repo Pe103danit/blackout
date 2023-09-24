@@ -153,7 +153,7 @@ const SignUp = () => {
               )}
             </Field>
           </div>
-          <p className={style.SignUp_form_SignUp}>You already have account <NavLink to='/Login'>Sign in</NavLink> </p>
+          <p className={style.SignUp_form_SignIn}>You already have account <NavLink to='/Login' className={style.SignUp_form_SignIn_text}>Sign in</NavLink> </p>
           <button type='submit' className={style.SignUp_form_button}>Submit</button>
         </Form>
       </Formik>

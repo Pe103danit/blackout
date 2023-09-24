@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { Formik, Field, Form } from 'formik';
 import style from './Login.module.scss'
 import { object, string } from 'yup';
-import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, Navigate } from 'react-router-dom'
 import { setToken, setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
@@ -14,6 +13,10 @@ const loginSchema = object({
 });
 
 const Login = () => {
+  const theme = useSelector(state => state.UIStateReducer.lightTheme)
+    const inputStyle = theme
+        ? 'lightInput'
+        : 'darkInput'
   const token = useSelector(state => state.SessionReducer.token)
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -84,7 +87,7 @@ const Login = () => {
             <Field id='password' type={(isPasswordShow) ? 'text' : 'password'} name='password' />
             {err && <span className={style.Login_form_group_err}>{err}</span>}
           </div>
-          <p className={style.Login_form_SignUp}>If you don't have account <NavLink to='/sign_up'>Sign up</NavLink> </p>
+          <p className={style.Login_form_SignUp}>If you don't have account <NavLink to='/sign_up' className={style.Login_form_SignUp_text}>Sign up</NavLink> </p>
           <button type='submit' className={style.Login_form_button}>Submit</button>
         </Form>
       </Formik>
