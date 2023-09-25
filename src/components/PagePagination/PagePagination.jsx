@@ -6,7 +6,7 @@ import { setCategories } from './setCategories'
 import style from './PagePagination.module.scss'
 import { instance } from '../assets/axiosUrl'
 import { getProductsPerPage } from '../../redux/reducers/ProductReducer/ProductReducer'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 const PagePagination = ({ cardOnPage, productItems }) => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -15,6 +15,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const dispatch = useDispatch()
   const queryClient = useQueryClient()
   const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams();
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const categorySelectFilter = useSelector(state => state.ProductReducer.categories)
   const priceFilter = useSelector(state => state.ProductReducer.priceFilter)
@@ -51,7 +52,15 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     }
 
     const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}${selectValueData}`)
+
     setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
+    if (req.queryKey[1] === 1) {
+      setSearchParams(`${queryCategorySelectFilterString}${priceReq}${selectValueData}`)
+    } else {
+      setSearchParams(`${queryCategorySelectFilterString}${priceReq}page=${req.queryKey[1]}${selectValueData}`)
+      console.log(searchParams)
+    }
+
     return data.products
   }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq, selectValueData])
 
