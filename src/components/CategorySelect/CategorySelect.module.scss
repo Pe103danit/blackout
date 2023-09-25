@@ -1,0 +1,46 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+.checkbox {
+    display: flex;
+    justify-content: space-evenly;
+    width: 85%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+
+    &__item {
+        padding-right: 10px;
+
+        &__text {
+            padding-left: 5px;
+            color: $third-grey;
+            font-size: $third-size;
+            vertical-align: text-top;
+        }
+    }
+}
+@media screen and (max-width: $tab) {
+    .checkbox {
+        flex-direction: column;
+        &__item {
+            padding-top: 15px;
+            &__text {
+                padding-left: 15px;
+                font-size: 24px;
+            }
+        }
+    }
+}
+@media screen and (max-width: $mobile) {
+    .checkbox {
+        width: 90%;
+        padding-left: 55px;
+        &__item {
+            &__text {
+                padding-left: 10px;
+                font-size: $third-size;
+            }
+        }
+    }
+}

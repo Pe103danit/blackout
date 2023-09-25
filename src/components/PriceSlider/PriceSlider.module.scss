@@ -1,0 +1,36 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 70px;
+}
+.slider {
+    width: 50%;
+    font-size: $third-size;
+    text-align: center;
+
+    &__range {
+        padding: 50px 0 20px;
+    }
+}
+@media screen and (max-width: $tab) {
+    .container {
+        padding: 30px 70px 30px 70px;
+    }
+    .slider {
+        width: 100%;
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: $mobile) {
+    .slider {
+        font-size: $fourth-size;
+        &__range {
+            padding-top: 25px;
+        }
+    }
+}

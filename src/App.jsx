@@ -1,36 +1,40 @@
 import { Routes, Route } from 'react-router-dom';
-import HeaderContainer from './pages/Header/headerContainer';
+import HeaderContainer from './components/Header/headerContainer';
 import HomeContainer from './pages/Home/homeContainer'
 import Shop from './pages/Shop/Shop'
 import Offers from './pages/Offers/Offers'
-import Delivery from './pages/Delivery/Delivery'
-import Payment from './pages/Payment/Payment'
-import AboutUs from './pages/AboutUs/AboutUs'
+import DeliveryContainer from './pages/Delivery/DeliveryContainer'
+import PaymentContainer from './pages/Payment/PaymentContainer'
+import AboutUsContainer from './pages/AboutUs/AboutUsContainer'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
-import WishList from './pages/WishList/WishList'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import NotFoundPageContainer from './pages/NotFoundPage/NotFoundPageContainer'
 import PromoBaner from './components/PromoBaner/PromoBaner';
-import FooterContainer from './pages/Footer/footerContainer';
+import FooterContainer from './components/Footer/footerContainer';
 import SignUp from './pages/SignUp/SignUp'
 import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import Account from './pages/Account/Account';
+import FAQ from './pages/FAQ/FAQ';
 import { instance } from './components/assets/axiosUrl'
 import { useQuery } from 'react-query'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react'
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
 import GoToTop from './components/GoToTop/GoToTop'
 import BasketContainer from './pages/Basket/BasketContainer'
-import OrderContainer from './pages/Order/InformationStep1/InformationStep1Container'
+import InformationStep1Container from './pages/Order/InformationStep1/InformationStep1Container'
+import ShippingStep2Container from './pages/Order/ShippingStep2/ShippingStep2Container'
+import PaymentStep3Container from './pages/Order/PaymentStep3/PaymentStep3.Container'
+import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOrderContainer'
+import UserInfo from './pages/UserInfo/UserInfo';
+import UserOrder from './pages/UserOrder/UserOrder';
+import WishList from './pages/WishList/WishList';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
-  const user = useSelector(state => state.SessionReducer.user)
-  const [token, setToken] = useState(null)
+  const token = props.token
   const getSwiperProducts = async () => {
     const { data } = await instance.get('/api/products')
     return data
@@ -42,22 +46,23 @@ const App = (props) => {
     }
   }, [data, props])
   useEffect(() => {
-    const token = localStorage.getItem('Signature')
-    setToken(token)
-  }, [])
+    const token = localStorage.getItem('tokenParts')
+    if (token) {
+      props.setToken(token)
+    }
+  }, [props])
   return (
     <div className={themeStyle}>
       <PromoBaner />
       <HeaderContainer />
       <Routes>
-        <Route path='/' element={<HomeContainer />} />
+        <Route index path='/' element={<HomeContainer />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/offers' element={<Offers />} />
-        <Route path='/delivery' element={<Delivery />} />
-        <Route path='/payment' element={<Payment />} />
-        <Route path='/about_us' element={<AboutUs />} />
+        <Route path='/delivery' element={<DeliveryContainer />} />
+        <Route path='/payment' element={<PaymentContainer />} />
+        <Route path='/about_us' element={<AboutUsContainer />} />
         <Route path='/contacts' element={<ContactsContainer />} />
-        <Route path='/login' element={<Login />} />
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/basket' element={<BasketContainer />} />
         <Route path='/accessories' element={<ProductCategoriesContainer categoryName='Accessories' title='Accessories' />} />
@@ -67,12 +72,20 @@ const App = (props) => {
         <Route path='/solar_panels' element={<ProductCategoriesContainer categoryName='Solar Panels' title='Solar Panels' />} />
         <Route path='cart' element={<Cart />} />
         <Route path='/policies/privacy-policy' element={<PrivacyPolicy />} />
-        <Route path='/order' element={<OrderContainer />} />
+        <Route path='/information' element={<InformationStep1Container />} />
+        <Route path='/shipping' element={<ShippingStep2Container />} />
+        <Route path='/finish_order' element={<PaymentStep3Container />} />
+        <Route path='/success' element={<SuccessfulOrderContainer />} />
         <Route path='/site_map' element={<SiteMapContainer />} />
+        <Route path='/faq' element={<FAQ />} />
         <Route path='/products/:id' element={<ProductCardPage />} />
-        <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
         <Route path='/sign_up' element={<SignUp />} />
-        {(token || user) && <Route path='/account' element={<Account />} />}
+        <Route path='/login' element={<Login />} />
+        {(token) && <Route path='/user_info' element={<UserInfo />} />}
+        {(token) && <Route path='/user_orders' element={<UserOrder />} />}
+        {(token) && <Route path='/account' element={<Account />} />}
+        <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
+       
       </Routes>
       <FooterContainer />
       <GoToTop />

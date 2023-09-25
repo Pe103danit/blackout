@@ -1,6 +1,9 @@
 @import '../../scss/mixin';
 @import '../../scss/variables';
 
+.timer {
+    display: none !important;
+}
 .shopCard {
     position: relative;
     display: flex;
@@ -15,36 +18,13 @@
         box-shadow: 0 0 18px rgba(255, 255, 255, .4);
     }
 
-    &:hover {
-        .shopCard__description__order__btn {
-            display: block;
-        }
-
-        .shopCard__description__order__cart {
-            display: none;
-        }
-
-        .shopCard__description__order__price {
-            display: none;
-        }
-
-        .shopCard__imgBlock__img1 {
-            opacity: 0;
-        }
-
-        .shopCard__imgBlock__img2 {
-            opacity: 1;
-        }
-
-    }
-
     &__imgBlock {
         position: relative;
         width: 268px;
         max-width: 100%;
         height: 268px;
         margin-right: auto;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         margin-left: auto;
         object-fit: cover;
 
@@ -99,7 +79,7 @@
         &__model {
             margin-top: 10px;
             color: $sixth-grey;
-            font-size: 14;
+            font-size: $fourth-size;
             text-align: center;
 
             &__darkTheme {
@@ -142,16 +122,28 @@
             &__wishList {
                 position: absolute;
                 top: 7%;
-                right: 2%;
-                width: 30px;
-                background-color: transparent;
+                right: -5%;
+                display: flex;
+                justify-content: center;
+                box-sizing: border-box;
+                padding: 7px;
                 border: none;
+                border-radius: 50%;
                 transform: translate(-50%, -50%);
+
+                &--backgroundWhite {
+                    background-color: transparent;
+                }
+
+                &--backgroundBlack {
+                    background-color: transparent;
+                }
 
                 svg {
                     width: 30px;
                     height: 30px;
                 }
+
             }
 
             &__cart {
@@ -165,20 +157,33 @@
                 transform: translate(-50%, -50%);
 
                 svg {
-                    width: 30px;
-                    height: 30px;
+                    width: 35px;
+                    height: 35px;
                 }
             }
         }
+
+        &__prevPrice {
+            position: relative;
+            top: 20px;
+            display: block;
+            color: $third-grey;
+            @include manrope-regular;
+            font-size: $fourth-size;
+            text-align: center;
+            text-decoration: line-through;
+        }
     }
 
-
+    &__priceColorRed {
+        color: $red;
+    }
 }
 
 @media screen and (min-width: 481px) {
     .shopCard {
         &__imgBlock {
-           
+
             &__img1 {
                 width: 368px;
             }
@@ -195,6 +200,7 @@
         &__imgBlock {
             width: 250px;
             height: 250px;
+
             &__img1 {
                 width: 250px;
                 height: 250px;
@@ -205,8 +211,40 @@
                 height: 250px;
             }
         }
+
         &__description__order__cart {
             display: none;
+        }
+
+        &:hover {
+            .shopCard__description__order__btn {
+                display: block;
+
+                &__hoverDisable {
+                    display: none;
+                }
+            }
+
+            .shopCard__description__order__cart {
+                display: none;
+            }
+
+            .shopCard__description__order__price {
+                display: none;
+
+                &__hoverDisable {
+                    display: block;
+                }
+            }
+
+            .shopCard__imgBlock__img1 {
+                opacity: 0;
+            }
+
+            .shopCard__imgBlock__img2 {
+                opacity: 1;
+            }
+
         }
     }
 }

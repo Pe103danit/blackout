@@ -2,9 +2,12 @@
 
 .Login{
     max-width: 400px;
-    height: 100vh;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 40px;
+    &_darkInput{
+        color: white !important;
+    }
     &_form{
         display: flex;
         flex-direction: column;
@@ -14,7 +17,7 @@
         border-radius: 10px;
         box-shadow: 0 4px 16px $almost-white;
         &_title{
-            margin-bottom: 30px;
+            margin-bottom: 70px;
             font-weight: $big-weight;
             font-size: $second-size;
             text-align: center;
@@ -34,37 +37,48 @@
         &_group{
             position: relative;
             margin-bottom: 32px;
+            font-size: 16px;
             &_error{
                 padding-top: 10px;
                 color: $red;
             }            
             &_eye{
                 position: absolute;
-                top: 50%;
-                right: 5%;
+                top: 28%;
+                right: 10%;
                 width: 20px;
                 height: 20px;
             }
-        }
-        &_label{
-            position: absolute;
-            top: 0;
-            color:#9e9e9e ;
+            &_err{
+                position: absolute;
+                top: 70px;
+                left: 0;
+                color: $red;
+            }
+            &_input{
+                width: 90%;
+                padding: 10px;
+                font-size: 16px;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid $seventh-grey;
+                outline: none;          
+            }
+            input:focus{
+                border-bottom: 1px solid $blue;
+            }
+            &_label{            
+               position: absolute;
+               bottom: 45px;
+            }
         }
         &_SignUp{
             margin: 20px 0 20px 0;
             line-height: 1.3;
-        }
-        &_group input{
-            width: 90%;
-            padding: 10px;
-            background-color: transparent;
-            border: none;
-            border-bottom: 1px solid $seventh-grey;
-            outline: none;          
-        }
-        &_group input:focus{
-            border-bottom: 1px solid $blue;
+            &_text{
+                color: $red;
+                font-weight: $big-weight;
+            }
         }
 
     }

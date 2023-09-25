@@ -1,0 +1,274 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+.container {
+  position: relative;
+
+  &_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    height: 90px;
+    margin: 0 auto;
+    @include manrope-regular();
+
+    &::after {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      opacity: 15%;
+      content: "";
+    }
+
+    &_c1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 900px;
+      padding-left: 10px;
+
+      &_logos {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 190px;
+        column-gap: 5px;
+
+        &_left {
+          width: 90px;
+
+          svg {
+            width: 100%;
+            height: 55px;
+          }
+        }
+
+        &_right {
+          width: 70px;
+          background: transparent;
+          border: 0;
+          outline: none;
+          cursor: pointer;
+
+          svg {
+            width: 90%;
+            height: 55px;
+          }
+        }
+      }
+
+      &_navigation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 800px;
+        padding-left: 20px;
+
+        &_menu {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          column-gap: 35px;
+
+          &_item {
+            position: relative;
+            list-style-type: none;
+
+            &:hover > nav {
+              display: block;
+            }
+
+            &:hover {
+
+              &::after {
+                position: absolute;
+                bottom: -27px;
+                left: 0;
+                z-index: -1;
+                width: 100%;
+                height: 2px;
+                content: "";
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &_c2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 110px;
+      margin-right: 15px;
+      row-gap: 10px;
+
+      &_link {
+        position: relative;
+
+        &_button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &_container {
+            position: absolute;
+            top: -8px;
+            right: -3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            color: $white;
+            font-size: $fifth-size;
+            background: $red;
+            border-radius: 50%;
+            @include manrope-regular();
+          }
+        }
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+        }
+
+        svg {
+          width: 20px;
+          height: 20px;
+
+          &:hover {
+            fill: $third-grey;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tab) {
+  .container {
+    &_header {
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 768px;
+
+      &_c1 {
+        justify-content: flex-start;
+        width: auto;
+        column-gap: 30px;
+
+        &_navigation {
+          display: none;
+        }
+      }
+
+      &_c2 {
+        justify-content: flex-end;
+        max-width: 768px;
+        margin-right: 5px;
+        column-gap: 5px;
+
+        button {
+          width: 40px;
+
+          svg {
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        &_link {
+          &_button {
+            &_container {
+              top: -5px;
+              right: 0;
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          &_user {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .container {
+    &_header {
+      justify-content: space-between;
+      width: 100%;
+      max-width: 320px;
+
+      &_c1 {
+        max-width: 220px;
+        padding-left: 0;
+        column-gap: 5px;
+
+        &_logos {
+          width: 150px;
+          &_left {
+            width: 80px;
+          }
+          &_right {
+            width: 70px;
+          }
+        }
+      }
+
+      &_c2 {
+        justify-content: space-between;
+        max-width: 90px;
+        margin-right: 25px;
+        column-gap: 0;
+        button {
+          width: 40px;
+
+          svg {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .container {
+    &_header {
+      &_c2 {
+        button {
+          width: 34px;
+
+          svg {
+            width: 33px;
+            height: 33px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -27,7 +27,6 @@
         align-items: center;
         width: 68%;
         min-height: 696px;
-        background: $white;
         border-radius: $border;
 
         &_product {
@@ -73,14 +72,12 @@
 
             a {
               p:first-child {
-                color: $first-grey;
                 font-size: $third-size;
                 @include manrope-bold();
               }
 
               p:nth-child(2) {
                 padding-top: 20px;
-                color: $fourth-grey;
                 @include manrope-light();
               }
             }
@@ -91,39 +88,32 @@
             justify-content: space-between;
 
             &_inner {
-              height: 33px;
-              border: 1px solid $second-white;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              height: 35px;
               border-radius: 3px;
 
               button {
                 width: 33px;
                 height: 33px;
                 padding: 0;
-                color: $black;
                 font-weight: $big-weight;
                 text-align: center;
-                background: $main-background;
                 border: 0 !important;
                 cursor: pointer;
-
-                &:nth-child(1) {
-                  border-top-left-radius: 3px;
-                  border-bottom-left-radius: 3px;
-                }
-
-                &:nth-child(2) {
-                  border-top-right-radius: 3px;
-                  border-bottom-right-radius: 3px;
-                }
               }
 
               input {
                 width: 33px;
                 height: 33px;
                 padding: 0;
+                font-size: $seventh-size;
                 text-align: center;
                 border: 0 !important;
+                border-radius: 0;
                 outline: 0 !important;
+                appearance: none;
               }
             }
           }
@@ -136,18 +126,15 @@
             height: 90px;
 
             p {
-              color: $black;
               font-weight: $big-weight;
             }
 
             button {
               padding: 0;
-              color: $black;
               text-align: left;
               text-decoration: underline;
               background: none;
               border: none;
-              border-bottom: black;
               @include manrope-regular();
 
               &:hover {
@@ -164,6 +151,8 @@
       }
 
       &_right {
+        position: sticky;
+        top: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -175,7 +164,6 @@
           display: flex;
           flex-direction: column;
           width: 100%;
-          background: $white;
           border-radius: $border;
 
           &_inner {
@@ -193,12 +181,10 @@
               font-size: $fourth-size;
 
               p:first-child {
-                color: $fourth-grey;
                 @include manrope-regular();
               }
 
               p:nth-child(2) {
-                color: $first-grey;
                 @include manrope-bold();
               }
             }
@@ -234,7 +220,6 @@
               }
 
               &_total {
-                color: $first-grey !important;
                 font-size: $sixth-size;
                 @include manrope-bold();
               }
@@ -256,6 +241,13 @@
                 border: none;
                 border-radius: 50px;
                 transition: background-color .3s ease, transform .3s ease;
+                a {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 100%;
+                  height: 100%;
+                }
 
                 &:hover {
                   transform: scale(1.1);
@@ -269,12 +261,8 @@
               }
 
               &_btn2 {
-                color: $first-grey;
                 @include manrope-bold();
                 text-transform: uppercase;
-                &:hover {
-                  color: $third-grey;
-                }
               }
             }
           }
@@ -283,7 +271,6 @@
         &_bottom {
           width: 100%;
           margin-top: 24px;
-          background: $white;
           border-radius: $border;
 
           &_inner {
@@ -313,14 +300,12 @@
                 width: 100%;
 
                 p:first-child {
-                  color: $black;
                   font-size: $fourth-size;
                   @include manrope-bold();
                 }
 
                 p:nth-child(2) {
                   padding-top: 10px;
-                  color: $lighter-black;
                   @include manrope-light();
                 }
               }
@@ -396,6 +381,7 @@
         }
 
         &_right {
+          position: unset;
           width: 100%;
           margin: 0 auto;
           border-radius: unset;
@@ -412,6 +398,7 @@
                     transform: none;
                   }
                 }
+
                 &_btn2 {
                   &:hover {
                     color: $first-grey;
@@ -423,6 +410,7 @@
 
           &_bottom {
             border-radius: unset;
+
             &_inner {
               &_container {
                 &_img {

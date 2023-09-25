@@ -1,19 +1,23 @@
 import types, { typesOfProducts } from '../../types/types'
-const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts;
+
+const { GET_PRODUCT, GET_ALL_PRODUCTS } = typesOfProducts
 
 const initialState = {
-  wishList: localStorage.getItem('wishList') ? parseInt(localStorage.getItem('wishList')) : 0,
-  wishListItems: localStorage.getItem('wishListItems') ? JSON.parse(localStorage.getItem('wishListItems')) : [],
   basket: localStorage.getItem('basket') ? parseInt(localStorage.getItem('basket')) : 0,
   basketList: localStorage.getItem('basketList') ? JSON.parse(localStorage.getItem('basketList')) : [],
+  basketCard: {},
   totalBasketSum: localStorage.getItem('totalBasketSum') ? parseInt(localStorage.getItem('totalBasketSum')) : 0,
   products: [],
+  isOpenCartWindow: false,
+  productsPerPage: [],
   productIsLoading: true,
   portablePowerStation: [],
   portablePowerStationIsLoading: true,
   powerBanks: [],
   powerBanksIsLoading: true,
-  product: {}
+  product: {},
+  priceFilter: [],
+  selectValue: ''
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -31,7 +35,7 @@ const getTotalSum = (productsList, basketList) => {
     }
   })
   localStorage.setItem('totalBasketSum', totalSum)
-  return Number(totalSum.toFixed(2));
+  return Number(totalSum.toFixed(2))
 }
 
 const updateBasketR = (state, payload) => {
@@ -61,12 +65,12 @@ const changeBasketCountR = (state, payload) => {
     sumCountBasket += itemBasket.countToCart
     return itemBasket
   })
-    return {
-      ...state,
-      basket: sumCountBasket,
-      basketList: newBasketList,
-      totalBasketSum: getTotalSum(state.products, newBasketList)
-    }
+  return {
+    ...state,
+    basket: sumCountBasket,
+    basketList: newBasketList,
+    totalBasketSum: getTotalSum(state.products, newBasketList)
+  }
 }
 
 const deleteBasketItemR = (state, payload) => {
@@ -93,10 +97,22 @@ const productReducer = (state = initialState, { type, payload }) => {
       return {
         ...state, product: payload, productIsLoading: false
       }
+
     case GET_ALL_PRODUCTS:
       return {
         ...state, products: [...payload], productIsLoading: false
       }
+
+    case types.ADD_CATEGORY_TO_FILTER:
+      return {
+        ...state, categories: [...payload]
+      }
+
+    case types.CLEAR_ALL_CATEGORIES_TO_FILTER:
+      return {
+        ...state, categories: []
+      }
+
     case types.ADD_TO_BASKET:
       return {
         ...state,
@@ -106,14 +122,70 @@ const productReducer = (state = initialState, { type, payload }) => {
         ],
         basket: state.basket + payload.count
       }
+
     case types.UPDATE_BASKET:
       return updateBasketR(state, payload)
+
+    case types.TOGGLE_PRODUCT_TO_CARD:
+      return { ...state, basketCard: payload, isOpenCartWindow: !state.isOpenCartWindow }
+
+    case types.IS_OPEN_CART_WINDOW:
+      return { ...state, isOpenCartWindow: true }
+
     case types.CHANGE_COUNT_BASKET:
       return changeBasketCountR(state, payload)
+
     case types.DELETE_BASKET_ITEM:
       return deleteBasketItemR(state, payload)
+
+    case types.SUCCESSFUL_ORDER:
+      localStorage.setItem('basket', '0')
+      localStorage.setItem('basketList', JSON.stringify([]))
+      localStorage.setItem('totalBasketSum', JSON.stringify(0))
+      return {
+        ...state,
+        basket: 0,
+        basketList: [],
+        totalBasketSum: 0
+      }
+
+    case types.GET_PRODUCTS_PER_PAGE: {
+      return {
+        ...state,
+        productsPerPage: [...payload]
+      }
+    }
+
+    case types.SET_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: [...payload]
+      }
+    }
+
+    case types.CLEAR_PRICE_FILTER: {
+      return {
+        ...state,
+        priceFilter: []
+      }
+    }
+
+    case types.SET_SELECT_VALUE:
+      return {
+        ...state,
+        selectValue: payload,
+      };
+
+    case types.CLEAR_SELECT_VALUE: {
+      console.log('clear')
+      return {
+        ...state,
+        selectValue: ''
+      }
+    }
+
     default:
-      return state;
+      return state
   }
 }
 
@@ -121,14 +193,19 @@ export const getProducts = (productsList) => ({
   type: GET_ALL_PRODUCTS,
   payload: productsList
 })
-export const getProductById = (product) => ({
-  type: typesOfProducts.GET_PRODUCT,
-  payload: product
-})
 
 export const addToBasket = (idCandidate, count) => ({
   type: types.ADD_TO_BASKET,
-  payload: {idCandidate, count}
+  payload: { idCandidate, count }
+})
+
+export const addCategoryToFilter = (categories) => ({
+  type: types.ADD_CATEGORY_TO_FILTER,
+  payload: categories
+})
+
+export const clearAllCategoriesToFilter = () => ({
+  type: types.CLEAR_ALL_CATEGORIES_TO_FILTER
 })
 
 export const updateBasket = (listCandidate) => ({
@@ -138,12 +215,42 @@ export const updateBasket = (listCandidate) => ({
 
 export const changeCountBasket = (id, newCountValue) => ({
   type: types.CHANGE_COUNT_BASKET,
-  payload: {id, newCountValue}
+  payload: { id, newCountValue }
 })
 
 export const deleteBasketItem = (id) => ({
   type: types.DELETE_BASKET_ITEM,
   payload: id
+})
+export const toggleProductToCart = (product) => ({
+  type: types.TOGGLE_PRODUCT_TO_CARD,
+  payload: product
+})
+export const successfulOrder = () => ({
+  type: types.SUCCESSFUL_ORDER
+})
+
+export const getProductsPerPage = (productsList) => ({
+  type: types.GET_PRODUCTS_PER_PAGE,
+  payload: productsList
+})
+
+export const setPriceFilter = (currentPrice) => ({
+  type: types.SET_PRICE_FILTER,
+  payload: currentPrice
+})
+
+export const clearPriceFilter = () => ({
+  type: types.CLEAR_PRICE_FILTER
+})
+
+export const setSelectValue = (value) => ({
+  type: types.SET_SELECT_VALUE,
+  payload: value
+});
+
+export const clearSelectValue = () => ({
+  type: types.CLEAR_SELECT_VALUE
 })
 
 export default productReducer

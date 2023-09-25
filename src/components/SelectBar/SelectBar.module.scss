@@ -1,0 +1,85 @@
+@import '../../scss/variables';
+
+.selectBar {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+
+    & span {
+        justify-self: end;
+        margin-right: 10px;
+    }
+
+    &__input {
+        height: 35px;
+        padding: 0 15px;
+        color: $black;
+        font-size: 16px;
+        line-height: 35px;
+        border: 1px #000000 solid;
+        border-radius: 3px;
+
+        &__option {
+            font-size: 16px;
+            line-height: 2 !important;
+        }
+
+        &:hover {
+            border: 2px $button-blue solid;
+        }
+
+        &__darkTheme {
+            color: $white;
+            background-color: $black;
+            border: 1px $white solid;
+            box-shadow: 0 0 18px rgba(255, 255, 255, .4);
+        }
+    }
+}
+
+@media screen and (min-width: $tab-mobileFirst) {
+    .selectBar {
+        grid-template-columns: 1fr 250px;
+        padding: 0 35px;
+    }
+}
+
+@media screen and (min-width: 650px) {
+    .selectBar {
+        padding: 0 35px;
+    }
+}
+
+@media screen and (min-width: $desktop-mobileFirst) {
+    .selectBar {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 55px;
+
+        &__input {
+            height: 35px;
+            padding: 0 5px;
+            font-size: 16px;
+            line-height: 35px;
+            border: 1px #000000 solid;
+            border-radius: 3px;
+
+            &__darkTheme {
+                color: $white;
+                background-color: $black;
+                border: 1px $white solid;
+                box-shadow: 0 0 18px rgba(255, 255, 255, .4);
+            }
+
+            &__option {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+    }
+}
