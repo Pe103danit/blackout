@@ -15,17 +15,18 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const dispatch = useDispatch()
   const queryClient = useQueryClient()
   const location = useLocation()
-  const theme = useSelector(state => state.UIStateReducer.lightTheme);
+  const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const categorySelectFilter = useSelector(state => state.ProductReducer.categories)
   const priceFilter = useSelector(state => state.ProductReducer.priceFilter)
   const categorySelectFilterString = categorySelectFilter ? categorySelectFilter.join(',') : ''
   const [queryCategorySelectFilterString, setQueryCategorySelectFilterString] = useState('')
   const selectValue = useSelector(state => state.ProductReducer.selectValue)
+  const selectValueData = selectValue || ''
 
   const priceMinReq = priceFilter[0]
   const priceMaxReq = priceFilter[1]
 
-   useEffect(() => {
+  useEffect(() => {
     setCurrentPage(1)
   }, [categorySelectFilter])
 
@@ -49,10 +50,10 @@ const PagePagination = ({ cardOnPage, productItems }) => {
       priceReq = `minPrice=${priceMinReq}&maxPrice=${priceMaxReq}&`
     }
 
-    const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}${selectValue}`)
+    const { data } = await instance.get(`/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}${selectValueData}`)
     setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
     return data.products
-  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq, selectValue])
+  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq, selectValueData])
 
   const updateListProducts = useCallback(async () => {
     await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
@@ -64,7 +65,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
       setCurrentPage(1)
       setPrevCategory(currentCategory)
     }
-    updateListProducts();
+    updateListProducts()
   }, [updateListProducts, location.pathname, prevCategory])
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
 
   useEffect(() => {
     updateListProducts()
-  }, [selectValue, updateListProducts])
+  }, [selectValueData, updateListProducts])
 
   const { data } = useQuery(
     ['products', currentPage],
@@ -111,21 +112,23 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     <div className={style.pagination}>
       <button
         className={`${style.pagination__btn} ${theme ? '' : style.pagination__btn__darkTheme} ${currentPage === 1 ? style.activePage : ''}`}
-        onClick={handlePrevPage} disabled={currentPage === 1}>Prev
+        onClick={handlePrevPage} disabled={currentPage === 1}
+      >Prev
       </button>
       {Array.from({ length: totalPages }, (_, index) => (
         <button
           key={index}
           className={`${index + 1 === currentPage ? style.activePage : ''} ${style.pagination__btn} ${theme ? '' : style.pagination__btn__darkTheme}`}
           onClick={() => handlePageChange(index + 1)}
-
         >
           {index + 1}
         </button>
       ))}
       <button
         className={`${style.pagination__btn} ${theme ? '' : style.pagination__btn__darkTheme} ${currentPage === totalPages ? style.activePage : ''}`}
-        onClick={handleNextPage} disabled={currentPage === totalPages}>Next
+        onClick={handleNextPage} disabled={currentPage === totalPages}
+      >
+        Next
       </button>
     </div>
   )
