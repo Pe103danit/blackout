@@ -10,6 +10,7 @@ import { useMutation } from 'react-query'
 import { instance } from '../../../components/assets/axiosUrl'
 import { nanoid } from 'nanoid'
 import { InputMask } from 'primereact/inputmask'
+import CryptoJS from 'crypto-js'
 
 const PaymentStep3 = (props) => {
   const themeStyle = props.lightTheme
@@ -66,6 +67,9 @@ const PaymentStep3 = (props) => {
     },
     onSubmit: async (values) => {
       await props.setPayment({ ...values })
+      const encryptedCardNumber = CryptoJS.AES.encrypt(values.cardNumber, 'secret-key').toString()
+      const encryptedExpiry = CryptoJS.AES.encrypt(values.expiry, 'secret-key').toString()
+      const encryptedCvc = CryptoJS.AES.encrypt(values.cvc, 'secret-key').toString()
       const newOrder = {
         products: orderedProducts.map(({ countToCart, ...rest }) => ({
           _id: nanoid(),
@@ -86,9 +90,9 @@ const PaymentStep3 = (props) => {
         firstName: props.firstName,
         lastName: props.lastName,
         apartment: props.apartment,
-        cardNumber: values.cardNumber,
-        expiry: values.expiry,
-        cvc: values.cvc,
+        cardNumber: encryptedCardNumber,
+        expiry: encryptedExpiry,
+        cvc: encryptedCvc,
         cardName: values.cardName,
         isSubscribed: props.isSubscribed,
         customerId: props.user?._id,

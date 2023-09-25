@@ -20,6 +20,10 @@ const Timer = () => {
 
   return (
     <div className={style.container}>
+        <div className={style.container_c1}>
+            <p>Ends</p>
+            <p>in</p>
+        </div>
       <div className={style.container_c1}>
         <p>{days}</p>
         <p>days</p>
