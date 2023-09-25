@@ -58,14 +58,11 @@ const PagePagination = ({ cardOnPage, productItems }) => {
       setSearchParams(`${queryCategorySelectFilterString}${priceReq}${selectValueData}`)
     } else {
       setSearchParams(`${queryCategorySelectFilterString}${priceReq}page=${req.queryKey[1]}${selectValueData}`)
+      console.log(searchParams)
     }
 
     return data.products
   }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq, selectValueData])
-  useEffect(() => {
-    // const currentSearchParams = searchParams.toString()
-    // console.log('Current URL search parameters:', currentSearchParams);
-  }, [searchParams]);
 
   const updateListProducts = useCallback(async () => {
     await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
