@@ -62,7 +62,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     }
 
     return data.products
-  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq, selectValueData])
+  }, [cardOnPage, location.pathname, queryCategorySelectFilterString, priceMinReq, priceMaxReq, selectValueData, searchParams, setSearchParams])
 
   const updateListProducts = useCallback(async () => {
     await queryClient.prefetchQuery(['products', currentPage], getProductsPage)
