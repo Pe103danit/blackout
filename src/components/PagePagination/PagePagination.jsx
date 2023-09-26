@@ -80,10 +80,10 @@ const PagePagination = ({ cardOnPage, productItems }) => {
         `${queryCategorySelectFilterString}${priceReq}${selectValueData}`
       );
     } else {
+      console.log(searchParams)
       setSearchParams(
         `${queryCategorySelectFilterString}${priceReq}page=${req.queryKey[1]}${selectValueData}`
       );
-      console.log(searchParams);
     }
 
     return data.products;
