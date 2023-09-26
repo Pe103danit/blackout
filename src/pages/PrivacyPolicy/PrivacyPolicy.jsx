@@ -139,6 +139,7 @@ const cookies = [
 const privacyPolicy = () => {
     return (
         <div className={style.Policy}>
+            <div className={style.Policy_position_container}>
             <h2>Privacy policy</h2>
             <h5 className={style.Policy_subtitle}>EcoFlow Services Privacy Policy</h5>
             <p className={style.Policy_text}> Last Updated: August 17, 2022</p>
@@ -413,6 +414,7 @@ const privacyPolicy = () => {
                     <p className={style.Policy_california_dif}>We welcome feedback and are happy to answer any questions you may have about your data.</p>
                 </li>
             </ol>
+            </div>
         </div>
 
     )
