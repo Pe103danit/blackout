@@ -37,7 +37,7 @@ const Header = (props) => {
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_header}>
         <div className={style.container_header_c1}>
-          <NavMenuTabletMobile/>
+          <NavMenuTabletMobile handleClearFilter={handleClearFilter}/>
           <div className={style.container_header_c1_logos}>
             <NavLink to="/" className={style.container_header_c1_logos_left}>
               {props.lightTheme
