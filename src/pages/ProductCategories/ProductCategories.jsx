@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { useQuery } from 'react-query';
+import CartWindow from '../../components/CartWindow/CartWindow';
+import Spinner from '../../components/Spinner/Spinner';
+import ShopCard from '../../components/ShopCard/ShopCard';
+import PagePagination from '../../components/PagePagination/PagePagination';
+import SelectBar from '../../components/SelectBar/SelectBar';
+import style from './ProductCategories.module.scss';
 import { instance } from '../../components/assets/axiosUrl'
-import { useQuery } from 'react-query'
-
-import CartWindow from '../../components/CartWindow/CartWindow'
-import Spinner from '../../components/Spinner/Spinner'
-import ShopCard from '../../components/ShopCard/ShopCard'
-import PagePagination from '../../components/PagePagination/PagePagination'
-import SelectBar from '../../components/SelectBar/SelectBar'
-import style from './ProductCategories.module.scss'
-import { useSelector } from 'react-redux'
 import PriceSlider from '../../components/PriceSlider/PriceSlider'
 
 const ProductCategories = ({
@@ -21,77 +20,87 @@ const ProductCategories = ({
   clearSelectValue
 }) => {
   useEffect(() => {
-    clearAllCategoriesToFilter()
-    clearPriceFilter()
-    clearSelectValue()
-  }, [clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue])
-  const [products, setProducts] = useState([])
-  const wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
-  const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
+    clearAllCategoriesToFilter();
+    clearPriceFilter();
+    clearSelectValue();
+  }, [clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue]);
 
-  const [hasScrolled, setHasScrolled] = useState(false)
+  const [products, setProducts] = useState([]);
+  const wishListItems = JSON.parse(
+    window.localStorage.getItem('wishListItems')
+  ) || [];
+  const currentItems = useSelector(
+    (state) => state.ProductReducer.productsPerPage
+  );
+
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   const getProductCategories = useCallback(async () => {
-    const { data } = await instance.get(`/api/products/filter?categories=${categoryName}`)
-    setProducts(data.products)
-    return data
-  }, [categoryName])
+    const { data } = await instance.get(`/api/products/filter?categories=${categoryName}`);
+    setProducts(data.products);
+    return data;
+  }, [categoryName]);
 
-  const { data, isLoading, isError } = useQuery('getProductCategories', getProductCategories)
+  const { data, isLoading, isError } = useQuery(
+    'getProductCategories',
+    getProductCategories
+  );
 
   useEffect(() => {
     if (data) {
-      setProducts(data.products)
+      setProducts(data.products);
     }
-  }, [data])
+  }, [data]);
+
   useEffect(() => {
     if (isOpenCartWindow) {
       setTimeout(() => {
-        toggleProductToCart(null)
-      }, 1000)
+        toggleProductToCart(null);
+      }, 1000);
     }
-  }, [isOpenCartWindow, toggleProductToCart])
+  }, [isOpenCartWindow, toggleProductToCart]);
 
   useEffect(() => {
     if (categoryName) {
-      getProductCategories()
+      getProductCategories();
     }
-  }, [categoryName, getProductCategories])
+  }, [categoryName, getProductCategories]);
 
   useEffect(() => {
     if (!hasScrolled) {
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
-      })
-      setHasScrolled(true)
+      });
+      setHasScrolled(true);
     }
-  }, [hasScrolled])
+  }, [hasScrolled]);
 
   return (
     <div className={style.productCategories}>
       <h3 className={style.productCategories__title}>{title}</h3>
-      {isOpenCartWindow && <CartWindow/>}
-      {(isLoading)
-        ? (<Spinner/>)
-        : (<>
-            <PriceSlider productItems={products}/>
-            <SelectBar/>
-            <div className={style.productCategories__container}>
-              {currentItems.map((productItem) => (
-                <ShopCard
-                  key={productItem.itemNo}
-                  productItem={productItem}
-                  isWished={wishListItems.includes(productItem.itemNo)}
-                />
-              ))}
-            </div>
-            <PagePagination cardOnPage={12} productItems={products}/>
-          </>
-        )}
+      {isOpenCartWindow && <CartWindow />}
+      {isLoading
+        ? (<Spinner />)
+        : (
+        <>
+          <PriceSlider productItems={products} />
+          <SelectBar />
+          <div className={style.productCategories__container}>
+            {currentItems.map((productItem) => (
+              <ShopCard
+                key={productItem.itemNo}
+                productItem={productItem}
+                isWished={wishListItems.includes(productItem.itemNo)}
+              />
+            ))}
+          </div>
+          <PagePagination cardOnPage={12} productItems={products} />
+        </>
+      )}
       {isError && <p>Something went wrong</p>}
     </div>
-  )
-}
+  );
+};
 
-export default ProductCategories
+export default ProductCategories;
