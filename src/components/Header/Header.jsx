@@ -28,11 +28,16 @@ const Header = (props) => {
   const navStyle = props.lightTheme
     ? 'light_navLink'
     : 'dark_navLink'
+
+  const handleClearFilter = () => {
+    props.resetFilters();
+  }
+
   return (
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_header}>
         <div className={style.container_header_c1}>
-          <NavMenuTabletMobile/>
+          <NavMenuTabletMobile handleClearFilter={handleClearFilter}/>
           <div className={style.container_header_c1_logos}>
             <NavLink to="/" className={style.container_header_c1_logos_left}>
               {props.lightTheme
@@ -53,10 +58,10 @@ const Header = (props) => {
                 <ul className={style.container_header_c1_navigation_menu}>
 
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
-                    <NavLink to={'/shop'}>
+                    <NavLink to={'/shop'} onClick={handleClearFilter}>
                       Shop
                     </NavLink>
-                    <NavMenuCategories themeStyle={props.lightTheme} />
+                    <NavMenuCategories themeStyle={props.lightTheme} handleClearFilter={handleClearFilter}/>
                   </li>
 
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
