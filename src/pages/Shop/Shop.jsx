@@ -61,21 +61,21 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
     }, [hasScrolled])
 
     return (
-        (productIsLoading === true)
-            ? (<Spinner />)
-            : (<div className={style.shop}>
-                <PriceSlider productItems={productItems} />
-                <CategorySelect />
-                <><SelectBar /></>
-                <div className={style.cardContainer}>
-                    {isOpenCartWindow && <CartWindow />}
-                    {currentItems.map((productItem, index) => (
-                        <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
-                    ))}
-                </div>
-                <PagePagination cardOnPage={12} productItems={productItems} />
-            </div>
-            )
+      (productIsLoading === true)
+        ? (<Spinner />)
+        : (<div className={style.shop}>
+              <PriceSlider productItems={productItems} />
+              <CategorySelect />
+              <><SelectBar /></>
+              <div className={style.cardContainer}>
+                  {isOpenCartWindow && <CartWindow />}
+                  {currentItems.map((productItem, index) => (
+                    <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
+                  ))}
+              </div>
+              <PagePagination cardOnPage={12} productItems={productItems} />
+          </div>
+        )
     )
 }
 const mapStateToProps = state => {
