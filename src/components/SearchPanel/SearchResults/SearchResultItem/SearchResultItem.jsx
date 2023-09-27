@@ -5,7 +5,7 @@ const SearchResultItem = (props) => {
   const themeStyle = props.themeStyle
     ? 'lightSearchResultItem'
     : 'darkSearchResultItem'
-  console.log(props.product)
+
   return (
     <li className={`${style.item} ${themeStyle}`}
         onClick={props.toggle}>

@@ -2,7 +2,6 @@ import style from './SearchResults.module.scss'
 import SearchResultItem from './SearchResultItem/SearchResultItem'
 
 const SearchResults = (props) => {
-  console.log(props.products.data)
   const themeStyle = props.themeStyle
     ? 'lightSearchResults'
     : 'darkSearchResults'

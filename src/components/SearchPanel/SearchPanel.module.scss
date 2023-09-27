@@ -9,28 +9,34 @@
   max-width: 700px;
   height: 62px;
   background: $second-white;
+
   input {
     width: 600px;
     height: 100%;
     color: $black;
     background: none;
     border: none;
+
     &::placeholder {
       color: $black;
     }
-    &:focus{
+
+    &:focus {
       outline: none;
     }
   }
+
   button {
     width: 30px;
     height: 30px;
     background: none;
     border: none;
     cursor: pointer;
+
     &:focus {
       outline: none;
     }
+
     svg {
       width: 20px;
       height: 20px;
@@ -42,18 +48,28 @@
     }
   }
 
-  &_btn2 {
+  &_btn2On {
     width: 35px;
     height: 35px;
 
     svg {
       width: 25px !important;
-      height: 25px!important;
+      height: 25px !important;
+    }
+  }
+
+  &_btn2Off {
+    width: 35px;
+    height: 35px;
+
+    svg {
+      width: 20px !important;
+      height: 20px !important;
     }
   }
 }
 
-@media screen and (max-width: $tab){
+@media screen and (max-width: $tab) {
 
   .container {
     position: absolute;
