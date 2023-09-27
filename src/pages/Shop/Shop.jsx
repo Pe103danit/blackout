@@ -73,7 +73,7 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
                     <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
                   ))}
               </div>
-              <PagePagination cardOnPage={12} productItems={productItems} />
+                <PagePagination cardOnPage={12} productItems={productItems} />
           </div>
         )
     )

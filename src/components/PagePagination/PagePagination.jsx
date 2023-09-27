@@ -6,8 +6,10 @@ import style from './PagePagination.module.scss';
 import { instance } from '../assets/axiosUrl';
 import { getProductsPerPage } from '../../redux/reducers/ProductReducer/ProductReducer';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import {parseParams} from './parseParams'
 
 const PagePagination = ({ cardOnPage, productItems }) => {
+  const [readySearch, setReadySearch] = useState('')
   const [currentPage, setCurrentPage] = useState(1);
   const [prevCategory, setPrevCategory] = useState(null);
   const [totalPages, setTotalPages] = useState(
@@ -36,7 +38,6 @@ const PagePagination = ({ cardOnPage, productItems }) => {
 
   const priceMinReq = priceFilter[0];
   const priceMaxReq = priceFilter[1];
-
   useEffect(() => {
     setCurrentPage(1);
   }, [categorySelectFilter]);
@@ -58,7 +59,11 @@ const PagePagination = ({ cardOnPage, productItems }) => {
   const GeneratePathName = (pathname) => {
     return setCategories(pathname.substring(1));
   };
-
+  useEffect(() => {
+    if (location.search.length !== 0) {
+      setReadySearch(parseParams(location.search))
+    }
+  }, [location.search])
   const getProductsPage = useCallback(async (req) => {
     let filterCategory = '';
     let priceReq = '';
@@ -142,6 +147,8 @@ const PagePagination = ({ cardOnPage, productItems }) => {
     setCurrentPage((prev) => prev - 1);
   };
 
+  console.log(readySearch)
+
   useEffect(() => {
     updateListProducts();
   }, [updateListProducts]);
@@ -151,7 +158,11 @@ const PagePagination = ({ cardOnPage, productItems }) => {
       dispatch(getProductsPerPage(data));
     }
   }, [data, dispatch]);
-
+  if (data) {
+    if (data.length === 0) {
+      return null
+    }
+  }
   return (
     <div className={style.pagination}>
       <button

@@ -4,7 +4,6 @@ import { useQuery } from 'react-query';
 
 import Spinner from '../../components/Spinner/Spinner';
 import ShopCard from '../../components/ShopCard/ShopCard';
-import SelectBar from '../../components/SelectBar/SelectBar';
 
 import { SaleIcon } from '../../components/assets/Icons';
 
@@ -27,7 +26,7 @@ const Offers = () => {
         return offersProductArr
     }
 
-    const { data, isLoading, isError } = useQuery('getProducts', getProducts);
+    const { data, isLoading, isError } = useQuery('getProductsSale', getProducts);
 
     useEffect(() => {
         if (data) {
@@ -70,7 +69,7 @@ const Offers = () => {
             <div className={style.offers__sale}><SaleIcon /></div>
             {(isLoading)
                 ? (<Spinner />)
-                : (<>  <SelectBar />
+                : (<>
                     <div className={style.offers__container}>
                         {currentItems.map((productItem) => (
                             <ShopCard
