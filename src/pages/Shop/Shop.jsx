@@ -11,20 +11,10 @@ import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 import {
-    clearAllCategoriesToFilter,
-    clearPriceFilter,
-    toggleProductToCart,
-    clearSelectValue
+    toggleProductToCart
 } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue}) => {
-    useEffect(() => {
-        clearAllCategoriesToFilter()
-        clearPriceFilter()
-        clearSelectValue()
-        console.log(clearSelectValue)
-    }, [clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue])
-
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart}) => {
     const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
     const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
@@ -90,10 +80,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     toggleWishlist,
-    toggleProductToCart,
-    clearAllCategoriesToFilter,
-    clearPriceFilter,
-    clearSelectValue
+    toggleProductToCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop)
