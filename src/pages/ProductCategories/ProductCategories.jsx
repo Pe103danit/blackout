@@ -14,17 +14,8 @@ const ProductCategories = ({
   title,
   categoryName,
   isOpenCartWindow,
-  toggleProductToCart,
-  clearAllCategoriesToFilter,
-  clearPriceFilter,
-  clearSelectValue
+  toggleProductToCart
 }) => {
-  useEffect(() => {
-    clearAllCategoriesToFilter();
-    clearPriceFilter();
-    clearSelectValue();
-  }, [clearAllCategoriesToFilter, clearPriceFilter, clearSelectValue]);
-
   const [products, setProducts] = useState([]);
   const wishListItems = JSON.parse(
     window.localStorage.getItem('wishListItems')

@@ -109,11 +109,6 @@ const productReducer = (state = initialState, { type, payload }) => {
         ...state, categories: [...payload]
       }
 
-    case types.CLEAR_ALL_CATEGORIES_TO_FILTER:
-      return {
-        ...state, categories: []
-      }
-
     case types.ADD_TO_BASKET:
       return {
         ...state,
@@ -164,26 +159,11 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
     }
 
-    case types.CLEAR_PRICE_FILTER: {
-      return {
-        ...state,
-        priceFilter: []
-      }
-    }
-
     case types.SET_SELECT_VALUE:
       return {
         ...state,
         selectValue: payload,
       };
-
-    case types.CLEAR_SELECT_VALUE: {
-      console.log('clear')
-      return {
-        ...state,
-        selectValue: ''
-      }
-    }
 
     case types.RESET_FILTERS: {
       return {
@@ -212,10 +192,6 @@ export const addToBasket = (idCandidate, count) => ({
 export const addCategoryToFilter = (categories) => ({
   type: types.ADD_CATEGORY_TO_FILTER,
   payload: categories
-})
-
-export const clearAllCategoriesToFilter = () => ({
-  type: types.CLEAR_ALL_CATEGORIES_TO_FILTER
 })
 
 export const updateBasket = (listCandidate) => ({
@@ -250,18 +226,10 @@ export const setPriceFilter = (currentPrice) => ({
   payload: currentPrice
 })
 
-export const clearPriceFilter = () => ({
-  type: types.CLEAR_PRICE_FILTER
-})
-
 export const setSelectValue = (value) => ({
   type: types.SET_SELECT_VALUE,
   payload: value
 });
-
-export const clearSelectValue = () => ({
-  type: types.CLEAR_SELECT_VALUE
-})
 
 export const resetFilters = () => ({
   type: types.RESET_FILTERS
