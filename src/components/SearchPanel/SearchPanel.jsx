@@ -48,10 +48,10 @@ const SearchPanel = (props) => {
       mutation.mutate(searchValueObject)
     }, [mutation]
   )
+
   const handleInputChange = (e) => {
     const inputValue = e.target.value
     if (inputValue.length > 2) {
-      // eslint-disable-next-line
       searchProducts(inputValue)
     } else {
       setShowSearchResults(false)
@@ -62,6 +62,7 @@ const SearchPanel = (props) => {
     console.log(2)
     if (transcript.length !== 0) {
       inputElement.current.value = transcript
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       searchProducts(transcript)
     }
   }, [transcript])
@@ -97,11 +98,11 @@ const SearchPanel = (props) => {
         {listeningStatus === false
           ? <button onClick={SpeechRecognition.startListening}
                     className={style.container_btn2On}>
-            <MicrophoneOn />
+            <MicrophoneOn/>
           </button>
           : <button onClick={SpeechRecognition.stopListening}
                     className={style.container_btn2Off}>
-            <MicrophoneOff />
+            <MicrophoneOff/>
           </button>}
       </div>
       <button onClick={toggle} className={style.container_btn3}>
