@@ -79,10 +79,6 @@ const SearchPanel = (props) => {
     }
   }, [toggle])
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>
-  }
-
   return (
     <div className={style.container}>
       <button className={style.container_btn1}>
@@ -95,7 +91,8 @@ const SearchPanel = (props) => {
         onChange={handleInputChange}
       />
       <div>
-        {listeningStatus === false
+        {browserSupportsSpeechRecognition
+          ? listeningStatus === false
           ? <button onClick={SpeechRecognition.startListening}
                     className={style.container_btn2On}>
             <MicrophoneOn/>
@@ -103,7 +100,10 @@ const SearchPanel = (props) => {
           : <button onClick={SpeechRecognition.stopListening}
                     className={style.container_btn2Off}>
             <MicrophoneOff/>
-          </button>}
+          </button>
+        : <span>
+            <MicrophoneOff/>
+        </span>}
       </div>
       <button onClick={toggle} className={style.container_btn3}>
         {<CloseIcon/>}
