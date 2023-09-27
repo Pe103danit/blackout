@@ -1,15 +1,18 @@
 import style from './SearchPanel.module.scss'
-import { SearchIcon, CloseIcon } from '../assets/Icons'
+import { SearchIcon, CloseIcon, Microphone } from '../assets/Icons'
 import { connect } from 'react-redux'
 import { toggleSearchInput } from '../../redux/reducers/UIStateReducer/UIStateReducer'
 import { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { instance } from '../assets/axiosUrl'
 import SearchResults from './SearchResults/SearchResults'
+import { useSpeechRecognition } from 'react-speech-recognition';
 
 const SearchPanel = (props) => {
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [resultData, setResultData] = useState(null)
+  const [speechInput, setSpeechInput] = useState('')
+  const { listening, startListening, stopListening } = useSpeechRecognition()
 
   const toggle = useCallback(() => {
     props.toggleSearchInput();
@@ -23,10 +26,12 @@ const SearchPanel = (props) => {
   }
 
   const handleInputChange = (e) => {
-    if (e.target.value.length > 2) {
-      searchProducts(e.target.value)
+    const inputValue = e.target.value;
+    setSpeechInput(inputValue);
+    if (inputValue.length > 2) {
+      searchProducts(inputValue);
     } else {
-      setShowSearchResults(false)
+      setShowSearchResults(false);
     }
   };
 
@@ -59,26 +64,29 @@ const SearchPanel = (props) => {
   return (
     <div className={style.container}>
       <button className={style.container_btn1}>
-        {<SearchIcon/>}
+        {<SearchIcon />}
       </button>
       <input
         type='text'
         placeholder='e.g. Power Station'
+        value={speechInput}
         onChange={handleInputChange}
       />
-      <button onClick={toggle}
-              className={style.container_btn2}>
-        {<CloseIcon/>}
+      <button onClick={listening ? stopListening : startListening} className={style.container_btn2}>
+        <Microphone />
+      </button>
+      <button onClick={toggle} className={style.container_btn3}>
+        {<CloseIcon />}
       </button>
       {showSearchResults && resultData && (
         <SearchResults
-        products={resultData}
-        toggle={toggle}
-        themeStyle={props.themeStyle}
-      />)
-      }
+          products={resultData}
+          toggle={toggle}
+          themeStyle={props.themeStyle}
+        />
+      )}
     </div>
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({

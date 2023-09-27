@@ -41,9 +41,20 @@
       }
     }
   }
+
+  &_btn2 {
+    width: 35px;
+    height: 35px;
+
+    svg {
+      width: 25px !important;
+      height: 25px!important;
+    }
+  }
 }
 
 @media screen and (max-width: $tab){
+
   .container {
     position: absolute;
     top: 90px;
@@ -51,14 +62,17 @@
     z-index: 4;
     width: 100vw;
     max-width: 100%;
+
     &_btn1 {
       padding-left: 10px;
     }
+
     input {
       padding-left: 10px;
       font-size: $seventh-size;
     }
-    &_btn2 {
+
+    &_btn3 {
       padding-right: 30px;
     }
   }
