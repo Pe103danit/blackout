@@ -1,46 +1,38 @@
 import style from './SearchPanel.module.scss'
-import { SearchIcon, CloseIcon, Microphone } from '../assets/Icons'
+import { SearchIcon, CloseIcon, MicrophoneOn, MicrophoneOff } from '../assets/Icons'
 import { connect } from 'react-redux'
 import { toggleSearchInput } from '../../redux/reducers/UIStateReducer/UIStateReducer'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query'
 import { instance } from '../assets/axiosUrl'
 import SearchResults from './SearchResults/SearchResults'
-import { useSpeechRecognition } from 'react-speech-recognition';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 const SearchPanel = (props) => {
+  const {
+    transcript,
+    listening,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition()
+
   const [showSearchResults, setShowSearchResults] = useState(false)
+  const inputElement = useRef(null)
   const [resultData, setResultData] = useState(null)
-  const [speechInput, setSpeechInput] = useState('')
-  const { listening, startListening, stopListening } = useSpeechRecognition()
+  const [listeningStatus, setListeningStatus] = useState(listening)
+
+  useEffect(() => {
+    setListeningStatus(listening)
+  }, [listening])
 
   const toggle = useCallback(() => {
-    props.toggleSearchInput();
-  }, [props]);
-
-  const searchProducts = (searchValue) => {
-    const searchValueObject = {
-      query: searchValue
-    }
-    mutation.mutate(searchValueObject)
-  }
-
-  const handleInputChange = (e) => {
-    const inputValue = e.target.value;
-    setSpeechInput(inputValue);
-    if (inputValue.length > 2) {
-      searchProducts(inputValue);
-    } else {
-      setShowSearchResults(false);
-    }
-  };
+    props.toggleSearchInput()
+  }, [props])
 
   const mutation = useMutation(searchValueObject => {
       return instance.post('api/products/search', searchValueObject)
     },
     {
       onSuccess: (data) => {
-        console.log(data)
         setResultData(data)
         setShowSearchResults(true)
       },
@@ -49,34 +41,71 @@ const SearchPanel = (props) => {
       }
     })
 
+  const searchProducts = useCallback((searchValue) => {
+      const searchValueObject = {
+        query: searchValue
+      }
+      mutation.mutate(searchValueObject)
+    }, [mutation]
+  )
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value
+    if (inputValue.length > 2) {
+      // eslint-disable-next-line
+      searchProducts(inputValue)
+    } else {
+      setShowSearchResults(false)
+    }
+  }
+
+  useEffect(() => {
+    console.log(2)
+    if (transcript.length !== 0) {
+      inputElement.current.value = transcript
+      searchProducts(transcript)
+    }
+  }, [transcript])
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        toggle();
+        toggle()
       }
-    };
-    window.addEventListener('keydown', handleKeyDown);
+    }
+    window.addEventListener('keydown', handleKeyDown)
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [toggle]);
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [toggle])
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>
+  }
 
   return (
     <div className={style.container}>
       <button className={style.container_btn1}>
-        {<SearchIcon />}
+        {<SearchIcon/>}
       </button>
       <input
-        type='text'
-        placeholder='e.g. Power Station'
-        value={speechInput}
+        ref={inputElement}
+        type="text"
+        placeholder="e.g. Power Station"
         onChange={handleInputChange}
       />
-      <button onClick={listening ? stopListening : startListening} className={style.container_btn2}>
-        <Microphone />
-      </button>
+      <div>
+        {listeningStatus === false
+          ? <button onClick={SpeechRecognition.startListening}
+                    className={style.container_btn2On}>
+            <MicrophoneOn />
+          </button>
+          : <button onClick={SpeechRecognition.stopListening}
+                    className={style.container_btn2Off}>
+            <MicrophoneOff />
+          </button>}
+      </div>
       <button onClick={toggle} className={style.container_btn3}>
-        {<CloseIcon />}
+        {<CloseIcon/>}
       </button>
       {showSearchResults && resultData && (
         <SearchResults
@@ -86,7 +115,7 @@ const SearchPanel = (props) => {
         />
       )}
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => ({
