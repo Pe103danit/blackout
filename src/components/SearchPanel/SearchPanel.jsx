@@ -49,6 +49,8 @@ const SearchPanel = (props) => {
     }, [mutation]
   )
 
+  const searchProductsRef = useRef(searchProducts);
+
   const handleInputChange = (e) => {
     const inputValue = e.target.value
     if (inputValue.length > 2) {
@@ -59,11 +61,9 @@ const SearchPanel = (props) => {
   }
 
   useEffect(() => {
-    console.log(2)
     if (transcript.length !== 0) {
       inputElement.current.value = transcript
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      searchProducts(transcript)
+      searchProductsRef.current(transcript)
     }
   }, [transcript])
 
