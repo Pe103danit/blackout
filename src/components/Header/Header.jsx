@@ -65,7 +65,7 @@ const Header = (props) => {
                   </li>
 
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
-                    <NavLink to={'/offers'}>
+                    <NavLink to={'/offers'} onClick={handleClearFilter}>
                       Offers
                     </NavLink>
                   </li>
