@@ -93,3 +93,16 @@
     }
   }
 }
+
+@media screen and (max-width: $mobile) {
+
+  .container {
+    &_btn2On {
+      padding-right: 40px;
+    }
+
+    &_btn2Off {
+      padding-right: 40px;
+    }
+  }
+}
