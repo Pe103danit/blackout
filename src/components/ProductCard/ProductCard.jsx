@@ -22,9 +22,8 @@ export const ProductCard = () => {
   // variables
   const { id } = useParams()
   const dispatch = useDispatch()
-
   // states
-  const [product, setProduct] = useState([])
+  const [product, setProduct] = useState({})
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
   const [countOfAvailable, setCountOfAvailable] = useState(0)
@@ -41,8 +40,21 @@ export const ProductCard = () => {
     const { data } = await instance.get(`/api/products/${id}`)
     return data
   }
-  const { data } = useQuery('getProduct', getProduct)
-  // useEffects
+  const { data } = useQuery(['getProduct', id], getProduct)
+ // useEffects
+  useEffect(() => {
+    setSpinner(true);
+    setThumbsSwiper(null);
+    setProduct({}) // Установить thumbsSwiper в null при изменении id
+  }, [id]);
+   useEffect(() => {
+    console.log(data, 5111)
+    if (data) {
+      setProduct(data)
+      setSpinner(false)
+    }
+  }, [data])
+ 
   useEffect(() => {
     if (isOpenCartWindow) {
       setTimeout(() => {
@@ -50,19 +62,12 @@ export const ProductCard = () => {
       }, 1000)
     }
   }, [isOpenCartWindow, dispatch])
-  useEffect(() => {
-    if (data) {
-      setProduct(data)
-      setSpinner(false)
-    }
-  }, [data])
+ 
   useEffect(() => {
     // Scroll to the top of the page when the component mounts
     window.scrollTo(0, 0)
   }, [])
-  useEffect(() => {
-    setSpinner(true)
-  }, [id])
+  
   useEffect(() => {
     setMultipliedPrice(product?.currentPrice)
     const count = product?.quantity - 1
