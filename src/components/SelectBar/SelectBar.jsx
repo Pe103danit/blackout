@@ -19,10 +19,10 @@ const SelectBar = ({ selectValue, setSelectValue }) => {
         onChange={handleChange}
       >
         <option className={style.selectBar__input__option} value="">Default</option>
-        <option className={style.selectBar__input__option} value="&sort=+currentPrice">&#8593; Low ... High</option>
-        <option className={style.selectBar__input__option} value="&sort=-currentPrice">&#8595; High ... Low</option>
+        <option className={style.selectBar__input__option} value="&sort=+currentPrice">Low ... High &#8593;</option>
+        <option className={style.selectBar__input__option} value="&sort=-currentPrice">High ... Low &#8595;</option>
         <option className={style.selectBar__input__option} value="&sort=+name">A &#8594; Z</option>
-        <option className={style.selectBar__input__option} value="&sort=-name">Z &#8592; A</option>
+        <option className={style.selectBar__input__option} value="&sort=-name">Z &#8594; A</option>
       </select>
     </div>
   )
