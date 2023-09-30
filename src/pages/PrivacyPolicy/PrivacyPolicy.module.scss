@@ -6,6 +6,7 @@
     max-width: $max-width;
     margin: 0 auto;
     margin-top: 30px;
+    
 
     &_subtitle {
         margin-bottom: 30px;
@@ -16,49 +17,23 @@
         margin-bottom: 30px;
         font-size: $fourth-size;
         line-height: 22px;
+        
     }
 
-    &_text_2 {
-        margin-bottom: 70px;
-        font-size: $fourth-size;
-       line-height: 22px;    
-    }
-
-    &_text_3 {
-        margin-bottom: 70px;
-        font-size: $fourth-size;
-        line-height: 22px; 
-    }
-
-    &_text_4 {
-        margin-bottom: 70px;
-        font-size: $fourth-size;
-        line-height: 22px;
-    }
-
-    &_text_5 {
-        margin-bottom: 70px;
-        font-size: $fourth-size;
-        line-height: 22px;  
-    }
-
-    &_text_6 {
-        margin-bottom: 40px;
-        font-size: $fourth-size;
-    }
-
-    &_text_7 {
-        margin-bottom: 30px;
-        font-size: $fourth-size;
+    &_position_container{
+      padding: 15px;
     }
 
     &_list {
+        margin-bottom: 50px;
         font-weight: $big-weight;
+
     }
 
     &_list_item {
-        padding: 5px 0px 5px 0px;
+        padding: 10px 0px 10px 0px;
         font-size: 20px;
+
     }
 
     &_main_list {
@@ -67,7 +42,9 @@
 
     &_above_list {
         margin-bottom: 60px;
-        font-size: $fourth-size;
+         font-size: $fourth-size;
+        line-height: 22px;
+       
     }
 
     &_what_list {
@@ -113,11 +90,13 @@
         margin: 30px 0px 50px 0px;
         font-weight: $big-weight;
         font-size: $fourth-size;
+        line-height: 22px;
     }
 
     &_data {
         margin-bottom: 20px;
         font-size: $fourth-size;  
+        line-height: 22px;
     }
 
     &_legal_basis_list {
@@ -130,6 +109,7 @@
     &_uses {
         margin-top: 60px;
         margin-bottom: 40px;
+        line-height: 22px;
     }
 
     &_we_use {
@@ -342,8 +322,9 @@
         font-size: $fourth-size; 
         line-height: 22px;
     }
+   
     th,td{
-        padding: 10px 20px;
+        padding: 10px 10px;
         font-size: $fourth-size;
         line-height: 22px;
         text-align: left;  
@@ -357,20 +338,71 @@
     }
 
     h3 {
-        margin-bottom: 20px;
-        margin-left: 40px;
+        margin-bottom: 20px; 
         font-weight: $big-weight;
         font-size: $first-size;
+        line-height: 42px;
+        text-align: center;
     }
 
     h5 {
         margin-bottom: 20px;
         font-weight: $big-weight;
         font-size: $fourth-size;
+        line-height: 22px;
     }
     ul,
     ol {
         margin-left: 40px;
     }
+    @media screen and (max-width:$tab) {
+        &_text{
+            margin-bottom: 15px;
+        }
+        &_table{
+            margin-bottom: 20px;
+        }
+        &_list_item{
+            font-size: 17px;
+        }
+        &_list{
+            margin-bottom: 15px;
+        }
+        &_above_list{
+            margin-bottom: 20px;
+        }
+        &_what_list{
+            margin-bottom: 20px;
+        }
+        &_required{
+         margin-bottom: 20px;
+        }
+        &_also_choose{
+            margin: 20px 0px;
+        }
+        &_however{
+            margin-bottom: 20px;
+        }
+        &_personal_data{
+            margin: 10px 0px 20px 0px;
+        }
+        &_uses{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        &_admin_purpose{
+            margin-bottom: 20px;
+        }
+        ul,ol{
+            margin-left: 10px;
+        }
+        h3{
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        h2{
+            font-size: 30px;
+        }
+    }
     
-}
+} 

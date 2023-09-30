@@ -4,6 +4,9 @@
     max-width: 400px;
     margin: 0 auto;
     margin-top: 20px;
+    &_darkInput{
+        color: white !important;
+    }
     &_form{
         display: flex;
         flex-direction: column;
@@ -14,7 +17,7 @@
         border-radius: 10px;
         box-shadow: 0 4px 16px $almost-white;
         &_title{
-            margin-bottom: 30px;
+            margin-bottom: 70px;
             font-weight: $big-weight;
             font-size: $second-size;
             text-align: center;
@@ -33,7 +36,7 @@
         }
         &_group{
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             &_error{
                 position: absolute;
                 bottom: 0;
@@ -44,7 +47,7 @@
             }   
             &_eye{
                 position: absolute;
-                top: 40%;
+                top: 24%;
                 right: 10%;
                 width: 20px;
                 height: 20px;
@@ -65,10 +68,18 @@
             input:focus{
                 border-bottom: 1px solid $blue;
             }
+            &_label{
+                position: absolute;
+                bottom: 75px;
+            }
         }
-        &_SignUp{
+        &_SignIn{
             margin: 20px 0 20px 0;
             line-height: 1.3;
+            &_text{
+                color: $red;
+                font-weight: $big-weight;
+            }
         }
 
     }
@@ -90,7 +101,7 @@
             }   
             &_eye{
                 position: absolute;
-                top: 35%;
+                top: 20%;
                 right: 10%;
                 width: 20px;
                 height: 20px;

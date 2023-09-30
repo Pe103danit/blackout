@@ -139,15 +139,16 @@ const cookies = [
 const privacyPolicy = () => {
     return (
         <div className={style.Policy}>
+            <div className={style.Policy_position_container}>
             <h2>Privacy policy</h2>
             <h5 className={style.Policy_subtitle}>EcoFlow Services Privacy Policy</h5>
             <p className={style.Policy_text}> Last Updated: August 17, 2022</p>
-            <p className={style.Policy_text_2}>Effective Date: August 17, 2022</p>
-            <p className={style.Policy_text_3}>At EcoFlow Inc and its affiliated companies (“EcoFlow”, “we,” “our” or “us”), we respect your privacy and treat your information with the utmost care.</p>
-            <p className={style.Policy_text_4}>This Privacy Policy explains how we collect, use, and disclose your information through our websites, mobile applications, products, customer support and other services (collectively referred to as “Product”, “Products” or “Services”), as well as any other third party services or products that link to this Privacy Policy.</p>
-            <p className={style.Policy_text_5}>By agreeing to this Privacy Policy in your account setup or by using our Products, or any other third party services or products that link to this Privacy Policy, you consent to the processing of your information as set forth in this Privacy Policy.</p>
-            <p className={style.Policy_text_6}>This Policy describes:</p>
-            <p className={style.Policy_text_7}>What Information Do We Collect</p>
+            <p className={style.Policy_text}>Effective Date: August 17, 2022</p>
+            <p className={style.Policy_text}>At EcoFlow Inc and its affiliated companies (“EcoFlow”, “we,” “our” or “us”), we respect your privacy and treat your information with the utmost care.</p>
+            <p className={style.Policy_text}>This Privacy Policy explains how we collect, use, and disclose your information through our websites, mobile applications, products, customer support and other services (collectively referred to as “Product”, “Products” or “Services”), as well as any other third party services or products that link to this Privacy Policy.</p>
+            <p className={style.Policy_text}>By agreeing to this Privacy Policy in your account setup or by using our Products, or any other third party services or products that link to this Privacy Policy, you consent to the processing of your information as set forth in this Privacy Policy.</p>
+            <p className={style.Policy_text}>This Policy describes:</p>
+            <p className={style.Policy_text}>What Information Do We Collect</p>
             <ol className={style.Policy_list}>
                 {privacyConfig.map((item) => (
                     <li className={style.Policy_list_item} key={item}>
@@ -413,6 +414,7 @@ const privacyPolicy = () => {
                     <p className={style.Policy_california_dif}>We welcome feedback and are happy to answer any questions you may have about your data.</p>
                 </li>
             </ol>
+            </div>
         </div>
 
     )

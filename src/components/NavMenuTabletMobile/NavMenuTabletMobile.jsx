@@ -8,6 +8,7 @@ import style from './NavMenuTabletMobile.module.scss'
 const NavMenuTabletMobile = (props) => {
   const toggle = () => {
     props.toggleNavBar()
+    props.handleClearFilter()
   }
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   const CloseComponent = () => props.lightTheme

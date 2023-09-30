@@ -1,41 +1,38 @@
 import style from './SearchPanel.module.scss'
-import { SearchIcon, CloseIcon } from '../assets/Icons'
+import { SearchIcon, CloseIcon, MicrophoneOn, MicrophoneOff } from '../assets/Icons'
 import { connect } from 'react-redux'
 import { toggleSearchInput } from '../../redux/reducers/UIStateReducer/UIStateReducer'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query'
 import { instance } from '../assets/axiosUrl'
 import SearchResults from './SearchResults/SearchResults'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 const SearchPanel = (props) => {
+  const {
+    transcript,
+    listening,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition()
+
   const [showSearchResults, setShowSearchResults] = useState(false)
+  const inputElement = useRef(null)
   const [resultData, setResultData] = useState(null)
+  const [listeningStatus, setListeningStatus] = useState(listening)
+
+  useEffect(() => {
+    setListeningStatus(listening)
+  }, [listening])
 
   const toggle = useCallback(() => {
-    props.toggleSearchInput();
-  }, [props]);
-
-  const searchProducts = (searchValue) => {
-    const searchValueObject = {
-      query: searchValue
-    }
-    mutation.mutate(searchValueObject)
-  }
-
-  const handleInputChange = (e) => {
-    if (e.target.value.length > 2) {
-      searchProducts(e.target.value)
-    } else {
-      setShowSearchResults(false)
-    }
-  };
+    props.toggleSearchInput()
+  }, [props])
 
   const mutation = useMutation(searchValueObject => {
       return instance.post('api/products/search', searchValueObject)
     },
     {
       onSuccess: (data) => {
-        console.log(data)
         setResultData(data)
         setShowSearchResults(true)
       },
@@ -44,17 +41,43 @@ const SearchPanel = (props) => {
       }
     })
 
+  const searchProducts = useCallback((searchValue) => {
+      const searchValueObject = {
+        query: searchValue
+      }
+      mutation.mutate(searchValueObject)
+    }, [mutation]
+  )
+
+  const searchProductsRef = useRef(searchProducts);
+
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value
+    if (inputValue.length > 2) {
+      searchProducts(inputValue)
+    } else {
+      setShowSearchResults(false)
+    }
+  }
+
+  useEffect(() => {
+    if (transcript.length !== 0) {
+      inputElement.current.value = transcript
+      searchProductsRef.current(transcript)
+    }
+  }, [transcript])
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        toggle();
+        toggle()
       }
-    };
-    window.addEventListener('keydown', handleKeyDown);
+    }
+    window.addEventListener('keydown', handleKeyDown)
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [toggle]);
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [toggle])
 
   return (
     <div className={style.container}>
@@ -62,21 +85,36 @@ const SearchPanel = (props) => {
         {<SearchIcon/>}
       </button>
       <input
-        type='text'
-        placeholder='e.g. Power Station'
+        ref={inputElement}
+        type="text"
+        placeholder="e.g. Power Station"
         onChange={handleInputChange}
       />
-      <button onClick={toggle}
-              className={style.container_btn2}>
+      <div>
+        {browserSupportsSpeechRecognition
+          ? listeningStatus === false
+          ? <button onClick={SpeechRecognition.startListening}
+                    className={style.container_btn2On}>
+            <MicrophoneOn/>
+          </button>
+          : <button onClick={SpeechRecognition.stopListening}
+                    className={style.container_btn2Off}>
+            <MicrophoneOff/>
+          </button>
+        : <span>
+            <MicrophoneOff/>
+        </span>}
+      </div>
+      <button onClick={toggle} className={style.container_btn3}>
         {<CloseIcon/>}
       </button>
       {showSearchResults && resultData && (
         <SearchResults
-        products={resultData}
-        toggle={toggle}
-        themeStyle={props.themeStyle}
-      />)
-      }
+          products={resultData}
+          toggle={toggle}
+          themeStyle={props.themeStyle}
+        />
+      )}
     </div>
   )
 }

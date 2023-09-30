@@ -22,9 +22,8 @@ export const ProductCard = () => {
   // variables
   const { id } = useParams()
   const dispatch = useDispatch()
-
   // states
-  const [product, setProduct] = useState([])
+  const [product, setProduct] = useState({})
   const [isOverWeightOpen, setOverWeightOpen] = useState(false)
   const [countToCart, setCountToCart] = useState(1)
   const [countOfAvailable, setCountOfAvailable] = useState(0)
@@ -33,37 +32,42 @@ export const ProductCard = () => {
   const [specsArray, setSpecsArray] = useState([])
   const [isSpinner, setSpinner] = useState(true)
   const [isClicked, setClicked] = useState(false)
-  const [isOpenCartWindow, setOpenCartWindow] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-
+  const isOpenCartWindow = useSelector(state => state.ProductReducer.isOpenCartWindow)
   const themeStyle = theme ? 'light' : 'dark'
   // get one product
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
     return data
   }
-  const { data } = useQuery('getProduct', getProduct)
-  // useEffects
+  const { data } = useQuery(['getProduct', id], getProduct)
+ // useEffects
   useEffect(() => {
-    if (isOpenCartWindow) {
-      setTimeout(() => {
-        setOpenCartWindow(false)
-      }, 1000)
-    }
-  }, [isOpenCartWindow])
-  useEffect(() => {
+    setSpinner(true);
+    setThumbsSwiper(null);
+    setProduct({}) // Установить thumbsSwiper в null при изменении id
+  }, [id]);
+   useEffect(() => {
+    console.log(data, 5111)
     if (data) {
       setProduct(data)
       setSpinner(false)
     }
   }, [data])
+ 
+  useEffect(() => {
+    if (isOpenCartWindow) {
+      setTimeout(() => {
+        dispatch(toggleProductToCart({}))
+      }, 1000)
+    }
+  }, [isOpenCartWindow, dispatch])
+ 
   useEffect(() => {
     // Scroll to the top of the page when the component mounts
     window.scrollTo(0, 0)
   }, [])
-  useEffect(() => {
-    setSpinner(true)
-  }, [id])
+  
   useEffect(() => {
     setMultipliedPrice(product?.currentPrice)
     const count = product?.quantity - 1
@@ -75,7 +79,6 @@ export const ProductCard = () => {
     window.scrollTo(0, 0)
     dispatch(addToBasket(product?.itemNo, countToCart))
     dispatch(toggleProductToCart(product))
-    setOpenCartWindow(true)
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
     let repeat = false
     storageBasket = storageBasket.map(item => {
@@ -110,7 +113,7 @@ export const ProductCard = () => {
   const WishItemStatus = () => {
     dispatch(toggleWishlist(product.itemNo))
   };
-  
+
   return (
     <>{isSpinner && <Spinner />}
       {!isSpinner &&
@@ -254,11 +257,11 @@ export const ProductCard = () => {
                       >
                         {isWishlisted
                           ? (
-                          <AiTwotoneHeart className={style.product_fav_heart} />
-                        )
+                            <AiTwotoneHeart className={style.product_fav_heart} />
+                          )
                           : (
-                          <AiOutlineHeart className={style.product_fav_heart} />
-                        )}
+                            <AiOutlineHeart className={style.product_fav_heart} />
+                          )}
                       </div>
                     </div>
                     <button className={style.product_card_total_price_button} onClick={handleClick}>ADD TO CART</button>

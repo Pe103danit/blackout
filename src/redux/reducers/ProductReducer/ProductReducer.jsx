@@ -16,7 +16,9 @@ const initialState = {
   powerBanks: [],
   powerBanksIsLoading: true,
   product: {},
-  priceFilter: []
+  priceFilter: [],
+  selectValue: '',
+  categories: []
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -107,11 +109,6 @@ const productReducer = (state = initialState, { type, payload }) => {
         ...state, categories: [...payload]
       }
 
-    case types.CLEAR_ALL_CATEGORIES_TO_FILTER:
-      return {
-        ...state, categories: []
-      }
-
     case types.ADD_TO_BASKET:
       return {
         ...state,
@@ -162,6 +159,21 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
     }
 
+    case types.SET_SELECT_VALUE:
+      return {
+        ...state,
+        selectValue: payload,
+      };
+
+    case types.RESET_FILTERS: {
+      return {
+        ...state,
+        priceFilter: [],
+        selectValue: '',
+        categories: []
+      }
+    }
+
     default:
       return state
   }
@@ -180,10 +192,6 @@ export const addToBasket = (idCandidate, count) => ({
 export const addCategoryToFilter = (categories) => ({
   type: types.ADD_CATEGORY_TO_FILTER,
   payload: categories
-})
-
-export const clearAllCategoriesToFilter = () => ({
-  type: types.CLEAR_ALL_CATEGORIES_TO_FILTER
 })
 
 export const updateBasket = (listCandidate) => ({
@@ -216,6 +224,15 @@ export const getProductsPerPage = (productsList) => ({
 export const setPriceFilter = (currentPrice) => ({
   type: types.SET_PRICE_FILTER,
   payload: currentPrice
+})
+
+export const setSelectValue = (value) => ({
+  type: types.SET_SELECT_VALUE,
+  payload: value
+});
+
+export const resetFilters = () => ({
+  type: types.RESET_FILTERS
 })
 
 export default productReducer

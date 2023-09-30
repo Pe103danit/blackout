@@ -1,36 +1,39 @@
-import React, { useState } from 'react'
-import Select from 'react-select';
-import style from './SelectBar.module.scss';
+import { connect, useSelector } from 'react-redux'
+import { setSelectValue } from '../../redux/reducers/ProductReducer/ProductReducer'
+import style from './SelectBar.module.scss'
 
-const options = [
-
-  { value: '', label: 'Default', isSelected: true },
-  { value: 'sort=-currentPrice', label: 'Decrease Price' },
-  { value: 'sort=+currentPrice', label: 'Increase Price' },
-
-];
-
-const SelectBar = () => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-
-  const handleOptionChange = (selectedOption) => {
-    setSelectedOption(selectedOption)
+const SelectBar = ({ selectValue, setSelectValue }) => {
+  const theme = useSelector(state => state.UIStateReducer.lightTheme)
+  const handleChange = (e) => {
+    const newValue = e.target.value
+    setSelectValue(newValue)
   }
 
   return (
     <div className={style.selectBar}>
       <span>Sort by</span>
-      <Select
-        className={style.selectBar__option}
-        style={{
-          '.css-13cymwt-control ': '#2164FF',
-        }}
-        value={selectedOption}
-        onChange={handleOptionChange}
-        options={options}
-      />
+      <select
+        name="select"
+        className={`${style.selectBar__input} ${theme ? '' : style.selectBar__input__darkTheme}`}
+        value={selectValue}
+        onChange={handleChange}
+      >
+        <option className={style.selectBar__input__option} value="">Default</option>
+        <option className={style.selectBar__input__option} value="&sort=+currentPrice">&#8593; Low ... High</option>
+        <option className={style.selectBar__input__option} value="&sort=-currentPrice">&#8595; High ... Low</option>
+        <option className={style.selectBar__input__option} value="&sort=+name">A &#8594; Z</option>
+        <option className={style.selectBar__input__option} value="&sort=-name">Z &#8592; A</option>
+      </select>
     </div>
-  );
-};
+  )
+}
 
-export default SelectBar;
+const mapStateToProps = (state) => ({
+  selectValue: state.ProductReducer.selectValue,
+})
+
+const mapDispatchToProps = {
+  setSelectValue,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectBar)

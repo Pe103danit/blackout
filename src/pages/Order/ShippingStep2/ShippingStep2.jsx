@@ -61,17 +61,17 @@ const ShippingStep2 = (props) => {
           <ul className={style.container_main_nav_list}>
             <li className={style.container_main_nav_list_item}>
               <NavLink to={'/basket'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
-                Cart >
+                Cart &gt;
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
               <NavLink to={'/information'} className={`${style.container_main_nav_list_item_link} ${style.active}`}>
-                Information >
+                Information &gt;
               </NavLink>
             </li>
             <li className={style.container_main_nav_list_item}>
               <p className={style.container_main_nav_list_item_link}>
-                Shipping >
+                Shipping &gt;
               </p>
             </li>
             <li className={style.container_main_nav_list_item}>
@@ -88,9 +88,16 @@ const ShippingStep2 = (props) => {
         >
           <div className={style.container_main_form_login}>
             <p className={style.container_main_form_login_title}>Contact</p>
-            <p className={style.container_main_form_login_question}>Have an account?
-              <NavLink to={'/login'} className={style.container_main_form_login_question_link}> Log in</NavLink>
-            </p>
+            {props.user === null
+              ? (
+                <p className={style.container_main_form_login_question}>Have an account?
+                  <NavLink to={'/login'} className={style.container_main_form_login_question_link}>
+                    Log in
+                  </NavLink>
+                </p>
+              )
+              : (<p>{props.user?.firstName} {props.user?.lastName}</p>)
+            }
           </div>
           <div className={style.container_main_form_container}>
             <p className={style.container_main_form_container_title}>
