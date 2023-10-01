@@ -72,7 +72,7 @@ const Login = () => {
         <Form className={style.Login_form}>
           <h2 className={style.Login_form_title}>Sign in</h2>
           <div className={style.Login_form_group}>
-            <label htmlFor='loginOrEmail' className={style.Login_form_group_label}>Email</label>
+            <label htmlFor='loginOrEmail' className={style.Login_form_group_label}>Login or Email</label>
             <Field
               className={`${style.Login_form_group_input} ${inputStyle} ${theme ? '' : style.Login_darkInput}`}
               id='loginOrEmail'
