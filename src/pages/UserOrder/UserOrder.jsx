@@ -12,6 +12,7 @@ const UserOrder = () => {
   const token = useSelector(state => state.SessionReducer.token)
   const orderList = useSelector(state => state.OrderListReducer.orderList || [])
   const orderIsLoading = useSelector(state => state.OrderListReducer.orderIsLoading)
+  console.log(orderIsLoading);
   useEffect(() => {
     if (token) {
       const getOrderList = async () => {

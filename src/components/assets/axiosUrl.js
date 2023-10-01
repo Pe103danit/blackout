@@ -4,6 +4,6 @@ export const instance = axios.create({
 });
 export const instanceToken = axios.create({
   baseURL: 'https://blackoutstore-be-iota.vercel.app',
-  headers: { Authorization: localStorage.getItem('tokenParts') },
+  headers: { Authorization: sessionStorage.getItem('tokenParts') },
   validateStatus: () => true
 });

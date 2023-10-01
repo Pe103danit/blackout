@@ -30,7 +30,7 @@ const Login = () => {
         throw new Error('invalid credentional')
       }
       const token = data.token;
-      localStorage.setItem('tokenParts', token);
+      sessionStorage.setItem('tokenParts', token);
       dispatch(setToken(token))
       navigate('/account');
     } catch (e) {
@@ -46,7 +46,7 @@ const Login = () => {
         });
         if (data !== 'Unauthorized') {
           dispatch(setUser(data))
-          localStorage.setItem('user', JSON.stringify(data))
+          sessionStorage.setItem('user', JSON.stringify(data))
         }
       };
 
