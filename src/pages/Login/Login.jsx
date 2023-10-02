@@ -30,7 +30,7 @@ const Login = () => {
         throw new Error('invalid credentional')
       }
       const token = data.token;
-      localStorage.setItem('tokenParts', token);
+      sessionStorage.setItem('tokenParts', token);
       dispatch(setToken(token))
       navigate('/account');
     } catch (e) {
@@ -46,7 +46,7 @@ const Login = () => {
         });
         if (data !== 'Unauthorized') {
           dispatch(setUser(data))
-          localStorage.setItem('user', JSON.stringify(data))
+          sessionStorage.setItem('user', JSON.stringify(data))
         }
       };
 
@@ -72,7 +72,7 @@ const Login = () => {
         <Form className={style.Login_form}>
           <h2 className={style.Login_form_title}>Sign in</h2>
           <div className={style.Login_form_group}>
-            <label htmlFor='loginOrEmail' className={style.Login_form_group_label}>Email</label>
+            <label htmlFor='loginOrEmail' className={style.Login_form_group_label}>Login or Email</label>
             <Field
               className={`${style.Login_form_group_input} ${inputStyle} ${theme ? '' : style.Login_darkInput}`}
               id='loginOrEmail'

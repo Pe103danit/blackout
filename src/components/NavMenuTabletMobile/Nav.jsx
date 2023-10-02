@@ -13,7 +13,7 @@ import {
 } from '../assets/Icons'
 
 const Nav = ({ themeStyle, toggle }) => {
-  const token = localStorage.getItem('tokenParts');
+  const token = sessionStorage.getItem('tokenParts');
   const navStyle = themeStyle === 'light' ? 'lightMobilePanel' : 'darkMobilePanel'
 
   const [openCategories, setOpenCategories] = useState(false)

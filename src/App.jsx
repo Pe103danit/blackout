@@ -46,9 +46,16 @@ const App = (props) => {
     }
   }, [data, props])
   useEffect(() => {
-    const token = localStorage.getItem('tokenParts')
+    const token = sessionStorage.getItem('tokenParts')
     if (token) {
       props.setToken(token)
+      setTimeout(() => {
+        sessionStorage.setItem('tokenParts', '')
+        sessionStorage.setItem('user', JSON.stringify({}))
+        props.setToken(null)
+        props.setUser({})
+        props.setOrderList(null)
+      }, 34020000)
     }
   }, [props])
   return (
@@ -85,7 +92,7 @@ const App = (props) => {
         {(token) && <Route path='/user_orders' element={<UserOrder />} />}
         {(token) && <Route path='/account' element={<Account />} />}
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
-       
+
       </Routes>
       <FooterContainer />
       <GoToTop />
