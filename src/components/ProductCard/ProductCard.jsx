@@ -48,7 +48,6 @@ export const ProductCard = () => {
     setProduct({}) // Установить thumbsSwiper в null при изменении id
   }, [id]);
    useEffect(() => {
-    console.log(data, 5111)
     if (data) {
       setProduct(data)
       setSpinner(false)
@@ -137,7 +136,7 @@ export const ProductCard = () => {
                     {product?.imageUrls?.map((item, index) => (
                       <SwiperSlide key={index} className="swiper-slide">
                         <div className={`${style.product_card_img_wrapper} ${style.product_card_img_wrapper_big}`}>
-                          <img src={item} alt={product?.name} title={product?.name} />
+                          <img src={item.replace('/upload/', '/upload/w_501/')} alt={product?.name} title={product?.name} />
                         </div>
                       </SwiperSlide>
                     ))}
@@ -170,7 +169,7 @@ export const ProductCard = () => {
                       {product?.imageUrls?.map((item, index) => (
                         <SwiperSlide key={index} className="swiper-slide">
                           <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
-                            <img className={style.product_image_swiper_mini_img} src={item} alt={product?.name} title={product?.name} />
+                            <img className={style.product_image_swiper_mini_img} src={item.replace('/upload/', '/upload/w_501/')} alt={product?.name} title={product?.name} />
                           </div>
                         </SwiperSlide>
                       ))}

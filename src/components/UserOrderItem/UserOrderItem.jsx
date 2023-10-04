@@ -2,10 +2,12 @@ import style from './UserOrderItem.module.scss'
 import { useSelector } from 'react-redux';
 const UserOrderItem = ({ product }) => {
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
+
+  const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
     return (
         <div className={style.userOrderItem}>
             <div className={style.userOrderItem__image}>
-                <img src={product.imageUrls[0]} alt={product.name} title={product.name} />
+                <img src={img} alt={product.name} title={product.name} />
             </div>
             <div className={style.userOrderItem__description}>
                 <div className={style.userOrderItem__description__link}>
