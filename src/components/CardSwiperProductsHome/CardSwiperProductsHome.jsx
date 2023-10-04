@@ -7,6 +7,10 @@ const CardSwiperProductsHome = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightSwiper'
     : 'darkSwiper'
+
+  const img268px1 = props.imageUrls[0].replace('/upload/', '/upload/w_268/')
+  const img268px2 = props.imageUrls[1].replace('/upload/', '/upload/w_268/')
+
   return (
     <Link to={`/products/${props.itemNo}`} className={`${style.section} ${themeStyle}`}>
       <div className={style.section_container}>
@@ -28,8 +32,8 @@ const CardSwiperProductsHome = (props) => {
               <p className={style.section_container_containerInner_info_price}>from {props.currentPrice}$</p>}
           </div>
           <div className={style.section_container_containerInner_photo}>
-            <img src={props.imageUrls[0]} alt={props.name} className={style.section_container_containerInner_photo_img1} />
-            <img src={props.imageUrls[1]} alt={props.name} className={style.section_container_containerInner_photo_img2} />
+            <img src={img268px1} alt={props.name} className={style.section_container_containerInner_photo_img1}/>
+            <img src={img268px2} alt={props.name} className={style.section_container_containerInner_photo_img2}/>
           </div>
         </div>
       </div>

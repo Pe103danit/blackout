@@ -2,7 +2,7 @@ import types from '../../types/types';
 
 const initialState = {
   user: null,
-  token: localStorage.getItem('tokenParts') || null,
+  token: sessionStorage.getItem('tokenParts') || null,
   userIsLoading: true
 }
 

@@ -5,12 +5,14 @@ import style from './UserOrder.module.scss'
 import { setOrderList } from '../../redux/reducers/OrderListReducer/OrderListReducer'
 import UserOrderItem from '../../components/UserOrderItem/UserOrderItem'
 import Spinner from '../../components/Spinner/Spinner';
+import img1 from './sad.jpg'
 const UserOrder = () => {
   const dispatch = useDispatch()
   const theme = useSelector(state => state.UIStateReducer.lightTheme);
   const token = useSelector(state => state.SessionReducer.token)
   const orderList = useSelector(state => state.OrderListReducer.orderList || [])
   const orderIsLoading = useSelector(state => state.OrderListReducer.orderIsLoading)
+  console.log(orderIsLoading);
   useEffect(() => {
     if (token) {
       const getOrderList = async () => {
@@ -31,6 +33,7 @@ const UserOrder = () => {
     const minutes = (min.length < 2) ? `0${min}` : `${min}`
     return `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()} ${newDate.getHours()}:${minutes}`
   }
+
   return (
     <>
       <h2 className={style.userOrder__title}>
@@ -39,7 +42,10 @@ const UserOrder = () => {
       {orderIsLoading && <Spinner />}
       {!orderIsLoading && (
         <>
-          {!orderList.length && <p>You don't order anything</p>}
+          {!orderList.length && <div className={style.userOrder__empty}>
+            <p className={style.userOrder__empty__text}>You don't order anything</p>
+            <img className={style.userOrder__empty__img} src={img1} alt='emptyUserOrder' />
+            </div>}
           {!!orderList.length && <ul>{orderList?.map((order) => (
             <li>
               <p className={style.userOrder__date}>{dateHelper(order.date)}</p>

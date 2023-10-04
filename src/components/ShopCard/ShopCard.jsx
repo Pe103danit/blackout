@@ -68,8 +68,8 @@ const ShopCard = (props) => {
         >
             <Link to={`/products/${props.productItem.itemNo}`}>
                 <div className={style.shopCard__imgBlock}>
-                    <img className={style.shopCard__imgBlock__img1} src={props.productItem.imageUrls[0]} alt={props.productItem.title} />
-                    <img className={style.shopCard__imgBlock__img2} src={props.productItem.imageUrls[1]} alt={props.productItem.title} />
+                    <img className={style.shopCard__imgBlock__img1} src={props.productItem.imageUrls[0].replace('/upload/', '/upload/w_368/')} alt={props.productItem.title} />
+                    <img className={style.shopCard__imgBlock__img2} src={props.productItem.imageUrls[1].replace('/upload/', '/upload/w_368/')} alt={props.productItem.title} />
                 </div>
             </Link>
             <div className={style.shopCard__description}>

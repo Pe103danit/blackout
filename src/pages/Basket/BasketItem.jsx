@@ -41,13 +41,16 @@ const BasketItem = ({ product }) => {
   if (deleteStatus) {
     return null
   }
+
+  const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
+
   return (
     <div key={product.itemNo} className={style.section_container_body_left_product}>
       <div className={style.section_container_body_left_product_checkbox}>
         <input type="checkbox"/>
       </div>
       <NavLink to={`/products/${product.itemNo}`} className={style.section_container_body_left_product_photo}>
-        <img src={product.imageUrls[0]} alt={product.name} title={product.name}/>
+        <img src={img} alt={product.name} title={product.name}/>
       </NavLink>
       <div className={style.section_container_body_left_product_name}>
         <NavLink to={`/products/${product.itemNo}`}>

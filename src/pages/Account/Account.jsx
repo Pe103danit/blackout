@@ -15,8 +15,8 @@ const Account = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.setItem('tokenParts', '')
-    localStorage.setItem('user', JSON.stringify({}))
+    sessionStorage.setItem('tokenParts', '')
+    sessionStorage.setItem('user', JSON.stringify({}))
     dispatch(setToken(null))
     dispatch(setUser(null))
     dispatch(setOrderList(null))

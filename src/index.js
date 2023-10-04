@@ -20,8 +20,8 @@ if (!localStorage.getItem('wishList')) {
 if (!localStorage.getItem('basket')) {
   localStorage.setItem('basket', '0')
 }
-if (!localStorage.getItem('user')) {
-  localStorage.setItem('user', JSON.stringify({}))
+if (!sessionStorage.getItem('user')) {
+  sessionStorage.setItem('user', JSON.stringify({}))
 }
 
 if (!localStorage.getItem('basketList')) {
@@ -35,8 +35,8 @@ if (!localStorage.getItem('totalBasketSum')) {
 if (!localStorage.getItem('wishListItems')) {
   localStorage.setItem('wishListItems', JSON.stringify([]))
 }
-if (!localStorage.getItem('tokenParts')) {
-  localStorage.setItem('tokenParts', '')
+if (!sessionStorage.getItem('tokenParts')) {
+  sessionStorage.setItem('tokenParts', '')
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

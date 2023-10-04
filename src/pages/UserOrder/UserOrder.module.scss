@@ -23,6 +23,23 @@
         text-align: center;
         @include manrope-bold();
     }
+    &__empty{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        &__text{           
+            margin: 40px;
+            font-weight: 500;
+            font-size: 20px;
+        }
+        &__img{    
+            max-width: 200px;
+            max-height: 200px;      
+            margin: 40px;
+            border-radius: 50%;
+        }
+    }
     &__date{
         padding: 40px 0 20px 0 ;
         font-weight: $big-weight;
@@ -63,6 +80,24 @@
 @media screen and (min-width: $tab-mobileFirst) {
     .userOrder {
         width: 90%;
+    }
+}
+@media screen and (min-width: $desktop-mobileFirst) {
+    .userOrder {
+        width: 90%;
+        &__empty{
+            &__text{           
+                margin: 40px;
+                font-weight: 500;
+                font-size: 40px;
+            }
+            &__img{    
+                max-width: 400px;
+                max-height: 400px;      
+                margin: 40px;
+                border-radius: 50%;
+            }
+        }
     }
 }
 
