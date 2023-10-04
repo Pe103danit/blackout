@@ -59,7 +59,7 @@ const Carousel = () => {
         {carouselItems.map((product, index) => (
           <Link key={index} to={product.htmlContent}>
             <div className={style.carousel__card}>
-              <img className={style.carousel__card__img} src={product.imageUrl} alt={product.name} />
+              <img className={style.carousel__card__img} src={product.imageUrl.replace('/upload/', '/upload/w_2030/')} alt={product.name} />
               <div className={style.carousel__card__content}>
                 <h3 className={style.carousel__card__title}>{product.title}</h3>
                 <p className={style.carousel__card__text}>{product.description}</p>
