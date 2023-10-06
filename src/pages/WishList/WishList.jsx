@@ -57,7 +57,7 @@ const WishList = (props) => {
                 <WishListItem
                   key={index}
                   product={itemWishList}
-                  onWishList={() => WishListHandler(itemWishList.itemNo)}
+                  onWishList={() => WishListHandler(itemWishList)}
                 />
               ))}
               <Link to={'/shop'} className={`${style.wishList__btn_shop} ${theme ? '' : style.wishList__btn_shop__darkTheme}`}>

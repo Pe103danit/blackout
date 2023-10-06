@@ -6,15 +6,16 @@ import { removeFromWishList } from '../../redux/reducers/WishListReducer/WishLis
 import style from './WishList.module.scss'
 
 const WishListItem = ({ product, onWishList }) => {
-// const WishListItem = ({product}) => {
+  // const WishListItem = ({product}) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
 
   console.log('props from WishListItem', product)
   const dispatch = useDispatch()
 
   const handleRemoveFromWishlist = () => {
-    dispatch(removeFromWishList(product.itemNo))
-    onWishList(product.itemNo)
+    console.log('handleRemoveFromWishlist item', product);
+    dispatch(removeFromWishList(product))
+    onWishList(product)
   }
 
   const img = product.imageUrl.replace('/upload/', '/upload/w_100/')

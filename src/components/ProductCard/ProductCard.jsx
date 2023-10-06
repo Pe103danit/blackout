@@ -110,7 +110,7 @@ export const ProductCard = () => {
   const isWishlisted = useSelector(state => state.WishListReducer.wishList.includes(product.itemNo));
 
   const WishItemStatus = () => {
-    dispatch(toggleWishlist(product.itemNo))
+    dispatch(toggleWishlist(product))
   };
 
   return (

@@ -1,6 +1,6 @@
-export const removeFromWishList = (itemNo) => {
+export const removeFromWishList = (product) => {
     return {
         type: 'REMOVE_FROM_WISHLIST',
-        payload: itemNo
+        payload: product
     }
 }
