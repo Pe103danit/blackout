@@ -1,25 +1,15 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { useQuery } from 'react-query'
 
 import style from './WishList.module.scss';
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
-import Spinner from '../../components/Spinner/Spinner'
 import WishListItem from './WishListItem';
-import { instance } from '../../components/assets/axiosUrl'
 
 const WishList = (props) => {
-  // const products = props.products
   const theme = props.lightTheme
-  // const [isLoading, setIsLoading] = useState(props.products.length === 0)
 
-  // const getProductsReq = async () => {
-  //   const { data } = await instance('/api/products')
-  //   return data
-  // }
-  // const { data } = useQuery('getProducts', getProductsReq)
   const [wishListItems, setWishListItems] = useState(props.wishList);
   console.log('wishListItems from Wishlist', wishListItems);
   const [isOnWishList, setIsOnWishList] = useState(props.wishCount !== 0 || false);
@@ -39,10 +29,6 @@ const WishList = (props) => {
     window.localStorage.setItem('wishListItems', JSON.stringify(updatedWishListItems));
     window.localStorage.setItem('wishList', updatedWishListItems.length);
   }
-
-  // useEffect(() => {
-  //   setIsLoading(props.products.length === 0)
-  // }, [props.products, isLoading])
 
   return (
     <>
@@ -76,8 +62,6 @@ const WishList = (props) => {
 
 const mapStateToProps = (state) => ({
   lightTheme: state.UIStateReducer.lightTheme,
-  // productIsLoading: state.ProductReducer.productIsLoading,
-  // products: state.ProductReducer.products,
   wishList: state.WishListReducer.wishList,
   wishCount: state.WishListReducer.wishCount
 });
