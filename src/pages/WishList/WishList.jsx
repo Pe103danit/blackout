@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import style from './WishList.module.scss';
 

@@ -107,7 +107,9 @@ export const ProductCard = () => {
     localStorage.setItem('basket', `${countBasket + countToCart}`)
     dispatch(updateBasket(storageBasket))
   }
-  const isWishlisted = useSelector(state => state.WishListReducer.wishList.includes(product));
+
+  console.log('product from ProductCard', product);
+  const isWishlisted = useSelector(state => state.WishListReducer.wishList.some(item => item.itemNo === product.itemNo));
 
   const WishItemStatus = () => {
     dispatch(toggleWishlist(product))
