@@ -11,7 +11,7 @@ import Timer from '../../pages/Offers/Timer/Timer'
 const ShopCard = (props) => {
     const dispatch = useDispatch()
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
-    const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
+    const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).some(item => item.itemNo === props.productItem.itemNo))
 
     const WishItemStatus = () => {
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
