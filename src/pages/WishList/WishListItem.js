@@ -6,9 +6,10 @@ import { removeFromWishList } from '../../redux/reducers/WishListReducer/WishLis
 import style from './WishList.module.scss'
 
 const WishListItem = ({ product, onWishList }) => {
+// const WishListItem = ({product}) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
 
-  console.log(product)
+  console.log('props from WishListItem', product)
   const dispatch = useDispatch()
 
   const handleRemoveFromWishlist = () => {
@@ -16,12 +17,12 @@ const WishListItem = ({ product, onWishList }) => {
     onWishList(product.itemNo)
   }
 
-  const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
+  const img = product.imageUrl.replace('/upload/', '/upload/w_100/')
 
   return (
     <div className={style.wishListItem}>
       <NavLink to={`/products/${product.itemNo}`} className={style.wishListItem__image}>
-        <img src={img} alt={product.name} title={product.name}/>
+        <img src={img} alt={product.name} title={product.name} />
       </NavLink>
       <div className={style.wishListItem__description}>
         <NavLink to={`/products/${product.itemNo}`} className={style.wishListItem__description__link}>
@@ -36,7 +37,7 @@ const WishListItem = ({ product, onWishList }) => {
           ${product.currentPrice}
         </p>
         <button onClick={handleRemoveFromWishlist}
-                className={`${style.wishListItem__leftBlock__btn} ${theme ? '' : style.wishListItem__leftBlock__btn__darkTheme}`}>
+          className={`${style.wishListItem__leftBlock__btn} ${theme ? '' : style.wishListItem__leftBlock__btn__darkTheme}`}>
           Remove
         </button>
       </div>

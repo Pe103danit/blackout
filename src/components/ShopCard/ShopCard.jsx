@@ -15,8 +15,9 @@ const ShopCard = (props) => {
 
     const WishItemStatus = () => {
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
-        dispatch(toggleWishlist(props.productItem.itemNo))
+        dispatch(toggleWishlist(props.productItem))
     };
+    
     const [timerVisible, setTimerVisible] = useState(false)
     const handleMouseEnter = () => {
         setTimerVisible(true);
@@ -63,8 +64,8 @@ const ShopCard = (props) => {
 
     return (
         <div className={`${style.shopCard} ${theme ? '' : style.shopCard__darkTheme}`}
-             onMouseEnter={handleMouseEnter}
-             onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             <Link to={`/products/${props.productItem.itemNo}`}>
                 <div className={style.shopCard__imgBlock}>
