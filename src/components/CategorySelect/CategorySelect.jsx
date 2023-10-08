@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Checkbox } from 'primereact/checkbox';
 import style from './CategorySelect.module.scss';
 import { addCategoryToFilter } from '../../redux/reducers/ProductReducer/ProductReducer';
+import { useSearchParams } from 'react-router-dom'
 
 export const CategorySelect = () => {
     const dispatch = useDispatch()
-    const [categories, setCategories] = useState([]);
+    const [requestParameters, setRequestParameters] = useSearchParams();
+    const [categories, setCategories] = useState(requestParameters.get('categories') && requestParameters.get('categories').split(',') || []);
 
     const onCategoriesChange = (e) => {
         const _categories = [...categories];
 
-        if (e.checked) { _categories.push(e.value); } else { _categories.splice(_categories.indexOf(e.value), 1); }
+        if (e.checked) {
+          _categories.push(e.value);
+        } else {
+          _categories.splice(_categories.indexOf(e.value), 1);
+        }
+
+        setRequestParameters({
+          categories: _categories.join(','),
+          minPrice: requestParameters.get('minPrice') || '',
+          maxPrice: requestParameters.get('maxPrice') || '',
+          page: requestParameters.get('page') || 1,
+          sort: requestParameters.get('sort') || ''
+        });
         setCategories(_categories)
         dispatch(addCategoryToFilter(_categories));
     }
+
+    useEffect(() => {
+      const categories = requestParameters.get('categories') ? requestParameters.get('categories').split(',') : [];
+      setCategories(categories);
+    }, [requestParameters])
 
     return (
         <div className={style.checkbox}>

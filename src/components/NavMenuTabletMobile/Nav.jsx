@@ -53,27 +53,27 @@ const Nav = ({ themeStyle, toggle }) => {
         {openCategories === true &&
           <>
             <li className={style.container_nav_list_item}>
-              <NavLink to={'/portable_power_stations'} className={style.container_nav_list_item_link} onClick={toggle}>
+              <NavLink to={'/shop?categories=Portable Power Stations'} className={style.container_nav_list_item_link} onClick={toggle}>
                 Portable Power Stations
               </NavLink>
             </li>
             <li className={style.container_nav_list_item}>
-              <NavLink to={'/power_banks'} className={style.container_nav_list_item_link} onClick={toggle}>
+              <NavLink to={'/shop?categories=Power Banks'} className={style.container_nav_list_item_link} onClick={toggle}>
                 Power Banks
               </NavLink>
             </li>
             <li className={style.container_nav_list_item}>
-              <NavLink to={'/generators'} className={style.container_nav_list_item_link} onClick={toggle}>
+              <NavLink to={'/shop?categories=Generators'} className={style.container_nav_list_item_link} onClick={toggle}>
                 Generators
               </NavLink>
             </li>
             <li className={style.container_nav_list_item}>
-              <NavLink to={'/solar_panels'} className={style.container_nav_list_item_link} onClick={toggle}>
+              <NavLink to={'/shop?categories=Solar Panels'} className={style.container_nav_list_item_link} onClick={toggle}>
                 Solar Panels
               </NavLink>
             </li>
             <li className={style.container_nav_list_item}>
-              <NavLink to={'/accessories'} className={style.container_nav_list_item_link} onClick={toggle}>
+              <NavLink to={'/shop?categories=Accessories'} className={style.container_nav_list_item_link} onClick={toggle}>
                 Accessories
               </NavLink>
             </li>

@@ -13,20 +13,16 @@ import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListRed
 import {
     toggleProductToCart
 } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { useSearchParams } from 'react-router-dom'
+import { instance } from '../../components/assets/axiosUrl'
 
 const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart}) => {
-    const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
+    const [products, setProducts] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
     const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
     let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
-
-    useEffect(() => {
-        if (isOpenCartWindow) {
-            setTimeout(() => {
-                toggleProductToCart(null)
-            }, 1000)
-        }
-    }, [isOpenCartWindow, toggleProductToCart])
+    const [requestParameters, setRequestParameters] = useSearchParams();
 
     const WishListHandler = (itemNo) => {
         if (!wishListItems.includes(itemNo)) {
@@ -41,6 +37,14 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
     };
 
     useEffect(() => {
+        if (isOpenCartWindow) {
+            setTimeout(() => {
+                toggleProductToCart(null)
+            }, 1000)
+        }
+    }, [isOpenCartWindow, toggleProductToCart])
+
+    useEffect(() => {
         if (!hasScrolled) {
             window.scrollTo({
                 top: 0,
@@ -49,6 +53,21 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
             setHasScrolled(true)
         }
     }, [hasScrolled])
+
+    useEffect(() => {
+        const uri = '/api/products/filter?';
+        const categories = requestParameters.get('categories') || 'Portable Power Stations,Power Banks,Generators,Solar Panels,Accessories';
+        const minPrice = requestParameters.get('minPrice') || 0;
+        const maxPrice = requestParameters.get('maxPrice') || 1000000;
+        const startPage = requestParameters.get('page') || 1;
+        const sort = requestParameters.get('sort') || '';
+
+        instance.get(`${uri}categories=${categories}&minPrice=${minPrice}&maxPrice=${maxPrice}&startPage=${startPage}&sort=${sort}&perPage=12`)
+          .then(response => {
+              setProducts(response.data.products);
+              setTotalPages(response.data.productsQuantity / 12)
+          });
+    }, [requestParameters])
 
     return (
       (productIsLoading === true)
@@ -59,11 +78,11 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
               <><SelectBar /></>
               <div className={style.cardContainer}>
                   {isOpenCartWindow && <CartWindow />}
-                  {currentItems.map((productItem, index) => (
+                  {products && products.map((productItem, index) => (
                     <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
                   ))}
               </div>
-                <PagePagination cardOnPage={12} productItems={productItems} />
+                <PagePagination totalPages={totalPages} />
           </div>
         )
     )

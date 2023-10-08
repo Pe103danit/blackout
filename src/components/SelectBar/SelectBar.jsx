@@ -1,11 +1,21 @@
 import { connect, useSelector } from 'react-redux'
 import { setSelectValue } from '../../redux/reducers/ProductReducer/ProductReducer'
 import style from './SelectBar.module.scss'
+import { useSearchParams } from 'react-router-dom'
 
-const SelectBar = ({ selectValue, setSelectValue }) => {
-  const theme = useSelector(state => state.UIStateReducer.lightTheme)
+const SelectBar = () => {
+  const theme = useSelector(state => state.UIStateReducer.lightTheme);
+  const [requestParameters, setRequestParameters] = useSearchParams();
+
   const handleChange = (e) => {
     const newValue = e.target.value
+    setRequestParameters({
+      categories: requestParameters.get('categories') || '',
+      minPrice: requestParameters.get('minPrice') || '',
+      maxPrice: requestParameters.get('maxPrice') || '',
+      page: requestParameters.get('page') || 1,
+      sort: newValue
+    })
     setSelectValue(newValue)
   }
 
@@ -15,14 +25,14 @@ const SelectBar = ({ selectValue, setSelectValue }) => {
       <select
         name="select"
         className={`${style.selectBar__input} ${theme ? '' : style.selectBar__input__darkTheme}`}
-        value={selectValue}
+        value={requestParameters.get('sort') || ''}
         onChange={handleChange}
       >
         <option className={style.selectBar__input__option} value="">Default</option>
-        <option className={style.selectBar__input__option} value="&sort=+currentPrice">Low ... High &#8593;</option>
-        <option className={style.selectBar__input__option} value="&sort=-currentPrice">High ... Low &#8595;</option>
-        <option className={style.selectBar__input__option} value="&sort=+name">A &#8594; Z</option>
-        <option className={style.selectBar__input__option} value="&sort=-name">Z &#8594; A</option>
+        <option className={style.selectBar__input__option} value="+currentPrice">Low ... High &#8593;</option>
+        <option className={style.selectBar__input__option} value="-currentPrice">High ... Low &#8595;</option>
+        <option className={style.selectBar__input__option} value="+name">A &#8594; Z</option>
+        <option className={style.selectBar__input__option} value="-name">Z &#8594; A</option>
       </select>
     </div>
   )

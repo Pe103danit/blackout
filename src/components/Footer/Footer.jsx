@@ -132,19 +132,19 @@ const Footer = (props) => {
                                 </div>
                                 <ul className={`${style.footer__linklist}`}>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/portable_power_stations'} className={`${style.footer__linklist_item_link}`}>Portable Power Stations</NavLink>
+                                        <NavLink to={'/shop?categories=Portable Power Stations'} className={`${style.footer__linklist_item_link}`}>Portable Power Stations</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/power_banks'} className={`${style.footer__linklist_item_link}`}>Power Banks</NavLink>
+                                        <NavLink to={'/shop?categories=Power Banks'} className={`${style.footer__linklist_item_link}`}>Power Banks</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/generators'} className={`${style.footer__linklist_item_link}`}>Generators</NavLink>
+                                        <NavLink to={'/shop?categories=Generators'} className={`${style.footer__linklist_item_link}`}>Generators</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/solar_panels'} className={`${style.footer__linklist_item_link}`}>Solar Panels</NavLink>
+                                        <NavLink to={'/shop?categories=Solar Panels'} className={`${style.footer__linklist_item_link}`}>Solar Panels</NavLink>
                                     </li>
                                     <li className={`${style.footer__linklist_item}`}>
-                                        <NavLink to={'/accessories'} className={`${style.footer__linklist_item_link}`}>Accessories</NavLink>
+                                        <NavLink to={'/shop?categories=Accessories'} className={`${style.footer__linklist_item_link}`}>Accessories</NavLink>
                                     </li>
                                 </ul>
                             </div>

@@ -6,24 +6,24 @@ import style from './PriceSlider.module.scss';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/lara-light-blue/theme.css';
 import { setPriceFilter } from '../../redux/reducers/ProductReducer/ProductReducer';
+import { useSearchParams } from 'react-router-dom'
 
 const PriceSlider = (props) => {
-  const [minPrice, setMinPrice] = useState(Infinity);
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [value, setValue] = useState([minPrice, maxPrice]);
-
-  useEffect(() => {
-    const prices = props.productItems.map(el => el.currentPrice);
-    const newMinPrice = Math.min(...prices);
-    const newMaxPrice = Math.max(...prices);
-
-    setMinPrice(newMinPrice);
-    setMaxPrice(newMaxPrice);
-    setValue([newMinPrice, newMaxPrice]);
-  }, [props.productItems]);
+  const prices = props.productItems.map(el => el.currentPrice);
+  const [requestParameters, setRequestParameters] = useSearchParams();
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+  const [value, setValue] = useState([requestParameters.get('minPrice') || minPrice, requestParameters.get('maxPrice') || maxPrice]);
 
   const handleChanges = (event, newValue) => {
     console.log(newValue);
+    setRequestParameters({
+      categories: requestParameters.get('categories') || '',
+      minPrice: newValue[0],
+      maxPrice: newValue[1],
+      page: requestParameters.get('page') || 1,
+      sort: requestParameters.get('sort') || ''
+    });
     setValue(newValue);
     props.setPriceFilter(newValue);
   };
