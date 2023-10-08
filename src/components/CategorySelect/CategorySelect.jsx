@@ -8,6 +8,7 @@ import { useSearchParams } from 'react-router-dom'
 export const CategorySelect = () => {
     const dispatch = useDispatch()
     const [requestParameters, setRequestParameters] = useSearchParams();
+    // eslint-disable-next-line
     const [categories, setCategories] = useState(requestParameters.get('categories') && requestParameters.get('categories').split(',') || []);
 
     const onCategoriesChange = (e) => {
