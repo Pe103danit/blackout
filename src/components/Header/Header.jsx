@@ -30,7 +30,7 @@ const Header = (props) => {
     : 'dark_navLink'
 
   const handleClearFilter = () => {
-    props.resetFilters();
+    props.resetFilters()
   }
 
   return (

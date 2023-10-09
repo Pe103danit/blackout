@@ -1,167 +1,109 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useQuery, useQueryClient } from 'react-query';
-import { setCategories } from './setCategories';
-import style from './PagePagination.module.scss';
-import { instance } from '../assets/axiosUrl';
-import { getProductsPerPage } from '../../redux/reducers/ProductReducer/ProductReducer';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import {parseParams} from './parseParams'
+import React, { useEffect, useState, useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useQuery } from 'react-query'
+import style from './PagePagination.module.scss'
+import { instance } from '../assets/axiosUrl'
+import { getProductsPerPage } from '../../redux/reducers/ProductReducer/ProductReducer'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
-const PagePagination = ({ cardOnPage, productItems }) => {
-  const [readySearch, setReadySearch] = useState('')
-  const [currentPage, setCurrentPage] = useState(1);
-  const [prevCategory, setPrevCategory] = useState(null);
+const PagePagination = ({ cardOnPage, productItems, categoryName }) => {
+  const theme = useSelector((state) => state.UIStateReducer.lightTheme)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [currentPage, setCurrentPage] = useState(
+    Number(searchParams.get('startPage')) || 1)
+  const [params, setParams] = useState(categoryName !== undefined
+    ? `${categoryName}perPage=${cardOnPage}&startPage=${currentPage}`
+    : `perPage=${cardOnPage}&startPage=${currentPage}`)
   const [totalPages, setTotalPages] = useState(
     Math.ceil(productItems.length / cardOnPage)
-  );
-  const dispatch = useDispatch();
-  const queryClient = useQueryClient();
-  const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const theme = useSelector((state) => state.UIStateReducer.lightTheme);
-  const categorySelectFilter = useSelector(
-    (state) => state.ProductReducer.categories
-  );
-  const priceFilter = useSelector(
-    (state) => state.ProductReducer.priceFilter
-  );
-  const categorySelectFilterString = categorySelectFilter
-    ? categorySelectFilter.join(',')
-    : '';
-  const [queryCategorySelectFilterString, setQueryCategorySelectFilterString] =
-    useState('');
-  const selectValue = useSelector(
-    (state) => state.ProductReducer.selectValue
-  );
-  const selectValueData = selectValue || '';
+  )
+  const location = useLocation()
+  const dispatch = useDispatch()
 
-  const priceMinReq = priceFilter[0];
-  const priceMaxReq = priceFilter[1];
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [categorySelectFilter]);
-
-  useEffect(() => {
-    const categorySelectFilterValue = categorySelectFilter
-      ? categorySelectFilter.join(',')
-      : '';
-    setQueryCategorySelectFilterString(
-      categorySelectFilterValue
-        ? `categories=${categorySelectFilterValue}&`
-        : ''
-    );
-  }, [
-    categorySelectFilterString,
-    categorySelectFilter
-  ]);
-
-  const GeneratePathName = (pathname) => {
-    return setCategories(pathname.substring(1));
-  };
-  useEffect(() => {
-    if (location.search.length !== 0) {
-      setReadySearch(parseParams(location.search))
-    }
-  }, [location.search])
-  const getProductsPage = useCallback(async (req) => {
-    let filterCategory = '';
-    let priceReq = '';
-    if (location.pathname !== '/shop') {
-      filterCategory = `categories=${GeneratePathName(location.pathname)}&`;
-    }
-
-    if (priceMinReq || priceMaxReq) {
-      priceReq = `minPrice=${priceMinReq}&maxPrice=${priceMaxReq}&`;
-    }
-
+  const fetchProducts = useCallback(async () => {
     const { data } = await instance.get(
-      `/api/products/filter?${filterCategory}${queryCategorySelectFilterString}${priceReq}perPage=${cardOnPage}&startPage=${req.queryKey[1]}${selectValueData}`
-    );
-
-    setTotalPages(Math.ceil(data.productsQuantity / cardOnPage));
-    if (req.queryKey[1] === 1) {
-      setSearchParams(
-        `${queryCategorySelectFilterString}${priceReq}${selectValueData}`
-      );
-    } else {
+      `/api/products/filter?${params}`
+    )
+    return data
+  }, [params])
+  console.log(searchParams)
+  useEffect(() => {
+    if (location.search.length === 0) {
+      setSearchParams({
+        perPage: cardOnPage,
+        startPage: 1
+      })
+      setCurrentPage(1)
       console.log(searchParams)
-      setSearchParams(
-        `${queryCategorySelectFilterString}${priceReq}page=${req.queryKey[1]}${selectValueData}`
-      );
+    }
+  }, [location.search.length, cardOnPage, searchParams, setSearchParams])
+
+  useEffect(() => {
+    console.log(currentPage)
+    let newParams = categoryName !== undefined
+      ? `${categoryName}perPage=${cardOnPage}&startPage=${currentPage}`
+      : `perPage=${cardOnPage}&startPage=${currentPage}`
+
+    const paramsObject = {
+      perPage: cardOnPage,
+      startPage: currentPage,
     }
 
-    return data.products;
-  }, [
-    cardOnPage,
-    location.pathname,
-    queryCategorySelectFilterString,
-    priceMinReq,
-    priceMaxReq,
-    selectValueData,
-    searchParams,
-    setSearchParams
-  ]);
+    if (location.search.length > 0) {
+      for (const [key, value] of searchParams.entries()) {
+        paramsObject[key] = value
+      }
 
-  const updateListProducts = useCallback(async () => {
-    await queryClient.prefetchQuery(
-      ['products', currentPage],
-      getProductsPage
-    );
-  }, [currentPage, queryClient, getProductsPage]);
+      paramsObject.startPage = currentPage
+      paramsObject.perPage = cardOnPage
 
-  useEffect(() => {
-    const currentCategory = GeneratePathName(location.pathname);
-    if (prevCategory !== currentCategory) {
-      setCurrentPage(1);
-      setPrevCategory(currentCategory);
+      const paramStrings = Object.entries(paramsObject).map(
+        ([key, value]) => `${key}=${value}`
+      )
+
+      newParams = paramStrings.join('&')
+    } else {
+      setParams('')
     }
-    updateListProducts();
-  }, [updateListProducts, location.pathname, prevCategory]);
 
-  useEffect(() => {}, [location.pathname]);
+    if (paramsObject.startPage === 1 && paramsObject.perPage === 12) {
+      delete paramsObject.startPage
+      delete paramsObject.perPage
+    }
 
-  useEffect(() => {
-    updateListProducts();
-  }, [priceMinReq, priceMaxReq, updateListProducts]);
-
-  useEffect(() => {
-    updateListProducts();
-  }, [selectValueData, updateListProducts]);
+    console.log(paramsObject)
+    setSearchParams(paramsObject)
+    setParams(newParams)
+  }, [location.search, currentPage, searchParams, cardOnPage, setSearchParams, categoryName])
 
   const { data } = useQuery(
-    ['products', currentPage],
-    getProductsPage,
+    ['products', params, searchParams],
+    fetchProducts,
     { keepPreviousData: true }
-  );
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => prev - 1);
-  };
-
-  console.log(readySearch)
-
-  useEffect(() => {
-    updateListProducts();
-  }, [updateListProducts]);
+  )
 
   useEffect(() => {
     if (data) {
-      dispatch(getProductsPerPage(data));
+      dispatch(getProductsPerPage(data.products))
+      if (data.productsQuantity <= cardOnPage) {
+        setTotalPages(1)
+        setCurrentPage(1)
+      } else {
+        setTotalPages(Math.floor(data.productsQuantity / cardOnPage))
+      }
     }
-  }, [data, dispatch]);
-  if (data) {
-    if (data.length === 0) {
-      return null
-    }
+  }, [data, cardOnPage, dispatch, searchParams])
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => prev + 1)
+  }
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => prev - 1)
   }
   return (
     <div className={style.pagination}>
@@ -195,7 +137,7 @@ const PagePagination = ({ cardOnPage, productItems }) => {
         Next
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default PagePagination;
+export default PagePagination

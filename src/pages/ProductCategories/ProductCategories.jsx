@@ -86,7 +86,7 @@ const ProductCategories = ({
               />
             ))}
           </div>
-          <PagePagination cardOnPage={12} productItems={products} />
+          <PagePagination cardOnPage={12} productItems={products} categoryName={`categories=${categoryName}&`} />
         </>
       )}
       {isError && <p>Something went wrong</p>}
