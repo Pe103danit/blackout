@@ -24,7 +24,7 @@ const PagePagination = ({ cardOnPage, productItems, categoryName, categoryNameSh
     )
     return data
   }, [params])
-  console.log(searchParams)
+
   useEffect(() => {
     if (location.search.length === 0) {
       setSearchParams({
@@ -32,12 +32,10 @@ const PagePagination = ({ cardOnPage, productItems, categoryName, categoryNameSh
         startPage: 1
       })
       setCurrentPage(1)
-      console.log(searchParams)
     }
   }, [location.search.length, cardOnPage, searchParams, setSearchParams])
 
   useEffect(() => {
-    console.log(currentPage)
     let newParams = categoryName !== undefined
       ? `${categoryName}perPage=${cardOnPage}&startPage=${currentPage}`
       : `perPage=${cardOnPage}&startPage=${currentPage}`
@@ -71,7 +69,6 @@ const PagePagination = ({ cardOnPage, productItems, categoryName, categoryNameSh
       delete paramsObject.perPage
     }
 
-    console.log(paramsObject)
     setSearchParams(paramsObject)
     setParams(newParams)
   }, [location.search, currentPage, searchParams, cardOnPage, setSearchParams, categoryName, categoryNameShort])

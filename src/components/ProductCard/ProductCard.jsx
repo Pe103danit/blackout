@@ -45,7 +45,7 @@ export const ProductCard = () => {
   useEffect(() => {
     setSpinner(true);
     setThumbsSwiper(null);
-    setProduct({}) // Установить thumbsSwiper в null при изменении id
+    setProduct({})
   }, [id]);
    useEffect(() => {
     if (data) {
@@ -79,26 +79,37 @@ export const ProductCard = () => {
     dispatch(addToBasket(product?.itemNo, countToCart))
     dispatch(toggleProductToCart(product))
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
-    let repeat = false
-    storageBasket = storageBasket.map(item => {
-      if (item.itemNo === product?.itemNo) {
-        repeat = true
-        return ({
-          itemNo: product?.itemNo,
-          countToCart: item.countToCart + countToCart
-        })
-      } else {
-        return item
-      }
-    })
-    if (!repeat) {
-      storageBasket.push(
+    if (storageBasket.length === 0) {
+      storageBasket = [
         {
-          itemNo: product?.itemNo,
+          ...product,
           countToCart
         }
-      )
+      ]
+    } else {
+      let isRepeat = false
+      storageBasket = storageBasket.map(item => {
+        if (item.itemNo === product.itemNo) {
+          isRepeat = true
+          return ({
+            ...item,
+            countToCart: countToCart + item.countToCart
+          })
+        } else {
+          return (item)
+        }
+      })
+      if (!isRepeat) {
+        storageBasket = [
+          ...storageBasket,
+          {
+            product,
+            countToCart
+          }
+        ]
+      }
     }
+
     localStorage.setItem('basketList', JSON.stringify([
       ...storageBasket
     ])
