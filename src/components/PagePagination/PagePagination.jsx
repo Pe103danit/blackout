@@ -6,14 +6,12 @@ import { instance } from '../assets/axiosUrl'
 import { getProductsPerPage } from '../../redux/reducers/ProductReducer/ProductReducer'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
-const PagePagination = ({ cardOnPage, productItems, categoryName }) => {
+const PagePagination = ({ cardOnPage, productItems, categoryName, categoryNameShort }) => {
   const theme = useSelector((state) => state.UIStateReducer.lightTheme)
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState(
     Number(searchParams.get('startPage')) || 1)
-  const [params, setParams] = useState(categoryName !== undefined
-    ? `${categoryName}perPage=${cardOnPage}&startPage=${currentPage}`
-    : `perPage=${cardOnPage}&startPage=${currentPage}`)
+  const [params, setParams] = useState(`perPage=${cardOnPage}&startPage=${currentPage}`)
   const [totalPages, setTotalPages] = useState(
     Math.ceil(productItems.length / cardOnPage)
   )
@@ -46,7 +44,10 @@ const PagePagination = ({ cardOnPage, productItems, categoryName }) => {
 
     const paramsObject = {
       perPage: cardOnPage,
-      startPage: currentPage,
+      startPage: currentPage
+    }
+    if (categoryName !== undefined) {
+      paramsObject.categories = categoryNameShort
     }
 
     if (location.search.length > 0) {
@@ -56,7 +57,6 @@ const PagePagination = ({ cardOnPage, productItems, categoryName }) => {
 
       paramsObject.startPage = currentPage
       paramsObject.perPage = cardOnPage
-
       const paramStrings = Object.entries(paramsObject).map(
         ([key, value]) => `${key}=${value}`
       )
@@ -74,7 +74,7 @@ const PagePagination = ({ cardOnPage, productItems, categoryName }) => {
     console.log(paramsObject)
     setSearchParams(paramsObject)
     setParams(newParams)
-  }, [location.search, currentPage, searchParams, cardOnPage, setSearchParams, categoryName])
+  }, [location.search, currentPage, searchParams, cardOnPage, setSearchParams, categoryName, categoryNameShort])
 
   const { data } = useQuery(
     ['products', params, searchParams],
@@ -89,7 +89,7 @@ const PagePagination = ({ cardOnPage, productItems, categoryName }) => {
         setTotalPages(1)
         setCurrentPage(1)
       } else {
-        setTotalPages(Math.floor(data.productsQuantity / cardOnPage))
+        setTotalPages(Math.ceil(data.productsQuantity / cardOnPage))
       }
     }
   }, [data, cardOnPage, dispatch, searchParams])
