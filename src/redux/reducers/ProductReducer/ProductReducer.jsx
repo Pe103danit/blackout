@@ -149,7 +149,8 @@ const productReducer = (state = initialState, { type, payload }) => {
     case types.GET_PRODUCTS_PER_PAGE: {
       return {
         ...state,
-        productsPerPage: [...payload]
+        productsPerPage: [...payload],
+        productIsLoading: false
       }
     }
 
