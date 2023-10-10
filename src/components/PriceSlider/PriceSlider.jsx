@@ -16,9 +16,8 @@ const PriceSlider = (props) => {
   const location = useLocation()
 
   useEffect(() => {
-    const prices = props.productItems.map(el => el.currentPrice)
-    const newMinPrice = Math.min(...prices)
-    const newMaxPrice = Math.max(...prices)
+    const newMinPrice = 14.99
+    const newMaxPrice = 4449
 
     setMinPrice(newMinPrice)
     setMaxPrice(newMaxPrice)
