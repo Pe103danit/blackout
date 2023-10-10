@@ -18,8 +18,8 @@ import SignUp from './pages/SignUp/SignUp'
 import ProductCardPage from './pages/ProductCardPage/ProductCardPage'
 import Account from './pages/Account/Account';
 import FAQ from './pages/FAQ/FAQ';
-import { instance } from './components/assets/axiosUrl'
-import { useQuery } from 'react-query'
+// import { instance } from './components/assets/axiosUrl'
+// import { useQuery } from 'react-query'
 import { useEffect } from 'react'
 import ProductCategoriesContainer from './pages/ProductCategories/ProductCategoriesContainer'
 import GoToTop from './components/GoToTop/GoToTop'
@@ -35,16 +35,16 @@ import WishList from './pages/WishList/WishList';
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
   const token = props.token
-  const getSwiperProducts = async () => {
-    const { data } = await instance.get('/api/products')
-    return data
-  }
-  const { data } = useQuery('getProducts', getSwiperProducts)
-  useEffect(() => {
-    if (data) {
-      props.getProducts(data)
-    }
-  }, [data, props])
+  // const getSwiperProducts = async () => {
+  //   const { data } = await instance.get('/api/products')
+  //   return data
+  // }
+  // const { data } = useQuery('getProducts', getSwiperProducts)
+  // useEffect(() => {
+  //   if (data) {
+  //     props.getProducts(data)
+  //   }
+  // }, [data, props])
   useEffect(() => {
     const token = localStorage.getItem('tokenParts')
     if (token) {

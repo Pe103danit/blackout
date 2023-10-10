@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import CartWindow from '../../components/CartWindow/CartWindow'
-import Spinner from '../../components/Spinner/Spinner'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import PagePagination from '../../components/PagePagination/PagePagination'
 import SelectBar from '../../components/SelectBar/SelectBar'
@@ -12,7 +11,6 @@ const ProductCategories = ({
   categoryName,
   isOpenCartWindow,
   toggleProductToCart,
-  productIsLoading,
   productsPerPage
 }) => {
   const wishListItems = JSON.parse(
@@ -43,10 +41,8 @@ const ProductCategories = ({
     <div className={style.productCategories}>
       <h3 className={style.productCategories__title}>{title}</h3>
       {isOpenCartWindow && <CartWindow/>}
-      {(productIsLoading === true)
-        ? (<Spinner/>)
-        : (
-          <>
+      {(
+        <>
             <PriceSlider productItems={productsPerPage}/>
             <SelectBar/>
             <div className={style.productCategories__container}>

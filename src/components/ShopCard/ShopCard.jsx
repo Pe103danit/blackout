@@ -38,10 +38,11 @@ const ShopCard = (props) => {
                 repeat = true
                 return ({
                     itemNo: candidateId,
-                    countToCart: item.countToCart + countToCart
+                    countToCart: item.countToCart + countToCart,
+                    ...props.productItem
                 })
             } else {
-                return item
+                return ({...props.productItem, countToCart: 1})
             }
         })
         if (!repeat) {

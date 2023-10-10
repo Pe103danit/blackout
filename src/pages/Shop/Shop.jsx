@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { connect, useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import CartWindow from '../../components/CartWindow/CartWindow'
 
 import style from './Shop.module.scss'
 import PriceSlider from '../../components/PriceSlider/PriceSlider'
 import CategorySelect from '../../components/CategorySelect/CategorySelect'
 import SelectBar from '../../components/SelectBar/SelectBar'
-import Spinner from '../../components/Spinner/Spinner'
 import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
@@ -14,8 +13,7 @@ import {
   toggleProductToCart
 } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart }) => {
-  const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
+const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart }) => {
   const [hasScrolled, setHasScrolled] = useState(false)
   let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0
   let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
@@ -49,28 +47,25 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
       setHasScrolled(true)
     }
   }, [hasScrolled])
-
   return (
-    (productIsLoading === true)
-      ? (<Spinner/>)
-      : (<div className={style.shop}>
-          <PriceSlider productItems={productItems}/>
-          <CategorySelect/>
-          <><SelectBar/></>
-          <div className={style.cardContainer}>
-            {isOpenCartWindow && <CartWindow/>}
-            {currentItems.map((productItem, index) => (
-              <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)}/>
-            ))}
-          </div>
-          <PagePagination cardOnPage={12} productItems={productItems}/>
-        </div>
-      )
+    <div className={style.shop}>
+      <PriceSlider productItems={productsPerPage}/>
+      <CategorySelect/>
+      <><SelectBar/></>
+      <div className={style.cardContainer}>
+        {isOpenCartWindow && <CartWindow/>}
+        {productsPerPage.map((productItem, index) => (
+          <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)}/>
+        ))}
+      </div>
+      <PagePagination cardOnPage={12} productItems={productsPerPage}/>
+    </div>
   )
 }
 const mapStateToProps = state => {
   return {
     productItems: state.ProductReducer.products,
+    productsPerPage: state.ProductReducer.productsPerPage,
     productIsLoading: state.ProductReducer.productIsLoading,
     isOpenCartWindow: state.ProductReducer.isOpenCartWindow,
     priceFilter: state.ProductReducer.priceFilter,
