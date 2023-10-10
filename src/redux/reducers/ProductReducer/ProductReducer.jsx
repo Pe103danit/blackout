@@ -18,7 +18,8 @@ const initialState = {
   product: {},
   priceFilter: [],
   selectValue: '',
-  categories: []
+  categories: [],
+  productsSliderMain: {}
 }
 const getTotalSum = (productsList, basketList) => {
   let totalSum = 0
@@ -148,7 +149,8 @@ const productReducer = (state = initialState, { type, payload }) => {
     case types.GET_PRODUCTS_PER_PAGE: {
       return {
         ...state,
-        productsPerPage: [...payload]
+        productsPerPage: [...payload],
+        productIsLoading: false
       }
     }
 
@@ -171,6 +173,14 @@ const productReducer = (state = initialState, { type, payload }) => {
         priceFilter: [],
         selectValue: '',
         categories: []
+      }
+    }
+
+    case types.GET_PRODUCTS_SLIDER_MAIN: {
+      return {
+        ...state,
+        productsSliderMain: {...payload},
+        productIsLoading: false
       }
     }
 
@@ -233,6 +243,11 @@ export const setSelectValue = (value) => ({
 
 export const resetFilters = () => ({
   type: types.RESET_FILTERS
+})
+
+export const getProductsSliderMain = (productsList) => ({
+  type: types.GET_PRODUCTS_SLIDER_MAIN,
+  payload: productsList
 })
 
 export default productReducer

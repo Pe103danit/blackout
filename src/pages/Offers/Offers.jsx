@@ -19,9 +19,9 @@ const Offers = () => {
     const prevOffersProductsRef = useRef([]);
 
     const getProducts = async () => {
-        const { data } = await instance.get('/api/products');
-        const offersProductArr = data.filter((product) => product.sale === true);
-        setOffersProducts(offersProductArr);
+        const { data } = await instance.get('/api/products/filter?sale=true')
+        const offersProductArr = data.products
+        setOffersProducts(offersProductArr)
         setCurrentItems(offersProducts.slice(0, 12))
         return offersProductArr
     }

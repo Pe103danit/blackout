@@ -6,13 +6,15 @@ const SearchResultItem = (props) => {
     ? 'lightSearchResultItem'
     : 'darkSearchResultItem'
 
+  const img = props.product.imageUrls[0].replace('/upload/', '/upload/w_100/')
+
   return (
     <li className={`${style.item} ${themeStyle}`}
         onClick={props.toggle}>
       <NavLink to={`/products/${props.product.itemNo}`} className={style.item_link}>
         <div className={style.item_link_inner}>
         <div className={style.item_link_inner_left}>
-          <img src={props.product.imageUrls[0]} alt={props.product.name} title={props.product.name}/>
+          <img src={img} alt={props.product.name} title={props.product.name}/>
         </div>
         <div className={style.item_link_inner_right}>
           <p className={style.item_link_inner_right_name}>{props.product.name}</p>

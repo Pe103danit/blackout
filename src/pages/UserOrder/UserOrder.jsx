@@ -33,6 +33,7 @@ const UserOrder = () => {
     const minutes = (min.length < 2) ? `0${min}` : `${min}`
     return `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()} ${newDate.getHours()}:${minutes}`
   }
+
   return (
     <>
       <h2 className={style.userOrder__title}>
