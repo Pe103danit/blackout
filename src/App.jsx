@@ -31,6 +31,7 @@ import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOr
 import UserInfo from './pages/UserInfo/UserInfo';
 import UserOrder from './pages/UserOrder/UserOrder';
 import WishList from './pages/WishList/WishList';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -47,8 +48,10 @@ const App = (props) => {
   }, [data, props])
   useEffect(() => {
     const token = sessionStorage.getItem('tokenParts')
+    const user = sessionStorage.getItem('user')
     if (token) {
       props.setToken(token)
+      props.setUser(user)
       setTimeout(() => {
         sessionStorage.setItem('tokenParts', '')
         sessionStorage.setItem('user', JSON.stringify({}))
@@ -88,6 +91,7 @@ const App = (props) => {
         <Route path='/products/:id' element={<ProductCardPage />} />
         <Route path='/sign_up' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/forgot_password' element={<ForgotPassword />} />
         {(token) && <Route path='/user_info' element={<UserInfo />} />}
         {(token) && <Route path='/user_orders' element={<UserOrder />} />}
         {(token) && <Route path='/account' element={<Account />} />}

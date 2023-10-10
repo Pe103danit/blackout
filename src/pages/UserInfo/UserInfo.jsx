@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
 import { useEffect } from 'react';
 import Spinner from '../../components/Spinner/Spinner';
+import { NavLink, useNavigate } from 'react-router-dom'
 const UserInfo = () => {
     const theme = useSelector(state => state.UIStateReducer.lightTheme)
     const wrapperStyle = theme
@@ -37,6 +38,7 @@ const UserInfo = () => {
                         <p className={style.UserInfo_wrapper_item}>Email: {user?.email}</p>
                         <p className={style.UserInfo_wrapper_item}>First name: {user?.firstName}</p>
                         <p className={style.UserInfo_wrapper_item}>Last name: {user?.lastName} </p>
+                        <p className={style.Login_form_SignUp}>Change your password<NavLink to='/forgot_password'>Click here</NavLink></p>
                     </div>
                 </div>}
         </>
