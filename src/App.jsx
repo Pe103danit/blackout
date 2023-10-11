@@ -31,6 +31,7 @@ import SuccessfulOrderContainer from './pages/Order/SuccessfulOrder/SuccessfulOr
 import UserInfo from './pages/UserInfo/UserInfo';
 import UserOrder from './pages/UserOrder/UserOrder';
 import WishList from './pages/WishList/WishList';
+import UserWishList from './components/UserWishList/UserWishList';
 
 const App = (props) => {
   const themeStyle = props.lightTheme ? 'light' : 'dark'
@@ -70,7 +71,6 @@ const App = (props) => {
         <Route path='/payment' element={<PaymentContainer />} />
         <Route path='/about_us' element={<AboutUsContainer />} />
         <Route path='/contacts' element={<ContactsContainer />} />
-        <Route path='/wishlist' element={<WishList />} />
         <Route path='/basket' element={<BasketContainer />} />
         <Route path='/accessories' element={<ProductCategoriesContainer categoryName='Accessories' title='Accessories' />} />
         <Route path='/generators' element={<ProductCategoriesContainer categoryName='Generators' title='Generators' />} />
@@ -91,6 +91,7 @@ const App = (props) => {
         {(token) && <Route path='/user_info' element={<UserInfo />} />}
         {(token) && <Route path='/user_orders' element={<UserOrder />} />}
         {(token) && <Route path='/account' element={<Account />} />}
+        {token ? <Route path='/user_wishlist' element={<UserWishList token={token} />} /> : <Route path='/wishlist' element={<WishList />} />}
         <Route path={'*' || '404'} element={<NotFoundPageContainer />} />
 
       </Routes>
