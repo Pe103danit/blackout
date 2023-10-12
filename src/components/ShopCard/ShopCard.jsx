@@ -24,6 +24,7 @@ const ShopCard = (props) => {
   }
   useEffect(() => {
     checkIsWish(props.productItem.itemNo)
+    // eslint-disable-next-line
   }, [props.productItem.itemNo])
 
   const WishItemStatus = () => {
