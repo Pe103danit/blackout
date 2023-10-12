@@ -74,6 +74,7 @@ export const ProductCard = () => {
     setSpecsArray(product?.specs)
   }, [product?.currentPrice, product?.quantity, product?.specs])
   // handlers
+  console.log(countToCart)
   const handleClick = () => {
     window.scrollTo(0, 0)
     dispatch(addToBasket(product?.itemNo, countToCart))
@@ -100,10 +101,11 @@ export const ProductCard = () => {
         }
       })
       if (!isRepeat) {
+        console.log(countToCart)
         storageBasket = [
           ...storageBasket,
           {
-            product,
+            ...product,
             countToCart
           }
         ]
@@ -227,10 +229,10 @@ export const ProductCard = () => {
                       <button
                         className={`${style.product_card_button_available} ${(countToCart === 1) ? style.product_card_button_disable : ''}`}
                         disabled={countToCart === 1} onClick={() => {
-                          setCountToCart(prev => prev -= 1)
-                          setCountOfAvailable(prev => prev += 1)
+                          setCountToCart(prev => prev - 1)
+                          setCountOfAvailable(prev => prev + 1)
                           if (countToCart > 0) {
-                            setMultipliedPrice(prev => (prev = Number(prev) - product?.currentPrice).toFixed(2))
+                            setMultipliedPrice(prev => (Number(prev) - product?.currentPrice).toFixed(2))
                           }
                           if (countToCart === 1) {
                             setMultipliedPrice(product?.currentPrice)
@@ -241,11 +243,11 @@ export const ProductCard = () => {
                       <button
                         className={`${style.product_card_button_available} ${(!countOfAvailable) ? style.product_card_button_disable : ''}`}
                         disabled={!countOfAvailable} onClick={() => {
-                          setCountToCart(prev => prev += 1)
-                          setCountOfAvailable(prev => prev -= 1)
+                          setCountToCart(prev => prev + 1)
+                          setCountOfAvailable(prev => prev - 1)
 
                           if (countToCart > 0) {
-                            setMultipliedPrice(prev => (prev = Number(prev) + product?.currentPrice).toFixed(2))
+                            setMultipliedPrice(prev => (Number(prev) + product?.currentPrice).toFixed(2))
                           }
                           if (!countToCart) {
                             setMultipliedPrice(product?.currentPrice)
