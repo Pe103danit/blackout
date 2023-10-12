@@ -1,6 +1,6 @@
-export const removeFromWishList = (itemNo) => {
+export const setWishList = (wishList) => {
     return {
-        type: 'REMOVE_FROM_WISHLIST',
-        payload: itemNo
+        type: 'SET_WISHLIST',
+        payload: wishList
     }
 }

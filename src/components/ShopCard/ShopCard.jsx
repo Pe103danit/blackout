@@ -1,22 +1,62 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons'
 import style from './ShopCard.module.scss'
 import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
 import { makeShortText } from '../assets/makeShortText'
 import Timer from '../../pages/Offers/Timer/Timer'
+import { setWishList } from '../../redux/reducers/WishListReducer/WishListActions'
 
 const ShopCard = (props) => {
   const dispatch = useDispatch()
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-  const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).includes(props.productItem.itemNo))
+  const [wishListHeard, setWishListHeard] = useState(false)
+  let wishList = JSON.parse(localStorage.getItem('wishListItems'))
+  const checkIsWish = (itemNo) => {
+    let isWish = false
+    wishList.forEach(item => {
+      if (item.itemNo === itemNo) {
+        isWish = true
+      }
+    })
+    setWishListHeard(isWish)
+  }
+  useEffect(() => {
+    checkIsWish(props.productItem.itemNo)
+    // eslint-disable-next-line
+  }, [props.productItem.itemNo])
 
   const WishItemStatus = () => {
-    setWishListHeard(prevWishListHeard => !prevWishListHeard)
-    dispatch(toggleWishlist(props.productItem.itemNo))
+    if (wishList.length === 0) {
+      wishList = [
+        ...wishList,
+        {...props.productItem}
+      ]
+      setWishListHeard(true)
+    } else {
+      let isInclude = false
+      wishList.forEach(item => {
+        if (item.itemNo === props.productItem.itemNo) {
+          isInclude = true
+        }
+      })
+      if (isInclude) {
+        wishList = wishList.filter(item => item.itemNo !== props.productItem.itemNo)
+        setWishListHeard(false)
+      } else {
+        wishList = [
+          ...wishList,
+          {...props.productItem}
+        ]
+        setWishListHeard(true)
+      }
+    }
+    localStorage.setItem('wishListItems', JSON.stringify(wishList))
+    localStorage.setItem('wishList', wishList.length)
+    dispatch(setWishList(wishList))
   }
+
   const [timerVisible, setTimerVisible] = useState(false)
   const handleMouseEnter = () => {
     setTimerVisible(true)

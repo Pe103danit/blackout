@@ -16,7 +16,7 @@ import StarRating from './StarRating'
 import Spinner from '../Spinner/Spinner'
 import { instance } from '../assets/axiosUrl'
 import { addToBasket, toggleProductToCart, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
-import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
+import { setWishList } from '../../redux/reducers/WishListReducer/WishListActions'
 
 export const ProductCard = () => {
   // variables
@@ -32,9 +32,11 @@ export const ProductCard = () => {
   const [specsArray, setSpecsArray] = useState([])
   const [isSpinner, setSpinner] = useState(true)
   const [isClicked, setClicked] = useState(false)
+  const [wishListHeard, setWishListHeard] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const isOpenCartWindow = useSelector(state => state.ProductReducer.isOpenCartWindow)
   const themeStyle = theme ? 'light' : 'dark'
+  let wishList = JSON.parse(localStorage.getItem('wishListItems'))
   // get one product
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
@@ -74,7 +76,6 @@ export const ProductCard = () => {
     setSpecsArray(product?.specs)
   }, [product?.currentPrice, product?.quantity, product?.specs])
   // handlers
-  console.log(countToCart)
   const handleClick = () => {
     window.scrollTo(0, 0)
     dispatch(addToBasket(product?.itemNo, countToCart))
@@ -101,7 +102,6 @@ export const ProductCard = () => {
         }
       })
       if (!isRepeat) {
-        console.log(countToCart)
         storageBasket = [
           ...storageBasket,
           {
@@ -120,11 +120,51 @@ export const ProductCard = () => {
     localStorage.setItem('basket', `${countBasket + countToCart}`)
     dispatch(updateBasket(storageBasket))
   }
-  const isWishlisted = useSelector(state => state.WishListReducer.wishList.includes(product.itemNo));
+
+  const checkIsWish = (itemNo) => {
+    let isWish = false
+    wishList.forEach(item => {
+      if (item.itemNo === itemNo) {
+        isWish = true
+      }
+    })
+    setWishListHeard(isWish)
+  }
+
+  useEffect(() => {
+    checkIsWish(product.itemNo)
+    // eslint-disable-next-line
+  }, [product.itemNo])
 
   const WishItemStatus = () => {
-    dispatch(toggleWishlist(product.itemNo))
-  };
+   if (wishList.length === 0) {
+     wishList = [
+       ...wishList,
+       {...product}
+     ]
+     setWishListHeard(true)
+   } else {
+     let isInclude = false
+     wishList.forEach(item => {
+       if (item.itemNo === product.itemNo) {
+         isInclude = true
+       }
+     })
+     if (isInclude) {
+       wishList = wishList.filter(item => item.itemNo !== product.itemNo)
+       setWishListHeard(false)
+     } else {
+       wishList = [
+         ...wishList,
+         {...product}
+       ]
+       setWishListHeard(true)
+     }
+   }
+    localStorage.setItem('wishListItems', JSON.stringify(wishList))
+    localStorage.setItem('wishList', wishList.length)
+    dispatch(setWishList(wishList))
+  }
 
   return (
     <>{isSpinner && <Spinner />}
@@ -267,7 +307,7 @@ export const ProductCard = () => {
                         }}
                         className={style.product_favorite_background}
                       >
-                        {isWishlisted
+                        {wishListHeard
                           ? (
                             <AiTwotoneHeart className={style.product_fav_heart} />
                           )
