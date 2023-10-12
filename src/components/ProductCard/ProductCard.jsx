@@ -16,7 +16,7 @@ import StarRating from './StarRating'
 import Spinner from '../Spinner/Spinner'
 import { instance } from '../assets/axiosUrl'
 import { addToBasket, toggleProductToCart, updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer'
-import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
+import { setWishList } from '../../redux/reducers/WishListReducer/WishListActions'
 
 export const ProductCard = () => {
   // variables
@@ -32,9 +32,11 @@ export const ProductCard = () => {
   const [specsArray, setSpecsArray] = useState([])
   const [isSpinner, setSpinner] = useState(true)
   const [isClicked, setClicked] = useState(false)
+  const [wishListHeard, setWishListHeard] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const isOpenCartWindow = useSelector(state => state.ProductReducer.isOpenCartWindow)
   const themeStyle = theme ? 'light' : 'dark'
+  let wishList = JSON.parse(localStorage.getItem('wishListItems'))
   // get one product
   const getProduct = async () => {
     const { data } = await instance.get(`/api/products/${id}`)
@@ -45,7 +47,7 @@ export const ProductCard = () => {
   useEffect(() => {
     setSpinner(true);
     setThumbsSwiper(null);
-    setProduct({}) // Установить thumbsSwiper в null при изменении id
+    setProduct({})
   }, [id]);
    useEffect(() => {
     if (data) {
@@ -79,26 +81,37 @@ export const ProductCard = () => {
     dispatch(addToBasket(product?.itemNo, countToCart))
     dispatch(toggleProductToCart(product))
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
-    let repeat = false
-    storageBasket = storageBasket.map(item => {
-      if (item.itemNo === product?.itemNo) {
-        repeat = true
-        return ({
-          itemNo: product?.itemNo,
-          countToCart: item.countToCart + countToCart
-        })
-      } else {
-        return item
-      }
-    })
-    if (!repeat) {
-      storageBasket.push(
+    if (storageBasket.length === 0) {
+      storageBasket = [
         {
-          itemNo: product?.itemNo,
+          ...product,
           countToCart
         }
-      )
+      ]
+    } else {
+      let isRepeat = false
+      storageBasket = storageBasket.map(item => {
+        if (item.itemNo === product.itemNo) {
+          isRepeat = true
+          return ({
+            ...item,
+            countToCart: countToCart + item.countToCart
+          })
+        } else {
+          return (item)
+        }
+      })
+      if (!isRepeat) {
+        storageBasket = [
+          ...storageBasket,
+          {
+            ...product,
+            countToCart
+          }
+        ]
+      }
     }
+
     localStorage.setItem('basketList', JSON.stringify([
       ...storageBasket
     ])
@@ -108,12 +121,50 @@ export const ProductCard = () => {
     dispatch(updateBasket(storageBasket))
   }
 
-  console.log('product from ProductCard', product);
-  const isWishlisted = useSelector(state => state.WishListReducer.wishList.some(item => item.itemNo === product.itemNo));
+  const checkIsWish = (itemNo) => {
+    let isWish = false
+    wishList.forEach(item => {
+      if (item.itemNo === itemNo) {
+        isWish = true
+      }
+    })
+    setWishListHeard(isWish)
+  }
+
+  useEffect(() => {
+    checkIsWish(product.itemNo)
+    // eslint-disable-next-line
+  }, [product.itemNo])
 
   const WishItemStatus = () => {
-    dispatch(toggleWishlist(product))
-  };
+   if (wishList.length === 0) {
+     wishList = [
+       ...wishList,
+       {...product}
+     ]
+     setWishListHeard(true)
+   } else {
+     let isInclude = false
+     wishList.forEach(item => {
+       if (item.itemNo === product.itemNo) {
+         isInclude = true
+       }
+     })
+     if (isInclude) {
+       wishList = wishList.filter(item => item.itemNo !== product.itemNo)
+       setWishListHeard(false)
+     } else {
+       wishList = [
+         ...wishList,
+         {...product}
+       ]
+       setWishListHeard(true)
+     }
+   }
+    localStorage.setItem('wishListItems', JSON.stringify(wishList))
+    localStorage.setItem('wishList', wishList.length)
+    dispatch(setWishList(wishList))
+  }
 
   return (
     <>{isSpinner && <Spinner />}
@@ -218,10 +269,10 @@ export const ProductCard = () => {
                       <button
                         className={`${style.product_card_button_available} ${(countToCart === 1) ? style.product_card_button_disable : ''}`}
                         disabled={countToCart === 1} onClick={() => {
-                          setCountToCart(prev => prev -= 1)
-                          setCountOfAvailable(prev => prev += 1)
+                          setCountToCart(prev => prev - 1)
+                          setCountOfAvailable(prev => prev + 1)
                           if (countToCart > 0) {
-                            setMultipliedPrice(prev => (prev = Number(prev) - product?.currentPrice).toFixed(2))
+                            setMultipliedPrice(prev => (Number(prev) - product?.currentPrice).toFixed(2))
                           }
                           if (countToCart === 1) {
                             setMultipliedPrice(product?.currentPrice)
@@ -232,11 +283,11 @@ export const ProductCard = () => {
                       <button
                         className={`${style.product_card_button_available} ${(!countOfAvailable) ? style.product_card_button_disable : ''}`}
                         disabled={!countOfAvailable} onClick={() => {
-                          setCountToCart(prev => prev += 1)
-                          setCountOfAvailable(prev => prev -= 1)
+                          setCountToCart(prev => prev + 1)
+                          setCountOfAvailable(prev => prev - 1)
 
                           if (countToCart > 0) {
-                            setMultipliedPrice(prev => (prev = Number(prev) + product?.currentPrice).toFixed(2))
+                            setMultipliedPrice(prev => (Number(prev) + product?.currentPrice).toFixed(2))
                           }
                           if (!countToCart) {
                             setMultipliedPrice(product?.currentPrice)
@@ -256,7 +307,7 @@ export const ProductCard = () => {
                         }}
                         className={style.product_favorite_background}
                       >
-                        {isWishlisted
+                        {wishListHeard
                           ? (
                             <AiTwotoneHeart className={style.product_fav_heart} />
                           )

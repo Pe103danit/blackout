@@ -1,12 +1,23 @@
 import { connect, useSelector } from 'react-redux'
 import { setSelectValue } from '../../redux/reducers/ProductReducer/ProductReducer'
 import style from './SelectBar.module.scss'
+import { useSearchParams } from 'react-router-dom'
 
 const SelectBar = ({ selectValue, setSelectValue }) => {
+  const [searchParams, setSearchParams] = useSearchParams()
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const handleChange = (e) => {
     const newValue = e.target.value
     setSelectValue(newValue)
+
+    const params = new URLSearchParams(searchParams)
+
+    if (newValue !== '') {
+      params.set('sort', newValue)
+    } else {
+      params.delete('sort')
+    }
+    setSearchParams(params)
   }
 
   return (
@@ -19,10 +30,10 @@ const SelectBar = ({ selectValue, setSelectValue }) => {
         onChange={handleChange}
       >
         <option className={style.selectBar__input__option} value="">Default</option>
-        <option className={style.selectBar__input__option} value="&sort=+currentPrice">Low ... High &#8593;</option>
-        <option className={style.selectBar__input__option} value="&sort=-currentPrice">High ... Low &#8595;</option>
-        <option className={style.selectBar__input__option} value="&sort=+name">A &#8594; Z</option>
-        <option className={style.selectBar__input__option} value="&sort=-name">Z &#8594; A</option>
+        <option className={style.selectBar__input__option} value="+currentPrice">Low ... High &#8593;</option>
+        <option className={style.selectBar__input__option} value="-currentPrice">High ... Low &#8595;</option>
+        <option className={style.selectBar__input__option} value="+name">A &#8594; Z</option>
+        <option className={style.selectBar__input__option} value="-name">Z &#8594; A</option>
       </select>
     </div>
   )

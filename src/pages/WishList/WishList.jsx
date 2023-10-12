@@ -1,44 +1,54 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+=======
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+>>>>>>> master
 
 import style from './WishList.module.scss';
 
 import EmptyWishListContainer from '../../components/EmptyWishList/EmptyWishListContainer';
 import WishListItem from './WishListItem';
+<<<<<<< HEAD
+=======
+import { setWishList } from '../../redux/reducers/WishListReducer/WishListActions'
+>>>>>>> master
 
 const WishList = (props) => {
   const theme = props.lightTheme
 
+<<<<<<< HEAD
   const [wishListItems, setWishListItems] = useState(props.wishList);
   console.log('wishListItems from Wishlist', wishListItems);
   const [isOnWishList, setIsOnWishList] = useState(props.wishCount !== 0 || false);
   console.log('isOnWishList from WishList', isOnWishList);
+=======
+  let wishListItems = props.wishList;
+>>>>>>> master
 
   const WishListHandler = (itemNo) => {
-    let updatedWishListItems;
-
-    if (!wishListItems.includes(itemNo)) {
-      updatedWishListItems = [...wishListItems, itemNo];
-    } else {
-      updatedWishListItems = wishListItems.filter(item => item !== itemNo);
-    }
-    setWishListItems(updatedWishListItems);
-    setIsOnWishList(updatedWishListItems.length !== 0 || false);
-
-    window.localStorage.setItem('wishListItems', JSON.stringify(updatedWishListItems));
-    window.localStorage.setItem('wishList', updatedWishListItems.length);
+    wishListItems = wishListItems.filter(item => item.itemNo !== itemNo)
+    localStorage.setItem('wishListItems', JSON.stringify(wishListItems))
+    localStorage.setItem('wishList', wishListItems.length)
+    props.setWishList(wishListItems)
   }
 
+<<<<<<< HEAD
   return (
     <>
+=======
+  return (<>
+>>>>>>> master
       <h2 className={style.wishList__title}>
         Wishlist
       </h2>
       <div>
-        {isOnWishList
+        {wishListItems.length > 0
           ? (
             <div className={`${style.wishList} ${theme ? '' : style.wishList__darkTheme}`}>
+<<<<<<< HEAD
               {wishListItems.map((itemWishList, index) => (
                 <WishListItem
                   key={index}
@@ -46,6 +56,18 @@ const WishList = (props) => {
                   onWishList={() => WishListHandler(itemWishList)}
                 />
               ))}
+=======
+              {wishListItems.map((wishItem, index) => {
+                  return (
+                    <WishListItem
+                      key={index}
+                      product={wishItem}
+                      onWishList={() => WishListHandler(wishItem.itemNo)}
+                    />
+                  )
+              })
+              }
+>>>>>>> master
               <Link to={'/shop'} className={`${style.wishList__btn_shop} ${theme ? '' : style.wishList__btn_shop__darkTheme}`}>
                 <button>
                   CONTINUE SHOPPING
@@ -64,6 +86,10 @@ const mapStateToProps = (state) => ({
   lightTheme: state.UIStateReducer.lightTheme,
   wishList: state.WishListReducer.wishList,
   wishCount: state.WishListReducer.wishCount
-});
+})
 
-export default connect(mapStateToProps)(WishList);
+const mapDispatchToProps = {
+  setWishList
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WishList);

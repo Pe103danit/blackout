@@ -2,6 +2,7 @@ const initialState = {
   wishCount: localStorage.getItem('wishList') ? Number(localStorage.getItem('wishList')) : 0,
   wishList: localStorage.getItem('wishListItems') ? JSON.parse(localStorage.getItem('wishListItems')) : []
 }
+<<<<<<< HEAD
 // const toggleWishListR = (state, payload) => {
 //   const isWishItem = state.wishList.includes(payload.itemNo);
 //   let updatedWishList = [...state.wishList];
@@ -42,32 +43,23 @@ const toggleWishListR = (state, payload) => {
     wishCount: updatedWishList.length,
   };
 };
+=======
+>>>>>>> master
 
 const WishListReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_TO_WISHLIST':
+    case 'SET_WISHLIST':
       return {
         ...state,
-        wishList: [...state.wishList, action.payload],
+        wishList: [...action.payload],
+        wishCount: [action.payload.length]
       }
-    case 'REMOVE_FROM_WISHLIST':
-      return {
-        ...state,
-        wishList: state.wishList.filter((item) => item !== action.payload),
-        wishCount: state.wishCount - 1
-      }
-    case 'UPDATE_WISHLIST':
-      return {
-        ...state,
-        wishList: [...state.wishList, action.payload],
-      }
-    case 'ToggleWishlist':
-      return toggleWishListR(state, action.payload)
     default:
       return state
   }
 }
 
+<<<<<<< HEAD
 export const toggleWishlist = ({ itemNo, imageUrls, name, currentPrice, model }) => ({
   type: 'ToggleWishlist',
   payload: {
@@ -79,4 +71,6 @@ export const toggleWishlist = ({ itemNo, imageUrls, name, currentPrice, model })
   }
 })
 
+=======
+>>>>>>> master
 export default WishListReducer

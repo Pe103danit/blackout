@@ -21,20 +21,10 @@ const initialState = {
   categories: [],
   productsSliderMain: {}
 }
-const getTotalSum = (productsList, basketList) => {
+const getTotalSum = (basketList) => {
   let totalSum = 0
-  productsList.forEach(product => {
-    let statusFind = false
-    let countCandidate = null
-    basketList.forEach(basketItem => {
-      if (basketItem.itemNo === product.itemNo) {
-        statusFind = true
-        countCandidate = basketItem.countToCart
-      }
-    })
-    if (statusFind) {
-      totalSum += product.currentPrice * countCandidate
-    }
+  basketList.forEach(product => {
+  totalSum += product.currentPrice * product.countToCart
   })
   localStorage.setItem('totalBasketSum', totalSum)
   return Number(totalSum.toFixed(2))
@@ -71,7 +61,7 @@ const changeBasketCountR = (state, payload) => {
     ...state,
     basket: sumCountBasket,
     basketList: newBasketList,
-    totalBasketSum: getTotalSum(state.products, newBasketList)
+    totalBasketSum: getTotalSum(newBasketList)
   }
 }
 
@@ -89,7 +79,7 @@ const deleteBasketItemR = (state, payload) => {
     basketList: [
       ...newBasketList
     ],
-    totalBasketSum: getTotalSum(state.products, newBasketList)
+    totalBasketSum: getTotalSum(newBasketList)
   })
 }
 
@@ -149,7 +139,8 @@ const productReducer = (state = initialState, { type, payload }) => {
     case types.GET_PRODUCTS_PER_PAGE: {
       return {
         ...state,
-        productsPerPage: [...payload]
+        productsPerPage: [...payload],
+        productIsLoading: false
       }
     }
 

@@ -2,36 +2,12 @@ import EmptyBasketContainer from '../../components/EmptyBasket/EmptyBasketContai
 import style from './Basket.module.scss'
 import { NavLink } from 'react-router-dom'
 import { Payments, Protection, Shipping, Support } from '../../components/assets/Icons'
-import { useState } from 'react'
 import BasketItem from './BasketItem'
 
 const Basket = (props) => {
   const themeStyle = props.lightTheme
     ? 'lightBasketStyle'
     : 'darkBasketStyle'
-
-  const [basketList] = useState(props.basketList)
-  const basketProducts = basketList.map(item => item)
-  const matchingProducts = []
-
-  props.products.forEach(product => {
-    let basketStatus = false
-    let basketItem = {}
-    basketProducts.forEach((item) => {
-      if (product.itemNo === item.itemNo) {
-        basketStatus = true
-        basketItem = item
-      }
-    })
-    if (basketStatus) {
-      matchingProducts.push(
-        {
-          ...product,
-          ...basketItem
-        }
-      )
-    }
-  })
 
   return (
     <div>
@@ -41,7 +17,7 @@ const Basket = (props) => {
             <p className={style.section_container_title}>Shopping Cart</p>
             <div className={style.section_container_body}>
               <div className={style.section_container_body_left}>
-                {matchingProducts.map((product) => (
+                {props.basketList.map((product) => (
                   <BasketItem
                     key={product.itemNo}
                     product={product}
