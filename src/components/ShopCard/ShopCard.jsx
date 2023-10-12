@@ -9,15 +9,20 @@ import { makeShortText } from '../assets/makeShortText';
 import Timer from '../../pages/Offers/Timer/Timer'
 
 const ShopCard = (props) => {
+    // console.log('props from ShopCard', props);
     const dispatch = useDispatch()
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
+    // function knowFromDataBase (_id) {
+       
+    // }
+   //  const [wishListHeard, setWishListHeard] = useState(props.token ? knowFromDataBase(props.productItem._id) : JSON.parse(window.localStorage.getItem('wishListItems')).some(item => item.itemNo === props.productItem.itemNo));
     const [wishListHeard, setWishListHeard] = useState(JSON.parse(window.localStorage.getItem('wishListItems')).some(item => item.itemNo === props.productItem.itemNo))
 
     const WishItemStatus = () => {
         setWishListHeard(prevWishListHeard => !prevWishListHeard);
         dispatch(toggleWishlist(props.productItem))
     };
-    
+
     const [timerVisible, setTimerVisible] = useState(false)
     const handleMouseEnter = () => {
         setTimerVisible(true);

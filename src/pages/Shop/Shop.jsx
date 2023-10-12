@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useSelector } from 'react-redux'
+import { connect, useSelector } from 'react-redux';
+import { instance } from '../../components/assets/axiosUrl';
 import CartWindow from '../../components/CartWindow/CartWindow';
 
 import style from './Shop.module.scss';
@@ -14,11 +15,41 @@ import {
     toggleProductToCart
 } from '../../redux/reducers/ProductReducer/ProductReducer'
 
-const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart}) => {
+const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductToCart, token }) => {
+    console.log('Token from Shop', token);
+    const [wishListItems, setWishListItems] = useState(JSON.parse(window.localStorage.getItem('wishListItems')) || []);
+    const [wishListItemIsLoading, setWishListItemIsLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchWishListItems () {
+            try {
+                const response = await instance.get('/api/wishlist', {
+                    headers: { Authorization: token }
+                });
+                const wishlist = response.data;
+                console.log('Wishlist from UserWishList', wishlist);
+                // const wishProducts = wishList.products.map(product => ({
+                //     brand: product.brand,
+                //     categories: product.categories,
+                //     currentPrice: product.currentPrice,
+                //     itemNo: product.itemNo,
+                //     _id: product._id
+                // }));
+                setWishListItems(wishlist);
+                console.log('wishProducts from dataBase from Shop', wishlist);
+                setWishListItemIsLoading(false);
+            } catch (err) {
+                console.log('Error from get UserWishList', err);
+                setWishListItemIsLoading(false);
+            }
+        }
+        fetchWishListItems();
+    }, [token]);
+
     const currentItems = useSelector(state => state.ProductReducer.productsPerPage)
     const [hasScrolled, setHasScrolled] = useState(false)
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
-    let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
+    // let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || [];
 
     useEffect(() => {
         if (isOpenCartWindow) {
@@ -30,9 +61,9 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
 
     const WishListHandler = (itemNo) => {
         if (!wishListItems.includes(itemNo)) {
-            wishListItems.push(itemNo);
+            setWishListItems(wishListItems.push(itemNo));
         } else {
-            wishListItems = wishListItems.filter(item => item !== itemNo);
+            setWishListItems(wishListItems.filter(item => item !== itemNo));
         }
         wishList = wishListItems.length;
 
@@ -51,21 +82,21 @@ const Shop = ({ productItems, productIsLoading, isOpenCartWindow, toggleProductT
     }, [hasScrolled])
 
     return (
-      (productIsLoading === true)
-        ? (<Spinner />)
-        : (<div className={style.shop}>
-              <PriceSlider productItems={productItems} />
-              <CategorySelect />
-              <><SelectBar /></>
-              <div className={style.cardContainer}>
-                  {isOpenCartWindow && <CartWindow />}
-                  {currentItems.map((productItem, index) => (
-                    <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} />
-                  ))}
-              </div>
+        (productIsLoading === true)
+            ? (<Spinner />)
+            : (<div className={style.shop}>
+                <PriceSlider productItems={productItems} />
+                <CategorySelect />
+                <><SelectBar /></>
+                <div className={style.cardContainer}>
+                    {isOpenCartWindow && <CartWindow />}
+                    {currentItems.map((productItem, index) => (
+                        <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} token={token} />
+                    ))}
+                </div>
                 <PagePagination cardOnPage={12} productItems={productItems} />
-          </div>
-        )
+            </div>
+            )
     )
 }
 const mapStateToProps = state => {
