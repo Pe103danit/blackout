@@ -5,20 +5,8 @@ import style from './WishList.module.scss'
 
 const WishListItem = ({ product, onWishList }) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-<<<<<<< HEAD
-  const dispatch = useDispatch()
-
-  const handleRemoveFromWishlist = () => {
-    console.log('handleRemoveFromWishlist item', product);
-    dispatch(removeFromWishList(product))
-    onWishList(product)
-  }
-
-  const img = product.imageUrl.replace('/upload/', '/upload/w_100/')
-=======
 
   const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
->>>>>>> master
 
   return (
     <div className={style.wishListItem}>
@@ -37,13 +25,8 @@ const WishListItem = ({ product, onWishList }) => {
         <p className={style.wishListItem__leftBlock__price}>
           ${product.currentPrice}
         </p>
-<<<<<<< HEAD
-        <button onClick={handleRemoveFromWishlist}
-          className={`${style.wishListItem__leftBlock__btn} ${theme ? '' : style.wishListItem__leftBlock__btn__darkTheme}`}>
-=======
         <button onClick={onWishList}
                 className={`${style.wishListItem__leftBlock__btn} ${theme ? '' : style.wishListItem__leftBlock__btn__darkTheme}`}>
->>>>>>> master
           Remove
         </button>
       </div>
