@@ -27,7 +27,6 @@ const ShopCard = (props) => {
   }
   const [countToCart] = useState(1)
   const handleClick = () => {
-    console.log('click')
     window.scrollTo(0, 0)
     dispatch(toggleProductToCart(props.productItem))
     const candidateId = props.productItem.itemNo
