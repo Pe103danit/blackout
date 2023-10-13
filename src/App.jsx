@@ -51,7 +51,7 @@ const App = (props) => {
     const user = sessionStorage.getItem('user')
     if (token) {
       props.setToken(token)
-      props.setUser(user)
+      props.setUser(JSON.parse(user))
       setTimeout(() => {
         sessionStorage.setItem('tokenParts', '')
         sessionStorage.setItem('user', JSON.stringify({}))

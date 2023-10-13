@@ -1,6 +1,6 @@
 import { Formik, Field, Form } from 'formik';
 import { instanceToken } from '../../components/assets/axiosUrl'
-import style from '../SignUp/SignUp.module.scss'
+import style from './ForgotPassword.module.scss'
 import { object, string, ref } from 'yup';
 import { useState } from 'react'
 import { NavLink, Navigate, useNavigate } from 'react-router-dom'
@@ -30,6 +30,7 @@ const ForgotPassword = () => {
         return data
     }
     return (
+        <div className={style.ForgotPassword}>
         <Formik
             initialValues={{
                 password: '',
@@ -47,68 +48,70 @@ const ForgotPassword = () => {
             }}
 
         >
-            <Form className={style.SignUp_form}>
-                <div className={style.SignUp_form_group}>
-                    <label htmlFor='password' className={style.SignUp_form_group_label}>Old Password</label>
-                    {!isPasswordShow && <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.SignUp_form_group_eye} />}
-                    {isPasswordShow && <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.SignUp_form_group_eye} />}
+            <Form className={style.ForgotPassword_form}>
+            <h2 className={style.ForgotPassword_form_title}>Change Password</h2>
+                <div className={style.ForgotPassword_form_group}>
+                    <label htmlFor='password' className={style.ForgotPassword_form_group_label}>Old Password</label>
+                    {!isPasswordShow && <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.ForgotPassword_form_group_eye} />}
+                    {isPasswordShow && <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.ForgotPassword_form_group_eye} />}
                     <Field name='password' >
                         {({
                             field,
                             form: { touched, errors },
                             meta,
                         }) => (
-                            <div className={style.SignUp_form_group_input_wrapper}>
-                                <input type={(isPasswordShow) ? 'text' : 'password'} {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
+                            <div className={style.ForgotPassword_form_group_input_wrapper}>
+                                <input type={(isPasswordShow) ? 'text' : 'password'} {...field} className={`${style.ForgotPassword_form_group_input} ${inputStyle} ${theme ? '' : style.ForgotPassword_darkInput}`} />
                                 {meta.touched && meta.error && (
-                                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                                    <div className={style.ForgotPassword_form_group_error}>{meta.error}</div>
                                 )}
                             </div>
                         )}
                     </Field>
                 </div>
-                <div className={style.SignUp_form_group}>
-                    <label htmlFor='newPassword' className={style.SignUp_form_group_label}>Password</label>
-                    {!isNewPasswordShow && <AiOutlineEyeInvisible onClick={() => setNewPasswordShow(true)} className={style.SignUp_form_group_eye} />}
-                    {isNewPasswordShow && <AiOutlineEye onClick={() => setNewPasswordShow(false)} className={style.SignUp_form_group_eye} />}
+                <div className={style.ForgotPassword_form_group}>
+                    <label htmlFor='newPassword' className={style.ForgotPassword_form_group_label}>Password</label>
+                    {!isNewPasswordShow && <AiOutlineEyeInvisible onClick={() => setNewPasswordShow(true)} className={style.ForgotPassword_form_group_eye} />}
+                    {isNewPasswordShow && <AiOutlineEye onClick={() => setNewPasswordShow(false)} className={style.ForgotPassword_form_group_eye} />}
                     <Field name='newPassword' >
                         {({
                             field,
                             form: { touched, errors },
                             meta,
                         }) => (
-                            <div className={style.SignUp_form_group_input_wrapper}>
-                                <input type={(isNewPasswordShow) ? 'text' : 'password'} {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
+                            <div className={style.ForgotPassword_form_group_input_wrapper}>
+                                <input type={(isNewPasswordShow) ? 'text' : 'password'} {...field} className={`${style.ForgotPassword_form_group_input} ${inputStyle} ${theme ? '' : style.ForgotPassword_darkInput}`} />
                                 {meta.touched && meta.error && (
-                                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                                    <div className={style.ForgotPassword_form_group_error}>{meta.error}</div>
                                 )}
                             </div>
                         )}
                     </Field>
                 </div>
 
-                <div className={style.SignUp_form_group}>
-                    <label htmlFor='confirm-password' className={style.SignUp_form_group_label}>Confirm Password</label>
-                    {!isConfirmPasswordShow && <AiOutlineEyeInvisible onClick={() => setConfirmPasswordShow(true)} className={style.SignUp_form_group_eye} />}
-                    {isConfirmPasswordShow && <AiOutlineEye onClick={() => setConfirmPasswordShow(false)} className={style.SignUp_form_group_eye} />}
+                <div className={style.ForgotPassword_form_group}>
+                    <label htmlFor='confirm-password' className={style.ForgotPassword_form_group_label}>Confirm Password</label>
+                    {!isConfirmPasswordShow && <AiOutlineEyeInvisible onClick={() => setConfirmPasswordShow(true)} className={style.ForgotPassword_form_group_eye} />}
+                    {isConfirmPasswordShow && <AiOutlineEye onClick={() => setConfirmPasswordShow(false)} className={style.ForgotPassword_form_group_eye} />}
                     <Field name='confirmPassword' >
                         {({
                             field,
                             form: { touched, errors },
                             meta,
                         }) => (
-                            <div className={style.SignUp_form_group_input_wrapper}>
-                                <input type={(isConfirmPasswordShow) ? 'text' : 'password'} {...field} className={`${style.SignUp_form_group_input} ${inputStyle} ${theme ? '' : style.SignUp_darkInput}`} />
+                            <div className={style.ForgotPassword_form_group_input_wrapper}>
+                                <input type={(isConfirmPasswordShow) ? 'text' : 'password'} {...field} className={`${style.ForgotPassword_form_group_input} ${inputStyle} ${theme ? '' : style.ForgotPassword_darkInput}`} />
                                 {meta.touched && meta.error && (
-                                    <div className={style.SignUp_form_group_error}>{meta.error}</div>
+                                    <div className={style.ForgotPassword_form_group_error}>{meta.error}</div>
                                 )}
                             </div>
                         )}
                     </Field>
                 </div>
-                <button type='submit' className={style.SignUp_form_button}>Submit</button>
+                <button type='submit' className={style.ForgotPassword_form_button}>Submit</button>
             </Form>
         </Formik>
+        </div>
     )
 }
 
