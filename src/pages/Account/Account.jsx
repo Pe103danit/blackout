@@ -23,6 +23,8 @@ const Account = () => {
     dispatch(setUser(null))
     dispatch(setOrderList(null))
     dispatch(logoutWishList());
+    localStorage.setItem('wishListItems', JSON.stringify([]))
+    localStorage.setItem('wishList', 0)
     navigate('/')
   }
   return (

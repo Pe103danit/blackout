@@ -31,6 +31,8 @@ const Login = () => {
       });
       const wishlist = response.data.products;
       console.log('Wishlist from Login', wishlist);
+      localStorage.setItem('wishListItems', JSON.stringify(wishlist))
+      localStorage.setItem('wishList', wishlist.length)
       dispatch(setWishList(wishlist))
       // setWishListItems(wishlist);
       // setWishListItemIsLoading(false);
