@@ -3,7 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import { instanceToken } from '../../components/assets/axiosUrl';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { object, string } from 'yup';
 import Spinner from '../../components/Spinner/Spinner';
 import { NavLink } from 'react-router-dom'
@@ -31,19 +31,28 @@ const UserInfo = () => {
     console.log(user);
     const userIsLoading = useSelector(state => state.SessionReducer.userIsLoading)
     const token = useSelector(state => state.SessionReducer.token)
-    const getUser = async () => {
+    const getUser = useCallback(async () => {
         const { data } = await instanceToken.get('/api/customers/customer', {
             headers: { Authorization: token }
         });
         if (data !== 'Unauthorized') {
-            dispatch(setUser(data))
+            dispatch(setUser(data));
         }
-    };
+    }, [dispatch, token]);
+    
+    // const getUser = async () => {
+    //     const { data } = await instanceToken.get('/api/customers/customer', {
+    //         headers: { Authorization: token }
+    //     });
+    //     if (data !== 'Unauthorized') {
+    //         dispatch(setUser(data))
+    //     }
+    // };
     useEffect(() => {
         if (!user) {
             getUser();
         }
-    }, [user, token, dispatch])
+    }, [user, token, dispatch, getUser])
     return (
         <>  {userIsLoading && <Spinner />}
             {!userIsLoading &&
