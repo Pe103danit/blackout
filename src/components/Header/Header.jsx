@@ -115,7 +115,7 @@ const Header = (props) => {
                 }
               </button>
             </NavLink>
-            <NavLink to={token ? '/user_wishlist' : '/wishlist'} className={style.container_header_c2_link}>
+            <NavLink to={'/wishlist'} className={style.container_header_c2_link}>
               <button className={style.container_header_c2_link_button}>
                 {props.lightTheme
                   ? <HeartIcon />

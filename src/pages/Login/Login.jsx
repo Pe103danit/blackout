@@ -6,6 +6,7 @@ import { object, string } from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate, Navigate } from 'react-router-dom'
 import { setToken, setUser } from '../../redux/reducers/SessionReducer/SessionReducer';
+import { setWishList } from '../../redux/reducers/WishListReducer/WishListActions';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 const loginSchema = object({
   loginOrEmail: string().required('Email is required'),
@@ -22,6 +23,24 @@ const Login = () => {
   const dispatch = useDispatch()
   const [err, setErr] = useState(null)
   const [isPasswordShow, setPasswordShow] = useState(false)
+
+  async function fetchWishListItems (token) {
+    try {
+      const response = await instance.get('/api/wishlist', {
+        headers: { Authorization: token }
+      });
+      const wishlist = response.data.products;
+      console.log('Wishlist from Login', wishlist);
+      dispatch(setWishList(wishlist))
+      // setWishListItems(wishlist);
+      // setWishListItemIsLoading(false);
+      return response.data.products
+    } catch (err) {
+      console.log('Error get WishList from Login', err);
+      // setWishListItemIsLoading(false);
+    }
+  };
+
   const login = async credentional => {
     setErr(null)
     try {
@@ -31,7 +50,8 @@ const Login = () => {
       }
       const token = data.token;
       sessionStorage.setItem('tokenParts', token);
-      dispatch(setToken(token))
+      dispatch(setToken(token));
+      fetchWishListItems(token);
       navigate('/account');
     } catch (e) {
       setErr('invalid credentional')

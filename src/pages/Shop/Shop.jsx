@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { instance } from '../../components/assets/axiosUrl';
 import CartWindow from '../../components/CartWindow/CartWindow'
 
 import style from './Shop.module.scss'
@@ -10,12 +11,31 @@ import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
 import {
   toggleProductToCart
-} from '../../redux/reducers/ProductReducer/ProductReducer'
+} from '../../redux/reducers/ProductReducer/ProductReducer';
 
-const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart }) => {
-  const [hasScrolled, setHasScrolled] = useState(false)
-  let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0
-  let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
+const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart, token }) => {
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [wishListItemIsLoading, setWishListItemIsLoading] = useState(true);
+
+  async function fetchWishListItems () {
+    try {
+      const response = await instance.get('/api/wishlist', {
+        headers: { Authorization: token }
+      });
+      const wishlist = response.data;
+      console.log('Wishlist from Shop', wishlist.products);
+      // setWishListItems(wishlist);
+      setWishListItemIsLoading(false);
+      return wishList.products
+    } catch (err) {
+      console.log('Error from get UserWishList', err);
+      setWishListItemIsLoading(false);
+    }
+  }
+  let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
+  let wishListItems = token ? fetchWishListItems() : JSON.parse(localStorage.getItem('wishListItems')) || [];
+
+  // let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
 
   useEffect(() => {
     if (isOpenCartWindow) {
@@ -49,16 +69,16 @@ const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart }) => {
   console.log(productsPerPage)
   return (
     <div className={style.shop}>
-      <PriceSlider productItems={productsPerPage}/>
-      <CategorySelect/>
-      <><SelectBar/></>
+      <PriceSlider productItems={productsPerPage} />
+      <CategorySelect />
+      <><SelectBar /></>
       <div className={style.cardContainer}>
-        {isOpenCartWindow && <CartWindow/>}
-        {productsPerPage.map((productItem, index) => (
-          <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)}/>
+        {isOpenCartWindow && <CartWindow />}
+        {wishListItemIsLoading && productsPerPage.map((productItem, index) => (
+          <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} token={token} wishListItems={wishListItems} />
         ))}
       </div>
-      <PagePagination cardOnPage={12} productItems={productsPerPage}/>
+      <PagePagination cardOnPage={12} productItems={productsPerPage} />
     </div>
   )
 }

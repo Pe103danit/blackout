@@ -9,10 +9,13 @@ import Timer from '../../pages/Offers/Timer/Timer'
 import { setWishList } from '../../redux/reducers/WishListReducer/WishListActions'
 
 const ShopCard = (props) => {
+  // console.log('props from ShopCard', props);
   const dispatch = useDispatch()
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-  const [wishListHeard, setWishListHeard] = useState(false)
-  let wishList = JSON.parse(localStorage.getItem('wishListItems'))
+  const [wishListHeard, setWishListHeard] = useState(false);
+
+  let wishList = props.token ? props.wishListItems : JSON.parse(localStorage.getItem('wishListItems'));
+
   const checkIsWish = (itemNo) => {
     let isWish = false
     wishList.forEach(item => {
@@ -31,7 +34,7 @@ const ShopCard = (props) => {
     if (wishList.length === 0) {
       wishList = [
         ...wishList,
-        {...props.productItem}
+        { ...props.productItem }
       ]
       setWishListHeard(true)
     } else {
@@ -47,7 +50,7 @@ const ShopCard = (props) => {
       } else {
         wishList = [
           ...wishList,
-          {...props.productItem}
+          { ...props.productItem }
         ]
         setWishListHeard(true)
       }
@@ -103,8 +106,8 @@ const ShopCard = (props) => {
       }
     }
     localStorage.setItem('basketList', JSON.stringify([
-        ...storageBasket
-      ])
+      ...storageBasket
+    ])
     )
     const countBasket = parseInt(localStorage.getItem('basket'))
     localStorage.setItem('basket', `${countBasket + countToCart}`)
@@ -113,17 +116,17 @@ const ShopCard = (props) => {
 
   return (
     <div className={`${style.shopCard} ${theme ? '' : style.shopCard__darkTheme}`}
-         onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <Link to={`/products/${props.productItem.itemNo}`}>
         <div className={style.shopCard__imgBlock}>
           <img className={style.shopCard__imgBlock__img1}
-               src={props.productItem.imageUrls[0].replace('/upload/', '/upload/w_368/')}
-               alt={props.productItem.title}/>
+            src={props.productItem.imageUrls[0].replace('/upload/', '/upload/w_368/')}
+            alt={props.productItem.title} />
           <img className={style.shopCard__imgBlock__img2}
-               src={props.productItem.imageUrls[1].replace('/upload/', '/upload/w_368/')}
-               alt={props.productItem.title}/>
+            src={props.productItem.imageUrls[1].replace('/upload/', '/upload/w_368/')}
+            alt={props.productItem.title} />
         </div>
       </Link>
       <div className={style.shopCard__description}>
@@ -141,7 +144,7 @@ const ShopCard = (props) => {
         <>{props.offerPrice && (
           <div className={style.shopCard__description__prevPrice}>${props.productItem.previousPrice} USD</div>)
         }
-          {props.offerPrice && timerVisible && <Timer/>}
+          {props.offerPrice && timerVisible && <Timer />}
         </>
         <Link to={`/products/${props.productItem.itemNo}`}>
           <div className={style.shopCard__description__order}>
@@ -156,16 +159,16 @@ const ShopCard = (props) => {
         <button className={`${style.shopCard__description__order__wishList} ${theme
           ? style['shopCard__description__order__wishList--backgroundWhite']
           : style['shopCard__description__order__wishList--backgroundBlack']
-        }`} onClick={() => WishItemStatus()}>
+          }`} onClick={() => WishItemStatus()}>
           {wishListHeard
-            ? <HeartIconCardFill/>
-            : <HeartIconCard/>
+            ? <HeartIconCardFill />
+            : <HeartIconCard />
           }
         </button>
         <button className={style.shopCard__description__order__cart} onClick={handleClick}>
           {theme
-            ? <MarketIcon fill={'#4164EC'}/>
-            : <MarketIconDark/>
+            ? <MarketIcon fill={'#4164EC'} />
+            : <MarketIconDark />
           }
         </button>
       </div>

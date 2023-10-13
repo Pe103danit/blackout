@@ -11,6 +11,12 @@ const WishListReducer = (state = initialState, action) => {
         wishList: [...action.payload],
         wishCount: [action.payload.length]
       }
+    case 'LOGOUT_WISHLIST':
+      return {
+        ...state,
+        wishList: action.payload,
+        wishCount: [0]
+      }
     default:
       return state
   }
