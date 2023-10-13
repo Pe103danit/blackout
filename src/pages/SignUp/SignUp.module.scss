@@ -25,7 +25,6 @@
         &_button{
             max-width: 120px;
             height: 40px;
-            font-family: 'Manrope', sans-serif;
             padding: 10px 20px;
             color: $white;
             font-size: 16px;
@@ -34,6 +33,7 @@
             border: none;
             border-radius: 5px;
             outline: none;
+            font-family: 'Manrope', sans-serif;
         }
         &_group{
             position: relative;
