@@ -3,7 +3,7 @@ import { instanceToken } from '../../components/assets/axiosUrl'
 import style from './ForgotPassword.module.scss'
 import { object, string, ref } from 'yup';
 import { useState } from 'react'
-import { NavLink, Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 import { useSelector } from 'react-redux';
 const changePasswordSchema = object({
