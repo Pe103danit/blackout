@@ -6,7 +6,6 @@ import { updateBasket } from '../../redux/reducers/ProductReducer/ProductReducer
 const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
   basketList: state.ProductReducer.basketList,
-  products: state.ProductReducer.products,
   totalBasketSum: state.ProductReducer.totalBasketSum
 })
 

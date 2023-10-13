@@ -8,7 +8,6 @@ import CategorySelect from '../../components/CategorySelect/CategorySelect'
 import SelectBar from '../../components/SelectBar/SelectBar'
 import PagePagination from '../../components/PagePagination/PagePagination'
 import ShopCard from '../../components/ShopCard/ShopCard'
-import { toggleWishlist } from '../../redux/reducers/WishListReducer/WishListReducer'
 import {
   toggleProductToCart
 } from '../../redux/reducers/ProductReducer/ProductReducer'
@@ -47,6 +46,7 @@ const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart }) => {
       setHasScrolled(true)
     }
   }, [hasScrolled])
+  console.log(productsPerPage)
   return (
     <div className={style.shop}>
       <PriceSlider productItems={productsPerPage}/>
@@ -74,7 +74,6 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  toggleWishlist,
   toggleProductToCart
 }
 

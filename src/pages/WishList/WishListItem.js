@@ -1,20 +1,10 @@
 import { NavLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-
-import { removeFromWishList } from '../../redux/reducers/WishListReducer/WishListActions'
+import { useSelector } from 'react-redux'
 
 import style from './WishList.module.scss'
 
 const WishListItem = ({ product, onWishList }) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-
-  console.log(product)
-  const dispatch = useDispatch()
-
-  const handleRemoveFromWishlist = () => {
-    dispatch(removeFromWishList(product.itemNo))
-    onWishList(product.itemNo)
-  }
 
   const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
 
@@ -35,7 +25,7 @@ const WishListItem = ({ product, onWishList }) => {
         <p className={style.wishListItem__leftBlock__price}>
           ${product.currentPrice}
         </p>
-        <button onClick={handleRemoveFromWishlist}
+        <button onClick={onWishList}
                 className={`${style.wishListItem__leftBlock__btn} ${theme ? '' : style.wishListItem__leftBlock__btn__darkTheme}`}>
           Remove
         </button>
