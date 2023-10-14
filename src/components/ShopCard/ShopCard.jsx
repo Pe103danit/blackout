@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { instance } from '../../components/assets/axiosUrl';
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons'
 import style from './ShopCard.module.scss'
 import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
@@ -14,11 +15,13 @@ const ShopCard = (props) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const [wishListHeard, setWishListHeard] = useState(false);
 
-  let wishList = props.token ? props.wishListItems : JSON.parse(localStorage.getItem('wishListItems'));
+  // let wishList = props.token ? props.wishListItems : JSON.parse(localStorage.getItem('wishListItems'));
+  // let wishList = JSON.parse(localStorage.getItem('wishListItems'));
+  const [wishListCard, setWishListCard] = useState(JSON.parse(localStorage.getItem('wishListItems')));
 
   const checkIsWish = (itemNo) => {
     let isWish = false
-    wishList.forEach(item => {
+    wishListCard.forEach(item => {
       if (item.itemNo === itemNo) {
         isWish = true
       }
@@ -28,36 +31,116 @@ const ShopCard = (props) => {
   useEffect(() => {
     checkIsWish(props.productItem.itemNo)
     // eslint-disable-next-line
-  }, [props.productItem.itemNo])
+  }, [props.productItem.itemNo]);
+
+  const updateLocalStorage = (updatedValue) => {
+    localStorage.setItem('wishListItems', JSON.stringify(updatedValue));
+    localStorage.setItem('wishList', updatedValue.length);
+    dispatch(setWishList(updatedValue));
+  };
 
   const WishItemStatus = () => {
-    if (wishList.length === 0) {
-      wishList = [
-        ...wishList,
-        { ...props.productItem }
-      ]
-      setWishListHeard(true)
+    if (wishListCard.length === 0) {
+      if (props.token) {
+        // Create product to Wishlist for User - is working
+        async function addProductToWishList (productId) {
+           const newWishlist = {
+            products: [productId]
+          };
+          try {
+            const response = await instance.post('/api/wishlist', newWishlist, {
+              headers: { Authorization: props.token }
+            });
+            if (response.status === 200) {
+              const updatedWishlist = response.data.products;
+              console.log('UpdatedWishlist from ShopCard', updatedWishlist);
+              setWishListCard([...wishListCard, { ...props.productItem }]);
+              updateLocalStorage([...wishListCard, { ...props.productItem }]);
+              setWishListHeard(true)
+            }
+            console.log('Response from Create from Wishlist', response);
+            // const updatedWishlist = response.data.products;
+            // console.log('UpdatedWishlist from ShopCard', updatedWishlist);
+            // setWishListCard([...wishListCard, { ...props.productItem }]);
+            // updateLocalStorage([...wishListCard, { ...props.productItem }]);
+            // setWishListHeard(true)
+          } catch (err) {
+            console.log('Error from ADD ShopCard', err);
+          }
+        }
+        addProductToWishList(props.productItem._id)
+      } else {
+        setWishListCard([...wishListCard, { ...props.productItem }]);
+        updateLocalStorage([...wishListCard, { ...props.productItem }]);
+        setWishListHeard(true)
+      }
     } else {
       let isInclude = false
-      wishList.forEach(item => {
+      wishListCard.forEach(item => {
         if (item.itemNo === props.productItem.itemNo) {
           isInclude = true
         }
       })
       if (isInclude) {
-        wishList = wishList.filter(item => item.itemNo !== props.productItem.itemNo)
-        setWishListHeard(false)
+        if (props.token) {
+          // Delete product to Wishlist for User - is working
+          async function delProductToWishList (productId) {
+            try {
+              const response = await instance.delete(`/api/wishlist/${productId}`, {
+                headers: { Authorization: props.token }
+              });
+              console.log('Response from DEL from Wishlist', response);
+              if (response.status === 200) {
+                const updatedWishlist = response.data.products;
+                console.log('UpdatedWishlist from ShopCard', updatedWishlist);
+                setWishListCard(updatedWishlist)
+                console.log('wishListCard from ShopCard during del', wishListCard);
+                updateLocalStorage(wishListCard);
+                setWishListHeard(false)
+              }
+            } catch (err) {
+              console.log('Error from DEL ShopCard', err);
+            }
+          }
+          delProductToWishList(props.productItem._id)
+        } else {
+          setWishListCard(wishListCard.filter(item => item.itemNo !== props.productItem.itemNo));
+          updateLocalStorage([wishListCard]);
+          setWishListHeard(false)
+        }
+        // setWishListCard(wishListCard.filter(item => item.itemNo !== props.productItem.itemNo))
+        // setWishListHeard(false)
       } else {
-        wishList = [
-          ...wishList,
-          { ...props.productItem }
-        ]
-        setWishListHeard(true)
+        if (props.token) {
+          // Add product to Wishlist for User - is working
+          async function addProductToWishList (productId) {
+            try {
+              const response = await instance.put(`/api/wishlist/${productId}`, null, {
+                headers: { Authorization: props.token }
+              });
+              // console.log('Response from ADD from Wishlist', response);
+              if (response.status === 200) {
+                const updatedWishlist = response.data.products;
+                console.log('UpdatedWishlist from ShopCard', updatedWishlist);
+                setWishListCard([...wishListCard, { ...props.productItem }]);
+                updateLocalStorage([...wishListCard, { ...props.productItem }]);
+                setWishListHeard(true)
+              }
+            } catch (err) {
+              console.log('Error from ADD ShopCard', err);
+            }
+          }
+          addProductToWishList(props.productItem._id)
+        } else {
+          setWishListCard([...wishListCard, { ...props.productItem }]);
+          updateLocalStorage([...wishListCard, { ...props.productItem }]);
+          setWishListHeard(true)
+        }
       }
     }
-    localStorage.setItem('wishListItems', JSON.stringify(wishList))
-    localStorage.setItem('wishList', wishList.length)
-    dispatch(setWishList(wishList))
+    // localStorage.setItem('wishListItems', JSON.stringify(wishListCard))
+    // localStorage.setItem('wishList', wishListCard.length)
+    // dispatch(setWishList(wishListCard))
   }
 
   const [timerVisible, setTimerVisible] = useState(false)

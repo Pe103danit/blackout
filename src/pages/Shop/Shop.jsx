@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { instance } from '../../components/assets/axiosUrl';
+// import { instance } from '../../components/assets/axiosUrl';
 import CartWindow from '../../components/CartWindow/CartWindow'
 
 import style from './Shop.module.scss'
@@ -15,27 +15,27 @@ import {
 
 const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart, token }) => {
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [wishListItemIsLoading, setWishListItemIsLoading] = useState(true);
+  // const [wishListItemIsLoading, setWishListItemIsLoading] = useState(true);
 
-  async function fetchWishListItems () {
-    try {
-      const response = await instance.get('/api/wishlist', {
-        headers: { Authorization: token }
-      });
-      const wishlist = response.data;
-      console.log('Wishlist from Shop', wishlist.products);
-      // setWishListItems(wishlist);
-      setWishListItemIsLoading(false);
-      return wishList.products
-    } catch (err) {
-      console.log('Error from get UserWishList', err);
-      setWishListItemIsLoading(false);
-    }
-  }
+  // async function fetchWishListItems () {
+  //   try {
+  //     const response = await instance.get('/api/wishlist', {
+  //       headers: { Authorization: token }
+  //     });
+  //     const wishlist = response.data;
+  //     console.log('Wishlist from Shop', wishlist.products);
+  //     // setWishListItems(wishlist);
+  //     setWishListItemIsLoading(false);
+  //     return wishList.products
+  //   } catch (err) {
+  //     console.log('Error from get UserWishList', err);
+  //     setWishListItemIsLoading(false);
+  //   }
+  // }
   let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
-  let wishListItems = token ? fetchWishListItems() : JSON.parse(localStorage.getItem('wishListItems')) || [];
+  // let wishListItems = token ? fetchWishListItems() : JSON.parse(localStorage.getItem('wishListItems')) || [];
 
-  // let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
+  let wishListItems = JSON.parse(window.localStorage.getItem('wishListItems')) || []
 
   useEffect(() => {
     if (isOpenCartWindow) {
@@ -74,8 +74,8 @@ const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart, token })
       <><SelectBar /></>
       <div className={style.cardContainer}>
         {isOpenCartWindow && <CartWindow />}
-        {wishListItemIsLoading && productsPerPage.map((productItem, index) => (
-          <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} token={token} wishListItems={wishListItems} />
+        {productsPerPage.map((productItem, index) => (
+          <ShopCard key={index} productItem={productItem} onWishList={() => WishListHandler(productItem.itemNo)} token={token} />
         ))}
       </div>
       <PagePagination cardOnPage={12} productItems={productsPerPage} />
