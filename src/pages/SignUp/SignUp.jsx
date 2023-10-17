@@ -10,8 +10,8 @@ const signUpSchema = object({
   email: string().email().required('Email is required'),
   password: string().required('Password is required').min(7, 'Too Short!').matches(/[A-Z]/, 'Password must contain at least one uppercase letter'),
   login: string().required('Login required').min(3, 'Too short!').max(10, 'Too long!').matches(/[A-Z]/, 'Login must contain at least one uppercase letter').matches(/^[a-zA-Z0-9]+$/, 'Allowed characters for login is a-z, A-Z, 0-9.'),
-  firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'First name must contain at least one uppercase letter'),
-  lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'Last name must contain at least one uppercase letter'),
+  firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/^[a-zA-Z]+$/, 'Only letters').matches(/[A-Z]/, 'First name must contain at least one uppercase letter'),
+  lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/^[a-zA-Z]+$/, 'Only letters').matches(/[A-Z]/, 'Last name must contain at least one uppercase letter'),
   confirmPassword: string().oneOf([ref('password'), null], 'Passwords must match').required('Confirm Password is required'),
 });
 
