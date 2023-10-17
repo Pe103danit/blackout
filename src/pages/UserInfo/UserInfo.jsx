@@ -10,8 +10,8 @@ import { NavLink } from 'react-router-dom'
 const signUpSchema = object({
     email: string().email().required('Email is required'),
     login: string().required('Login required').min(3, 'Too short!').max(10, 'Too long!').matches(/[A-Z]/, 'Login must contain at least one uppercase letter').matches(/^[a-zA-Z0-9]+$/, 'Allowed characters for login is a-z, A-Z, 0-9.'),
-    firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'First name must contain at least one uppercase letter'),
-    lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/[A-Z]/, 'Last name must contain at least one uppercase letter'),
+    firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/^[a-zA-Z]+$/, 'Only letters').matches(/[A-Z]/, 'First name must contain at least one uppercase letter'),
+    lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/^[a-zA-Z]+$/, 'Only letters').matches(/[A-Z]/, 'Last name must contain at least one uppercase letter'),
 });
 const UserInfo = () => {
     const [isEdit, setIsEdit] = useState(false)
@@ -24,11 +24,10 @@ const UserInfo = () => {
         : 'darkInput'
     const upDateUser = async (credentional) => {
         const { data } = await instanceToken.put('/api/customers', credentional, { headers: { Authorization: token } })
-        console.log(data)
+        return data
     }
     const dispatch = useDispatch()
     const user = useSelector(state => state.SessionReducer.user)
-    console.log(user);
     const userIsLoading = useSelector(state => state.SessionReducer.userIsLoading)
     const token = useSelector(state => state.SessionReducer.token)
     const getUser = useCallback(async () => {
@@ -39,15 +38,7 @@ const UserInfo = () => {
             dispatch(setUser(data));
         }
     }, [dispatch, token]);
-    
-    // const getUser = async () => {
-    //     const { data } = await instanceToken.get('/api/customers/customer', {
-    //         headers: { Authorization: token }
-    //     });
-    //     if (data !== 'Unauthorized') {
-    //         dispatch(setUser(data))
-    //     }
-    // };
+
     useEffect(() => {
         if (!user) {
             getUser();
@@ -79,8 +70,9 @@ const UserInfo = () => {
                                     validationSchema={signUpSchema}
                                     onSubmit={async (value) => {
                                         const { confirmPassword, ...rest } = value
-                                        upDateUser(rest)
-                                        getUser();
+                                        const data = await upDateUser(rest)
+                                        dispatch(setUser(data))
+                                        sessionStorage.setItem('user', JSON.stringify(data))
                                         setIsEdit(false)
                                     }}
                                 >
