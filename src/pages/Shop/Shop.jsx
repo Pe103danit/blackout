@@ -66,7 +66,7 @@ const Shop = ({ productsPerPage, isOpenCartWindow, toggleProductToCart, token })
       setHasScrolled(true)
     }
   }, [hasScrolled])
-  console.log(productsPerPage)
+  console.log('productsPerPage from Shop', productsPerPage)
   return (
     <div className={style.shop}>
       <PriceSlider productItems={productsPerPage} />

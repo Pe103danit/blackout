@@ -17,11 +17,11 @@ const ShopCard = (props) => {
 
   // let wishList = props.token ? props.wishListItems : JSON.parse(localStorage.getItem('wishListItems'));
   // let wishList = JSON.parse(localStorage.getItem('wishListItems'));
-  const [wishListCard, setWishListCard] = useState(JSON.parse(localStorage.getItem('wishListItems')));
+  const [wishListCards, setWishListCards] = useState(JSON.parse(localStorage.getItem('wishListItems')));
 
   const checkIsWish = (itemNo) => {
     let isWish = false
-    wishListCard.forEach(item => {
+    wishListCards.forEach(item => {
       if (item.itemNo === itemNo) {
         isWish = true
       }
@@ -40,10 +40,12 @@ const ShopCard = (props) => {
   };
 
   const WishItemStatus = () => {
-    if (wishListCard.length === 0) {
+    setWishListCards(JSON.parse(localStorage.getItem('wishListItems')));
+    console.log('wishListCards', wishListCards);
+    if (wishListCards.length === 0) {
       if (props.token) {
         // Create product to Wishlist for User - is working
-        async function addProductToWishList (productId) {
+        async function createWishListForUser (productId) {
            const newWishlist = {
             products: [productId]
           };
@@ -53,9 +55,9 @@ const ShopCard = (props) => {
             });
             if (response.status === 200) {
               const updatedWishlist = response.data.products;
-              console.log('UpdatedWishlist from ShopCard', updatedWishlist);
-              setWishListCard([...wishListCard, { ...props.productItem }]);
-              updateLocalStorage([...wishListCard, { ...props.productItem }]);
+              console.log('UpdatedWishlist from ShopCard during Create', updatedWishlist);
+              setWishListCards([updatedWishlist]);
+              updateLocalStorage([updatedWishlist]);
               setWishListHeard(true)
             }
             console.log('Response from Create from Wishlist', response);
@@ -65,18 +67,18 @@ const ShopCard = (props) => {
             // updateLocalStorage([...wishListCard, { ...props.productItem }]);
             // setWishListHeard(true)
           } catch (err) {
-            console.log('Error from ADD ShopCard', err);
+            console.log('Error from CREATE ShopCard', err);
           }
         }
-        addProductToWishList(props.productItem._id)
+        createWishListForUser(props.productItem._id)
       } else {
-        setWishListCard([...wishListCard, { ...props.productItem }]);
-        updateLocalStorage([...wishListCard, { ...props.productItem }]);
+        setWishListCards([...wishListCards, { ...props.productItem }]);
+        updateLocalStorage([...wishListCards, { ...props.productItem }]);
         setWishListHeard(true)
       }
     } else {
       let isInclude = false
-      wishListCard.forEach(item => {
+      wishListCards.forEach(item => {
         if (item.itemNo === props.productItem.itemNo) {
           isInclude = true
         }
@@ -93,9 +95,9 @@ const ShopCard = (props) => {
               if (response.status === 200) {
                 const updatedWishlist = response.data.products;
                 console.log('UpdatedWishlist from ShopCard', updatedWishlist);
-                setWishListCard(updatedWishlist)
-                console.log('wishListCard from ShopCard during del', wishListCard);
-                updateLocalStorage(wishListCard);
+                setWishListCards(updatedWishlist)
+                console.log('wishListCards from ShopCard during del', updatedWishlist);
+                updateLocalStorage(updatedWishlist);
                 setWishListHeard(false)
               }
             } catch (err) {
@@ -104,8 +106,10 @@ const ShopCard = (props) => {
           }
           delProductToWishList(props.productItem._id)
         } else {
-          setWishListCard(wishListCard.filter(item => item.itemNo !== props.productItem.itemNo));
-          updateLocalStorage([wishListCard]);
+          const wishItems = wishListCards.filter(item => item.itemNo !== props.productItem.itemNo)
+          setWishListCards(wishItems);
+          console.log('wishListCards from del', wishItems);
+          updateLocalStorage(wishItems);
           setWishListHeard(false)
         }
         // setWishListCard(wishListCard.filter(item => item.itemNo !== props.productItem.itemNo))
@@ -122,8 +126,8 @@ const ShopCard = (props) => {
               if (response.status === 200) {
                 const updatedWishlist = response.data.products;
                 console.log('UpdatedWishlist from ShopCard', updatedWishlist);
-                setWishListCard([...wishListCard, { ...props.productItem }]);
-                updateLocalStorage([...wishListCard, { ...props.productItem }]);
+                setWishListCards([updatedWishlist]);
+                updateLocalStorage([updatedWishlist]);
                 setWishListHeard(true)
               }
             } catch (err) {
@@ -132,8 +136,8 @@ const ShopCard = (props) => {
           }
           addProductToWishList(props.productItem._id)
         } else {
-          setWishListCard([...wishListCard, { ...props.productItem }]);
-          updateLocalStorage([...wishListCard, { ...props.productItem }]);
+          setWishListCards([...wishListCards, { ...props.productItem }]);
+          updateLocalStorage([...wishListCards, { ...props.productItem }]);
           setWishListHeard(true)
         }
       }
