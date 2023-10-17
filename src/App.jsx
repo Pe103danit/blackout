@@ -66,7 +66,7 @@ const App = (props) => {
         <Route path='/power_banks' element={<ProductCategoriesContainer categoryName='Power Banks' title='Power Banks' token={token} />} />
         <Route path='/solar_panels' element={<ProductCategoriesContainer categoryName='Solar Panels' title='Solar Panels' token={token} />} />
         <Route path='cart' element={<Cart />} />
-        <Route path='/wishlist' element={<WishList />} />
+        <Route path='/wishlist' element={<WishList token={token} />} />
         <Route path='/policies/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/information' element={<InformationStep1Container />} />
         <Route path='/shipping' element={<ShippingStep2Container />} />

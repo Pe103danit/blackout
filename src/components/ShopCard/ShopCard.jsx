@@ -15,7 +15,6 @@ const ShopCard = (props) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const [wishListHeard, setWishListHeard] = useState(false);
 
-  // let wishList = props.token ? props.wishListItems : JSON.parse(localStorage.getItem('wishListItems'));
   let wishList = JSON.parse(localStorage.getItem('wishListItems'));
 
   const checkIsWish = (itemNo) => {
@@ -82,7 +81,6 @@ const ShopCard = (props) => {
               console.log('Response from DEL from Wishlist', response);
               if (response.status === 200) {
                 const updatedWishlist = response.data.products;
-                console.log('UpdatedWishlist from ShopCard', updatedWishlist);
                 console.log('wishListCards from ShopCard during del', updatedWishlist);
                 updateLocalStorage(updatedWishlist);
                 setWishListHeard(false)
@@ -125,9 +123,6 @@ const ShopCard = (props) => {
         }
       }
     }
-    // localStorage.setItem('wishListItems', JSON.stringify(wishListCard))
-    // localStorage.setItem('wishList', wishListCard.length)
-    // dispatch(setWishList(wishListCard))
   }
 
   const [timerVisible, setTimerVisible] = useState(false)
