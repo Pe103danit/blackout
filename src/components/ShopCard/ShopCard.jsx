@@ -16,12 +16,11 @@ const ShopCard = (props) => {
   const [wishListHeard, setWishListHeard] = useState(false);
 
   // let wishList = props.token ? props.wishListItems : JSON.parse(localStorage.getItem('wishListItems'));
-  // let wishList = JSON.parse(localStorage.getItem('wishListItems'));
-  const [wishListCards, setWishListCards] = useState(JSON.parse(localStorage.getItem('wishListItems')));
+  let wishList = JSON.parse(localStorage.getItem('wishListItems'));
 
   const checkIsWish = (itemNo) => {
     let isWish = false
-    wishListCards.forEach(item => {
+    wishList.forEach(item => {
       if (item.itemNo === itemNo) {
         isWish = true
       }
@@ -40,13 +39,13 @@ const ShopCard = (props) => {
   };
 
   const WishItemStatus = () => {
-    setWishListCards(JSON.parse(localStorage.getItem('wishListItems')));
-    console.log('wishListCards', wishListCards);
-    if (wishListCards.length === 0) {
+    wishList = JSON.parse(localStorage.getItem('wishListItems'));
+    
+    if (wishList.length === 0) {
       if (props.token) {
         // Create product to Wishlist for User - is working
         async function createWishListForUser (productId) {
-           const newWishlist = {
+          const newWishlist = {
             products: [productId]
           };
           try {
@@ -54,35 +53,24 @@ const ShopCard = (props) => {
               headers: { Authorization: props.token }
             });
             if (response.status === 200) {
-              const updatedWishlist = response.data.products;
-              console.log('UpdatedWishlist from ShopCard during Create', updatedWishlist);
-              setWishListCards([updatedWishlist]);
-              updateLocalStorage([updatedWishlist]);
+              const newWishlist = response.data.products;
+              console.log('NewWishlist from ShopCard during Create', newWishlist);
+              updateLocalStorage(newWishlist);
               setWishListHeard(true)
             }
-            console.log('Response from Create from Wishlist', response);
-            // const updatedWishlist = response.data.products;
-            // console.log('UpdatedWishlist from ShopCard', updatedWishlist);
-            // setWishListCard([...wishListCard, { ...props.productItem }]);
-            // updateLocalStorage([...wishListCard, { ...props.productItem }]);
-            // setWishListHeard(true)
           } catch (err) {
             console.log('Error from CREATE ShopCard', err);
           }
         }
         createWishListForUser(props.productItem._id)
       } else {
-        setWishListCards([...wishListCards, { ...props.productItem }]);
-        updateLocalStorage([...wishListCards, { ...props.productItem }]);
+        wishList = [props.productItem]
+        console.log('Wishlist create without User', wishList);
+        updateLocalStorage(wishList);
         setWishListHeard(true)
       }
     } else {
-      let isInclude = false
-      wishListCards.forEach(item => {
-        if (item.itemNo === props.productItem.itemNo) {
-          isInclude = true
-        }
-      })
+      const isInclude = wishList.some(item => item.itemNo === props.productItem.itemNo);
       if (isInclude) {
         if (props.token) {
           // Delete product to Wishlist for User - is working
@@ -95,7 +83,6 @@ const ShopCard = (props) => {
               if (response.status === 200) {
                 const updatedWishlist = response.data.products;
                 console.log('UpdatedWishlist from ShopCard', updatedWishlist);
-                setWishListCards(updatedWishlist)
                 console.log('wishListCards from ShopCard during del', updatedWishlist);
                 updateLocalStorage(updatedWishlist);
                 setWishListHeard(false)
@@ -106,14 +93,11 @@ const ShopCard = (props) => {
           }
           delProductToWishList(props.productItem._id)
         } else {
-          const wishItems = wishListCards.filter(item => item.itemNo !== props.productItem.itemNo)
-          setWishListCards(wishItems);
-          console.log('wishListCards from del', wishItems);
-          updateLocalStorage(wishItems);
+          wishList = wishList.filter(item => item.itemNo !== props.productItem.itemNo)
+          console.log('wishListCards from del', wishList);
+          updateLocalStorage(wishList);
           setWishListHeard(false)
         }
-        // setWishListCard(wishListCard.filter(item => item.itemNo !== props.productItem.itemNo))
-        // setWishListHeard(false)
       } else {
         if (props.token) {
           // Add product to Wishlist for User - is working
@@ -122,12 +106,10 @@ const ShopCard = (props) => {
               const response = await instance.put(`/api/wishlist/${productId}`, null, {
                 headers: { Authorization: props.token }
               });
-              // console.log('Response from ADD from Wishlist', response);
               if (response.status === 200) {
                 const updatedWishlist = response.data.products;
-                console.log('UpdatedWishlist from ShopCard', updatedWishlist);
-                setWishListCards([updatedWishlist]);
-                updateLocalStorage([updatedWishlist]);
+                console.log('UpdatedWishlist from ShopCard during ADD', updatedWishlist);
+                updateLocalStorage(updatedWishlist);
                 setWishListHeard(true)
               }
             } catch (err) {
@@ -136,8 +118,9 @@ const ShopCard = (props) => {
           }
           addProductToWishList(props.productItem._id)
         } else {
-          setWishListCards([...wishListCards, { ...props.productItem }]);
-          updateLocalStorage([...wishListCards, { ...props.productItem }]);
+          wishList = [...wishList, { ...props.productItem }];
+          console.log('ADD to WishList without User', wishList);
+          updateLocalStorage(wishList);
           setWishListHeard(true)
         }
       }
