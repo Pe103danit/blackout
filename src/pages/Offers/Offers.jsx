@@ -9,7 +9,7 @@ import { SaleIcon } from '../../components/assets/Icons';
 
 import style from './Offers.module.scss';
 
-const Offers = () => {
+const Offers = (props) => {
     const [offersProducts, setOffersProducts] = useState([]);
     const [currentItems, setCurrentItems] = useState(offersProducts.slice(0, 12));
     let wishList = JSON.parse(window.localStorage.getItem('wishList')) || 0;
@@ -77,6 +77,7 @@ const Offers = () => {
                                 productItem={productItem}
                                 offerPrice={true}
                                 onWishList={() => WishListHandler(productItem.itemNo)}
+                                token={props.token}
                             />
                         ))}
                     </div>

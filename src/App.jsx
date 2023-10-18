@@ -54,7 +54,7 @@ const App = (props) => {
       <Routes>
         <Route index path='/' element={<HomeContainer />} />
         <Route path='/shop' element={<Shop token={token} />} />
-        <Route path='/offers' element={<Offers />} />
+        <Route path='/offers' element={<Offers token={token} />} />
         <Route path='/delivery' element={<DeliveryContainer />} />
         <Route path='/payment' element={<PaymentContainer />} />
         <Route path='/about_us' element={<AboutUsContainer />} />

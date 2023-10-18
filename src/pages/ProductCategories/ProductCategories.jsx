@@ -11,7 +11,8 @@ const ProductCategories = ({
   categoryName,
   isOpenCartWindow,
   toggleProductToCart,
-  productsPerPage
+  productsPerPage,
+  token
 }) => {
   const wishListItems = JSON.parse(
     window.localStorage.getItem('wishListItems')
@@ -40,24 +41,25 @@ const ProductCategories = ({
   return (
     <div className={style.productCategories}>
       <h3 className={style.productCategories__title}>{title}</h3>
-      {isOpenCartWindow && <CartWindow/>}
+      {isOpenCartWindow && <CartWindow />}
       {(
         <>
-            <PriceSlider productItems={productsPerPage}/>
-            <SelectBar/>
-            <div className={style.productCategories__container}>
-              {productsPerPage.map((productItem) => (
-                <ShopCard
-                  key={productItem.itemNo}
-                  productItem={productItem}
-                  isWished={wishListItems.includes(productItem.itemNo)}
-                />
-              ))}
-            </div>
-            <PagePagination cardOnPage={12} productItems={productsPerPage} categoryName={`categories=${categoryName}&`}
-                            categoryNameShort={categoryName}/>
-          </>
-        )}
+          <PriceSlider productItems={productsPerPage} />
+          <SelectBar />
+          <div className={style.productCategories__container}>
+            {productsPerPage.map((productItem) => (
+              <ShopCard
+                key={productItem.itemNo}
+                productItem={productItem}
+                isWished={wishListItems.includes(productItem.itemNo)}
+                token={token}
+              />
+            ))}
+          </div>
+          <PagePagination cardOnPage={12} productItems={productsPerPage} categoryName={`categories=${categoryName}&`}
+            categoryNameShort={categoryName} />
+        </>
+      )}
     </div>
   )
 }
