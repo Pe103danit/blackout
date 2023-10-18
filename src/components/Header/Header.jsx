@@ -20,7 +20,7 @@ import NavMenuCategories from '../NavMenuCategories/NavMenuCategories'
 import { useSelector } from 'react-redux'
 
 const Header = (props) => {
-  const token = useSelector(state => state.SessionReducer.token)
+  const token = useSelector(state => state.SessionReducer.token);
   const themeStyle = props.lightTheme
     ? 'lightHeader'
     : 'darkHeader'
@@ -37,18 +37,18 @@ const Header = (props) => {
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_header}>
         <div className={style.container_header_c1}>
-          <NavMenuTabletMobile handleClearFilter={handleClearFilter}/>
+          <NavMenuTabletMobile handleClearFilter={handleClearFilter} />
           <div className={style.container_header_c1_logos}>
             <NavLink to="/" className={style.container_header_c1_logos_left}>
               {props.lightTheme
-                ? <LogoLightLeft/>
-                : <LogoDarkLeft/>
+                ? <LogoLightLeft />
+                : <LogoDarkLeft />
               }
             </NavLink>
             <button className={style.container_header_c1_logos_right} onClick={props.toggleTheme}>
               {props.lightTheme
-                ? <LogoLightRight/>
-                : <LogoDarkRight/>
+                ? <LogoLightRight />
+                : <LogoDarkRight />
               }
             </button>
           </div>
@@ -61,7 +61,7 @@ const Header = (props) => {
                     <NavLink to={'/shop'} onClick={handleClearFilter}>
                       Shop
                     </NavLink>
-                    <NavMenuCategories themeStyle={props.lightTheme} handleClearFilter={handleClearFilter}/>
+                    <NavMenuCategories themeStyle={props.lightTheme} handleClearFilter={handleClearFilter} />
                   </li>
 
                   <li className={`${style.container_header_c1_navigation_menu_item} ${navStyle}`}>
@@ -96,30 +96,30 @@ const Header = (props) => {
 
                 </ul>
               </nav>
-              : <SearchPanel themeStyle={props.lightTheme}/>
+              : <SearchPanel themeStyle={props.lightTheme} />
           }
         </div>
         {!props.searchInput &&
           <div className={style.container_header_c2}>
             <button onClick={props.toggleSearchInput}>
               {props.lightTheme
-                ? <SearchIcon/>
-                : <SearchIconDark/>
+                ? <SearchIcon />
+                : <SearchIconDark />
               }
             </button>
             <NavLink to={token ? '/account' : '/login'} className={style.container_header_c2_link}>
               <button className={style.container_header_c2_link_user}>
                 {props.lightTheme
-                  ? <UserIcon/>
-                  : <UserIconDark/>
+                  ? <UserIcon />
+                  : <UserIconDark />
                 }
               </button>
             </NavLink>
             <NavLink to={'/wishlist'} className={style.container_header_c2_link}>
               <button className={style.container_header_c2_link_button}>
                 {props.lightTheme
-                  ? <HeartIcon/>
-                  : <HeartIconDark/>
+                  ? <HeartIcon />
+                  : <HeartIconDark />
                 }
                 <div className={style.container_header_c2_link_button_container}>
                   {props.wishCount}
@@ -129,8 +129,8 @@ const Header = (props) => {
             <NavLink to={'/basket'} className={style.container_header_c2_link}>
               <button className={style.container_header_c2_link_button}>
                 {props.lightTheme
-                  ? <MarketIcon/>
-                  : <MarketIconDark/>
+                  ? <MarketIcon />
+                  : <MarketIconDark />
                 }
                 <div className={style.container_header_c2_link_button_container}>
                   {props.basket}

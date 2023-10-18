@@ -4,3 +4,10 @@ export const setWishList = (wishList) => {
         payload: wishList
     }
 }
+
+export const logoutWishList = () => {
+    return {
+        type: 'LOGOUT_WISHLIST',
+        payload: []
+    }
+}

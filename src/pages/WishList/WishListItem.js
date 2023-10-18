@@ -5,13 +5,13 @@ import style from './WishList.module.scss'
 
 const WishListItem = ({ product, onWishList }) => {
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-
-  const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
+console.log('product from WishListItem', product);
+  const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/');
 
   return (
     <div className={style.wishListItem}>
       <NavLink to={`/products/${product.itemNo}`} className={style.wishListItem__image}>
-        <img src={img} alt={product.name} title={product.name}/>
+        <img src={img} alt={product.name} title={product.name} />
       </NavLink>
       <div className={style.wishListItem__description}>
         <NavLink to={`/products/${product.itemNo}`} className={style.wishListItem__description__link}>
