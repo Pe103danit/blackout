@@ -45,10 +45,11 @@ const Login = () => {
       const response = await instance.get('/api/cart', {
         headers: { Authorization: token }
       })
-      const basket = response.data.products
-      localStorage.setItem('basketList', JSON.stringify(basket) || [])
-      localStorage.setItem('basket', basket.length || 0)
-      dispatch(userLogIn(basket))
+      const basketList = response.data.products.map((product) => { return product.product });
+      const basketQuantity = response.data.products.reduce((total, product) => { return total + product.cartQuantity }, 0);
+      localStorage.setItem('basketList', JSON.stringify(basketList) || [])
+      localStorage.setItem('basket', basketQuantity || 0)
+      dispatch(userLogIn(basketList))
     } catch (err) {
       console.log('Error get Basket from Login', err)
     }
