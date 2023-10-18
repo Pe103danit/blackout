@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { instance } from '../../components/assets/axiosUrl';
+import { useDispatch, useSelector } from 'react-redux'
+import { instance } from '../assets/axiosUrl'
 import { MarketIcon, MarketIconDark, HeartIconCard, HeartIconCardFill } from '../assets/Icons'
 import style from './ShopCard.module.scss'
-import { addToBasket, updateBasket, toggleProductToCart } from '../../redux/reducers/ProductReducer/ProductReducer'
+import {
+  addToBasket,
+  updateBasket,
+  toggleProductToCart,
+  userLogIn
+} from '../../redux/reducers/ProductReducer/ProductReducer'
 import { makeShortText } from '../assets/makeShortText'
 import Timer from '../../pages/Offers/Timer/Timer'
 import { setWishList } from '../../redux/reducers/WishListReducer/WishListActions'
 
 const ShopCard = (props) => {
-  // console.log('props from ShopCard', props);
   const dispatch = useDispatch()
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
-  const [wishListHeard, setWishListHeard] = useState(false);
+  const [wishListHeard, setWishListHeard] = useState(false)
 
-  let wishList = JSON.parse(localStorage.getItem('wishListItems'));
+  let wishList = JSON.parse(localStorage.getItem('wishListItems'))
 
   const checkIsWish = (itemNo) => {
     let isWish = false
@@ -29,47 +33,53 @@ const ShopCard = (props) => {
   useEffect(() => {
     checkIsWish(props.productItem.itemNo)
     // eslint-disable-next-line
-  }, [props.productItem.itemNo]);
+  }, [props.productItem.itemNo])
 
   const updateLocalStorage = (updatedValue) => {
-    localStorage.setItem('wishListItems', JSON.stringify(updatedValue));
-    localStorage.setItem('wishList', updatedValue.length);
-    dispatch(setWishList(updatedValue));
-  };
+    localStorage.setItem('wishListItems', JSON.stringify(updatedValue))
+    localStorage.setItem('wishList', updatedValue.length)
+    dispatch(setWishList(updatedValue))
+  }
+
+  const updateBasketLocalStorage = (updatedValue) => {
+    localStorage.setItem('basketList', JSON.stringify(updatedValue))
+    localStorage.setItem('basket', updatedValue.length)
+    dispatch(userLogIn(updatedValue))
+  }
 
   const WishItemStatus = () => {
-    wishList = JSON.parse(localStorage.getItem('wishListItems'));
-    
+    wishList = JSON.parse(localStorage.getItem('wishListItems'))
     if (wishList.length === 0) {
       if (props.token) {
         // Create product to Wishlist for User - is working
         async function createWishListForUser (productId) {
           const newWishlist = {
             products: [productId]
-          };
+          }
           try {
             const response = await instance.post('/api/wishlist', newWishlist, {
               headers: { Authorization: props.token }
-            });
+            })
             if (response.status === 200) {
-              const newWishlist = response.data.products;
-              console.log('NewWishlist from ShopCard during Create', newWishlist);
-              updateLocalStorage(newWishlist);
+              const newWishlist = response.data.products
+              console.log('NewWishlist from ShopCard during Create', newWishlist)
+              updateLocalStorage(newWishlist)
               setWishListHeard(true)
             }
           } catch (err) {
-            console.log('Error from CREATE ShopCard', err);
+            console.log('Error from CREATE ShopCard', err)
           }
         }
+
         createWishListForUser(props.productItem._id)
       } else {
         wishList = [props.productItem]
-        console.log('Wishlist create without User', wishList);
-        updateLocalStorage(wishList);
+        console.log('Wishlist create without User', wishList)
+        updateLocalStorage(wishList)
         setWishListHeard(true)
       }
     } else {
-      const isInclude = wishList.some(item => item.itemNo === props.productItem.itemNo);
+      const isInclude = wishList.some(item => item.itemNo === props.productItem.itemNo)
       if (isInclude) {
         if (props.token) {
           // Delete product to Wishlist for User - is working
@@ -77,23 +87,21 @@ const ShopCard = (props) => {
             try {
               const response = await instance.delete(`/api/wishlist/${productId}`, {
                 headers: { Authorization: props.token }
-              });
-              console.log('Response from DEL from Wishlist', response);
+              })
               if (response.status === 200) {
-                const updatedWishlist = response.data.products;
-                console.log('wishListCards from ShopCard during del', updatedWishlist);
-                updateLocalStorage(updatedWishlist);
+                const updatedWishlist = response.data.products
+                updateLocalStorage(updatedWishlist)
                 setWishListHeard(false)
               }
             } catch (err) {
-              console.log('Error from DEL ShopCard', err);
+              console.log('Error from DEL ShopCard', err)
             }
           }
+
           delProductToWishList(props.productItem._id)
         } else {
           wishList = wishList.filter(item => item.itemNo !== props.productItem.itemNo)
-          console.log('wishListCards from del', wishList);
-          updateLocalStorage(wishList);
+          updateLocalStorage(wishList)
           setWishListHeard(false)
         }
       } else {
@@ -103,22 +111,22 @@ const ShopCard = (props) => {
             try {
               const response = await instance.put(`/api/wishlist/${productId}`, null, {
                 headers: { Authorization: props.token }
-              });
+              })
               if (response.status === 200) {
-                const updatedWishlist = response.data.products;
-                console.log('UpdatedWishlist from ShopCard during ADD', updatedWishlist);
-                updateLocalStorage(updatedWishlist);
+                const updatedWishlist = response.data.products
+                updateLocalStorage(updatedWishlist)
                 setWishListHeard(true)
               }
             } catch (err) {
-              console.log('Error from ADD ShopCard', err);
+              console.log('Error from ADD ShopCard', err)
             }
           }
+
           addProductToWishList(props.productItem._id)
         } else {
-          wishList = [...wishList, { ...props.productItem }];
-          console.log('ADD to WishList without User', wishList);
-          updateLocalStorage(wishList);
+          wishList = [...wishList, { ...props.productItem }]
+          console.log('ADD to WishList without User', wishList)
+          updateLocalStorage(wishList)
           setWishListHeard(true)
         }
       }
@@ -135,6 +143,30 @@ const ShopCard = (props) => {
   }
   const [countToCart] = useState(1)
   const handleClick = () => {
+    if (props.token) {
+      async function createBasketForUser (productID) {
+        const newBasketList = {
+          products: [
+            {
+              ...props.productItem,
+              cartQuantity: 1
+            }
+          ]
+        }
+        try {
+          const response = await instance.post('/api/cart', newBasketList, {
+            headers: { Authorization: props.token }
+          })
+          if (response.status === 200) {
+            const newBasketList = response.data.products
+            updateBasketLocalStorage(newBasketList)
+          }
+        } catch (err) {
+          console.log('Error from CREATE ShopCard', err)
+        }
+      }
+      createBasketForUser(props.productItem._id)
+    }
     window.scrollTo(0, 0)
     dispatch(toggleProductToCart(props.productItem))
     const candidateId = props.productItem.itemNo
@@ -171,8 +203,8 @@ const ShopCard = (props) => {
       }
     }
     localStorage.setItem('basketList', JSON.stringify([
-      ...storageBasket
-    ])
+        ...storageBasket
+      ])
     )
     const countBasket = parseInt(localStorage.getItem('basket'))
     localStorage.setItem('basket', `${countBasket + countToCart}`)
@@ -181,17 +213,17 @@ const ShopCard = (props) => {
 
   return (
     <div className={`${style.shopCard} ${theme ? '' : style.shopCard__darkTheme}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave}
     >
       <Link to={`/products/${props.productItem.itemNo}`}>
         <div className={style.shopCard__imgBlock}>
           <img className={style.shopCard__imgBlock__img1}
-            src={props.productItem.imageUrls[0].replace('/upload/', '/upload/w_368/')}
-            alt={props.productItem.title} />
+               src={props.productItem.imageUrls[0].replace('/upload/', '/upload/w_368/')}
+               alt={props.productItem.title}/>
           <img className={style.shopCard__imgBlock__img2}
-            src={props.productItem.imageUrls[1].replace('/upload/', '/upload/w_368/')}
-            alt={props.productItem.title} />
+               src={props.productItem.imageUrls[1].replace('/upload/', '/upload/w_368/')}
+               alt={props.productItem.title}/>
         </div>
       </Link>
       <div className={style.shopCard__description}>
@@ -209,7 +241,7 @@ const ShopCard = (props) => {
         <>{props.offerPrice && (
           <div className={style.shopCard__description__prevPrice}>${props.productItem.previousPrice} USD</div>)
         }
-          {props.offerPrice && timerVisible && <Timer />}
+          {props.offerPrice && timerVisible && <Timer/>}
         </>
         <Link to={`/products/${props.productItem.itemNo}`}>
           <div className={style.shopCard__description__order}>
@@ -224,16 +256,16 @@ const ShopCard = (props) => {
         <button className={`${style.shopCard__description__order__wishList} ${theme
           ? style['shopCard__description__order__wishList--backgroundWhite']
           : style['shopCard__description__order__wishList--backgroundBlack']
-          }`} onClick={() => WishItemStatus()}>
+        }`} onClick={WishItemStatus}>
           {wishListHeard
-            ? <HeartIconCardFill />
-            : <HeartIconCard />
+            ? <HeartIconCardFill/>
+            : <HeartIconCard/>
           }
         </button>
         <button className={style.shopCard__description__order__cart} onClick={handleClick}>
           {theme
-            ? <MarketIcon fill={'#4164EC'} />
-            : <MarketIconDark />
+            ? <MarketIcon fill={'#4164EC'}/>
+            : <MarketIconDark/>
           }
         </button>
       </div>

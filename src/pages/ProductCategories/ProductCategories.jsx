@@ -11,7 +11,8 @@ const ProductCategories = ({
   categoryName,
   isOpenCartWindow,
   toggleProductToCart,
-  productsPerPage
+  productsPerPage,
+  token
 }) => {
   const wishListItems = JSON.parse(
     window.localStorage.getItem('wishListItems')
@@ -51,6 +52,7 @@ const ProductCategories = ({
                   key={productItem.itemNo}
                   productItem={productItem}
                   isWished={wishListItems.includes(productItem.itemNo)}
+                  token={token}
                 />
               ))}
             </div>

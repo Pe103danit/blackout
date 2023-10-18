@@ -6,7 +6,8 @@ import {
 } from '../../redux/reducers/ProductReducer/ProductReducer'
 
 const mapStateToProps = (state) => ({
-  ...state.ProductReducer
+  ...state.ProductReducer,
+  token: state.SessionReducer.token
 });
 
 const mapDispatchToProps = {

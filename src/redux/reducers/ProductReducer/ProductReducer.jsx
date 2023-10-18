@@ -174,6 +174,23 @@ const productReducer = (state = initialState, { type, payload }) => {
       }
     }
 
+    case types.USER_LOG_OUT: {
+      return {
+        ...state,
+        basket: 0,
+        basketList: [],
+        totalBasketSum: 0
+      }
+    }
+
+    case types.USER_LOG_IN: {
+      return {
+        ...state,
+        basket: payload.length,
+        basketList: [...payload],
+      }
+    }
+
     default:
       return state
   }
@@ -238,6 +255,15 @@ export const resetFilters = () => ({
 export const getProductsSliderMain = (productsList) => ({
   type: types.GET_PRODUCTS_SLIDER_MAIN,
   payload: productsList
+})
+
+export const userLogOut = () => ({
+  type: types.USER_LOG_OUT
+})
+
+export const userLogIn = (basketList) => ({
+  type: types.USER_LOG_IN,
+  payload: basketList
 })
 
 export default productReducer
