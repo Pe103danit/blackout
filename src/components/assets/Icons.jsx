@@ -804,7 +804,7 @@ export const MailIconDark = () => {
 
 export const SaleIcon = () => {
   return (
-    <svg fill='#FA4500' height='200px' width='200px' transform='rotate(45 50 50)' version='1.1'
+    <svg fill='#FA4500' height='200px' width='200px' version='1.1'
          xmlns='http://www.w3.org/2000/svg' viewBox='0 0 298.333 298.333' xmlnsXlink='http://www.w3.org/1999/xlink'>
       <g>
         <path
