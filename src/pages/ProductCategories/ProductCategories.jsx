@@ -41,7 +41,7 @@ const ProductCategories = ({
   return (
     <div className={style.productCategories}>
       <h3 className={style.productCategories__title}>{title}</h3>
-      {isOpenCartWindow && <CartWindow/>}
+      {isOpenCartWindow && <CartWindow />}
       {(
         <>
             <PriceSlider productItems={productsPerPage}/>
