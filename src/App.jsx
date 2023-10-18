@@ -56,20 +56,20 @@ const App = (props) => {
       <HeaderContainer />
       <Routes>
         <Route index path='/' element={<HomeContainer />} />
-        <Route path='/shop' element={<Shop token={token} />} />
+        <Route path='/shop' element={<Shop />} />
         <Route path='/offers' element={<Offers />} />
         <Route path='/delivery' element={<DeliveryContainer />} />
         <Route path='/payment' element={<PaymentContainer />} />
         <Route path='/about_us' element={<AboutUsContainer />} />
         <Route path='/contacts' element={<ContactsContainer />} />
         <Route path='/basket' element={<BasketContainer />} />
-        <Route path='/accessories' element={<ProductCategoriesContainer categoryName='Accessories' title='Accessories' token={token} />} />
-        <Route path='/generators' element={<ProductCategoriesContainer categoryName='Generators' title='Generators' token={token} />} />
-        <Route path='/portable_power_stations' element={<ProductCategoriesContainer categoryName='Portable Power Stations' title='Portable Power Stations' token={token} />} />
-        <Route path='/power_banks' element={<ProductCategoriesContainer categoryName='Power Banks' title='Power Banks' token={token} />} />
-        <Route path='/solar_panels' element={<ProductCategoriesContainer categoryName='Solar Panels' title='Solar Panels' token={token} />} />
+        <Route path='/accessories' element={<ProductCategoriesContainer categoryName='Accessories' title='Accessories' />} />
+        <Route path='/generators' element={<ProductCategoriesContainer categoryName='Generators' title='Generators' />} />
+        <Route path='/portable_power_stations' element={<ProductCategoriesContainer categoryName='Portable Power Stations' title='Portable Power Stations' />} />
+        <Route path='/power_banks' element={<ProductCategoriesContainer categoryName='Power Banks' title='Power Banks' />} />
+        <Route path='/solar_panels' element={<ProductCategoriesContainer categoryName='Solar Panels' title='Solar Panels' />} />
         <Route path='cart' element={<Cart />} />
-        <Route path='/wishlist' element={<WishList token={token} />} />
+        <Route path='/wishlist' element={<WishList />} />
         <Route path='/policies/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/information' element={<InformationStep1Container />} />
         <Route path='/shipping' element={<ShippingStep2Container />} />

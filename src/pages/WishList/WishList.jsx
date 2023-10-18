@@ -77,7 +77,8 @@ const WishList = (props) => {
 const mapStateToProps = (state) => ({
   lightTheme: state.UIStateReducer.lightTheme,
   wishList: state.WishListReducer.wishList,
-  wishCount: state.WishListReducer.wishCount
+  wishCount: state.WishListReducer.wishCount,
+  token: state.SessionReducer.token
 })
 
 const mapDispatchToProps = {
