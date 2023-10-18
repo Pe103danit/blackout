@@ -44,22 +44,22 @@ const ProductCategories = ({
       {isOpenCartWindow && <CartWindow />}
       {(
         <>
-          <PriceSlider productItems={productsPerPage} />
-          <SelectBar />
-          <div className={style.productCategories__container}>
-            {productsPerPage.map((productItem) => (
-              <ShopCard
-                key={productItem.itemNo}
-                productItem={productItem}
-                isWished={wishListItems.includes(productItem.itemNo)}
-                token={token}
-              />
-            ))}
-          </div>
-          <PagePagination cardOnPage={12} productItems={productsPerPage} categoryName={`categories=${categoryName}&`}
-            categoryNameShort={categoryName} />
-        </>
-      )}
+            <PriceSlider productItems={productsPerPage}/>
+            <SelectBar/>
+            <div className={style.productCategories__container}>
+              {productsPerPage.map((productItem) => (
+                <ShopCard
+                  key={productItem.itemNo}
+                  productItem={productItem}
+                  isWished={wishListItems.includes(productItem.itemNo)}
+                  token={token}
+                />
+              ))}
+            </div>
+            <PagePagination cardOnPage={12} productItems={productsPerPage} categoryName={`categories=${categoryName}&`}
+                            categoryNameShort={categoryName}/>
+          </>
+        )}
     </div>
   )
 }

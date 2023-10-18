@@ -35,6 +35,7 @@ export const ProductCard = () => {
   const [wishListHeard, setWishListHeard] = useState(false)
   const theme = useSelector(state => state.UIStateReducer.lightTheme)
   const isOpenCartWindow = useSelector(state => state.ProductReducer.isOpenCartWindow)
+  const token = useSelector(state => state.SessionReducer.token)
   const themeStyle = theme ? 'light' : 'dark'
   let wishList = JSON.parse(localStorage.getItem('wishListItems'))
   // get one product
@@ -121,6 +122,12 @@ export const ProductCard = () => {
     dispatch(updateBasket(storageBasket))
   }
 
+  const updateLocalStorage = (updatedValue) => {
+    localStorage.setItem('wishListItems', JSON.stringify(updatedValue))
+    localStorage.setItem('wishList', updatedValue.length)
+    dispatch(setWishList(updatedValue))
+  }
+
   const checkIsWish = (itemNo) => {
     let isWish = false
     wishList.forEach(item => {
@@ -137,33 +144,86 @@ export const ProductCard = () => {
   }, [product.itemNo])
 
   const WishItemStatus = () => {
-   if (wishList.length === 0) {
-     wishList = [
-       ...wishList,
-       {...product}
-     ]
-     setWishListHeard(true)
-   } else {
-     let isInclude = false
-     wishList.forEach(item => {
-       if (item.itemNo === product.itemNo) {
-         isInclude = true
-       }
-     })
-     if (isInclude) {
-       wishList = wishList.filter(item => item.itemNo !== product.itemNo)
-       setWishListHeard(false)
-     } else {
-       wishList = [
-         ...wishList,
-         {...product}
-       ]
-       setWishListHeard(true)
-     }
-   }
-    localStorage.setItem('wishListItems', JSON.stringify(wishList))
-    localStorage.setItem('wishList', wishList.length)
-    dispatch(setWishList(wishList))
+    wishList = JSON.parse(localStorage.getItem('wishListItems'))
+    if (wishList.length === 0) {
+      if (token) {
+        // Create product to Wishlist for User - is working
+        async function createWishListForUser (productId) {
+          const newWishlist = {
+            products: [productId]
+          }
+          try {
+            const response = await instance.post('/api/wishlist', newWishlist, {
+              headers: { Authorization: token }
+            })
+            if (response.status === 200) {
+              const newWishlist = response.data.products
+              updateLocalStorage(newWishlist)
+              setWishListHeard(true)
+            }
+          } catch (err) {
+            console.log('Error from CREATE ShopCard', err)
+          }
+        }
+
+        createWishListForUser(product._id)
+      } else {
+        wishList = [product]
+        updateLocalStorage(wishList)
+        setWishListHeard(true)
+      }
+    } else {
+      const isInclude = wishList.some(item => item.itemNo === product.itemNo)
+      if (isInclude) {
+        if (token) {
+          // Delete product to Wishlist for User - is working
+          async function delProductToWishList (productId) {
+            try {
+              const response = await instance.delete(`/api/wishlist/${productId}`, {
+                headers: { Authorization: token }
+              })
+              if (response.status === 200) {
+                const updatedWishlist = response.data.products
+                updateLocalStorage(updatedWishlist)
+                setWishListHeard(false)
+              }
+            } catch (err) {
+              console.log('Error from DEL ShopCard', err)
+            }
+          }
+
+          delProductToWishList(product._id)
+        } else {
+          wishList = wishList.filter(item => item.itemNo !== product.itemNo)
+          updateLocalStorage(wishList)
+          setWishListHeard(false)
+        }
+      } else {
+        if (token) {
+          // Add product to Wishlist for User - is working
+          async function addProductToWishList (productId) {
+            try {
+              const response = await instance.put(`/api/wishlist/${productId}`, null, {
+                headers: { Authorization: token }
+              })
+              if (response.status === 200) {
+                const updatedWishlist = response.data.products
+                updateLocalStorage(updatedWishlist)
+                setWishListHeard(true)
+              }
+            } catch (err) {
+              console.log('Error from ADD ShopCard', err)
+            }
+          }
+
+          addProductToWishList(product._id)
+        } else {
+          wishList = [...wishList, { ...product }]
+          updateLocalStorage(wishList)
+          setWishListHeard(true)
+        }
+      }
+    }
   }
 
   return (

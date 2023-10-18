@@ -1,19 +1,22 @@
 import style from './UserOrderItem.module.scss'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 const UserOrderItem = ({ product }) => {
     const theme = useSelector(state => state.UIStateReducer.lightTheme);
 
-  const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
+    const img = product.imageUrls[0].replace('/upload/', '/upload/w_100/')
     return (
         <div className={style.userOrderItem}>
-            <div className={style.userOrderItem__image}>
+            <NavLink to={`/products/${product.itemNo}`} className={style.userOrderItem__image}>
                 <img src={img} alt={product.name} title={product.name} />
-            </div>
+            </NavLink>
             <div className={style.userOrderItem__description}>
-                <div className={style.userOrderItem__description__link}>
-                    <p className={`${style.userOrderItem__description__link_type} ${theme ? '' : style.userOrderItem__description__link_type__darkTheme}`} >{product.name}</p>
-                    <p className={`${style.userOrderItem__description__link_model} ${theme ? '' : style.userOrderItem__description__link_model__darkTheme}`}>{product.model}</p>
-                </div>
+                <NavLink to={`/products/${product.itemNo}`} className={style.userOrderItem__description__link}>
+                    <p
+                        className={`${style.userOrderItem__description__link_type} ${theme ? '' : style.userOrderItem__description__link_type__darkTheme}`}>{product.name}</p>
+                    <p
+                        className={`${style.UserOrderItem__description__link_model} ${theme ? '' : style.userOrderItem__description__link_model__darkTheme}`}>{product.model}</p>
+                </NavLink>
             </div>
             <div className={style.userOrderItem__leftBlock}>
                 <p className={style.userOrderItem__leftBlock__price}>
