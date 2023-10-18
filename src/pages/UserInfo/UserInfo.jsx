@@ -8,7 +8,7 @@ import { object, string } from 'yup';
 import Spinner from '../../components/Spinner/Spinner';
 import { NavLink } from 'react-router-dom'
 const signUpSchema = object({
-    email: string().email().required('Email is required'),
+    email: string().email().required('Email is required').matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, 'Write your email'),
     login: string().required('Login required').min(3, 'Too short!').max(10, 'Too long!').matches(/[A-Z]/, 'Login must contain at least one uppercase letter').matches(/^[a-zA-Z0-9]+$/, 'Allowed characters for login is a-z, A-Z, 0-9.'),
     firstName: string().required('First name required').min(2, 'Too short!').max(25, 'Too long!').matches(/^[a-zA-Z]+$/, 'Only letters').matches(/[A-Z]/, 'First name must contain at least one uppercase letter'),
     lastName: string().required('Last name required').min(2, 'Too short!').max(25, 'Too long!').matches(/^[a-zA-Z]+$/, 'Only letters').matches(/[A-Z]/, 'Last name must contain at least one uppercase letter'),
