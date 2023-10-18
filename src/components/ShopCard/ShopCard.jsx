@@ -41,10 +41,10 @@ const ShopCard = (props) => {
     dispatch(setWishList(updatedValue))
   }
 
-  const updateBasketLocalStorage = (updatedValue) => {
-    localStorage.setItem('basketList', JSON.stringify(updatedValue))
-    localStorage.setItem('basket', updatedValue.length)
-    dispatch(userLogIn(updatedValue))
+  const updateBasketLocalStorage = (cartList, cartQuantity) => {
+    localStorage.setItem('basketList', JSON.stringify(cartList))
+    localStorage.setItem('basket', cartQuantity)
+    dispatch(userLogIn(cartList))
   }
 
   const WishItemStatus = () => {
@@ -148,7 +148,7 @@ const ShopCard = (props) => {
         const newBasketList = {
           products: [
             {
-              ...props.productItem,
+              product: productID, // Нужно передавать productID
               cartQuantity: 1
             }
           ]
@@ -158,8 +158,10 @@ const ShopCard = (props) => {
             headers: { Authorization: props.token }
           })
           if (response.status === 200) {
-            const newBasketList = response.data.products
-            updateBasketLocalStorage(newBasketList)
+            const newBasketList = response.data.products[0].product;
+            const newBasketQuantity = response.data.products[0].cartQuantity;
+            console.log('Cart data from ShopCard', response.data);
+            updateBasketLocalStorage(newBasketList, newBasketQuantity)
           }
         } catch (err) {
           console.log('Error from CREATE ShopCard', err)

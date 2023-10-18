@@ -7,7 +7,6 @@ import DeliveryContainer from './pages/Delivery/DeliveryContainer'
 import PaymentContainer from './pages/Payment/PaymentContainer'
 import AboutUsContainer from './pages/AboutUs/AboutUsContainer'
 import ContactsContainer from './pages/Contacts/ContactsContainer';
-import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
 import SiteMapContainer from './pages/SiteMap/SiteMapContainer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
@@ -68,7 +67,6 @@ const App = (props) => {
         <Route path='/portable_power_stations' element={<ProductCategoriesContainer categoryName='Portable Power Stations' title='Portable Power Stations' />} />
         <Route path='/power_banks' element={<ProductCategoriesContainer categoryName='Power Banks' title='Power Banks' />} />
         <Route path='/solar_panels' element={<ProductCategoriesContainer categoryName='Solar Panels' title='Solar Panels' />} />
-        <Route path='cart' element={<Cart />} />
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/policies/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/information' element={<InformationStep1Container />} />
