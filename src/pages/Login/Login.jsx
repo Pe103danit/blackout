@@ -46,6 +46,7 @@ const Login = () => {
         headers: { Authorization: token }
       })
       const basketList = response.data.products.map((product) => { return product.product });
+      // const basketQuantity = response.data.products[0].cartQuantity;
       const basketQuantity = response.data.products.reduce((total, product) => { return total + product.cartQuantity }, 0);
       localStorage.setItem('basketList', JSON.stringify(basketList) || [])
       localStorage.setItem('basket', basketQuantity || 0)
@@ -62,7 +63,7 @@ const Login = () => {
       if (error) {
         throw new Error('invalid credentional')
       }
-      const token = data.token
+      const token = data.token;
       sessionStorage.setItem('tokenParts', token)
       dispatch(setToken(token))
       fetchWishListItems(token)
@@ -76,12 +77,12 @@ const Login = () => {
   useEffect(() => {
     if (token) {
       const getUser = async () => {
-        const { data } = await instanceToken.get('/api/customers/customer', {
+        const response = await instanceToken.get('/api/customers/customer', {
           headers: { Authorization: token }
         })
-        if (data !== 'Unauthorized') {
-          dispatch(setUser(data))
-          sessionStorage.setItem('user', JSON.stringify(data))
+        if (response.status === 200) {
+          dispatch(setUser(response.data))
+          sessionStorage.setItem('user', JSON.stringify(response.data))
         }
       }
 
@@ -90,7 +91,7 @@ const Login = () => {
   }, [token, dispatch])
 
   if (token) {
-    return <Navigate to="/account"/>
+    return <Navigate to="/account" />
   }
   return (
     <div className={style.Login}>
@@ -119,18 +120,18 @@ const Login = () => {
           <div className={style.Login_form_group}>
             <label htmlFor="password" className={style.Login_form_group_label}>Password</label>
             {!isPasswordShow &&
-              <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.Login_form_group_eye}/>}
+              <AiOutlineEyeInvisible onClick={() => setPasswordShow(true)} className={style.Login_form_group_eye} />}
             {isPasswordShow &&
-              <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.Login_form_group_eye}/>}
+              <AiOutlineEye onClick={() => setPasswordShow(false)} className={style.Login_form_group_eye} />}
             <Field
               className={`${style.Login_form_group_input} ${inputStyle} ${theme ? '' : style.Login_darkInput}`}
               id="password"
               type={(isPasswordShow) ? 'text' : 'password'}
-              name="password"/>
+              name="password" />
             {err && <span className={style.Login_form_group_err}>{err}</span>}
           </div>
           <p className={style.Login_form_SignUp}>If you don't have account <NavLink to="/sign_up"
-                                                                                    className={style.Login_form_SignUp_text}>Sign
+            className={style.Login_form_SignUp_text}>Sign
             up</NavLink></p>
           <button type="submit" className={style.Login_form_button}>Submit</button>
         </Form>
