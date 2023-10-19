@@ -45,8 +45,11 @@ const Login = () => {
       const response = await instance.get('/api/cart', {
         headers: { Authorization: token }
       })
-      const basketList = response.data.products.map((product) => { return product.product });
-      // const basketQuantity = response.data.products[0].cartQuantity;
+      // const basketList = response.data.products.map((product) => { return product.product });
+      const basketList = response.data.products.map((product) => {
+        product.product.countToCart = product.cartQuantity;
+        return product.product;
+    });
       const basketQuantity = response.data.products.reduce((total, product) => { return total + product.cartQuantity }, 0);
       localStorage.setItem('basketList', JSON.stringify(basketList) || [])
       localStorage.setItem('basket', basketQuantity || 0)
@@ -85,7 +88,6 @@ const Login = () => {
           sessionStorage.setItem('user', JSON.stringify(response.data))
         }
       }
-
       getUser()
     }
   }, [token, dispatch])
