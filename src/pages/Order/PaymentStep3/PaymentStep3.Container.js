@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
   ...state.UIStateReducer,
   totalBasketSum: state.ProductReducer.totalBasketSum,
   basketList: state.ProductReducer.basketList,
-  products: state.ProductReducer.products,
   user: state.SessionReducer.user,
   ...state.OrderReducer
 });

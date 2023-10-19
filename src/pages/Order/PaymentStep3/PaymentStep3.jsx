@@ -11,30 +11,33 @@ import { instance } from '../../../components/assets/axiosUrl'
 import { nanoid } from 'nanoid'
 import { InputMask } from 'primereact/inputmask'
 import CryptoJS from 'crypto-js'
+import { useSelector } from 'react-redux'
 
 const PaymentStep3 = (props) => {
+  const token = useSelector(state => state.SessionReducer.token)
   const themeStyle = props.lightTheme
     ? 'lightInformationStep1'
     : 'darkInformationStep1'
-  const basketList = props.basketList
-  const products = props.products
-  const getInfoOrderedProducts = () => {
-    return products.filter(product => {
-      const matchingBasketItem = basketList.find(basketItem => basketItem.itemNo === product.itemNo)
-      if (matchingBasketItem) {
-        product.countToCart = matchingBasketItem.countToCart
-        return true
-      }
-      return false
-    })
-  }
-  const orderedProducts = getInfoOrderedProducts()
 
+  const orderedProducts = props.basketList
   const newSubscriber = props.email
 
+  async function deleteCart () {
+    const reqBody = {
+      products: []
+    }
+    try {
+      await instance.put('/api/cart', reqBody, {
+        headers: { Authorization: token }
+      })
+    } catch (err) {
+      console.log('Error from CREATE ShopCard', err)
+    }
+  }
+
   const mutation = useMutation(newOrder => {
-    return instance.post('api/orders', newOrder)
-  },
+      return instance.post('api/orders', newOrder)
+    },
     {
       onSuccess: (data) => {
         console.log(data)
@@ -45,8 +48,8 @@ const PaymentStep3 = (props) => {
     })
 
   const mutationSubscribe = useMutation(newSubscriber => {
-    return instance.post('api/subscribers', newSubscriber)
-  },
+      return instance.post('api/subscribers', newSubscriber)
+    },
     {
       onSuccess: (data) => {
         console.log(data)
@@ -66,6 +69,9 @@ const PaymentStep3 = (props) => {
       cardName: '',
     },
     onSubmit: async (values) => {
+      if (token) {
+        deleteCart()
+      }
       await props.setPayment({ ...values })
       const encryptedCardNumber = CryptoJS.AES.encrypt(values.cardNumber, 'secret-key').toString()
       const encryptedExpiry = CryptoJS.AES.encrypt(values.expiry, 'secret-key').toString()
@@ -147,8 +153,7 @@ const PaymentStep3 = (props) => {
           '</body>\n' +
           '</html>'
       }
-      console.log(props.isSubscribed)
-      console.log(newOrder)
+
       const NewSubscriberMail = !props.isSubscribed
         ? null
         : {
@@ -220,7 +225,7 @@ const PaymentStep3 = (props) => {
     <div className={`${style.container} ${themeStyle}`}>
       <div className={style.container_title}>
         <div className={style.container_title_inner}>
-          <span><MarketIcon /> Order summary</span>
+          <span><MarketIcon/> Order summary</span>
           <span>${props.totalBasketSum}</span>
         </div>
       </div>
@@ -250,9 +255,9 @@ const PaymentStep3 = (props) => {
           </ul>
         </nav>
         <form className={style.container_main_form}
-          onSubmit={formik.handleSubmit}
-          autoComplete="off"
-          noValidate
+              onSubmit={formik.handleSubmit}
+              autoComplete="off"
+              noValidate
         >
           <div className={style.container_main_form_login}>
             <p className={style.container_main_form_login_title}>Contact</p>
@@ -273,8 +278,8 @@ const PaymentStep3 = (props) => {
             </p>
             <div className={style.container_main_form_container_inputs}>
               <img src={cardGif}
-                alt="card"
-                className={style.container_main_form_container_inputs_input}
+                   alt="card"
+                   className={style.container_main_form_container_inputs_input}
               />
             </div>
             <div className={style.container_main_form_container_inputs}>
@@ -296,8 +301,8 @@ const PaymentStep3 = (props) => {
                 <p className={style.error}>{formik.errors.cardNumber}</p>
               )}
               <img src={cardImg}
-                alt="card"
-                className={style.container_main_form_container_inputs_img}
+                   alt="card"
+                   className={style.container_main_form_container_inputs_img}
               />
             </div>
             <div className={style.container_main_form_container_inputs}>

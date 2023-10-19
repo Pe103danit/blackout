@@ -12,10 +12,8 @@ const UserOrderItem = ({ product }) => {
             </NavLink>
             <div className={style.userOrderItem__description}>
                 <NavLink to={`/products/${product.itemNo}`} className={style.userOrderItem__description__link}>
-                    <p
-                        className={`${style.userOrderItem__description__link_type} ${theme ? '' : style.userOrderItem__description__link_type__darkTheme}`}>{product.name}</p>
-                    <p
-                        className={`${style.UserOrderItem__description__link_model} ${theme ? '' : style.userOrderItem__description__link_model__darkTheme}`}>{product.model}</p>
+                    <p className={`${style.userOrderItem__description__link_type} ${theme ? '' : style.userOrderItem__description__link_type__darkTheme}`}>{product.name}</p>
+                    <p className={`${style.userOrderItem__description__link_model} ${theme ? '' : style.userOrderItem__description__link_model__darkTheme}`}>{product.model}</p>
                 </NavLink>
             </div>
             <div className={style.userOrderItem__leftBlock}>

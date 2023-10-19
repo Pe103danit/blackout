@@ -26,36 +26,51 @@ const Login = () => {
   const [err, setErr] = useState(null)
   const [isPasswordShow, setPasswordShow] = useState(false)
 
-  async function fetchWishListItems (token) {
+  async function fetchWishListItems(token) {
     try {
       const response = await instance.get('/api/wishlist', {
         headers: { Authorization: token }
       })
-      const wishlist = response.data.products
-      localStorage.setItem('wishListItems', JSON.stringify(wishlist) || [])
-      localStorage.setItem('wishList', wishlist.length || 0)
-      dispatch(setWishList(wishlist))
+      if (response.status === 200) {
+        const wishlist = response.data.products
+        localStorage.setItem('wishListItems', JSON.stringify(wishlist) || [])
+        localStorage.setItem('wishList', wishlist.length || 0)
+        dispatch(setWishList(wishlist))
+      } else {
+        localStorage.setItem('wishListItems', JSON.stringify([]))
+        localStorage.setItem('wishList', 0)
+        dispatch(setWishList([]))
+      }
     } catch (err) {
-      console.log('Error get WishList from Login', err)
     }
   }
 
-  async function fetchBasketItems (token) {
+  async function fetchBasketItems(token) {
     try {
       const response = await instance.get('/api/cart', {
         headers: { Authorization: token }
       })
-      // const basketList = response.data.products.map((product) => { return product.product });
-      const basketList = response.data.products.map((product) => {
-        product.product.countToCart = product.cartQuantity;
-        return product.product;
-    });
-      const basketQuantity = response.data.products.reduce((total, product) => { return total + product.cartQuantity }, 0);
-      localStorage.setItem('basketList', JSON.stringify(basketList) || [])
-      localStorage.setItem('basket', basketQuantity || 0)
-      dispatch(userLogIn(basketList))
+      if (response.status === 200) {
+        const basketList = response.data.products.map((product) => ({
+          ...product.product,
+          countToCart: product.cartQuantity
+        }))
+        const basketQuantity = response.data.products.reduce((total, product) => { return total + product.cartQuantity }, 0)
+        localStorage.setItem('basketList', JSON.stringify(basketList) || [])
+        localStorage.setItem('basket', basketQuantity || 0)
+        dispatch(userLogIn({
+          basketList,
+          basketQuantity
+        }))
+      } else {
+        localStorage.setItem('basketList', JSON.stringify([]))
+        localStorage.setItem('basket', 0)
+        dispatch(userLogIn({
+          basketList: [],
+          basketQuantity: 0
+        }))
+      }
     } catch (err) {
-      console.log('Error get Basket from Login', err)
     }
   }
 
@@ -66,7 +81,7 @@ const Login = () => {
       if (error) {
         throw new Error('invalid credentional')
       }
-      const token = data.token;
+      const token = data.token
       sessionStorage.setItem('tokenParts', token)
       dispatch(setToken(token))
       fetchWishListItems(token)

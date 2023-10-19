@@ -44,19 +44,19 @@ export const ProductCard = () => {
     return data
   }
   const { data } = useQuery(['getProduct', id], getProduct)
- // useEffects
+  // useEffects
   useEffect(() => {
-    setSpinner(true);
-    setThumbsSwiper(null);
+    setSpinner(true)
+    setThumbsSwiper(null)
     setProduct({})
-  }, [id]);
-   useEffect(() => {
+  }, [id])
+  useEffect(() => {
     if (data) {
       setProduct(data)
       setSpinner(false)
     }
   }, [data])
- 
+
   useEffect(() => {
     if (isOpenCartWindow) {
       setTimeout(() => {
@@ -64,24 +64,83 @@ export const ProductCard = () => {
       }, 1000)
     }
   }, [isOpenCartWindow, dispatch])
- 
+
   useEffect(() => {
     // Scroll to the top of the page when the component mounts
     window.scrollTo(0, 0)
   }, [])
-  
+
   useEffect(() => {
     setMultipliedPrice(product?.currentPrice)
     const count = product?.quantity - 1
     setCountOfAvailable(count)
     setSpecsArray(product?.specs)
   }, [product?.currentPrice, product?.quantity, product?.specs])
+
   // handlers
+
+  async function createBasketForUser (productID, cartQuantity = 1) {
+    const newBasketList = {
+      products: [
+        {
+          product: productID,
+          cartQuantity
+        }
+      ]
+    }
+    try {
+      const response = await instance.post('/api/cart', newBasketList, {
+        headers: { Authorization: token }
+      })
+      if (response.status === 200) {
+        const storageBasket = [
+          {
+            ...response.data.products[0].product,
+            countToCart: response.data.products[0].cartQuantity
+          }
+        ]
+        localStorage.setItem('basketList', JSON.stringify([
+            ...storageBasket
+          ])
+        )
+        dispatch(updateBasket(storageBasket))
+      }
+    } catch (err) {
+      console.log('Error from CREATE ShopCard', err)
+    }
+  }
+
+  async function changeItemBasketForUser (newBasketList) {
+    const reqBody = {
+      products: newBasketList.map(el => ({
+        product: el._id,
+        cartQuantity: el.countToCart
+      }))
+    }
+    try {
+      const response = await instance.put('/api/cart', reqBody, {
+        headers: { Authorization: token }
+      })
+      if (response.status === 200) {
+        const storageBasket = response.data.products.map(el => ({ ...el.product, countToCart: el.cartQuantity }))
+        localStorage.setItem('basketList', JSON.stringify([
+            ...storageBasket
+          ])
+        )
+        dispatch(updateBasket(storageBasket))
+      }
+    } catch (err) {
+      console.log('Error from CREATE ShopCard', err)
+    }
+  }
+
   const handleClick = () => {
     window.scrollTo(0, 0)
-    dispatch(addToBasket(product?.itemNo, countToCart))
     dispatch(toggleProductToCart(product))
+    const candidateId = product.itemNo
+    dispatch(addToBasket(candidateId, countToCart))
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
+
     if (storageBasket.length === 0) {
       storageBasket = [
         {
@@ -89,10 +148,18 @@ export const ProductCard = () => {
           countToCart
         }
       ]
+      if (token) {
+        createBasketForUser(product._id, countToCart)
+      } else {
+        localStorage.setItem('basketList', JSON.stringify([
+          ...storageBasket
+        ]))
+        dispatch(updateBasket(storageBasket))
+      }
     } else {
       let isRepeat = false
       storageBasket = storageBasket.map(item => {
-        if (item.itemNo === product.itemNo) {
+        if (item.itemNo === candidateId) {
           isRepeat = true
           return ({
             ...item,
@@ -102,6 +169,7 @@ export const ProductCard = () => {
           return (item)
         }
       })
+
       if (!isRepeat) {
         storageBasket = [
           ...storageBasket,
@@ -111,17 +179,19 @@ export const ProductCard = () => {
           }
         ]
       }
+      if (token) {
+        changeItemBasketForUser(storageBasket)
+      } else {
+        localStorage.setItem('basketList', JSON.stringify([
+            ...storageBasket
+          ])
+        )
+        /* const countBasket = parseInt(localStorage.getItem('basket'))
+        localStorage.setItem('basket', `${countBasket + countToCart}`) */
+        dispatch(updateBasket(storageBasket))
+      }
     }
-
-    localStorage.setItem('basketList', JSON.stringify([
-      ...storageBasket
-    ])
-    )
-    const countBasket = parseInt(localStorage.getItem('basket'))
-    localStorage.setItem('basket', `${countBasket + countToCart}`)
-    dispatch(updateBasket(storageBasket))
   }
-
   const updateLocalStorage = (updatedValue) => {
     localStorage.setItem('wishListItems', JSON.stringify(updatedValue))
     localStorage.setItem('wishList', updatedValue.length)
@@ -227,10 +297,10 @@ export const ProductCard = () => {
   }
 
   return (
-    <>{isSpinner && <Spinner />}
+    <>{isSpinner && <Spinner/>}
       {!isSpinner &&
         <section className={`${style.product} ${themeStyle}`}>
-          {isOpenCartWindow && <CartWindow />}
+          {isOpenCartWindow && <CartWindow/>}
           <div className={style.product_container}>
             <div className={style.product_card}>
               <div className={style.product_swiper_wrapper}>
@@ -249,7 +319,8 @@ export const ProductCard = () => {
                     {product?.imageUrls?.map((item, index) => (
                       <SwiperSlide key={index} className="swiper-slide">
                         <div className={`${style.product_card_img_wrapper} ${style.product_card_img_wrapper_big}`}>
-                          <img src={item.replace('/upload/', '/upload/w_501/')} alt={product?.name} title={product?.name} />
+                          <img src={item.replace('/upload/', '/upload/w_501/')} alt={product?.name}
+                               title={product?.name}/>
                         </div>
                       </SwiperSlide>
                     ))}
@@ -282,7 +353,9 @@ export const ProductCard = () => {
                       {product?.imageUrls?.map((item, index) => (
                         <SwiperSlide key={index} className="swiper-slide">
                           <div className={`${style.product_card_img_wrapper} ${style.product_card_img_mini} `}>
-                            <img className={style.product_image_swiper_mini_img} src={item.replace('/upload/', '/upload/w_501/')} alt={product?.name} title={product?.name} />
+                            <img className={style.product_image_swiper_mini_img}
+                                 src={item.replace('/upload/', '/upload/w_501/')} alt={product?.name}
+                                 title={product?.name}/>
                           </div>
                         </SwiperSlide>
                       ))}
@@ -296,7 +369,7 @@ export const ProductCard = () => {
                   {product?.sale && <p className={style.product_card_hot}>Hot</p>}
                   <h2 className={style.product_card_title}>{product?.name}</h2>
 
-                  <div><StarRating starsSelected={product?.rating} /></div>
+                  <div><StarRating starsSelected={product?.rating}/></div>
                   <p className={style.product_card_price}> $ {product?.currentPrice} </p>
                   <p className={style.product_card_under_price}>{product?.underPrice}</p>
                 </div>
@@ -313,8 +386,8 @@ export const ProductCard = () => {
                       ))}
                     </ul>
                     {(specsArray?.length > 4) && <p className={style.product_card_overview}
-                      onClick={() => { setOverWeightOpen(!isOverWeightOpen) }}>Overview {isOverWeightOpen &&
-                        <SlArrowUp />} {!isOverWeightOpen && < SlArrowDown />}</p>}
+                                                    onClick={() => { setOverWeightOpen(!isOverWeightOpen) }}>Overview {isOverWeightOpen &&
+                      <SlArrowUp/>} {!isOverWeightOpen && < SlArrowDown/>}</p>}
                   </div>
                   {!product?.quantity && <div>
                     <h6 className={style.product_card_description_subtitle_available}>
@@ -329,30 +402,30 @@ export const ProductCard = () => {
                       <button
                         className={`${style.product_card_button_available} ${(countToCart === 1) ? style.product_card_button_disable : ''}`}
                         disabled={countToCart === 1} onClick={() => {
-                          setCountToCart(prev => prev - 1)
-                          setCountOfAvailable(prev => prev + 1)
-                          if (countToCart > 0) {
-                            setMultipliedPrice(prev => (Number(prev) - product?.currentPrice).toFixed(2))
-                          }
-                          if (countToCart === 1) {
-                            setMultipliedPrice(product?.currentPrice)
-                          }
-                        }}>-
+                        setCountToCart(prev => prev - 1)
+                        setCountOfAvailable(prev => prev + 1)
+                        if (countToCart > 0) {
+                          setMultipliedPrice(prev => (Number(prev) - product?.currentPrice).toFixed(2))
+                        }
+                        if (countToCart === 1) {
+                          setMultipliedPrice(product?.currentPrice)
+                        }
+                      }}>-
                       </button>
                       <span className={style.product_card_count}>{countToCart}</span>
                       <button
                         className={`${style.product_card_button_available} ${(!countOfAvailable) ? style.product_card_button_disable : ''}`}
                         disabled={!countOfAvailable} onClick={() => {
-                          setCountToCart(prev => prev + 1)
-                          setCountOfAvailable(prev => prev - 1)
+                        setCountToCart(prev => prev + 1)
+                        setCountOfAvailable(prev => prev - 1)
 
-                          if (countToCart > 0) {
-                            setMultipliedPrice(prev => (Number(prev) + product?.currentPrice).toFixed(2))
-                          }
-                          if (!countToCart) {
-                            setMultipliedPrice(product?.currentPrice)
-                          }
-                        }}>+
+                        if (countToCart > 0) {
+                          setMultipliedPrice(prev => (Number(prev) + product?.currentPrice).toFixed(2))
+                        }
+                        if (!countToCart) {
+                          setMultipliedPrice(product?.currentPrice)
+                        }
+                      }}>+
                       </button>
                     </div>
                   </div>}
@@ -369,10 +442,10 @@ export const ProductCard = () => {
                       >
                         {wishListHeard
                           ? (
-                            <AiTwotoneHeart className={style.product_fav_heart} />
+                            <AiTwotoneHeart className={style.product_fav_heart}/>
                           )
                           : (
-                            <AiOutlineHeart className={style.product_fav_heart} />
+                            <AiOutlineHeart className={style.product_fav_heart}/>
                           )}
                       </div>
                     </div>
