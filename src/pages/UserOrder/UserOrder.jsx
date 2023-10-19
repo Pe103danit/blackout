@@ -31,7 +31,7 @@ const UserOrder = () => {
     const newDate = new Date(date)
     const min = newDate.getMinutes().toString()
     const minutes = (min.length < 2) ? `0${min}` : `${min}`
-    return `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()} ${newDate.getHours()}:${minutes}`
+    return `${newDate.getDate()}-${newDate.getMonth() + 1}-${newDate.getFullYear()} ${newDate.getHours()}:${minutes}`
   }
 
   return (
