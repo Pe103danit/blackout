@@ -23,11 +23,8 @@ const PaymentStep3 = (props) => {
   const newSubscriber = props.email
 
   async function deleteCart () {
-    const reqBody = {
-      products: []
-    }
     try {
-      await instance.put('/api/cart', reqBody, {
+      await instance.delete('/api/cart', {
         headers: { Authorization: token }
       })
     } catch (err) {
