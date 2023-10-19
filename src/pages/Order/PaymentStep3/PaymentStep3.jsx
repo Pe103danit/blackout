@@ -260,7 +260,7 @@ const PaymentStep3 = (props) => {
             <p className={style.container_main_form_login_title}>Contact</p>
             {props.user === null
               ? (
-                <p className={style.container_main_form_login_question}>Have an account?
+                <p className={style.container_main_form_login_question}>Have an account?&nbsp;
                   <NavLink to={'/login'} className={style.container_main_form_login_question_link}>
                     Log in
                   </NavLink>
