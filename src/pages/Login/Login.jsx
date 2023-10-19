@@ -26,7 +26,7 @@ const Login = () => {
   const [err, setErr] = useState(null)
   const [isPasswordShow, setPasswordShow] = useState(false)
 
-  async function fetchWishListItems(token) {
+  async function fetchWishListItems (token) {
     try {
       const response = await instance.get('/api/wishlist', {
         headers: { Authorization: token }
@@ -45,7 +45,7 @@ const Login = () => {
     }
   }
 
-  async function fetchBasketItems(token) {
+  async function fetchBasketItems (token) {
     try {
       const response = await instance.get('/api/cart', {
         headers: { Authorization: token }
