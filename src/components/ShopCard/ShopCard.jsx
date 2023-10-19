@@ -7,8 +7,7 @@ import style from './ShopCard.module.scss'
 import {
   addToBasket,
   updateBasket,
-  toggleProductToCart,
-  userLogIn
+  toggleProductToCart
 } from '../../redux/reducers/ProductReducer/ProductReducer'
 import { makeShortText } from '../assets/makeShortText'
 import Timer from '../../pages/Offers/Timer/Timer'
@@ -39,12 +38,6 @@ const ShopCard = (props) => {
     localStorage.setItem('wishListItems', JSON.stringify(updatedValue))
     localStorage.setItem('wishList', updatedValue.length)
     dispatch(setWishList(updatedValue))
-  }
-
-  const updateBasketLocalStorage = (cartList, cartQuantity) => {
-    localStorage.setItem('basketList', JSON.stringify(cartList))
-    localStorage.setItem('basket', cartQuantity)
-    dispatch(userLogIn(cartList))
   }
 
   const WishItemStatus = () => {
@@ -142,38 +135,63 @@ const ShopCard = (props) => {
     setTimerVisible(false)
   }
   const [countToCart] = useState(1)
-  const handleClick = () => {
-    if (props.token) {
-      async function createBasketForUser (productID) {
-        const newBasketList = {
-          products: [
-            {
-              product: productID, // Нужно передавать productID
-              cartQuantity: 1
-            }
-          ]
+
+  async function createBasketForUser (productID) {
+    const newBasketList = {
+      products: [
+        {
+          product: productID,
+          cartQuantity: 1
         }
-        try {
-          const response = await instance.post('/api/cart', newBasketList, {
-            headers: { Authorization: props.token }
-          })
-          if (response.status === 200) {
-            const newBasketList = response.data.products[0].product;
-            const newBasketQuantity = response.data.products[0].cartQuantity;
-            console.log('Cart data from ShopCard', response.data);
-            updateBasketLocalStorage(newBasketList, newBasketQuantity)
-          }
-        } catch (err) {
-          console.log('Error from CREATE ShopCard', err)
-        }
-      }
-      createBasketForUser(props.productItem._id)
+      ]
     }
+    try {
+      const response = await instance.post('/api/cart', newBasketList, {
+        headers: { Authorization: props.token }
+      })
+      if (response.status === 200) {
+        const storageBasket = [
+          {
+            ...response.data.products[0].product,
+            countToCart: response.data.products[0].cartQuantity
+          }
+        ]
+        localStorage.setItem('basketList', JSON.stringify([
+            ...storageBasket
+          ])
+        )
+        dispatch(updateBasket(storageBasket))
+      }
+    } catch (err) {
+      console.log('Error from CREATE ShopCard', err)
+    }
+  }
+
+  async function changeItemBasketForUser (productID) {
+    try {
+      const response = await instance.put(`/api/cart/${productID}`, {}, {
+        headers: { Authorization: props.token }
+      })
+      if (response.status === 200) {
+        const storageBasket = response.data.products.map(el => ({ ...el.product, countToCart: el.cartQuantity }))
+        localStorage.setItem('basketList', JSON.stringify([
+            ...storageBasket
+          ])
+        )
+        dispatch(updateBasket(storageBasket))
+      }
+    } catch (err) {
+      console.log('Error from CREATE ShopCard', err)
+    }
+  }
+
+  const handleClick = () => {
     window.scrollTo(0, 0)
     dispatch(toggleProductToCart(props.productItem))
     const candidateId = props.productItem.itemNo
     dispatch(addToBasket(candidateId, countToCart))
     let storageBasket = JSON.parse(localStorage.getItem('basketList'))
+
     if (storageBasket.length === 0) {
       storageBasket = [
         {
@@ -181,36 +199,49 @@ const ShopCard = (props) => {
           countToCart: 1
         }
       ]
+      if (props.token) {
+        createBasketForUser(props.productItem._id)
+      } else {
+        localStorage.setItem('basketList', JSON.stringify([
+          ...storageBasket
+        ]))
+        dispatch(updateBasket(storageBasket))
+      }
     } else {
-      let isRepeat = false
-      storageBasket = storageBasket.map(item => {
-        if (item.itemNo === candidateId) {
-          isRepeat = true
-          return ({
-            ...item,
-            countToCart: item.countToCart + 1,
-          })
-        } else {
-          return (item)
-        }
-      })
-      if (!isRepeat) {
-        storageBasket = [
-          ...storageBasket,
-          {
-            ...props.productItem,
-            countToCart: 1
+      if (props.token) {
+        changeItemBasketForUser(props.productItem._id)
+      } else {
+        let isRepeat = false
+        storageBasket = storageBasket.map(item => {
+          if (item.itemNo === candidateId) {
+            isRepeat = true
+            return ({
+              ...item,
+              countToCart: item.countToCart + 1,
+            })
+          } else {
+            return (item)
           }
-        ]
+        })
+
+        if (!isRepeat) {
+          storageBasket = [
+            ...storageBasket,
+            {
+              ...props.productItem,
+              countToCart: 1
+            }
+          ]
+        }
+        localStorage.setItem('basketList', JSON.stringify([
+            ...storageBasket
+          ])
+        )
+        /* const countBasket = parseInt(localStorage.getItem('basket'))
+        localStorage.setItem('basket', `${countBasket + countToCart}`) */
+        dispatch(updateBasket(storageBasket))
       }
     }
-    localStorage.setItem('basketList', JSON.stringify([
-        ...storageBasket
-      ])
-    )
-    const countBasket = parseInt(localStorage.getItem('basket'))
-    localStorage.setItem('basket', `${countBasket + countToCart}`)
-    dispatch(updateBasket(storageBasket))
   }
 
   return (

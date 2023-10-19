@@ -32,6 +32,7 @@ const getTotalSum = (basketList) => {
 
 const updateBasketR = (state, payload) => {
   let basketCount = 0
+
   payload.forEach(item => {
     basketCount += item.countToCart
   })
@@ -186,8 +187,8 @@ const productReducer = (state = initialState, { type, payload }) => {
     case types.USER_LOG_IN: {
       return {
         ...state,
-        basket: payload.length,
-        basketList: [...payload],
+        basket: payload.basketQuantity,
+        basketList: [...payload.basketList],
       }
     }
 
@@ -261,9 +262,9 @@ export const userLogOut = () => ({
   type: types.USER_LOG_OUT
 })
 
-export const userLogIn = (basketList) => ({
+export const userLogIn = (payload) => ({
   type: types.USER_LOG_IN,
-  payload: basketList
+  payload
 })
 
 export default productReducer
