@@ -13,7 +13,7 @@ const SwiperProductsHome = ({ getProductsSliderMain, lightTheme }) => {
     const productsSliderMain = useSelector(state => state.ProductReducer.productsSliderMain)
     const getProductsSliderMainPage = async () => {
         const { data } = await instance.get('/api/products/filter?slider=slider');
-        return data;
+        return data
     };
 
     const { data } = useQuery('getProductsSliderMainPage', getProductsSliderMainPage);
