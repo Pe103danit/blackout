@@ -1,5 +1,5 @@
 import { instance, instanceToken } from '../../components/assets/axiosUrl'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Formik, Field, Form } from 'formik'
 import style from './Login.module.scss'
 import { object, string } from 'yup'
@@ -31,17 +31,23 @@ const Login = () => {
       const response = await instance.get('/api/wishlist', {
         headers: { Authorization: token }
       })
-      if (response.status === 200) {
+      if (response.status === 200 && response.data) {
         const wishlist = response.data.products
         localStorage.setItem('wishListItems', JSON.stringify(wishlist) || [])
         localStorage.setItem('wishList', wishlist.length || 0)
         dispatch(setWishList(wishlist))
+      }
+    } catch (err) {
+      if (err.response.status === 500) {
+        console.log('error')
+        setTimeout(() => {
+          fetchWishListItems(token)
+        }, 500)
       } else {
         localStorage.setItem('wishListItems', JSON.stringify([]))
         localStorage.setItem('wishList', 0)
         dispatch(setWishList([]))
       }
-    } catch (err) {
     }
   }
 
@@ -50,7 +56,7 @@ const Login = () => {
       const response = await instance.get('/api/cart', {
         headers: { Authorization: token }
       })
-      if (response.status === 200) {
+      if (response.status === 200 && response.data) {
         const basketList = response.data.products.map((product) => ({
           ...product.product,
           countToCart: product.cartQuantity
@@ -62,6 +68,13 @@ const Login = () => {
           basketList,
           basketQuantity
         }))
+      }
+    } catch (err) {
+      console.log(err)
+      if (err.response.status === 500) {
+        setTimeout(() => {
+          fetchBasketItems(token)
+        }, 500)
       } else {
         localStorage.setItem('basketList', JSON.stringify([]))
         localStorage.setItem('basket', 0)
@@ -70,44 +83,43 @@ const Login = () => {
           basketQuantity: 0
         }))
       }
-    } catch (err) {
     }
   }
 
-  const login = async credentional => {
+  const fetchLogin = async (credentional) => {
     setErr(null)
     try {
-      const { data, error } = await instance.post('/api/customers/login', credentional)
-      if (error) {
-        throw new Error('invalid credentional')
-      }
-      const token = data.token
-      sessionStorage.setItem('tokenParts', token)
-      dispatch(setToken(token))
-      fetchWishListItems(token)
-      fetchBasketItems(token)
-      navigate('/account')
+      const { data } = await instance.post('/api/customers/login', credentional)
+      return data
     } catch (e) {
-      setErr('invalid credentional')
+      if (e === 500) {
+        return fetchLogin(credentional)
+      } else {
+        setErr('invalid credentional')
+      }
     }
   }
-
-  useEffect(() => {
-    if (token) {
-      const getUser = async () => {
-        const response = await instanceToken.get('/api/customers/customer', {
-          headers: { Authorization: token }
-        })
-        if (response.status === 200) {
-          dispatch(setUser(response.data))
-          sessionStorage.setItem('user', JSON.stringify(response.data))
-        }
-      }
-
-      getUser()
+  const getUser = async (token) => {
+    const response = await instanceToken.get('/api/customers/customer', {
+      headers: { Authorization: token }
+    })
+    if (response.status === 200) {
+      dispatch(setUser(response.data))
+      sessionStorage.setItem('user', JSON.stringify(response.data))
     }
-  }, [token, dispatch])
-
+  }
+  const login = async credentional => {
+    const data = await fetchLogin(credentional)
+    console.log(data)
+    const token = data.token
+    sessionStorage.setItem('tokenParts', token)
+    dispatch(setToken(token))
+    fetchWishListItems(token)
+    fetchBasketItems(token)
+    getUser(token)
+    navigate('/account')
+    setErr(null)
+  }
   if (token) {
     return <Navigate to="/account"/>
   }

@@ -17,7 +17,11 @@ const BasketItem = ({ product }) => {
         headers: { Authorization: token }
       })
     } catch (err) {
-      console.log('Error', err)
+      if (err.response.status === 500) {
+        deleteItemBasketForUser(productID)
+      } else {
+        console.log('Error', err)
+      }
     }
   }
 
@@ -50,18 +54,31 @@ const BasketItem = ({ product }) => {
         dispatch(updateBasket(storageBasket))
       }
     } catch (err) {
-      console.log('Error from CREATE ShopCard', err)
+      if (err.response.status === 500) {
+        changeItemBasketForUser(newBasketList, method)
+      } else {
+        console.log('Error from CREATE ShopCard', err)
+      }
     }
   }
 
   const handleChangeCount = (method) => {
     const basket = JSON.parse(localStorage.getItem('basketList'))
-    if (countToCart > 1 || method !== 'decrement') {
-      setCountToCart(method === 'decrement'
-        ? countToCart - 1
-        : countToCart + 1
-      )
-      changeItemBasketForUser(basket, method)
+    if (token) {
+      if (countToCart > 1 || method !== 'decrement') {
+        setCountToCart(method === 'decrement'
+          ? countToCart - 1
+          : countToCart + 1
+        )
+        changeItemBasketForUser(basket, method)
+      }
+    } else {
+      if (countToCart > 1 || method !== 'decrement') {
+        setCountToCart(method === 'decrement'
+          ? countToCart - 1
+          : countToCart + 1
+        )
+      }
     }
   }
 

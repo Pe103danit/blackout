@@ -60,7 +60,13 @@ const ShopCard = (props) => {
               setWishListHeard(true)
             }
           } catch (err) {
-            console.log('Error from CREATE ShopCard', err)
+            if (err.response.status === 500) {
+              setTimeout(() => {
+                createWishListForUser(productId)
+              }, 500)
+            } else {
+              console.log('Error from CREATE ShopCard', err)
+            }
           }
         }
 
@@ -87,7 +93,13 @@ const ShopCard = (props) => {
                 setWishListHeard(false)
               }
             } catch (err) {
-              console.log('Error from DEL ShopCard', err)
+              if (err.response.status === 500) {
+                setTimeout(() => {
+                  delProductToWishList(productId)
+                }, 500)
+              } else {
+                console.log('Error from CREATE ShopCard', err)
+              }
             }
           }
 
@@ -111,14 +123,19 @@ const ShopCard = (props) => {
                 setWishListHeard(true)
               }
             } catch (err) {
-              console.log('Error from ADD ShopCard', err)
+              if (err.response.status === 500) {
+                setTimeout(() => {
+                  addProductToWishList(productId)
+                }, 500)
+              } else {
+                console.log('Error from CREATE ShopCard', err)
+              }
             }
           }
 
           addProductToWishList(props.productItem._id)
         } else {
           wishList = [...wishList, { ...props.productItem }]
-          console.log('ADD to WishList without User', wishList)
           updateLocalStorage(wishList)
           setWishListHeard(true)
         }
@@ -163,7 +180,13 @@ const ShopCard = (props) => {
         dispatch(updateBasket(storageBasket))
       }
     } catch (err) {
-      console.log('Error from CREATE ShopCard', err)
+      if (err.response.status === 500) {
+        setTimeout(() => {
+          createBasketForUser(productID)
+        }, 500)
+      } else {
+        console.log('Error from CREATE ShopCard', err)
+      }
     }
   }
 
@@ -181,7 +204,13 @@ const ShopCard = (props) => {
         dispatch(updateBasket(storageBasket))
       }
     } catch (err) {
-      console.log('Error from CREATE ShopCard', err)
+      if (err.response.status === 500) {
+        setTimeout(() => {
+          changeItemBasketForUser(productID)
+        }, 500)
+      } else {
+        console.log('Error from CREATE ShopCard', err)
+      }
     }
   }
 
@@ -237,8 +266,6 @@ const ShopCard = (props) => {
             ...storageBasket
           ])
         )
-        /* const countBasket = parseInt(localStorage.getItem('basket'))
-        localStorage.setItem('basket', `${countBasket + countToCart}`) */
         dispatch(updateBasket(storageBasket))
       }
     }

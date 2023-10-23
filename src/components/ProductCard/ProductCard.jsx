@@ -106,7 +106,11 @@ export const ProductCard = () => {
         dispatch(updateBasket(storageBasket))
       }
     } catch (err) {
-      console.log('Error from CREATE ShopCard', err)
+      if (err.response.status === 500) {
+        createBasketForUser(productID, cartQuantity)
+      } else {
+        console.log('Error from CREATE ProductCard', err)
+      }
     }
   }
 
@@ -130,7 +134,11 @@ export const ProductCard = () => {
         dispatch(updateBasket(storageBasket))
       }
     } catch (err) {
-      console.log('Error from CREATE ShopCard', err)
+      if (err.response.status === 500) {
+        changeItemBasketForUser(newBasketList)
+      } else {
+        console.log('Error from CREATE ProductCard', err)
+      }
     }
   }
 
@@ -186,8 +194,6 @@ export const ProductCard = () => {
             ...storageBasket
           ])
         )
-        /* const countBasket = parseInt(localStorage.getItem('basket'))
-        localStorage.setItem('basket', `${countBasket + countToCart}`) */
         dispatch(updateBasket(storageBasket))
       }
     }
@@ -232,10 +238,13 @@ export const ProductCard = () => {
               setWishListHeard(true)
             }
           } catch (err) {
-            console.log('Error from CREATE ShopCard', err)
+            if (err.response.status === 500) {
+              WishItemStatus()
+            } else {
+              console.log('Error from CREATE ProductCard', err)
+            }
           }
         }
-
         createWishListForUser(product._id)
       } else {
         wishList = [product]
@@ -258,10 +267,13 @@ export const ProductCard = () => {
                 setWishListHeard(false)
               }
             } catch (err) {
-              console.log('Error from DEL ShopCard', err)
+              if (err.response.status === 500) {
+                WishItemStatus()
+              } else {
+                console.log('Error from CREATE ProductCard', err)
+              }
             }
           }
-
           delProductToWishList(product._id)
         } else {
           wishList = wishList.filter(item => item.itemNo !== product.itemNo)
@@ -282,10 +294,13 @@ export const ProductCard = () => {
                 setWishListHeard(true)
               }
             } catch (err) {
-              console.log('Error from ADD ShopCard', err)
+              if (err.response.status === 500) {
+                WishItemStatus()
+              } else {
+                console.log('Error from CREATE ProductCard', err)
+              }
             }
           }
-
           addProductToWishList(product._id)
         } else {
           wishList = [...wishList, { ...product }]
